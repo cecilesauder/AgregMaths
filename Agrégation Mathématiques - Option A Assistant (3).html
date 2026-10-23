@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full bg-slate-900 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agreg Math Option A - Aide-Mémoire & Code R (Tidyverse Focus)</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    code, pre {
+      font-family: 'Fira Code', monospace;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(51, 65, 85, 0.8);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Header Responsive -->
+  <header class="sticky top-0 z-30 border-b border-slate-800 bg-slate-900/90 backdrop-blur-md px-3 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+    <div class="flex items-center justify-between w-full sm:w-auto">
+      <div class="flex items-center gap-2.5">
+        <div class="p-2 bg-indigo-600/20 text-indigo-400 rounded-lg border border-indigo-500/30 shrink-0">
+          <i data-lucide="calculator" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h1 class="text-sm sm:text-base font-bold bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400 bg-clip-text text-transparent">
+            Agreg Math - Option A (Proba/Stats)
+          </h1>
+          <p class="text-[10px] sm:text-[11px] text-slate-400">Préparation Oraux & Tidyverse R</p>
+        </div>
+      </div>
+      <!-- Toggle Mobile Sidebar Filter -->
+      <button onclick="toggleMobileSidebar()" class="md:hidden p-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">
+        <i data-lucide="filter" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- Navigation Tabs Responsive -->
+    <nav class="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 w-full sm:w-auto overflow-x-auto text-xs">
+      <button onclick="switchTab('flashcards')" id="tab-flashcards" class="flex-1 sm:flex-none px-3 py-1.5 rounded-lg font-medium transition flex items-center justify-center gap-1.5 bg-indigo-600 text-white shadow-sm whitespace-nowrap">
+        <i data-lucide="brain-circuit" class="w-3.5 h-3.5"></i> Flashcards (<span id="fc-count-badge">0</span>)
+      </button>
+      <button onclick="switchTab('library')" id="tab-library" class="flex-1 sm:flex-none px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-slate-200 transition flex items-center justify-center gap-1.5 whitespace-nowrap">
+        <i data-lucide="code" class="w-3.5 h-3.5"></i> Bibliothèque R
+      </button>
+      <button onclick="switchTab('cheatsheet')" id="tab-cheatsheet" class="flex-1 sm:flex-none px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-slate-200 transition flex items-center justify-center gap-1.5 whitespace-nowrap">
+        <i data-lucide="zap" class="w-3.5 h-3.5"></i> Express Jour J
+      </button>
+    </nav>
+  </header>
+
+  <!-- Content Container -->
+  <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+
+    <!-- VIEW 1: FLASHCARDS (MEMORIZATION) -->
+    <main id="view-flashcards" class="flex-1 flex flex-col items-center justify-start p-3 sm:p-5 bg-slate-950 overflow-y-auto custom-scrollbar">
+      <div class="max-w-3xl w-full flex flex-col items-center gap-3">
+        
+        <!-- Filter Category Bar for Flashcards -->
+        <div class="w-full flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar text-xs">
+          <span class="text-slate-400 font-semibold shrink-0 text-[11px]"><i data-lucide="tag" class="w-3 h-3 inline mr-1"></i>Thème :</span>
+          <div id="fc-theme-chips" class="flex items-center gap-1.5 shrink-0">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Controls & Status -->
+        <div class="w-full flex items-center justify-between text-xs text-slate-400 bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 shrink-0">
+          <span id="card-progress" class="font-mono text-indigo-300 font-semibold text-xs">Carte 1 / --</span>
+          <div class="flex items-center gap-1.5">
+            <button onclick="prevCard()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition flex items-center gap-1 text-xs">
+              <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i> Préc.
+            </button>
+            <button onclick="nextCard()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition flex items-center gap-1 text-xs">
+              Suiv. <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Flashcard Box -->
+        <div class="w-full bg-slate-900 border border-slate-800 hover:border-indigo-500/40 rounded-2xl p-4 sm:p-5 flex flex-col gap-4 shadow-xl transition-all">
+          
+          <!-- Card Header Info -->
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+            <span id="card-tag" class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+              THÈME
+            </span>
+            <button onclick="toggleCardSolution()" id="btn-toggle-solution" class="text-xs text-indigo-400 hover:text-indigo-300 flex items-center gap-1.5 bg-indigo-950/80 px-2.5 py-1 rounded-lg border border-indigo-800/80 transition">
+              <i data-lucide="eye" class="w-3.5 h-3.5"></i> Voir Solution Code
+            </button>
+          </div>
+
+          <!-- Question Section -->
+          <div class="space-y-2">
+            <h3 id="card-question" class="text-sm sm:text-base font-bold text-slate-100 leading-relaxed">
+              Chargement de la question...
+            </h3>
+            <div id="card-hint" class="text-xs text-sky-300 bg-sky-950/50 border border-sky-800/40 px-3 py-1.5 rounded-lg inline-block">
+              Indice...
+            </div>
+          </div>
+
+          <!-- Solution / Code Section -->
+          <div id="card-solution-box" class="hidden space-y-3 pt-3 border-t border-slate-800">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                SOLUTION R (Tidyverse)
+              </span>
+              <button onclick="copyCurrentCardCode()" class="text-xs text-indigo-300 hover:text-white flex items-center gap-1 bg-indigo-900/60 px-2 py-1 rounded border border-indigo-700">
+                <i data-lucide="copy" class="w-3 h-3"></i> Copier
+              </button>
+            </div>
+
+            <!-- Code Container -->
+            <pre id="card-answer-code" class="text-xs bg-slate-950 p-3 rounded-xl border border-slate-800 font-mono text-emerald-300 overflow-x-auto custom-scrollbar max-h-72 whitespace-pre leading-relaxed"></pre>
+
+            <div class="bg-indigo-950/40 border border-indigo-900/60 p-3 rounded-xl">
+              <p id="card-answer-desc" class="text-xs text-slate-300 leading-relaxed">
+                <!-- Desc populated -->
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Self-Evaluation Buttons -->
+        <div class="flex gap-3 w-full">
+          <button onclick="markCardMastered(false)" class="flex-1 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-semibold text-rose-400 transition flex items-center justify-center gap-1.5">
+            <i data-lucide="x-circle" class="w-4 h-4"></i> À revoir
+          </button>
+          <button onclick="markCardMastered(true)" class="flex-1 py-2.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-xs font-semibold text-emerald-300 transition flex items-center justify-center gap-1.5 shadow-lg">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Assimilé !
+          </button>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- VIEW 2: CODE LIBRARY -->
+    <main id="view-library" class="hidden flex-1 flex flex-col md:flex-row overflow-hidden w-full">
+      
+      <!-- Sidebar Filters / Themes -->
+      <aside id="sidebar-filters" class="w-full md:w-64 border-b md:border-b-0 md:border-r border-slate-800 bg-slate-900/60 p-3.5 flex-col gap-3 shrink-0 overflow-y-auto custom-scrollbar hidden md:flex">
+        
+        <!-- Search Bar -->
+        <div class="relative">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2.5 text-slate-500"></i>
+          <input type="text" id="search-input" oninput="filterSnippets()" placeholder="Chercher (ARMA, Galton, Kaplan)..." class="w-full bg-slate-950 border border-slate-800 rounded-lg pl-9 pr-3 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition">
+        </div>
+
+        <!-- Mode Toggle -->
+        <div class="space-y-1">
+          <label class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Style privilégié</label>
+          <div class="grid grid-cols-3 gap-1 bg-slate-950 p-1 rounded-lg border border-slate-800 text-xs">
+            <button onclick="setStyleFilter('all')" id="style-all" class="py-1 rounded font-medium bg-indigo-600 text-white">Tout</button>
+            <button onclick="setStyleFilter('tidyverse')" id="style-tidyverse" class="py-1 rounded font-medium text-slate-400 hover:text-slate-200">Tidyverse</button>
+            <button onclick="setStyleFilter('base')" id="style-base" class="py-1 rounded font-medium text-slate-400 hover:text-slate-200">Base R</button>
+          </div>
+        </div>
+
+        <!-- Theme List -->
+        <div class="space-y-1">
+          <label class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Thèmes Option A</label>
+          <div id="theme-list" class="space-y-1">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </aside>
+
+      <!-- Content Area -->
+      <section class="flex-1 flex flex-col overflow-hidden bg-slate-950 w-full">
+        <!-- Topic Header & Stats -->
+        <div class="p-3.5 border-b border-slate-800 bg-slate-900/30 flex items-center justify-between shrink-0">
+          <div>
+            <span id="active-theme-badge" class="px-2 py-0.5 text-[10px] font-semibold rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+              Tous les thèmes
+            </span>
+            <h2 id="active-theme-title" class="text-sm sm:text-base font-bold text-white mt-0.5">Sujets d'Épreuve & Solutions Code</h2>
+          </div>
+          <div class="text-right">
+            <span id="snippets-count" class="text-lg font-bold text-indigo-400">0</span>
+            <span class="text-[10px] text-slate-500 block">exemples</span>
+          </div>
+        </div>
+
+        <!-- Snippets List Grid -->
+        <div id="snippets-container" class="flex-1 overflow-y-auto p-3.5 sm:p-5 space-y-4 custom-scrollbar">
+          <!-- Dynamically populated cards -->
+        </div>
+      </section>
+    </main>
+
+    <!-- VIEW 3: CHEATSHEET EXPRESS (DAY J) -->
+    <main id="view-cheatsheet" class="hidden flex-1 overflow-y-auto p-3.5 sm:p-6 bg-slate-950 custom-scrollbar">
+      <div class="max-w-4xl mx-auto space-y-5">
+        
+        <!-- Header -->
+        <div class="border-b border-slate-800 pb-3">
+          <h2 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+            <i data-lucide="zap" class="w-5 h-5 text-amber-400"></i> Code R Tidyverse Ultra-Court (Oral J-1)
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Structures minimales à retenir par cœur pour coder tout sujet d'oral en moins de 3 minutes.
+          </p>
+        </div>
+
+        <!-- Grid of Micro-snippets -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-3.5 space-y-2">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-wide">1. Simulation TCL avec Tidyverse</h3>
+              <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded">Ggplot2</span>
+            </div>
+            <pre class="text-xs bg-slate-950 p-2.5 rounded-lg text-emerald-400 overflow-x-auto border border-slate-800 font-mono"><code>library(tidyverse)
+N <- 5000; n <- 30
+df <- tibble(x_bar = replicate(N, mean(runif(n))))
+
+ggplot(df, aes(x = x_bar)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 30, fill = "skyblue", col = "white") +
+  stat_function(fun = dnorm, args = list(0.5, 1/sqrt(12*n)), col = "red", linewidth = 1) +
+  theme_minimal()</code></pre>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-3.5 space-y-2">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-wide">2. Séries Temporelles ARMA</h3>
+              <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded">Séries Temp.</span>
+            </div>
+            <pre class="text-xs bg-slate-950 p-2.5 rounded-lg text-emerald-400 overflow-x-auto border border-slate-800 font-mono"><code>x <- arima.sim(n = 300, list(ar = 0.7, ma = -0.4))
+fit <- arima(x, order = c(1, 0, 1))
+summary(fit)
+predict(fit, n.ahead = 10)</code></pre>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-3.5 space-y-2">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-wide">3. Metropolis-Hastings (MCMC)</h3>
+              <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded">Simulations</span>
+            </div>
+            <pre class="text-xs bg-slate-950 p-2.5 rounded-lg text-emerald-400 overflow-x-auto border border-slate-800 font-mono"><code>f <- function(x) dgamma(x, shape = 3, rate = 2)
+N <- 10000; chain <- numeric(N); chain[1] <- 1
+
+for(i in 2:N) {
+  cand <- rnorm(1, mean = chain[i-1], sd = 0.5)
+  alpha <- if(cand > 0) min(1, f(cand) / f(chain[i-1])) else 0
+  chain[i] <- if(runif(1) < alpha) cand else chain[i-1]
+}
+chain_clean <- chain[1000:N]</code></pre>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-3.5 space-y-2">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-wide">4. Survie Kaplan-Meier</h3>
+              <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded">Non-Param.</span>
+            </div>
+            <pre class="text-xs bg-slate-950 p-2.5 rounded-lg text-emerald-400 overflow-x-auto border border-slate-800 font-mono"><code>library(survival)
+temps <- c(2, 5, 8, 10, 15); statut <- c(1, 1, 0, 1, 0)
+fit <- survfit(Surv(temps, statut) ~ 1)
+plot(fit, col = "indigo", lwd = 2)</code></pre>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 bg-indigo-600 text-white px-4 py-2.5 rounded-xl shadow-2xl text-xs font-medium flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+    <i data-lucide="check-circle" class="w-4 h-4"></i> Code copié dans le presse-papier !
+  </div>
+
+  <!-- App Data & Logic -->
+  <script>
+    // --- DATABASE THEMES (35 TOPICS COMPLETE) ---
+    const themes = [
+      { id: "all", name: "Tous les thèmes (35 fiches)", icon: "layers" },
+      { id: "simu", name: "Simulations & Monte-Carlo", icon: "refresh-cw" },
+      { id: "processus", name: "Processus & Brownien", icon: "activity" },
+      { id: "markov", name: "Markov & MCMC", icon: "git-commit" },
+      { id: "asymptotique", name: "Théorie Asymptotique (TCL, Delta)", icon: "trending-up" },
+      { id: "estimation", name: "Estimation & EM & Bootstrap", icon: "target" },
+      { id: "tests", name: "Tests d'Hypothèses", icon: "check-square" },
+      { id: "regression", name: "Modèle Linéaire & GLM", icon: "line-chart" },
+      { id: "multivarie", name: "Multivarié & Apprentissage", icon: "bar-chart-2" },
+      { id: "avance", name: "Séries Temporelles & Avancé", icon: "cpu" }
+    ];
+
+    // --- FULL 35 FLASHCARDS DATABASE ---
+    const flashcardsData = [
+      // 1-4 SIMULATION & VARIANCE REDUCTION
+      {
+        id: "fc-1", theme: "simu", category: "Simulations",
+        question: "1. Comment simuler une loi Beta(2, 5) par la méthode de rejet ?",
+        hint: "Enveloppe Uniforme U(0,1) avec M = max(f)",
+        code: `library(tidyverse)\nf <- function(x) dbeta(x, 2, 5)\nM <- 2.5\n\nsimu_rejet <- function(n) {\n  replicate(n, {\n    repeat {\n      x <- runif(1); u <- runif(1)\n      if (u <= f(x) / M) return(x)\n    }\n  })\n}\n\ndf <- tibble(val = simu_rejet(5000))\nggplot(df, aes(val)) + geom_histogram(aes(y = after_stat(density)), bins = 30, fill = "skyblue") + stat_function(fun = f, col = "red", linewidth = 1)`,
+        desc: "L'algorithme de rejet consiste à tirer (X, U) de façon uniforme et à accepter X dès que U <= f(X)/(M*g(X))."
+      },
+      {
+        id: "fc-2", theme: "simu", category: "Simulations",
+        question: "2. Comment simuler une loi de Poisson tronquée positive P(X | X > 0) ?",
+        hint: "Inversion directe de la répartition restreinte à [P(X=0), 1]",
+        code: `rpois_truncated <- function(n, lambda) {\n  u <- runif(n, min = exp(-lambda), max = 1)\n  qpois(u, lambda = lambda)\n}\n\ndf <- tibble(val = rpois_truncated(1000, lambda = 2))\ntable(df$val)`,
+        desc: "Inversion directe sans rejet : on restreint l'intervalle des probabilités Uniformes à [F(0), 1]."
+      },
+      {
+        id: "fc-3", theme: "simu", category: "Simulations",
+        question: "3. Comment simuler un couple de Gaussiennes centrées réduites (Box-Muller) ?",
+        hint: "R^2 ~ Exp(1/2) et Theta ~ U(0, 2pi)",
+        code: `box_muller <- function(n) {\n  u1 <- runif(n); u2 <- runif(n)\n  r <- sqrt(-2 * log(u1))\n  theta <- 2 * pi * u2\n  tibble(z1 = r * cos(theta), z2 = r * sin(theta))\n}\n\ndf_norm <- box_muller(5000)\nggplot(df_norm, aes(z1, z2)) + geom_point(alpha = 0.2, col = "indigo")`,
+        desc: "Transforme deux uniformes U(0,1) indépendantes en deux gaussiennes N(0,1) indépendantes."
+      },
+      {
+        id: "fc-4", theme: "simu", category: "Réduction de Variance",
+        question: "4. Comment estimer I = E[e^(U^2)] par variables antithétiques ?",
+        hint: "Utiliser la corrélation négative entre U et 1 - U",
+        code: `N <- 5000\nu <- runif(N)\n\nmc_classique <- exp(u^2)\nvar_mc <- var(mc_classique) / N\n\nmc_anti <- (exp(u^2) + exp((1 - u)^2)) / 2\nvar_anti <- var(mc_anti) / N\n\nc(Gain_Variance_Pourcent = (1 - var_anti / var_mc) * 100)`,
+        desc: "La méthode antithétique réduit la variance grâce à la corrélation négative de la paire (U, 1-U)."
+      },
+
+      // 5-8 PROCESSUS & MARCHES ALÉATOIRES
+      {
+        id: "fc-5", theme: "processus", category: "Processus de Poisson",
+        question: "5. Comment simuler la trajectoire d'un Processus de Poisson Homogène ?",
+        hint: "Inter-arrivées i.i.d. Exp(lambda)",
+        code: `simu_poisson_proc <- function(lambda, T_max) {\n  sauts <- c(); t_curr <- 0\n  while(t_curr < T_max) {\n    t_curr <- t_curr + rexp(1, rate = lambda)\n    if(t_curr <= T_max) sauts <- c(sauts, t_curr)\n  }\n  tibble(temps = c(0, sauts, T_max), N = c(0, 0:(length(sauts)-1), length(sauts)))\n}\n\ndf_proc <- simu_poisson_proc(lambda = 2, T_max = 10)\nggplot(df_proc, aes(x = temps, y = N)) + geom_step(color = "indigo", linewidth = 1)`,
+        desc: "Processus à accroissements indépendants et stationnaires. Les sauts surviennent selon des lois exponentielles."
+      },
+      {
+        id: "fc-6", theme: "processus", category: "Marches Aléatoires",
+        question: "6. Comment simuler le temps d'atteinte / problème de la ruine du joueur ?",
+        hint: "Boucle sur cumsum des pas jusqu'à atteindre les bords 0 ou N",
+        code: `simu_ruine <- function(depart = 10, cible = 20, p = 0.5) {\n  pos <- depart; t <- 0\n  while(pos > 0 && pos < cible) {\n    pos <- pos + sample(c(-1, 1), 1, prob = c(1-p, p))\n    t <- t + 1\n  }\n  list(temps = t, ruine = (pos == 0))\n}\n\ntemps_moyen <- mean(replicate(1000, simu_ruine()$temps))`,
+        desc: "Temps d'arrêt sur une marche aléatoire. On vérifie les théorèmes d'arrêt des martingales."
+      },
+      {
+        id: "fc-7", theme: "processus", category: "Mouvement Brownien",
+        question: "7. Comment simuler la trajectoire d'un Mouvement Brownien Standard B(t) ?",
+        hint: "Accroissements gaussiens indépendants dB_t ~ N(0, dt)",
+        code: `N <- 1000; dt <- 1/N\nt_seq <- seq(0, 1, length.out = N + 1)\ndB <- rnorm(N, mean = 0, sd = sqrt(dt))\nB <- c(0, cumsum(dB))\n\ndf_bm <- tibble(t = t_seq, B = B)\nggplot(df_bm, aes(t, B)) + geom_line(color = "skyblue") + theme_minimal()`,
+        desc: "Le mouvement brownien est à accroissements gaussiens indépendants B(t+dt) - B(t) ~ N(0, dt)."
+      },
+      {
+        id: "fc-8", theme: "processus", category: "Processus de Poisson",
+        question: "8. Comment simuler un Processus de Poisson Non-Homogène lambda(t) ?",
+        hint: "Méthode de thinning / Rejet de Lewis-Shedler",
+        code: `lambda_t <- function(t) 2 + 3 * sin(t)\nlambda_max <- 5\n\nsimu_non_homogene <- function(T_max) {\n  t <- 0; sauts <- c()\n  while(t < T_max) {\n    t <- t + rexp(1, rate = lambda_max)\n    if(t <= T_max && runif(1) <= lambda_t(t) / lambda_max) {\n      sauts <- c(sauts, t)\n    }\n  }\n  sauts\n}\nsauts_nh <- simu_non_homogene(10)`,
+        desc: "Sub-échantillonnage (thinning) d'un processus de Poisson d'intensité constante super-majorante."
+      },
+
+      // 9-11 MARKOV & MCMC
+      {
+        id: "fc-9", theme: "markov", category: "Chaînes de Markov",
+        question: "9. Comment calculer la mesure stationnaire d'une matrice de transition P ?",
+        hint: "Vecteurs propres à gauche associés à la valeur propre 1",
+        code: `P <- matrix(c(0.7, 0.3, 0.1, 0.9), nrow = 2, byrow = TRUE)\n\ne <- eigen(t(P))\nidx <- which.min(abs(e$values - 1))\npi_stat <- Re(e$vectors[, idx])\npi_stat <- pi_stat / sum(pi_stat)\n\nprint(pi_stat)`,
+        desc: "Résolution numérique de pi * P = pi sous la contrainte de somme égale à 1."
+      },
+      {
+        id: "fc-10", theme: "markov", category: "MCMC",
+        question: "10. Comment coder l'algorithme de Metropolis-Hastings 1D ?",
+        hint: "Rapport d'acceptation alpha = min(1, f(cand)/f(x))",
+        code: `f_target <- function(x) dgamma(x, shape = 3, rate = 2)\nN <- 15000; chain <- numeric(N); chain[1] <- 1\n\nfor(i in 2:N) {\n  cand <- rnorm(1, mean = chain[i-1], sd = 0.5)\n  alpha <- if(cand > 0) min(1, f_target(cand) / f_target(chain[i-1])) else 0\n  chain[i] <- if(runif(1) < alpha) cand else chain[i-1]\n}\nchain_clean <- chain[2000:N]`,
+        desc: "Génère une chaîne de Markov réversible dont la distribution stationnaire est la densité cible."
+      },
+      {
+        id: "fc-11", theme: "markov", category: "MCMC",
+        question: "11. Comment implémenter l'Échantillonneur de Gibbs pour un couple Gaussien ?",
+        hint: "Mise à jour alternative selon les conditionnelles pures X|Y et Y|X",
+        code: `gibbs_norm <- function(N, rho = 0.8) {\n  x <- numeric(N); y <- numeric(N)\n  x[1] <- 0; y[1] <- 0\n  sd_cond <- sqrt(1 - rho^2)\n  for(i in 2:N) {\n    x[i] <- rnorm(1, mean = rho * y[i-1], sd = sd_cond)\n    y[i] <- rnorm(1, mean = rho * x[i], sd = sd_cond)\n  }\n  tibble(x = x, y = y)\n}\ndf_gibbs <- gibbs_norm(5000)`,
+        desc: "Cas particulier de Metropolis-Hastings où chaque proposition est acceptée avec probabilité 1."
+      },
+
+      // 12-14 THÉORIE ASYMPTOTIQUE
+      {
+        id: "fc-12", theme: "asymptotique", category: "TCL",
+        question: "12. Comment illustrer la vitesse de convergence du TCL ?",
+        hint: "Superposer la densité empirique et N(0,1)",
+        code: `library(tidyverse)\nn <- 30; N <- 10000\nzn <- replicate(N, {\n  x <- rbinom(n, size = 1, prob = 0.3)\n  (mean(x) - 0.3) / sqrt(0.3 * 0.7 / n)\n})\n\ntibble(z = zn) %>%\n  ggplot(aes(z)) +\n  geom_histogram(aes(y = after_stat(density)), bins = 40, fill = "lightblue") +\n  stat_function(fun = dnorm, color = "red", linewidth = 1)`,
+        desc: "Vérification visuelle du TCL pour des variables fortement dissymétriques."
+      },
+      {
+        id: "fc-13", theme: "asymptotique", category: "Delta-Méthode",
+        question: "13. Comment appliquer la Delta-Méthode pour la variance asymptotique de log(X_bar) ?",
+        hint: "Var(g(X_bar)) ≈ g'(mu)^2 * Var(X_bar)",
+        code: `n <- 100; N <- 5000; lambda <- 2\nlog_means <- replicate(N, log(mean(rexp(n, rate = lambda))))\n\nvar_empirique <- var(log_means)\nvar_theorique <- 1 / n\nc(Empirique = var_empirique, Theorique = var_theorique)`,
+        desc: "Donne la loi asymptotique d'une transformation g(T_n) d'un estimateur asymptotiquement normal."
+      },
+      {
+        id: "fc-14", theme: "asymptotique", category: "Slutsky",
+        question: "14. Comment illustrer le théorème de Slutsky ?",
+        hint: "Remplacement de sigma par l'écart-type empirique S_n",
+        code: `n <- 15; N <- 10000; mu <- 5; sigma <- 2\nt_stats <- replicate(N, {\n  x <- rnorm(n, mean = mu, sd = sigma)\n  (mean(x) - mu) / (sd(x) / sqrt(n))\n})\nqqnorm(t_stats); qqline(t_stats, col = "red")`,
+        desc: "Slutsky garantit que remplacer sigma par S_n conserve la convergence vers N(0,1)."
+      },
+
+      // 15-18 ESTIMATION & BOOTSTRAP
+      {
+        id: "fc-15", theme: "estimation", category: "Bootstrap",
+        question: "15. Comment construire un Intervalle de Confiance Bootstrap 95% pour la médiane ?",
+        hint: "Rééchantillonnage avec remise (B fois) + quantiles empiriques",
+        code: `x_obs <- rexp(60, rate = 0.5)\nB <- 2000\nboot_meds <- replicate(B, median(sample(x_obs, replace = TRUE)))\nic_bootstrap <- quantile(boot_meds, probs = c(0.025, 0.975))\nprint(ic_bootstrap)`,
+        desc: "Méthode non-paramétrique basée sur le principe de substitution (plugin)."
+      },
+      {
+        id: "fc-16", theme: "estimation", category: "Maximum de Vraisemblance",
+        question: "16. Comment trouver l'EMV numériquement pour une loi Gamma ?",
+        hint: "Optimisation de la log-vraisemblance négative via optim()",
+        code: `data_x <- rgamma(100, shape = 2.5, rate = 1.2)\nneg_log_lik <- function(par) {\n  a <- par[1]; b <- par[2]\n  if(a <= 0 || b <= 0) return(Inf)\n  -sum(dgamma(data_x, shape = a, rate = b, log = TRUE))\n}\nfit <- optim(par = c(1, 1), fn = neg_log_lik)\nfit$par`,
+        desc: "Résolution numérique du Maximum de Vraisemblance sans solution analytique pures."
+      },
+      {
+        id: "fc-17", theme: "estimation", category: "Algorithme EM",
+        question: "17. Comment implémenter l'algorithme EM pour un mélange de 2 Gaussiennes ?",
+        hint: "E-step (poids a posteriori) et M-step (mise à jour des paramètres)",
+        code: `x <- c(rnorm(150, -2, 1), rnorm(250, 3, 1))\nmu1 <- 0; mu2 <- 1; p1 <- 0.5\nfor(iter in 1:25) {\n  f1 <- p1 * dnorm(x, mu1, 1); f2 <- (1 - p1) * dnorm(x, mu2, 1)\n  w1 <- f1 / (f1 + f2)\n  p1 <- mean(w1)\n  mu1 <- sum(w1 * x) / sum(w1)\n  mu2 <- sum((1 - w1) * x) / sum(1 - w1)\n}\nc(mu1 = mu1, mu2 = mu2, p1 = p1)`,
+        desc: "L'algorithme EM maximise la vraisemblance observée avec données manquantes."
+      },
+      {
+        id: "fc-18", theme: "estimation", category: "Estimation Noyau",
+        question: "18. Comment réaliser l'estimation de la densité par noyau ?",
+        hint: "Somme de K((x - X_i)/h) / (n*h)",
+        code: `x_data <- rnorm(100); h <- 0.3\nf_hat <- function(grid_x) {\n  sapply(grid_x, function(x) mean(dnorm((x - x_data)/h)) / h)\n}\ngrid <- seq(-3, 3, length.out = 200)\ndf_kde <- tibble(x = grid, y = f_hat(grid))\nggplot(df_kde, aes(x, y)) + geom_line(color = "indigo")`,
+        desc: "Estimation non-paramétrique continue. Compromis Biais-Variance piloté par h."
+      },
+
+      // 19-22 TESTS D'HYPOTHÈSES
+      {
+        id: "fc-19", theme: "tests", category: "Tests d'Adéquation",
+        question: "19. Comment réaliser un test du Chi2 d'adéquation ?",
+        hint: "chisq.test(x = effectifs, p = probas_theoriques)",
+        code: `obs <- c(A = 48, B = 30, C = 22)\np_theo <- c(0.5, 0.3, 0.2)\nres_test <- chisq.test(x = obs, p = p_theo)\nres_test$p.value`,
+        desc: "Compare la distance quadratique entre fréquences observées et théoriques sous H0."
+      },
+      {
+        id: "fc-20", theme: "tests", category: "Tests Non-Paramétriques",
+        question: "20. Comment effectuer un test de Kolmogorov-Smirnov ?",
+        hint: "ks.test(x, 'pnorm', mean, sd)",
+        code: `x_sample <- rnorm(50, mean = 1, sd = 2)\nres_ks <- ks.test(x_sample, "pnorm", mean = 1, sd = 2)\nres_ks$p.value`,
+        desc: "Compare la répartition empirique F_n à la fonction théorique F_0 via la norme sup."
+      },
+      {
+        id: "fc-21", theme: "tests", category: "Tests de Comparaison",
+        question: "21. Comment effectuer un test t de Student d'égalité de deux moyennes ?",
+        hint: "t.test(x, y, var.equal = TRUE)",
+        code: `g1 <- rnorm(25, mean = 5, sd = 1)\ng2 <- rnorm(25, mean = 5.8, sd = 1)\ntest_t <- t.test(g1, g2, var.equal = TRUE)\ntest_t$p.value`,
+        desc: "Test exact sous hypothèse de normalité et d'homoscédastilité."
+      },
+      {
+        id: "fc-22", theme: "tests", category: "Tests Multiples",
+        question: "22. Comment appliquer la correction de Benjamini-Hochberg (FDR) ?",
+        hint: "p.adjust(p_vals, method = 'BH')",
+        code: `p_raw <- c(runif(90, 0.05, 1), runif(10, 0, 0.001))\np_bh <- p.adjust(p_raw, method = "BH")\nsum(p_bh < 0.05)`,
+        desc: "Contrôle du taux de faux découverts (False Discovery Rate) plus puissant que Bonferroni."
+      },
+
+      // 23-26 RÉGRESSION & GLM
+      {
+        id: "fc-23", theme: "regression", category: "Régression Linéaire",
+        question: "23. Comment ajuster un modèle de régression linéaire sous R ?",
+        hint: "lm(y ~ x, data = df)",
+        code: `library(tidyverse)\nmod <- lm(mpg ~ hp, data = mtcars)\nsummary(mod)\nggplot(mtcars, aes(hp, mpg)) + geom_point() + geom_smooth(method = "lm", col = "red")`,
+        desc: "Ajustement MCO et tracé de la droite de régression linéaire."
+      },
+      {
+        id: "fc-24", theme: "regression", category: "GLM Logistique",
+        question: "24. Comment ajuster une Régression Logistique (GLM Binomial) ?",
+        hint: "glm(y ~ x, family = binomial(link = 'logit'))",
+        code: `mod_glm <- glm(vs ~ hp, data = mtcars, family = binomial)\nggplot(mtcars, aes(hp, vs)) + geom_point() + geom_smooth(method = "glm", method.args = list(family = "binomial"), color = "indigo")`,
+        desc: "Modélise la probabilité de succès via la fonction de lien logit."
+      },
+      {
+        id: "fc-25", theme: "regression", category: "GLM Poisson",
+        question: "25. Comment effectuer une Régression de Poisson pour du comptage ?",
+        hint: "glm(count ~ x, family = poisson(link = 'log'))",
+        code: `df_counts <- tibble(x = runif(100, 0, 5), y = rpois(100, lambda = exp(0.5 + 0.8 * x)))\nmod_pois <- glm(y ~ x, data = df_counts, family = poisson)\nsummary(mod_pois)`,
+        desc: "Modèle GLM pour variables réponses sous forme de données de comptage."
+      },
+      {
+        id: "fc-26", theme: "regression", category: "Régression Pénalisée",
+        question: "26. Comment réaliser une Régression Lasso (sélection de variables) ?",
+        hint: "cv.glmnet(x, y, alpha = 1)",
+        code: `library(glmnet)\nx <- as.matrix(mtcars[, c("hp", "wt", "qsec", "gear")])\ny <- mtcars$mpg\ncv_lasso <- cv.glmnet(x, y, alpha = 1)\ncoef(cv_lasso, s = "lambda.min")`,
+        desc: "La pénalité L1 (Lasso) annule certains coefficients pour sélectionner les variables clés."
+      },
+
+      // 27-30 STATISTIQUE MULTIVARIÉE & APPRENTISSAGE
+      {
+        id: "fc-27", theme: "multivarie", category: "ACP",
+        question: "27. Comment réaliser une Analyse en Composantes Principales (ACP) ?",
+        hint: "prcomp(df, scale. = TRUE)",
+        code: `res_acp <- prcomp(iris %>% select(-Species), scale. = TRUE)\nsummary(res_acp)\ntibble(PC1 = res_acp$x[,1], PC2 = res_acp$x[,2], Sp = iris$Species) %>%\n  ggplot(aes(PC1, PC2, color = Sp)) + geom_point(size = 2)`,
+        desc: "Réduction de dimension maximisant l'inertie projetée."
+      },
+      {
+        id: "fc-28", theme: "multivarie", category: "Classification",
+        question: "28. Comment réaliser une CAH (Classification Ascendante Hiérarchique) ?",
+        hint: "dist() puis hclust(method = 'ward.D2')",
+        code: `d <- dist(scale(iris %>% select(-Species)))\ncah <- hclust(d, method = "ward.D2")\nplot(cah, labels = FALSE)\ngroupes <- cutree(cah, k = 3)`,
+        desc: "Agrégation hiérarchique maximisant l'inertie inter-classes (critère de Ward)."
+      },
+      {
+        id: "fc-29", theme: "multivarie", category: "Clustering",
+        question: "29. Comment effectuer une classification k-means sous R ?",
+        hint: "kmeans(x, centers = k)",
+        code: `set.seed(42)\nkm_res <- kmeans(scale(iris %>% select(-Species)), centers = 3)\ntable(Clustering = km_res$cluster, Vrai = iris$Species)`,
+        desc: "Algorithme de partitionnement itératif minimisant la variance intra-classe."
+      },
+      {
+        id: "fc-30", theme: "multivarie", category: "Analyse Discriminante",
+        question: "30. Comment ajuster une Analyse Discriminante Linéaire (LDA) ?",
+        hint: "library(MASS); lda(Species ~ ., data = iris)",
+        code: `library(MASS)\nmod_lda <- lda(Species ~ ., data = iris)\npred <- predict(mod_lda, iris)\ntable(Prédit = pred$class, Vrai = iris$Species)`,
+        desc: "Classifieur Bayesien géométrique sous hypothèse de gaussiennes avec variances égales."
+      },
+
+      // 31-35 NOUVELLES CARTES COMPLÉMENTAIRES (PROGRAMME EXHAUSTIF)
+      {
+        id: "fc-31", theme: "avance", category: "Séries Temporelles",
+        question: "31. Comment simuler et ajuster un modèle ARMA(1,1) avec prédiction ?",
+        hint: "arima.sim() puis arima() & predict()",
+        code: `set.seed(123)\nx <- arima.sim(n = 300, list(ar = 0.6, ma = -0.3))\nfit <- arima(x, order = c(1, 0, 1))\nsummary(fit)\npred <- predict(fit, n.ahead = 10)\nplot(x, xlim = c(1, 310))\nlines(301:310, pred$pred, col = "red", lwd = 2)`,
+        desc: "Modélisation des séries temporelles stationnaires ARMA(p,q) avec prévisions à horizon k."
+      },
+      {
+        id: "fc-32", theme: "avance", category: "Données de Survie",
+        question: "32. Comment estimer la courbe de survie de Kaplan-Meier avec données censurées ?",
+        hint: "library(survival); survfit(Surv(temps, statut) ~ 1)",
+        code: `library(survival)\ntemps <- c(2, 3, 5, 6, 8, 9, 12, 15)\nstatut <- c(1, 1, 0, 1, 1, 0, 1, 0) # 0 = censuré, 1 = événement\nfit <- survfit(Surv(temps, statut) ~ 1)\nsummary(fit)\nplot(fit, xlab = "Temps", ylab = "Probabilité de Survie", col = "indigo", lwd = 2)`,
+        desc: "Estimation non-paramétrique de la fonction de survie S(t) en présence de censures à droite."
+      },
+      {
+        id: "fc-33", theme: "avance", category: "Processus Stochastiques",
+        question: "33. Comment simuler un Processus de Galton-Watson et évaluer la probabilité d'extinction ?",
+        hint: "Z_{n+1} = sum_{i=1}^{Z_n} X_{n,i} avec loi des enfants Poisson(mu)",
+        code: `simu_galton_watson <- function(mu, n_gen = 10) {\n  Z <- numeric(n_gen)\n  Z[1] <- 1\n  for(g in 2:n_gen) {\n    if(Z[g-1] == 0) { Z[g] <- 0 } else {\n      Z[g] <- sum(rpois(Z[g-1], lambda = mu))\n    }\n  }\n  Z\n}\nextinction_rate <- mean(replicate(500, simu_galton_watson(mu = 0.9, n_gen = 15)[15] == 0))\nprint(extinction_rate)`,
+        desc: "Processus de branchement. Si mu <= 1, l'extinction est presque sûre (sauf cas dégénéré)."
+      },
+      {
+        id: "fc-34", theme: "avance", category: "Validation & Sélection",
+        question: "34. Comment effectuer une Sélection de Modèle par AIC et Validation Croisée 10-fold ?",
+        hint: "step() pour AIC et boucle de cross-validation",
+        code: `mod_full <- lm(mpg ~ ., data = mtcars)\nmod_opt <- step(mod_full, direction = "both", trace = FALSE)\nsummary(mod_opt)\n\n# Validation Croisée 10-fold empirique\nset.seed(42)\nk <- 10; folds <- sample(rep(1:k, length.out = nrow(mtcars)))\nmse_k <- sapply(1:k, function(i) {\n  test <- mtcars[folds == i, ]; train <- mtcars[folds != i, ]\n  fit <- lm(formula(mod_opt), data = train)\n  mean((test$mpg - predict(fit, test))^2)\n})\nmean(mse_k) # Mean Cross-Validated MSE`,
+        desc: "Critères d'information AIC/BIC et estimation de l'erreur de généralisation par K-fold CV."
+      },
+      {
+        id: "fc-35", theme: "avance", category: "Optimisation Stochastique",
+        question: "35. Comment implémenter l'Algorithme du Recuit Simulé pour minimiser une fonction ?",
+        hint: "Acceptation de métropolis avec décroissance de la température T_k",
+        code: `f_obj <- function(x) x^4 - 5*x^2 + 3*x # Fonction non-convexe\nx_curr <- 2; T <- 100; alpha <- 0.95\n\nfor(iter in 1:200) {\n  x_cand <- x_curr + rnorm(1, sd = 0.5)\n  delta <- f_obj(x_cand) - f_obj(x_curr)\n  if(delta < 0 || runif(1) < exp(-delta / T)) {\n    x_curr <- x_cand\n  }\n  T <- T * alpha\n}\nc(Minimum_Trouve = x_curr, Valeur = f_obj(x_curr))`,
+        desc: "Méthode stochastique d'optimisation globale échappant aux minima locaux grâce au contrôle de la température T."
+      }
+    ];
+
+    // --- CODE SNIPPETS FOR LIBRARY VIEW ---
+    const snippets = flashcardsData.map(fc => ({
+      id: fc.id,
+      theme: fc.theme,
+      title: fc.question,
+      desc: fc.hint,
+      style: "tidyverse",
+      code: fc.code,
+      notes: fc.desc
+    }));
+
+    // --- STATE MANAGEMENT ---
+    let currentTheme = 'all';
+    let currentStyle = 'all';
+    let currentCardIndex = 0;
+    let filteredCards = [...flashcardsData];
+    let masteredCards = new Set();
+    let isSolutionVisible = false;
+
+    // --- INITIALIZATION ---
+    window.onload = () => {
+      lucide.createIcons();
+      renderFcThemeChips();
+      renderThemeList();
+      updateFlashcardView();
+      renderSnippets();
+    };
+
+    // --- UI TAB SWITCHING ---
+    function switchTab(tabName) {
+      ['library', 'flashcards', 'cheatsheet'].forEach(t => {
+        document.getElementById(`view-${t}`).classList.add('hidden');
+        document.getElementById(`tab-${t}`).className = "flex-1 sm:flex-none px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-slate-200 transition flex items-center justify-center gap-1.5 whitespace-nowrap";
+      });
+
+      document.getElementById(`view-${tabName}`).classList.remove('hidden');
+      document.getElementById(`tab-${tabName}`).className = "flex-1 sm:flex-none px-3 py-1.5 rounded-lg font-medium transition flex items-center justify-center gap-1.5 bg-indigo-600 text-white shadow-sm whitespace-nowrap";
+    }
+
+    function toggleMobileSidebar() {
+      const sidebar = document.getElementById('sidebar-filters');
+      sidebar.classList.toggle('hidden');
+      sidebar.classList.toggle('flex');
+    }
+
+    // --- FLASHCARD THEME CHIPS ---
+    function renderFcThemeChips() {
+      const container = document.getElementById('fc-theme-chips');
+      container.innerHTML = themes.map(t => `
+        <button onclick="filterFlashcardsByTheme('${t.id}')"
+                class="px-2.5 py-1 rounded-full text-[11px] font-medium transition whitespace-nowrap ${currentTheme === t.id ? 'bg-indigo-600 text-white shadow' : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200'}">
+          ${t.name}
+        </button>
+      `).join('');
+    }
+
+    function filterFlashcardsByTheme(themeId) {
+      currentTheme = themeId;
+      renderFcThemeChips();
+      
+      if(themeId === 'all') {
+        filteredCards = [...flashcardsData];
+      } else {
+        filteredCards = flashcardsData.filter(c => c.theme === themeId);
+      }
+      
+      currentCardIndex = 0;
+      updateFlashcardView();
+    }
+
+    // --- FLASHCARD NAVIGATION & SOLUTION TOGGLE ---
+    function toggleCardSolution() {
+      isSolutionVisible = !isSolutionVisible;
+      const box = document.getElementById('card-solution-box');
+      const btn = document.getElementById('btn-toggle-solution');
+      
+      if(isSolutionVisible) {
+        box.classList.remove('hidden');
+        btn.innerHTML = `<i data-lucide="eye-off" class="w-3.5 h-3.5"></i> Masquer Code`;
+      } else {
+        box.classList.add('hidden');
+        btn.innerHTML = `<i data-lucide="eye" class="w-3.5 h-3.5"></i> Voir Solution Code`;
+      }
+      lucide.createIcons();
+    }
+
+    function updateFlashcardView() {
+      document.getElementById('fc-count-badge').innerText = flashcardsData.length;
+
+      isSolutionVisible = false;
+      document.getElementById('card-solution-box').classList.add('hidden');
+      document.getElementById('btn-toggle-solution').innerHTML = `<i data-lucide="eye" class="w-3.5 h-3.5"></i> Voir Solution Code`;
+
+      if(filteredCards.length === 0) {
+        document.getElementById('card-progress').innerText = "0 / 0";
+        document.getElementById('card-question').innerText = "Aucune carte pour ce thème.";
+        document.getElementById('card-hint').innerText = "Choisissez un autre thème.";
+        document.getElementById('card-answer-code').innerText = "";
+        document.getElementById('card-answer-desc').innerText = "";
+        lucide.createIcons();
+        return;
+      }
+
+      const card = filteredCards[currentCardIndex];
+      document.getElementById('card-progress').innerText = `Carte ${currentCardIndex + 1} / ${filteredCards.length}`;
+      document.getElementById('card-tag').innerText = card.category.toUpperCase();
+      document.getElementById('card-question').innerText = card.question;
+      document.getElementById('card-hint').innerText = "💡 Indice : " + card.hint;
+      document.getElementById('card-answer-code').innerText = card.code;
+      document.getElementById('card-answer-desc').innerText = card.desc;
+
+      lucide.createIcons();
+    }
+
+    function nextCard() {
+      if(filteredCards.length === 0) return;
+      currentCardIndex = (currentCardIndex + 1) % filteredCards.length;
+      updateFlashcardView();
+    }
+
+    function prevCard() {
+      if(filteredCards.length === 0) return;
+      currentCardIndex = (currentCardIndex - 1 + filteredCards.length) % filteredCards.length;
+      updateFlashcardView();
+    }
+
+    function markCardMastered(isMastered) {
+      if(filteredCards.length === 0) return;
+      const card = filteredCards[currentCardIndex];
+      if(isMastered) {
+        masteredCards.add(card.id);
+        showToast("Carte assimilée ! 🎯");
+      } else {
+        masteredCards.delete(card.id);
+      }
+      nextCard();
+    }
+
+    function copyCurrentCardCode() {
+      if(filteredCards.length > 0) {
+        copyCode(filteredCards[currentCardIndex].code);
+      }
+    }
+
+    // --- SIDEBAR RENDER FOR LIBRARY ---
+    function renderThemeList() {
+      const container = document.getElementById('theme-list');
+      container.innerHTML = themes.map(t => `
+        <button onclick="setThemeFilter('${t.id}')" 
+                class="w-full text-left px-3 py-1.5 rounded-lg text-xs font-medium flex items-center justify-between transition ${currentTheme === t.id ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-500/30' : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'}">
+          <div class="flex items-center gap-2">
+            <i data-lucide="${t.icon}" class="w-3.5 h-3.5"></i>
+            <span>${t.name}</span>
+          </div>
+        </button>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function setThemeFilter(themeId) {
+      currentTheme = themeId;
+      renderThemeList();
+      renderSnippets();
+      const themeObj = themes.find(t => t.id === themeId);
+      document.getElementById('active-theme-badge').innerText = themeObj.name;
+    }
+
+    function setStyleFilter(style) {
+      currentStyle = style;
+      ['all', 'tidyverse', 'base'].forEach(s => {
+        const btn = document.getElementById(`style-${s}`);
+        btn.className = (s === style) ? "py-1 rounded font-medium bg-indigo-600 text-white" : "py-1 rounded font-medium text-slate-400 hover:text-slate-200";
+      });
+      renderSnippets();
+    }
+
+    function filterSnippets() {
+      renderSnippets();
+    }
+
+    function renderSnippets() {
+      const searchQuery = (document.getElementById('search-input')?.value || "").toLowerCase();
+      const container = document.getElementById('snippets-container');
+
+      const filtered = snippets.filter(s => {
+        const matchesTheme = (currentTheme === 'all' || s.theme === currentTheme);
+        const matchesStyle = (currentStyle === 'all' || s.style === currentStyle);
+        const matchesSearch = s.title.toLowerCase().includes(searchQuery) || 
+                              s.desc.toLowerCase().includes(searchQuery) ||
+                              s.code.toLowerCase().includes(searchQuery);
+        return matchesTheme && matchesStyle && matchesSearch;
+      });
+
+      document.getElementById('snippets-count').innerText = filtered.length;
+
+      if(filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-slate-500 space-y-2">
+            <i data-lucide="file-x" class="w-8 h-8 mx-auto opacity-50"></i>
+            <p class="text-xs">Aucun exemple correspondant.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = filtered.map(s => `
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3 hover:border-slate-700 transition">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                ${s.theme.toUpperCase()}
+              </span>
+              <h3 class="text-sm font-bold text-white mt-1">${s.title}</h3>
+              <p class="text-xs text-slate-400 mt-0.5">${s.desc}</p>
+            </div>
+            <button onclick="copyCode(\`${escapeCode(s.code)}\`)" class="p-2 rounded-lg bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white transition shrink-0 flex items-center gap-1 text-xs">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+          <pre class="bg-slate-950 p-3 rounded-lg text-xs text-emerald-400 font-mono overflow-x-auto border border-slate-800/80 custom-scrollbar whitespace-pre"><code>${escapeHtml(s.code)}</code></pre>
+
+          <div class="text-[11px] text-amber-400/90 bg-amber-500/5 border border-amber-500/20 p-2 rounded-lg flex items-center gap-2">
+            <i data-lucide="lightbulb" class="w-3.5 h-3.5 shrink-0"></i>
+            <span>${s.notes}</span>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    // --- UTILS ---
+    function copyCode(code) {
+      const dummy = document.createElement("textarea");
+      document.body.appendChild(dummy);
+      dummy.value = code;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+      showToast("Code copié !");
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4"></i> ${msg}`;
+      lucide.createIcons();
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2000);
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function escapeCode(str) {
+      return str.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$/g, "\\$");
+    }
+  </script>
+</body>
+</html>
