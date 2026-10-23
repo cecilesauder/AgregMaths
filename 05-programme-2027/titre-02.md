@@ -36,6 +36,12 @@ En dimension trois, les cinq polyèdres réguliers convexes fournissent des exem
 
 **Méthode de détermination.** Faire agir le groupe sur les sommets, les arêtes ou les faces ; déterminer les orbites et un stabilisateur ; établir que l’action est fidèle si l’on veut obtenir une représentation comme sous-groupe d’un groupe de permutations ; compter les éléments par orbite-stabilisateur ou en distinguant rotations et réflexions. Pour identifier le groupe, les seules cardinalités ne suffisent pas toujours : comparer aussi les ordres des éléments, leurs relations et la structure des stabilisateurs.
 
+#### Exemples résolus : carré et tétraèdre régulier
+
+Pour un carré dont les sommets sont numérotés dans l’ordre cyclique, la rotation d’un quart de tour \(r=(1234)\) et la réflexion d’axe passant par les sommets 1 et 3, \(s=(24)\), engendrent les symétries. Elles vérifient \(r^4=s^2=1\) et \(srs=r^{-1}\). Il y a au plus \(4\cdot2=8\) symétries, car l’image du sommet 1 a quatre choix et celle d’un sommet adjacent deux choix ; les quatre rotations et les quatre réflexions existent. Le groupe est donc diédral d’ordre 8, et son action sur les sommets est fidèle.
+
+Pour un tétraèdre régulier, les quatre sommets sont affinement indépendants et toutes les distances entre deux sommets sont égales. Toute permutation des quatre sommets préserve donc les distances et s’étend de façon unique en une isométrie affine ; inversement, une isométrie est déterminée par l’image des sommets. Le groupe complet est ainsi \(S_4\), d’ordre 24. Les isométries qui préservent l’orientation correspondent aux permutations paires, donc forment \(A_4\), d’ordre 12.
+
 ## (b) Groupes cycliques, groupes abéliens finis et racines de l’unité
 
 ### Notions à savoir
@@ -86,7 +92,7 @@ Dans un espace euclidien réel muni d’un produit scalaire, le **groupe orthogo
 
 Dans un espace hermitien complexe de dimension finie, le **groupe unitaire** `U(E)` est l’ensemble des automorphismes qui préservent le produit hermitien ; en base orthonormée, `U_n={A:A^*A=I}`, où `A^*` est la transposée conjuguée. Le **groupe spécial unitaire** `SU(E)` est son sous-groupe constitué des matrices unitaires de déterminant 1. Les déterminants des matrices unitaires sont de module 1.
 
-**Exemples et usages.** `GL_n(K)` modélise les changements de coordonnées inversibles ; `SL_n(K)` conserve le déterminant des bases orientées ; `O_2(ℝ)` contient les rotations et réflexions du plan, tandis que `SO_2(ℝ)` contient les rotations ; les groupes unitaires décrivent les transformations linéaires conservant une norme hermitienne. Comparer ces groupes à ceux de la sous-partie (a) aide à identifier les transformations d’un polygone ou d’un polyèdre, tout en distinguant les isométries linéaires fixant l’origine des isométries affines générales.
+**Exemples et usages.** `GL_n(K)` modélise les changements de coordonnées inversibles ; `SL_n(K)` préserve la forme volume associée à une base, c’est-à-dire l’élément de volume choisi. Lorsque `K=ℝ`, cela implique la préservation de l’orientation. `O_2(ℝ)` contient les rotations et réflexions du plan, tandis que `SO_2(ℝ)` contient les rotations ; les groupes unitaires décrivent les transformations linéaires conservant une norme hermitienne. Comparer ces groupes à ceux de la sous-partie (a) aide à identifier les transformations d’un polygone ou d’un polyèdre, tout en distinguant les isométries linéaires fixant l’origine des isométries affines générales.
 
 **À savoir faire.** Donner les définitions sans confondre espace euclidien réel et espace hermitien complexe ; vérifier les équations matricielles dans une base orthonormée ; utiliser `SL_n(K)=ker(det)` ; distinguer `O_n` de `SO_n`, puis `U_n` de `SU_n`. Le programme cité demande les définitions de ces groupes ; cette ligne ne précise pas un théorème de classification de leurs sous-groupes ni une étude détaillée de leurs représentations. [1]
 

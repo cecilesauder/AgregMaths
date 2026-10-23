@@ -32,15 +32,15 @@ Il ne faut pas confondre cette σ-additivité avec l’additivité finie. Une me
 - La **mesure de Lebesgue** sur ℝ^d est la mesure de volume usuelle, invariante par translation et qui attribue à un pavé ∏_j[a_j,b_j] le volume ∏_j(b_j-a_j). Sa construction est admise par le programme. Il faut distinguer la tribu borélienne de la tribu de Lebesgue, complétée par les sous-ensembles des ensembles boréliens de mesure nulle.
 - Une **mesure de probabilité** est une mesure P telle que P(X)=1. Elle modélise notamment une distribution de masse totale un.
 
-**Exemple / usage.** Sur ℕ muni de la mesure de comptage, une fonction positive f a pour intégrale Σ_{n≥0}f(n). Sur un intervalle [a,b] muni de la probabilité uniforme, la probabilité d’un sous-intervalle est sa longueur divisée par b-a.
+**Exemple / usage.** Sur ℕ muni de la mesure de comptage, une fonction positive f a pour intégrale Σ_{n≥0}f(n). Sur un intervalle [a,b], avec a<b, muni de la probabilité uniforme, la probabilité d’un sous-intervalle est sa longueur divisée par b-a.
 
 ### Mesure produit
 
-Pour deux mesures positives μ et ν, la **mesure produit** μ⊗ν est une mesure sur la tribu produit, qui satisfait sur les rectangles mesurables
+Si μ et ν sont σ-finies, la **mesure produit** μ⊗ν existe sur la tribu produit et, pour des ensembles mesurables A et B de mesures finies, elle satisfait
 
 (μ⊗ν)(A×B)=μ(A)ν(B).
 
-Dans le cadre standard où μ et ν sont σ-finies, il existe une telle mesure et elle est déterminée de manière unique par ses valeurs sur les rectangles (théorème d’extension; construction admise ici). Les questions de complétion peuvent dépendre des conventions retenues : la complétion d’une mesure produit n’est pas automatiquement la même chose que la tribu produit non complétée.
+Dans ce cadre, la mesure est déterminée de manière unique par ses valeurs sur les rectangles de mesures finies. Pour ces rectangles, (μ⊗ν)(A×B)=μ(A)ν(B). Si l’une des mesures est infinie, ne pas écrire sans précaution le produit étendu 0×∞ ; lorsque μ(A)=0, la σ-finitude permet de décomposer B en morceaux de mesure finie et donne (μ⊗ν)(A×B)=0. Les questions de complétion peuvent dépendre des conventions retenues : la complétion d’une mesure produit n’est pas automatiquement la même chose que la tribu produit non complétée.
 
 **Exemple / usage.** La mesure de Lebesgue sur ℝ² est le produit des mesures de Lebesgue sur chaque coordonnée. On peut alors calculer l’aire d’un rectangle comme produit des longueurs et intégrer une fonction indicatrice de rectangle.
 
@@ -82,7 +82,7 @@ Il donne une inégalité dans le sens indiqué, pas en général une convergence
 
 Soit E un espace vectoriel réel ou complexe de dimension finie. Une fonction mesurable f:X→E est intégrable si ∫∥f(x)∥dμ(x)<∞. Son intégrale se définit coordonnée par coordonnée dans une base; elle ne dépend pas du choix de la base et vérifie notamment ∥∫f dμ∥≤∫∥f∥dμ.
 
-Pour les intégrales à paramètres, le schéma central consiste à écrire F(t)=∫_X f(t,x)dμ(x) puis à vérifier des hypothèses qui permettent d’intervertir limite (ou dérivée) et intégrale. Un cadre suffisant de **continuité** : f(t,x) est mesurable en x, continue en t pour presque tout x, et, au voisinage de chaque paramètre, ∥f(t,x)∥≤g(x) avec g∈L¹(μ). La convergence dominée donne alors la continuité de F. Pour la **dérivabilité**, on ajoute l’existence de ∂_t f(t,x) presque partout et un majorant intégrable local uniforme de cette dérivée; sous des hypothèses mesurables et de régularité appropriées, F'(t)=∫∂_t f(t,x)dμ(x).
+Pour les intégrales à paramètres, le schéma central consiste à écrire F(t)=∫_X f(t,x)dμ(x) puis à vérifier les hypothèses permettant d’intervertir limite (ou dérivée) et intégrale. Un cadre suffisant de continuité est le suivant : f est mesurable sur le produit (I×X, 𝓑(I)⊗𝒜), continue en t pour presque tout x, et, au voisinage de chaque paramètre, |f(t,x)|≤g(x) avec g∈L¹(μ). Pour la dérivabilité près de t₀, supposons f(t₀,·) intégrable ; pour presque tout x, t↦f(t,x) est dérivable sur un voisinage de t₀, la dérivée partielle est mesurable sur le produit et |∂ₜf(t,x)|≤g(x) pour une même g∈L¹(μ) et tout t de ce voisinage. La mesurabilité de f garantit que f(t,·) est mesurable pour chaque t. Alors F(t)=∫f(t,x)dμ(x) est définie près de t₀, dérivable en t₀ et F′(t₀)=∫∂ₜf(t₀,x)dμ(x).
 
 **Exemple / usage.** Pour F(t)=∫_0^1 e^{tx}dx, sur tout intervalle borné de paramètres, l’intégrande et sa dérivée en t sont dominées par des constantes intégrables. On peut donc dériver sous le signe intégral : F'(t)=∫_0^1xe^{tx}dx. Cette méthode est fréquente pour établir des identités ou des estimations dépendant d’un paramètre.
 
@@ -118,7 +118,7 @@ Sur ℝ^d, pour des fonctions intégrables, la convolution est définie presque 
 
 Sous les hypothèses usuelles f,g∈L¹, f*g∈L¹ et ∥f*g∥₁≤∥f∥₁∥g∥₁. Si une fonction est assez régulière et l’autre intégrable, la convolution peut hériter de la régularité; les conditions exactes dépendent du résultat visé.
 
-Une **approximation de l’identité** (ou noyau régularisant) est une famille ρ_ε(x)=ε^{-d}ρ(x/ε) construite à partir d’un noyau intégrable ρ de masse ∫ρ=1 et concentrée près de zéro lorsque ε→0. Pour f∈L^p(ℝ^d), 1≤p<∞, un noyau convenable donne ρ_ε*f→f dans L^p. Si le noyau est C^∞_c, la convolution régularise, sous les hypothèses requises, une fonction localement intégrable; elle sert à approximer par des fonctions lisses. Pour p=∞, une convergence en norme uniforme n’est pas vraie en général sans hypothèses additionnelles.
+Une **approximation de l’identité** (ou noyau régularisant) peut être définie à partir de ρ∈L¹(ℝᵈ), de masse ∫ρ=1, par ρ_ε(x)=ε^{-d}ρ(x/ε), ε>0. Pour f∈Lᵖ(ℝᵈ), 1≤p<∞, on a ρ_ε*f→f dans Lᵖ lorsque ε→0. Si ρ∈C^∞_c, la convolution régularise, sous les hypothèses requises, une fonction localement intégrable et sert à l’approcher par des fonctions lisses. Pour p=∞, une convergence en norme uniforme n’est pas vraie en général sans hypothèses additionnelles.
 
 **Exemple / usage.** Convoler une fonction indicatrice d’intervalle par une petite bosse lisse de masse un produit une version lissée de la fonction, dont les transitions s’effectuent sur une petite zone près des bords. Cela permet d’approcher les fonctions intégrables par des fonctions lisses dans les normes usuelles L^p, p<∞.
 

@@ -10,11 +10,11 @@ Le programme officiel intitule cette unité « 4 Formes bilinéaires et quadrati
 
 Soient \(E\) un espace vectoriel de dimension finie sur un corps commutatif \(K\), et \(b:E\times E\to K\). La forme \(b\) est **bilinéaire** si elle est linéaire séparément en chacune de ses variables. Elle est **symétrique** si \(b(x,y)=b(y,x)\), et **alternée** si \(b(x,x)=0\) pour tout \(x\). Une forme alternée est antisymétrique; réciproquement, cette équivalence demande que \(2\ne0\) dans \(K\). Ne pas confondre forme alternée et forme symétrique.
 
-Une forme quadratique \(q:E\to K\) (dans le cadre de la caractéristique différente de 2) est associée à une forme bilinéaire symétrique \(b_q\), sa **forme polaire** :
+Une **forme quadratique** \(q:E\to K\) vérifie \(q(\lambda x)=\lambda^2q(x)\) et sa polarisation \(B_q(x,y)=q(x+y)-q(x)-q(y)\) est bilinéaire. Lorsque \(\operatorname{car}(K)\ne2\), on lui associe la forme bilinéaire symétrique polaire :
 \[
  b_q(x,y)=\frac{q(x+y)-q(x)-q(y)}{2},\qquad q(x)=b_q(x,x).
 \]
-Ainsi \(q(\lambda x)=\lambda^2q(x)\) et \(q(x+y)=q(x)+2b_q(x,y)+q(y)\). La restriction « caractéristique différente de 2 » est essentielle à cette formule et à la reconstruction de \(b_q\) par polarisation. Dans le cas réel, \(q\) est souvent écrite \(q(x)=x^{\mathsf T}Mx\) avec \(M\) symétrique.
+Ainsi \(q(x+y)=q(x)+2b_q(x,y)+q(y)\). En caractéristique 2, la division par 2 n’a pas de sens et la forme polaire seule ne détermine pas en général \(q\) ; il faut donc conserver la forme quadratique comme objet distinct. Dans le cas réel, \(q\) s’écrit souvent \(q(x)=x^{\mathsf T}Mx\) avec \(M\) symétrique.
 
 Deux vecteurs sont **orthogonaux pour \(b\)** si \(b(x,y)=0\). Cette notion dépend de la forme considérée et n’est pas nécessairement une notion de distance ou d’angle. La **forme bilinéaire non dégénérée** est celle dont le radical est nul; en dimension finie, cela équivaut à ce que l’application \(E\to E^*\), \(x\mapsto(y\mapsto b(x,y))\), soit un isomorphisme (selon l’ordre choisi des variables, on peut employer l’application analogue avec les variables inversées).
 
@@ -26,7 +26,7 @@ Dans une base \(\mathcal B\), la matrice \(M=(b(e_i,e_j))\) vérifie \(b(x,y)=X^
 
 ### Exemple et usage
 
-Sur \(\mathbb R^2\), \(b((x_1,x_2),(y_1,y_2))=x_1y_1+2x_2y_2\) a pour matrice \(\mathrm{diag}(1,2)\), est symétrique et non dégénérée. Sa forme quadratique associée vaut \(q(x_1,x_2)=x_1^2+2x_2^2\); ses deux coordonnées sont orthogonales. Cette écriture matricielle sert à calculer le rang, tester la dégénérescence et transformer la forme quand on change de base.
+Sur \(\mathbb R^2\), \(b((x_1,x_2),(y_1,y_2))=x_1y_1+2x_2y_2\) a pour matrice \(\mathrm{diag}(1,2)\), est symétrique et non dégénérée. Sa forme quadratique associée vaut \(q(x_1,x_2)=x_1^2+2x_2^2\); ses deux coordonnées sont orthogonales. La forme \(a((x_1,x_2),(y_1,y_2))=x_1y_2-x_2y_1\) est alternée : \(a(x,x)=0\) et sa matrice \(\begin{pmatrix}0&1\\-1&0\end{pmatrix}\) est de rang 2. Ces exemples servent à calculer le rang, tester la dégénérescence et transformer une forme par changement de base.
 
 ### Checklist de travail — (a)
 
@@ -52,7 +52,7 @@ Sur un corps de caractéristique différente de 2, une forme quadratique peut ê
 
 Sur \(\mathbb C\), tout coefficient diagonal non nul peut être normalisé à 1 par un changement d’échelle complexe. Deux formes quadratiques complexes sont donc équivalentes si et seulement si elles ont même rang; une forme de rang \(r\) est équivalente à \(X_1^2+\cdots+X_r^2\), les autres coordonnées étant dans le noyau. Il ne faut pas transposer à \(\mathbb C\) la distinction réelle entre coefficients positifs et négatifs.
 
-Les **procédés d’orthogonalisation** recherchent une base où les vecteurs distincts sont orthogonaux, puis une base diagonalisant la forme. Dans un produit scalaire, le procédé de Gram–Schmidt construit une base orthogonale à partir d’une famille libre en soustrayant successivement les projections; il requiert la positivité définie pour les divisions par les normes carrées. Pour une forme symétrique non définie positive, il faut contrôler les pivots : si tous les vecteurs d’une base candidate sont isotropes, des combinaisons de vecteurs peuvent avoir une valeur quadratique non nulle. Une étape de congruence ou une autre base est alors nécessaire.
+Les **procédés d’orthogonalisation** recherchent une base où les vecteurs distincts sont orthogonaux, puis une base diagonalisant la forme. À chaque étape de Gram–Schmidt, la division par \(b(u,u)\) n’est possible que si ce pivot est non nul ; la positivité définie garantit cette condition pour tout vecteur non nul d’une famille libre. Pour une forme indéfinie, les pivots isotropes imposent de choisir ou de combiner autrement les vecteurs. Par exemple, pour \(q(x,y)=x^2-y^2\), les vecteurs \(v=(1,1)\) et \(w=(1,-1)\) sont isotropes, mais \(v+w=(2,0)\) est de carré 4 et \(v-w=(0,2)\) de carré −4 ; ils donnent une base orthogonale adaptée.
 
 ### Exemple et usage
 
@@ -66,7 +66,7 @@ La forme réelle \(q(x,y)=x^2-y^2\) a signature \((1,1)\) et possède les vecteu
 - [ ] Réduire une forme réelle en carrés positifs, négatifs et nuls; retrouver rang et signature.
 - [ ] Appliquer l’inertie de Sylvester pour décider si deux formes réelles sont équivalentes.
 - [ ] Classer une forme complexe par son rang sans attribuer de signe aux coefficients.
-- [ ] Effectuer une orthogonalisation de Gram–Schmidt et repérer pourquoi elle demande une forme définie positive.
+- [ ] Effectuer une orthogonalisation de Gram–Schmidt, vérifier la non-annulation de chaque pivot et savoir que la positivité définie la garantit.
 - [ ] Traiter un exemple avec un pivot isotrope et construire une réduction adaptée.
 
 ## (c) Espaces euclidiens et hermitiens, dual, supplémentaire orthogonal, Cauchy–Schwarz, norme et bases orthonormales
@@ -108,7 +108,7 @@ Pour toute matrice réelle \(A\) de taille \(m\times n\), la **décomposition en
 
 ### Réduction simultanée et décomposition polaire dans \(GL(n,\mathbb R)\)
 
-Soient \(q_1,q_2\) deux formes quadratiques réelles sur \(\mathbb R^n\), et supposons que \(q_1\) est définie positive. Il existe une base orthonormale pour le produit scalaire associé à \(q_1\) qui diagonalise aussi \(q_2\). En effet, l’endomorphisme \(T\) défini par \(q_2(x,y)=q_1(Tx,y)\) est auto-adjoint pour \(q_1\); son théorème spectral fournit cette base. Dans cette base, les matrices des deux formes sont respectivement \(I\) et une matrice diagonale réelle. L’hypothèse de positivité de la première forme est déterminante.
+Soient \(q_1,q_2\) deux formes quadratiques réelles sur \(\mathbb R^n\), et supposons que \(q_1\) est définie positive. Notons \(b_1,b_2\) leurs formes bilinéaires polaires, définies par \(q_i(x)=b_i(x,x)\). Il existe une base orthonormale pour le produit scalaire \(b_1\) qui diagonalise aussi \(q_2\). En effet, l’unique endomorphisme \(T\) défini par \(b_2(x,y)=b_1(Tx,y)\) est auto-adjoint pour \(b_1\); le théorème spectral fournit cette base. Dans celle-ci, les matrices des deux formes sont respectivement \(I\) et une matrice diagonale réelle. L’hypothèse de positivité de la première forme est déterminante.
 
 Pour toute matrice inversible réelle \(A\), la décomposition polaire est \(A=QS\), où \(Q\) est orthogonale et \(S=(A^{\mathsf T}A)^{1/2}\) est symétrique définie positive. Cette factorisation est unique sous ces conditions. On peut la voir comme la séparation d’une transformation en une partie qui préserve les longueurs et une partie positive qui les déforme.
 
@@ -120,7 +120,7 @@ Dans un espace euclidien orienté de dimension trois, le **produit mixte** est \
 
 ### Exemple et usage
 
-Pour \(A=\begin{pmatrix}1&1\\0&1\end{pmatrix}\), les valeurs singulières sont les racines carrées des valeurs propres de \(A^{\mathsf T}A\), matrice symétrique positive; elles donnent les facteurs principaux d’étirement. Pour la matrice \(R_\theta\) d’une rotation plane, \(R_\theta\in SO(2)\) et sa valeur propre complexe décrit l’angle \(\theta\). Dans \(\mathbb R^3\), \(e_1\times e_2=e_3\) pour l’orientation canonique, ce qui fixe le signe de la convention.
+Pour \(A=\begin{pmatrix}1&1\\0&1\end{pmatrix}\), on a \(A^{\mathsf T}A=\begin{pmatrix}1&1\\1&2\end{pmatrix}\), dont les valeurs propres sont \((3\pm\sqrt5)/2\). Les valeurs singulières de \(A\) sont donc \((\sqrt5+1)/2\) et \((\sqrt5-1)/2\) ; elles donnent les facteurs principaux d’étirement. Pour la matrice \(R_\theta\) d’une rotation plane, \(R_\theta\in SO(2)\) et sa valeur propre complexe décrit l’angle \(\theta\). Dans \(\mathbb R^3\), \(e_1\times e_2=e_3\) pour l’orientation canonique, ce qui fixe le signe de la convention.
 
 ### Checklist de travail — (d)
 

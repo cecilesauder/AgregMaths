@@ -35,16 +35,20 @@ En particulier, si `‖df(z)‖≤M` sur le segment, `‖f(y)-f(x)‖≤M‖y-x�
 Une application est **Cᵏ** si toutes ses dérivées partielles jusqu’à l’ordre k existent et sont continues. Si les dérivées mixtes concernées sont continues dans un voisinage, le théorème de Schwarz permet d’en intervertir l’ordre. Pour f scalaire, la **hessienne** `H_f(a)` est la matrice des dérivées secondes; sous ces hypothèses, elle est symétrique.
 
 Pour f de classe Cᵏ au voisinage de a, Taylor-Young s’écrit
-`f(a+h)= Σ_(j=0)^k (1/j!) dʲf(a)[h,…,h] + o(‖h‖ᵏ)`.
-À l’ordre 2, le terme quadratique vaut `½ hᵀH_f(a)h`. Si f est Cᵏ⁺¹ le long du segment entre a et a+h, la formule avec reste intégral exprime le reste d’ordre k comme une intégrale de la dérivée d’ordre k+1 le long du segment; elle donne notamment des majorations du reste. Le programme nomme cette formule « Taylor avec reste intégral (Taylor-Laplace) » [1].
+`f(a+h)= Σ_(j=0)^k (1/j!) dʲf(a)[h,…,h] + o(‖h‖ᵏ)`
+À l’ordre 2, le terme quadratique vaut \(\tfrac12 h^{\mathsf T}H_f(a)h\). Si \(f\in C^{k+1}\) sur un voisinage du segment \([a,a+h]\), la formule de Taylor avec reste intégral est
+\[
+f(a+h)=\sum_{j=0}^{k}\frac1{j!}d^jf(a)[h,\ldots,h]+\frac1{k!}\int_0^1(1-t)^k d^{k+1}f(a+th)[h,\ldots,h] \,dt.
+\]
+Une borne de \(\|d^{k+1}f(x)\|_{\mathrm{op}}\) sur ce segment donne une majoration explicite du reste. C’est la formule de Taylor-Laplace nommée par le programme [1].
 
 **Usage / exemple.** Pour `f(x,y)=eˣ cos y` près de (0,0), les dérivées premières et secondes fournissent le développement quadratique `1+x+(x²-y²)/2+o(x²+y²)`, utile pour comparer f à 1 près de l’origine.
 
 ### (d) Étude locale des applications à valeurs dans R. Développements limités. Recherche des extrema locaux.
 
-Un **développement limité** décrit une fonction scalaire près d’un point par un polynôme et un reste d’ordre supérieur. Il s’obtient, sous les hypothèses adaptées, par Taylor. Pour une fonction différentiable ayant un extremum local en un point intérieur a, le **théorème de Fermat** donne `df(a)=0`, donc `∇f(a)=0`.
+Pour \(f:U\subset\mathbb R^d\to\mathbb R\) de classe \(C^n\) au voisinage de \(a\), un **développement limité** d’ordre \(n\) s’écrit \(f(a+h)=\sum_{j=0}^n\frac1{j!}d^jf(a)[h,\ldots,h]+o(\|h\|^n)\) lorsque \(h\to0\). Par exemple, pour \(f(x,y)=e^x\cos y\), le développement d’ordre 2 à l’origine est \(1+x+(x^2-y^2)/2+o(\|(x,y)\|^2)\). Pour une fonction différentiable ayant un extremum local en un point intérieur \(a\), le **théorème de Fermat** donne \(df(a)=0\), donc \(\nabla f(a)=0\).
 
-Si f est C², un minimum local impose une hessienne positive semi-définie et un maximum local une hessienne négative semi-définie. Une hessienne définie positive (respectivement négative) en un point critique garantit un minimum (respectivement maximum) local strict. Une hessienne indéfinie indique un point selle. Si elle est dégénérée, le test d’ordre 2 ne conclut généralement pas : il faut examiner les termes suivants, le reste ou directement les variations.
+Si \(f\) est \(C^2\), en un point critique un minimum local impose une hessienne positive semi-définie et un maximum local une hessienne négative semi-définie. Une hessienne définie positive (respectivement négative) en un point critique garantit un minimum (respectivement maximum) local strict. Une hessienne indéfinie en un point critique indique un point selle. Si elle est dégénérée, le test d’ordre 2 ne conclut généralement pas : il faut examiner les termes suivants, le reste ou directement les variations.
 
 **Usage / exemple.** Pour `f(x,y)=x²+3y²`, l’origine est un minimum strict puisque le gradient y est nul et la hessienne `diag(2,6)` est définie positive. En revanche, `x²-y²` a une hessienne indéfinie à l’origine.
 
@@ -87,7 +91,7 @@ Pour f C¹ près de X*, le système linéarisé est `Y′=Df(X*)Y`. Le théorèm
 
 ### (c) Systèmes différentiels linéaires. Variation des constantes (formule de Duhamel). Coefficients constants. Équations linéaires d’ordre supérieur à 1.
 
-Pour `X′(t)=A(t)X(t)+b(t)`, soit Φ(t) une matrice fondamentale inversible du système homogène `X′=A(t)X`. La **variation des constantes** donne
+Supposons \(A\) et \(b\) continues sur l’intervalle considéré. Pour `X′(t)=A(t)X(t)+b(t)`, soit Φ(t) une matrice fondamentale inversible du système homogène `X′=A(t)X`. La **variation des constantes** donne
 `X(t)=Φ(t)[c+∫_(t₀)^t Φ(s)⁻¹b(s)ds]`,
 avec la constante c fixée par la donnée initiale. En posant le propagateur `U(t,s)=Φ(t)Φ(s)⁻¹`, on obtient la **formule de Duhamel** :
 `X(t)=U(t,t₀)X(t₀)+∫_(t₀)^t U(t,s)b(s)ds`.
@@ -100,11 +104,11 @@ Si A est constante, `U(t,s)=e^{(t-s)A}` et la solution homogène s’exprime à 
 
 ### (a) Sous-variétés de Rⁿ. Graphe local, paramétrisation locale, équation locale. Espace tangent, gradient. Surfaces de R³ et plan tangent.
 
-Une **sous-variété** de dimension k de Rⁿ est localement décrite par des coordonnées régulières de dimension k. Le programme mentionne les descriptions équivalentes par **graphe local**, **paramétrisation locale** et **équation locale**. Une paramétrisation `φ: W⊂Rᵏ→Rⁿ` doit avoir rang k et décrire localement la partie considérée. Une équation régulière `F(x)=0` pour `F: Rⁿ→Rⁿ⁻ᵏ` exige un rang `n-k` : le théorème des fonctions implicites fournit les représentations locales en graphe.
+Une **sous-variété** de dimension \(k\) de \(\mathbb R^n\) est localement décrite, après choix de coordonnées, comme le graphe d’une fonction \(C^1\) de \(k\) variables, par une paramétrisation régulière \(\phi:W\subset\mathbb R^k\to\mathbb R^n\) de rang \(k\), ou comme l’ensemble \(F^{-1}(0)\) d’une application \(F:\mathbb R^n\to\mathbb R^{n-k}\) dont la différentielle est de rang \(n-k\). Le théorème des fonctions implicites relie ces descriptions locales. Le programme cite explicitement graphe local, paramétrisation locale et équation locale.
 
-L’**espace tangent** en un point paramétré `p=φ(u)` est l’image de `dφ(u)`. Si la sous-variété est définie par une équation régulière `F=0`, alors `T_pM=ker dF(p)`. Pour une hypersurface `F=0`, le gradient `∇F(p)` est normal au tangent lorsqu’il est non nul. Sur une surface de R³, le **plan tangent** en p est `p+T_pM`; les signes de F près de ce plan peuvent aussi situer localement la surface de part et d’autre.
+L’**espace tangent** en un point paramétré \(p=\phi(u)\) est l’image de \(d\phi(u)\). Si la sous-variété est définie par une équation régulière \(F=0\), alors \(T_pM=\ker dF(p)\). Pour une hypersurface \(F=0\), le gradient \(\nabla F(p)\) est normal au tangent lorsqu’il est non nul. Sur une surface de \(\mathbb R^3\), le **plan tangent** en \(p\) est \(p+T_pM\) ; pour situer la surface par rapport à ce plan, on compare une représentation graphique locale à l’équation du plan.
 
-**Usage / exemple.** La sphère unité est définie par `F(x,y,z)=x²+y²+z²-1=0`. Au point p=(0,0,1), le gradient (0,0,2) est normal et le plan tangent a pour équation `z=1`.
+**Usage / exemple.** La sphère unité est définie par `F(x,y,z)=x²+y²+z²-1=0`. Au point `p=(0,0,1)`, le gradient `(0,0,2)` est normal et le plan tangent a pour équation `z=1`. Dans le graphe local `z=√(1-x²-y²)`, on a `z≤1`, avec égalité seulement en `(x,y)=(0,0)` : la sphère est donc localement sous son plan tangent.
 
 ### (b) Courbes planes définies par une représentation paramétrique. Abscisse curviligne et longueur d’un arc C¹.
 
@@ -112,7 +116,7 @@ Une courbe paramétrée plane est donnée par `γ(t)=(x(t),y(t))`. Son étude co
 `L=∫ₐᵇ ‖γ′(t)‖dt`.
 L’**abscisse curviligne** depuis a est `s(t)=∫ₐᵗ ‖γ′(u)‖du`; lorsque la courbe est régulière (`γ′≠0`), s croît strictement et peut servir de paramètre, avec une vitesse unitaire pour la représentation reparamétrée. Si des portions sont parcourues plusieurs fois, la longueur paramétrée compte chaque parcours.
 
-**Usage / exemple.** Pour le cercle `γ(t)=(R cos t,R sin t)`, `‖γ′(t)‖=R`; un tour de `0` à `2π` a longueur `2πR`, et s(t)=Rt.
+**Usage / exemple.** Pour le cercle `γ(t)=(R cos t,R sin t)`, avec `R>0`, `‖γ′(t)‖=R`; un tour de `0` à `2π` a longueur `2πR`, et `s(t)=Rt`.
 
 ### (c) Extrema liés, multiplicateurs de Lagrange.
 
@@ -120,7 +124,7 @@ On cherche un extremum de f sous une contrainte `g(x)=c`. Si f et g sont différ
 `∇f(x₀)=λ∇g(x₀)` et `g(x₀)=c`.
 Pour plusieurs contraintes `g_i(x)=c_i`, la version régulière demande l’indépendance des gradients des contraintes; le gradient de f appartient alors à leur espace engendré. Ces équations donnent des candidats, pas à elles seules la nature de l’extremum : il faut comparer les valeurs, vérifier les contraintes et, selon le problème, examiner les cas singuliers ou le bord.
 
-**Usage / exemple.** Pour optimiser `f(x,y)=xy` sur le cercle unité `x²+y²=1`, résoudre `(y,x)=λ(2x,2y)` avec la contrainte fournit les candidats; on compare ensuite les valeurs pour distinguer maxima et minima.
+**Usage / exemple.** Pour optimiser `f(x,y)=xy` sur le cercle unité `x²+y²=1`, les équations de Lagrange donnent `y=2λx`, `x=2λy`. Elles conduisent aux quatre candidats `(1/√2,1/√2)`, `(-1/√2,-1/√2)`, `(1/√2,-1/√2)` et `(-1/√2,1/√2)`. Les deux premiers donnent `f=1/2` (maximum global), les deux derniers `f=-1/2` (minimum global).
 
 ## Checklist de révision
 

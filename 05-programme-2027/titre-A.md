@@ -15,7 +15,11 @@ L’option A s’ajoute au programme commun des titres 1 à 12. Ainsi, les notio
 
 Le renvoi au titre 11 demande de maîtriser les lois qui y sont nommées, notamment Bernoulli, binomiale, géométrique, Poisson, uniforme, exponentielle et gaussienne, avec leurs paramètres, supports, fonctions de masse ou densités, fonctions de répartition, espérances et variances. Le complément énumère explicitement les lois multinomiale, hypergéométrique, Gamma et du χ².
 
-Pour un vecteur de comptages multinomial de paramètres \(n\) et \((p_1,\ldots,p_k)\), où \(p_i\geq0\) et \(\sum_i p_i=1\), les composantes comptent les occurrences des catégories dans \(n\) essais indépendants. Pour une population de taille \(N\) comportant \(K\) succès, un tirage uniforme de taille \(n\) sans remise donne une variable hypergéométrique de support \(\max(0,n-(N-K)),\ldots,\min(n,K)\). La loi Gamma de forme \(\alpha>0\) et taux \(\lambda>0\) a pour densité \(f(x)=\lambda^\alpha x^{\alpha-1}e^{-\lambda x}/\Gamma(\alpha)\) sur \(x>0\) ; les conventions forme-échelle existent, donc vérifier la paramétrisation. La loi du χ² à \(r\) degrés de liberté est la loi de la somme des carrés de \(r\) variables gaussiennes standard indépendantes ; c’est un cas particulier de loi Gamma.
+Pour un vecteur de comptages multinomial de paramètres n et (p₁,…,p_k), où p_i≥0 et Σ_i p_i=1, les composantes comptent les occurrences des catégories dans n essais indépendants. Pour des entiers m_i≥0 de somme n, P(N₁=m₁,…,N_k=m_k)=n!/(m₁!⋯m_k!)∏_i p_i^{m_i} ; E[N_i]=np_i, Var(N_i)=np_i(1-p_i) et Cov(N_i,N_j)=−np_ip_j pour i≠j. Dans cette formule, on adopte la convention 0^0=1 ; si p_i=0 et m_i>0, la probabilité de cette configuration est nulle. La loi hypergéométrique correspond à un tirage uniforme sans remise dans une population finie. La loi Gamma de forme α>0 et taux λ>0 a pour densité f(x)=λ^α x^{α−1}e^{−λx}/Γ(α) sur x>0 ; les conventions forme-échelle existent, donc vérifier la paramétrisation. La loi du χ² à r degrés de liberté est la loi de la somme des carrés de r variables gaussiennes standard indépendantes ; c’est un cas particulier de loi Gamma. Pour un échantillon normal de taille n, (n−1)S²/σ² suit un χ² à n−1 degrés de liberté, ce qui fournit notamment un pivot pour l’inférence sur la variance.
+
+Exemple multinomial : pour n=3 et p=(1/2,1/3,1/6), la probabilité d’obtenir une occurrence de chaque catégorie vaut 3!×(1/2)(1/3)(1/6)=1/6.
+
+Pour un tirage sans remise de taille n, avec 0≤n≤N, dans une population de taille N contenant K succès (0≤K≤N), la variable hypergéométrique X a pour support max(0,n−(N−K))≤k≤min(n,K) et P(X=k)=C(K,k)C(N−K,n−k)/C(N,n), où C désigne le coefficient binomial.
 
 Savoir choisir un modèle suppose d’expliciter le mécanisme : avec ou sans remise, nombre fixé d’essais, événements rares, erreur additive, temps d’attente, etc. La simulation doit respecter ce mécanisme. On pourra construire des variables à partir d’un générateur uniforme, utiliser l’inversion de la fonction de répartition lorsqu’elle est accessible, ou simuler selon une construction connue (par exemple somme d’exponentielles pour certaines Gamma de paramètre entier). Il faut distinguer une réalisation simulée de la loi théorique et examiner l’erreur d’échantillonnage.
 
@@ -97,7 +101,7 @@ Si des appels arrivent selon un taux moyen de \(\lambda=3\) par heure dans le mo
 
 Pour une variable intégrable \(X\) et une tribu \(\mathcal G\), l’espérance conditionnelle \(\mathbb E[X\mid\mathcal G]\) est, à égalité presque sûre près, une variable \(\mathcal G\)-mesurable telle que \(\mathbb E[1_A\mathbb E(X\mid\mathcal G)]=\mathbb E[1_AX]\) pour tout \(A\in\mathcal G\). Elle vérifie notamment la propriété de tour lorsque \(\mathcal H\subseteq\mathcal G\) : \(\mathbb E[\mathbb E(X\mid\mathcal G)\mid\mathcal H]=\mathbb E(X\mid\mathcal H)\).
 
-Par rapport à une filtration \((\mathcal F_n)\), un processus intégrable et adapté \((M_n)\) est une martingale si \(\mathbb E[M_{n+1}\mid\mathcal F_n]=M_n\). En remplaçant l’égalité par \(\geq\) ou \(\leq\), on obtient surmartingale ou sous-martingale. Un temps aléatoire \(T\) à valeurs dans \(\mathbb N\cup\{\infty\}\) est un temps d’arrêt si \(\{T\leq n\}\in\mathcal F_n\) pour tout \(n\) : la décision de s’arrêter à la date \(n\) dépend seulement de l’information disponible jusqu’à cette date.
+Par rapport à une filtration (𝓕_n), un processus adapté et intégrable (M_n) est une **martingale** si E[M_{n+1}|𝓕_n]=M_n, une **surmartingale** si E[M_{n+1}|𝓕_n]≤M_n, et une **sous-martingale** si E[M_{n+1}|𝓕_n]≥M_n. Un temps aléatoire T à valeurs dans ℕ∪{∞} est un temps d’arrêt si {T≤n}∈𝓕_n pour tout n : la décision de s’arrêter à la date n dépend seulement de l’information disponible jusqu’à cette date.
 
 ### Arrêt et convergence : précautions d’hypothèses
 
@@ -134,7 +138,7 @@ En estimation paramétrique, un estimateur est une statistique construite pour e
 
 ### Exemple ou usage
 
-Pour \(X_i\) i.i.d. Bernoulli de paramètre \(p\), la vraisemblance est \(p^{\sum X_i}(1-p)^{n-\sum X_i}\), et un maximum (pour les cas ordinaires) est atteint en \(\hat p=\bar X_n\). L’estimation par fréquence converge vers \(p\) par la loi forte ; le TCL fournit une approximation normale de \(\hat p\) pour construire un intervalle approximatif lorsque la taille d’échantillon est adéquate et que le paramètre n’est pas à une situation limite. Pour une variable de répartition continue, \(F_n(x)\) estime \(F(x)\) et les théorèmes de convergence donnent un fondement à cette approximation empirique.
+Pour X_i i.i.d. Bernoulli de paramètre p, sous l’espace de paramètres [0,1], la vraisemblance est L(p)=p^{ΣX_i}(1-p)^{n-ΣX_i} et un maximum est atteint en p̂=X̄_n, y compris aux cas limites où toutes les observations valent 0 ou 1. La loi forte donne p̂→p presque sûrement. Si n=25 observations gaussiennes i.i.d. ont une moyenne observée de 12 et un écart-type σ=5 connu, l’intervalle exact à 95 % pour μ est [12−z_{0.975}·5/√25, 12+z_{0.975}·5/√25], où z_{0.975} est le quantile 0,975 de la loi normale standard et vaut environ 1,96 ; les bornes sont donc approximativement [10,04;13,96]. L’exactitude repose ici sur la normalité et la variance connue ; avec σ estimé ou une proportion, il faut employer le pivot approprié ou annoncer l’approximation asymptotique et ses conditions.
 
 ### Checklist de travail
 
@@ -212,7 +216,7 @@ Le test de Kolmogorov-Smirnov à un échantillon compare \(F_n\) à une fonction
 
 ### Exemple ou usage
 
-Pour vérifier si des catégories ont des probabilités théoriques spécifiées, on calcule les effectifs attendus, la statistique de Pearson et les degrés de liberté, puis on compare à la loi de référence ou utilise la p-valeur en vérifiant les conditions d’approximation. Pour une hypothèse de loi continue spécifiée, on peut comparer la fonction de répartition empirique à la fonction théorique par le test de Kolmogorov-Smirnov. Dans les deux cas, le résultat du test ne démontre pas que le modèle est vrai ; il indique si les données sont suffisamment incompatibles avec lui au niveau choisi.
+Exemple de test d’ajustement du χ² : sous H₀, trois catégories ont chacune une probabilité 1/3 ; pour 60 observations et des effectifs (25,20,15), les effectifs attendus valent (20,20,20) et Q=5²/20+0²/20+(−5)²/20=2,5. Aucun paramètre n’étant estimé, le nombre de degrés de liberté est 2 ; au seuil 5 %, le seuil critique est environ 5,99. On ne rejette donc pas H₀, sans pour autant démontrer qu’elle est vraie. Pour un test de Kolmogorov-Smirnov, on compare la fonction de répartition empirique à une loi continue entièrement spécifiée et l’on utilise le seuil correspondant, sans réestimer les paramètres sur les mêmes données.
 
 ### Checklist de travail
 

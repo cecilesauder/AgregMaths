@@ -31,7 +31,7 @@ Les treize fichiers ci-dessous suivent les titres communs puis le programme spé
 | Titre 12 — Méthodes numériques | [Guide et checklist](05-programme-2027/titre-12.md) |
 | Programme spécifique — Option A, probabilités et statistiques | [Guide et checklist](05-programme-2027/titre-A.md) |
 
-Les titres officiels et leurs sous-parties ont été comparés au PDF ministériel. Là où celui-ci ne détaille pas une liste d’exercices, la profondeur attendue ou une variante de théorème, les guides signalent cette limite au lieu de présenter un choix pédagogique comme une exigence textuelle du programme. Il reste à contrôler chaque notion avec les cours et documents de référence utilisés pour la préparation.
+Les titres officiels et leurs sous-parties ont été comparés au PDF ministériel. Là où celui-ci ne détaille pas une liste d’exercices, la profondeur attendue ou une variante de théorème, les guides signalent cette limite au lieu de présenter un choix pédagogique comme une exigence textuelle du programme. Une première relecture indépendante des 13 guides a ensuite conduit à des corrections ciblées; une validation après corrections et le contrôle avec les cours suivis restent nécessaires.
 
 ## Ressources pédagogiques existantes
 
@@ -85,14 +85,16 @@ Ces supports ciblés complètent les guides précédents. Ils n’ont pas tous l
 
 ## Cahier des charges — ce qu’il reste à faire
 
-Les guides relient maintenant le dépôt aux **12 titres communs et au programme de l’option A**. Cela ne signifie pas que toutes les ressources historiques sont exhaustives, que toutes les preuves y figurent, ni que chaque exercice ou code a été validé indépendamment. Utiliser la checklist de chaque guide et ne cocher un point qu’après l’avoir réellement travaillé.
+Les guides relient maintenant le dépôt aux **12 titres communs et au programme de l’option A**. L’audit de couverture des 13 guides a été effectué à partir du programme officiel; une relecture indépendante a identifié des lacunes et énoncés prioritaires, puis des corrections ciblées ont été intégrées. Cela ne certifie pas toutes les preuves, tous les exercices, les ressources historiques ni les scripts. Utiliser la checklist de chaque guide et ne cocher un point qu’après l’avoir réellement travaillé.
 
 ### 1. Valider la couverture et les énoncés
 
-- [ ] Parcourir le PDF officiel titre par titre et confronter chaque sous-partie à la checklist du guide correspondant; relever explicitement les points absents ou encore flous.
-- [ ] Pour chaque théorème, consigner les hypothèses, le domaine, les conventions et le mode de convergence; refaire au moins une preuve ou une justification lorsqu’elle est au programme du cours suivi.
-- [ ] Ajouter à chaque notion un exemple, un contre-exemple ou une application calculée, et des exercices progressifs avec corrections vérifiées.
-- [ ] Faire relire indépendamment les résultats les plus sensibles : algèbre en caractéristique positive, convergence et interversion d’intégrales, Fourier, théorèmes de limite, martingales et tests statistiques.
+**État au 24 octobre 2026 : première passe d’audit et corrections prioritaires effectuées; la validation finale après correction et l’entraînement restent à faire.**
+
+- [x] Comparer les 12 titres communs et le programme spécifique de l’option A au PDF officiel, et relever les écarts de couverture ou de formulation.
+- [x] Faire une première relecture indépendante des guides et intégrer les corrections prioritaires repérées : définitions et hypothèses, exemples de groupes et de géométrie, résultats d’analyse et de mesure, méthode de la puissance, conventions de martingales et exemples de statistique.
+- [ ] Relire les 13 guides **après correction**, vérifier chaque formule et confronter les formulations aux cours et documents de référence utilisés pour la préparation.
+- [ ] Compléter les exemples, contre-exemples, preuves et exercices corrigés notion par notion; les ajouts de cette passe sont ciblés et ne signifient pas que chaque notion possède déjà un exercice validé.
 - [ ] Garder les ressources historiques comme compléments ciblés; ne pas les étiqueter « complètes » sur la seule base de leur présence dans une rubrique.
 
 ### 2. Fiabiliser les supports et le code

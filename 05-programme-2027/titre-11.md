@@ -59,7 +59,7 @@ L’espérance d’une variable positive est définie dans \([0,+\infty]\). Pour
 
 ### Lois usuelles à reconnaître et utiliser
 
-Les conventions de support et de paramétrage doivent être indiquées. Pour \(p\in[0,1]\), une Bernoulli de paramètre \(p\) vaut 1 avec probabilité \(p\), sinon 0 ; son espérance et sa variance sont \(p\) et \(p(1-p)\). Une binomiale \(\mathcal B(n,p)\) compte les succès dans \(n\) essais de Bernoulli indépendants ; ses paramètres donnent moyenne \(np\) et variance \(np(1-p)\). Une géométrique modélise le rang du premier succès dans une suite d’essais indépendants de probabilité de succès \(p\) ; avec le support \(\{1,2,\ldots\}\), \(\mathbb P(X=k)=(1-p)^{k-1}p\). D’autres cours adoptent le nombre d’échecs avant le succès, support \(\mathbb N\) : il faut annoncer la convention.
+Les conventions de support et de paramétrage doivent être indiquées. Pour p∈[0,1], une Bernoulli de paramètre p vaut 1 avec probabilité p, sinon 0 ; son espérance et sa variance sont p et p(1-p). Une binomiale 𝓑(n,p) compte les succès dans n essais de Bernoulli indépendants ; ses paramètres donnent moyenne np et variance np(1-p). Une géométrique modélise le rang du premier succès dans une suite d’essais indépendants de probabilité de succès p ; pour le support {1,2,…}, son paramètre doit vérifier 0<p≤1 et P(X=k)=(1-p)^(k-1)p. D’autres cours adoptent le nombre d’échecs avant le succès, support ℕ : il faut annoncer la convention.
 
 Une Poisson de paramètre \(\lambda>0\) a masses \(e^{-\lambda}\lambda^k/k!\), \(k\in\mathbb N\), et modélise notamment un comptage d’événements rares sous des hypothèses adaptées. Une uniforme sur \([a,b]\), \(a<b\), a densité \(1/(b-a)\) sur cet intervalle. Une exponentielle de taux \(\lambda>0\) a densité \(\lambda e^{-\lambda x}\) pour \(x\ge0\) et intervient dans les modèles de temps d’attente. Une gaussienne \(\mathcal N(\mu,\sigma^2)\), \(\sigma>0\), a densité \((2\pi\sigma^2)^{-1/2}\exp(-(x-\mu)^2/(2\sigma^2))\). Savoir reconnaître une loi inclut son support, son paramètre, sa fonction ou densité et ses moments usuels.
 
@@ -80,7 +80,7 @@ Pour une variable \(N\) à valeurs dans \(\mathbb N\), sa **fonction génératri
 Pour des variables \(X_n,X\) sur un même espace probabilisé :
 
 - \(X_n\to X\) **en probabilité** si, pour tout \(\varepsilon>0\), \(\mathbb P(|X_n-X|>\varepsilon)\to0\).
-- \(X_n\to X\) **dans \(L^p\)**, pour \(p>0\), si \(\mathbb E|X_n-X|^p\to0\) (les quantités doivent être définies). La convergence dans \(L^p\) implique la convergence en probabilité par Markov.
+- \(X_n\to X\) **dans \(L^p\)**, pour \(0<p<\infty\), si \(\mathbb E|X_n-X|^p\to0\) (les quantités doivent être définies). Pour \(p\ge1\), cela correspond à la convergence pour la norme \(L^p\) ; pour \(0<p<1\), cette expression ne définit pas une norme. Si le cours inclut \(p=\infty\), la convergence dans \(L^\infty\) signifie \(\operatorname*{ess\,sup}|X_n-X|\to0\). Pour tout \(p>0\) fini, la convergence dans \(L^p\) implique la convergence en probabilité par Markov.
 - \(X_n\to X\) **presque sûrement** si \(\mathbb P(\{\omega:X_n(\omega)\to X(\omega)\})=1\).
 - \(X_n\to X\) **en loi** si les lois convergent faiblement ; sur \(\mathbb R\), cela équivaut à la convergence des fonctions de répartition en tout point de continuité de \(F_X\).
 
