@@ -233,7 +233,7 @@
     <div>
       <div class="block">
         <span class="block-label">Convergence simple vs uniforme</span>
-        <p>f_n → f simplement : ∀x, f_n(x)→f(x). f_n → f uniformément : sup_x |f_n(x)-f(x)| → 0. La convergence uniforme préserve la continuité, PAS la convergence simple.</p>
+        <p>f_n → f simplement : ∀x, f_n(x)→f(x). f_n → f uniformément : sup_x |f_n(x)-f(x)| → 0. Une limite uniforme de fonctions continues est continue; une limite simple de fonctions continues peut être discontinue. L’uniforme implique la simple.</p>
       </div>
       <div class="block thm">
         <span class="block-label">Théorème d'interversion limite/intégrale</span>
@@ -247,11 +247,11 @@
     <div>
       <div class="block thm">
         <span class="block-label">Dérivation terme à terme</span>
-        <p>Si f_n → f simplement, f_n' → g uniformément, et f_n' continues, alors f est dérivable et f' = g. Attention : il faut la convergence uniforme sur les DÉRIVÉES, pas sur les f_n.</p>
+        <p>Sur un intervalle, si f_n∈C¹, si f_n'→g uniformément et si f_n converge en un point, alors f_n converge uniformément vers une fonction dérivable f avec f'=g. Attention : l’uniformité porte sur les dérivées.</p>
       </div>
       <div class="block ex">
         <span class="block-label">Contre-exemple classique à connaître</span>
-        <p>f_n(x) = x^n sur [0,1] : converge simplement vers une fonction discontinue en 1 (0 puis 1), donc pas uniformément. Base pour illustrer pourquoi la convergence uniforme est nécessaire.</p>
+        <p>f_n(x)=x^n sur [0,1] converge simplement vers 0 sur [0,1[ et vers 1 en 1. La limite est discontinue, donc la convergence n’est pas uniforme. C’est un obstacle à l’uniformité dans cet exemple, pas un critère nécessaire et suffisant général.</p>
       </div>
       <div class="block warn">
         <span class="block-label">Théorème de Dini</span>
@@ -297,7 +297,7 @@
       </div>
       <div class="block ex">
         <span class="block-label">Espaces L^p</span>
-        <p>L^p(μ) = fonctions telles que ∫|f|^p dμ &lt; ∞, muni de ‖f‖_p = (∫|f|^p)^{1/p}. Inégalité de Hölder : ‖fg‖_1 ≤ ‖f‖_p‖g‖_q avec 1/p+1/q=1.</p>
+        <p>Pour 1≤p&lt;∞, L^p(μ) est l’espace des classes de fonctions égales presque partout telles que ∫|f|^p dμ&lt;∞; L^∞ est défini par l’essentielle bornitude. Hölder : ‖fg‖_1≤‖f‖_p‖g‖_q pour 1/p+1/q=1, avec les cas p=1, q=∞ et p=∞, q=1.</p>
       </div>
     </div>
   </div>
@@ -382,11 +382,11 @@
       </div>
       <div class="block ex">
         <span class="block-label">Théorème des résidus</span>
-        <p>∮_γ f(z)dz = 2iπ Σ Res(f,a_k) pour les pôles a_k à l'intérieur de γ. Très utilisé pour calculer des intégrales réelles difficiles (via un contour astucieux).</p>
+        <p>Pour f méromorphe dans la région, sans pôle sur γ : ∮_γ f(z)dz=2πi Σ n(γ,a)Res(f,a). Pour un contour simple positif, n=1 à l’intérieur et 0 à l’extérieur; l’orientation et les indices comptent.</p>
       </div>
       <div class="block warn">
         <span class="block-label">Principe des zéros isolés / prolongement analytique</span>
-        <p>Si f holomorphe s'annule sur un ensemble avec point d'accumulation dans le domaine, f≡0. Conséquence : le prolongement analytique, quand il existe, est unique.</p>
+        <p>Si f est holomorphe sur un domaine et possède un point d’accumulation de ses zéros à l’intérieur, elle est nulle sur la composante connexe de ce point. Le prolongement analytique, lorsqu’il existe sur un domaine connexe, est unique.</p>
       </div>
     </div>
   </div>
@@ -420,11 +420,11 @@
       </div>
       <div class="block ex">
         <span class="block-label">Convergence uniforme</span>
-        <p>Si f continue, 2π-périodique et C¹ par morceaux, alors la série de Fourier converge normalement (donc uniformément) vers f. Condition plus forte que Dirichlet simple.</p>
+        <p>Une fonction 2π-périodique continue et C¹ par morceaux (avec les hypothèses usuelles de régularité par morceaux) a une série de Fourier qui converge uniformément vers f. Cela n’implique pas la convergence normale; celle-ci demande par exemple la sommabilité absolue des coefficients.</p>
       </div>
       <div class="block warn">
         <span class="block-label">Piège : régularité insuffisante</span>
-        <p>Sans hypothèse de régularité (juste f continue), la série de Fourier peut diverger en certains points (contre-exemple de Fejér/Du Bois-Reymond). Toujours vérifier les hypothèses de régularité avant de conclure à la convergence.</p>
+        <p>Pour une fonction seulement continue, la convergence ponctuelle de la série de Fourier n’est pas garantie partout. Les exemples de divergence sont associés à Du Bois-Reymond; le théorème de Fejér concerne au contraire la convergence des moyennes de Cesàro, uniformément pour une fonction continue périodique.</p>
       </div>
     </div>
   </div>

@@ -121,6 +121,7 @@
 
   <div class="page-title">Démonstrations clés</div>
   <div class="page-sub">Groupes cycliques — comprises une fois, elles débloquent toutes les applications</div>
+  <p>Dans cette fiche, la loi du groupe est notée additivement. Si $g$ est d’ordre fini $n$ et $k\in\mathbb Z$, $kg$ désigne le multiple additif; en notation multiplicative, on écrirait $g^k$.</p>
 
   <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">0 / 0 démonstrations mémorisées</div>
@@ -177,7 +178,7 @@
       <ul>
         <li>L'ordre de tout <b>élément</b> divise $|G|$ (cas particulier avec $H = \langle g \rangle$)</li>
         <li>Un groupe de cardinal premier est <b>automatiquement cyclique</b></li>
-        <li>Base de la démonstration du petit théorème de Fermat</li>
+        <li>Pour un nombre premier $p$ et $a\not\equiv0\pmod p$, appliquer Lagrange à la classe de $a$ dans le groupe multiplicatif $(\mathbb Z/p\mathbb Z)^*$ donne $a^{p-1}\equiv1\pmod p$.</li>
       </ul>
     </div>
   </div>
@@ -194,7 +195,7 @@
 
     <div class="enonce-box">
       <span class="enonce-label">Énoncé</span>
-      <p>Soit $G = \langle g \rangle$ un groupe cyclique d'ordre $n$. Alors pour tout $k$ : $$\text{ordre}(kg) = \dfrac{n}{\text{pgcd}(k,n)}$$</p>
+      <p>Soit $G=\langle g\rangle$ un groupe cyclique d’ordre fini $n$ (notation additive). Pour tout $k\in\mathbb Z$, $\operatorname{ord}(kg)=n/\operatorname{pgcd}(k,n)$.</p>
     </div>
 
     <div class="idee-box">
@@ -302,7 +303,7 @@
       </div>
       <div class="step-item astuce">
         <span class="step-tag">Astuce clé</span>
-        Ordre de $x$ divise $d$ $\Rightarrow$ $dx = 0$ dans $\mathbb{Z}/n\mathbb{Z}$ $\Rightarrow$ $n$ divise $dx$ $\Rightarrow$ $(n/d)$ divise $x$ (car $n/d$ et $d$ jouent des rôles symétriques ici). Donc <b>tout élément de $H$ est un multiple de $n/d$</b>.
+        Pour $x\in H$, son ordre divise $|H|=d$ par Lagrange appliqué à $\langle x\rangle\leq H$, donc $dx=0$ modulo $n$. En choisissant un représentant entier de $x$, cela signifie $n\mid dx$; comme $n=d(n/d)$, on simplifie par $d$ dans les entiers et obtient $(n/d)\mid x$. Ainsi tout élément de $H$ appartient à $\langle n/d\rangle$.
       </div>
       <div class="step-item">
         On a donc $H \subset \langle n/d \rangle$. Or les deux ensembles ont le même cardinal $d$ (par hypothèse sur $H$, et par l'étape 1 pour $\langle n/d\rangle$).

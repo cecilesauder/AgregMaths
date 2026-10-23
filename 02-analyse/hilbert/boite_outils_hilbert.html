@@ -72,7 +72,7 @@
 
   <div class="how-to-box">
     <span class="label">Le fil rouge</span>
-    Tout ce que tu savais faire avec un produit scalaire en dimension finie (projection, Pythagore, bases orthonormées) <mark>se généralise mot pour mot</mark> en dimension infinie, à condition d'avoir la complétude (voir chapitre topologie). C'est le chapitre le plus "gratuit" de l'analyse — peu de nouveauté conceptuelle, beaucoup de recyclage.
+    En dimension infinie, plusieurs résultats de géométrie se prolongent, mais il faut justifier convergence des séries et limites. Une famille orthonormée n’est une base hilbertienne que si elle est totale; la complétude seule ne garantit pas l’existence d’une base dénombrable.
   </div>
 
   <h2 class="section-title">🧰 Boîte à outils</h2>
@@ -89,20 +89,20 @@
     <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Espace de Hilbert — définition</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu vois "espace de Hilbert" — vérifie mentalement les deux ingrédients.</p></div>
     <div class="mini-demo"><span class="lbl">Définition en 2 ingrédients</span>1) Un produit scalaire (comme en dimension finie). 2) La complétude pour la norme associée (voir boîte "topologie" — outil 1).</div>
-    <div class="example-box"><span class="lbl">Exemple central</span>L²(mu) — les fonctions de carré intégrable, avec produit scalaire (f,g) = intégrale de f fois g. C'est LE Hilbert que tu manipuleras le plus souvent au programme.</div>
+    <div class="example-box"><span class="lbl">Exemple central</span>Sur un espace de mesure, $L^2(\mu)$ est l’espace des classes de fonctions égales presque partout, de carré intégrable. En réel, $\langle f,g\rangle=\int fg\,d\mu$; en complexe, $\langle f,g\rangle=\int f\overline g\,d\mu$ (à convention près).</div>
   </div>
 
   <div class="tool-card" data-id="h2">
     <div class="tool-header"><div><span class="tool-num">Outil 02</span><div class="tool-title">Théorème de projection sur un convexe fermé</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de trouver "le point le plus proche" d'un point donné dans un convexe fermé.</p></div>
-    <div class="mini-demo"><span class="lbl">Énoncé et caractérisation</span>Si C est convexe fermé non vide dans H, tout x a un unique projeté p(x) sur C. Caractérisation pratique : p(x) est LE point de C tel que le produit scalaire de (x - p(x)) avec (c - p(x)) soit négatif ou nul, pour tout c dans C.</div>
+    <div class="mini-demo"><span class="lbl">Énoncé et caractérisation</span>Si C est convexe fermé non vide dans H, tout x a un unique projeté p(x) sur C. Caractérisation : $p=P_C(x)$ si et seulement si $\operatorname{Re}\langle x-p,c-p\rangle\leq0$ pour tout $c\in C$ (en espace réel, on peut omettre $\operatorname{Re}$).</div>
     <div class="example-box"><span class="lbl">Cas particulier — sous-espace fermé F</span>La projection devient linéaire, et H se décompose en somme directe orthogonale F plus F-orthogonal — exactement comme en dimension finie (chapitre formes bilinéaires).</div>
   </div>
 
   <div class="tool-card" data-id="h3">
     <div class="tool-header"><div><span class="tool-num">Outil 03 · très cité</span><div class="tool-title">Théorème de représentation de Riesz</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te parle d'une forme linéaire continue sur un espace de Hilbert.</p></div>
-    <div class="mini-demo"><span class="lbl">Énoncé</span>Toute forme linéaire continue phi sur H s'écrit phi(x) = (a, x) pour un unique a dans H. Autrement dit, le dual topologique de H s'identifie à H lui-même.</div>
+    <div class="mini-demo"><span class="lbl">Énoncé</span>Toute forme linéaire continue $\varphi$ sur H s’écrit $\varphi(x)=\langle x,a\rangle$ pour un unique $a\in H$ si le produit scalaire complexe est linéaire en sa première variable (adapter l’ordre/conjugaison à l’autre convention). En réel, la convention n’intervient pas.</div>
     <div class="example-box"><span class="lbl">Utilité</span>Sert de brique de démonstration pour l'existence de solutions faibles d'équations aux dérivées partielles (culture générale, rarement demandé de le refaire en détail à l'écrit, mais très cité à l'oral).</div>
   </div>
 
@@ -110,13 +110,13 @@
     <div class="tool-header"><div><span class="tool-num">Outil 04</span><div class="tool-title">Base hilbertienne et égalité de Parseval</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te donne une famille orthonormée "totale" (dont l'espace engendré est dense) et qu'on te demande de décomposer un vecteur dessus.</p></div>
     <div class="formula-box">x = somme sur n de (x, e_n) fois e_n &nbsp;&nbsp;&nbsp; norme de x au carré = somme des modules de (x, e_n) au carré</div>
-    <div class="mini-demo"><span class="lbl">À retenir</span>C'est exactement une généralisation infinie d'une décomposition dans une base orthonormée finie — la seule nouveauté est que la somme est maintenant une série (donc une question de convergence se pose, réglée par la complétude de H).</div>
+    <div class="mini-demo"><span class="lbl">À retenir</span>Pour une famille orthonormée totale, l’inégalité de Bessel assure la convergence de la série des coefficients; sa somme est le vecteur initial par totalité. Parseval en découle. La complétude est essentielle, mais ne remplace ni l’orthonormalité ni la totalité.</div>
   </div>
 
   <div class="tool-card" data-id="h5">
     <div class="tool-header"><div><span class="tool-num">Outil 05</span><div class="tool-title">L² comme terrain d'application</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande une décomposition, une projection, ou une base hilbertienne dans un contexte "fonctions".</p></div>
-    <div class="example-box"><span class="lbl">Lien direct avec le chapitre suivant (Fourier)</span>La famille des exponentielles e^(int) divisées par racine de 2 pi forme une base hilbertienne de L² sur un intervalle de longueur 2 pi. C'est très exactement ce qui fonde toute la théorie des séries de Fourier — le prochain chapitre applique directement les outils 1 à 4 d'ici.</div>
+    <div class="example-box"><span class="lbl">Lien direct avec le chapitre suivant (Fourier)</span>Dans $L^2([0,2\pi],dt)$ avec $\langle f,g\rangle=\int_0^{2\pi}f(t)\overline{g(t)}\,dt$, la famille $e^{int}/\sqrt{2\pi}$, $n\in\mathbb Z$, est une base hilbertienne. Si l’on normalise la mesure par $dt/(2\pi)$, la base devient simplement $(e^{int})_{n\in\mathbb Z}$.</div>
   </div>
 
   <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>

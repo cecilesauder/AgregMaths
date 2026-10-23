@@ -290,7 +290,7 @@ plot(fit, col = "indigo", lwd = 2)</code></pre>
 
   <!-- App Data & Logic -->
   <script>
-    // --- DATABASE THEMES (35 TOPICS COMPLETE) ---
+    // --- DATABASE THEMES (35 exemples ciblés) ---
     const themes = [
       { id: "all", name: "Tous les thèmes (35 fiches)", icon: "layers" },
       { id: "simu", name: "Simulations & Monte-Carlo", icon: "refresh-cw" },
@@ -310,9 +310,9 @@ plot(fit, col = "indigo", lwd = 2)</code></pre>
       {
         id: "fc-1", theme: "simu", category: "Simulations",
         question: "1. Comment simuler une loi Beta(2, 5) par la méthode de rejet ?",
-        hint: "Enveloppe Uniforme U(0,1) avec M = max(f)",
-        code: `library(tidyverse)\nf <- function(x) dbeta(x, 2, 5)\nM <- 2.5\n\nsimu_rejet <- function(n) {\n  replicate(n, {\n    repeat {\n      x <- runif(1); u <- runif(1)\n      if (u <= f(x) / M) return(x)\n    }\n  })\n}\n\ndf <- tibble(val = simu_rejet(5000))\nggplot(df, aes(val)) + geom_histogram(aes(y = after_stat(density)), bins = 30, fill = "skyblue") + stat_function(fun = f, col = "red", linewidth = 1)`,
-        desc: "L'algorithme de rejet consiste à tirer (X, U) de façon uniforme et à accepter X dès que U <= f(X)/(M*g(X))."
+        hint: "Enveloppe Uniforme U(0,1) avec M est un majorant de f",
+        code: `library(tidyverse)\nf <- function(x) dbeta(x, 2, 5)\nM <- 2.5 # majorant valide de max(f) = 1536/625 ≈ 2.458\n\nsimu_rejet <- function(n) {\n  replicate(n, {\n    repeat {\n      x <- runif(1); u <- runif(1)\n      if (u <= f(x) / M) return(x)\n    }\n  })\n}\n\ndf <- tibble(val = simu_rejet(5000))\nggplot(df, aes(val)) + geom_histogram(aes(y = after_stat(density)), bins = 30, fill = "skyblue") + stat_function(fun = f, col = "red", linewidth = 1)`,
+        desc: "L’algorithme de rejet utilise une densité instrumentale g et un majorant M tel que f(x) ≤ M g(x). On tire X selon g et U selon U(0,1), puis on accepte si U ≤ f(X)/(M g(X)). Ici g est uniforme sur [0,1] et M = 2.5 est un majorant valide (le maximum exact vaut 1536/625 ≈ 2.458)."
       },
       {
         id: "fc-2", theme: "simu", category: "Simulations",
@@ -341,7 +341,7 @@ plot(fit, col = "indigo", lwd = 2)</code></pre>
         id: "fc-5", theme: "processus", category: "Processus de Poisson",
         question: "5. Comment simuler la trajectoire d'un Processus de Poisson Homogène ?",
         hint: "Inter-arrivées i.i.d. Exp(lambda)",
-        code: `simu_poisson_proc <- function(lambda, T_max) {\n  sauts <- c(); t_curr <- 0\n  while(t_curr < T_max) {\n    t_curr <- t_curr + rexp(1, rate = lambda)\n    if(t_curr <= T_max) sauts <- c(sauts, t_curr)\n  }\n  tibble(temps = c(0, sauts, T_max), N = c(0, 0:(length(sauts)-1), length(sauts)))\n}\n\ndf_proc <- simu_poisson_proc(lambda = 2, T_max = 10)\nggplot(df_proc, aes(x = temps, y = N)) + geom_step(color = "indigo", linewidth = 1)`,
+        code: `simu_poisson_proc <- function(lambda, T_max) {\n  sauts <- c(); t_curr <- 0\n  while(t_curr < T_max) {\n    t_curr <- t_curr + rexp(1, rate = lambda)\n    if(t_curr <= T_max) sauts <- c(sauts, t_curr)\n  }\n  tibble(temps = c(0, sauts, T_max), N = c(0, seq_len(length(sauts)), length(sauts)))\n}\n\ndf_proc <- simu_poisson_proc(lambda = 2, T_max = 10)\nggplot(df_proc, aes(x = temps, y = N)) + geom_step(color = "indigo", linewidth = 1)`,
         desc: "Processus à accroissements indépendants et stationnaires. Les sauts surviennent selon des lois exponentielles."
       },
       {
@@ -362,7 +362,7 @@ plot(fit, col = "indigo", lwd = 2)</code></pre>
         id: "fc-8", theme: "processus", category: "Processus de Poisson",
         question: "8. Comment simuler un Processus de Poisson Non-Homogène lambda(t) ?",
         hint: "Méthode de thinning / Rejet de Lewis-Shedler",
-        code: `lambda_t <- function(t) 2 + 3 * sin(t)\nlambda_max <- 5\n\nsimu_non_homogene <- function(T_max) {\n  t <- 0; sauts <- c()\n  while(t < T_max) {\n    t <- t + rexp(1, rate = lambda_max)\n    if(t <= T_max && runif(1) <= lambda_t(t) / lambda_max) {\n      sauts <- c(sauts, t)\n    }\n  }\n  sauts\n}\nsauts_nh <- simu_non_homogene(10)`,
+        code: `lambda_t <- function(t) 2 + sin(t)\nlambda_max <- 3\n\nsimu_non_homogene <- function(T_max) {\n  t <- 0; sauts <- c()\n  while(t < T_max) {\n    t <- t + rexp(1, rate = lambda_max)\n    if(t <= T_max && runif(1) <= lambda_t(t) / lambda_max) {\n      sauts <- c(sauts, t)\n    }\n  }\n  sauts\n}\nsauts_nh <- simu_non_homogene(10)`,
         desc: "Sub-échantillonnage (thinning) d'un processus de Poisson d'intensité constante super-majorante."
       },
 
@@ -379,7 +379,7 @@ plot(fit, col = "indigo", lwd = 2)</code></pre>
         question: "10. Comment coder l'algorithme de Metropolis-Hastings 1D ?",
         hint: "Rapport d'acceptation alpha = min(1, f(cand)/f(x))",
         code: `f_target <- function(x) dgamma(x, shape = 3, rate = 2)\nN <- 15000; chain <- numeric(N); chain[1] <- 1\n\nfor(i in 2:N) {\n  cand <- rnorm(1, mean = chain[i-1], sd = 0.5)\n  alpha <- if(cand > 0) min(1, f_target(cand) / f_target(chain[i-1])) else 0\n  chain[i] <- if(runif(1) < alpha) cand else chain[i-1]\n}\nchain_clean <- chain[2000:N]`,
-        desc: "Génère une chaîne de Markov réversible dont la distribution stationnaire est la densité cible."
+        desc: "Pour une proposition symétrique, le rapport de Hastings se réduit au rapport des densités cibles. Sous irréductibilité et récurrence positive, la cible est invariante; convergence à la cible si la chaîne est aussi apériodique. La marche proposée doit respecter le support positif."
       },
       {
         id: "fc-11", theme: "markov", category: "MCMC",
@@ -432,7 +432,7 @@ plot(fit, col = "indigo", lwd = 2)</code></pre>
         question: "17. Comment implémenter l'algorithme EM pour un mélange de 2 Gaussiennes ?",
         hint: "E-step (poids a posteriori) et M-step (mise à jour des paramètres)",
         code: `x <- c(rnorm(150, -2, 1), rnorm(250, 3, 1))\nmu1 <- 0; mu2 <- 1; p1 <- 0.5\nfor(iter in 1:25) {\n  f1 <- p1 * dnorm(x, mu1, 1); f2 <- (1 - p1) * dnorm(x, mu2, 1)\n  w1 <- f1 / (f1 + f2)\n  p1 <- mean(w1)\n  mu1 <- sum(w1 * x) / sum(w1)\n  mu2 <- sum((1 - w1) * x) / sum(1 - w1)\n}\nc(mu1 = mu1, mu2 = mu2, p1 = p1)`,
-        desc: "L'algorithme EM maximise la vraisemblance observée avec données manquantes."
+        desc: "Sous les hypothèses usuelles, EM augmente la vraisemblance observée à chaque itération; il ne garantit pas un maximum global et un nombre fixe d’itérations ne prouve pas la convergence. Contrôler la stabilisation et les valeurs initiales."
       },
       {
         id: "fc-18", theme: "estimation", category: "Estimation Noyau",
@@ -453,9 +453,9 @@ plot(fit, col = "indigo", lwd = 2)</code></pre>
       {
         id: "fc-20", theme: "tests", category: "Tests Non-Paramétriques",
         question: "20. Comment effectuer un test de Kolmogorov-Smirnov ?",
-        hint: "ks.test(x, 'pnorm', mean, sd)",
+        hint: "ks.test seulement si la loi n’a pas été ajustée sur ces données",
         code: `x_sample <- rnorm(50, mean = 1, sd = 2)\nres_ks <- ks.test(x_sample, "pnorm", mean = 1, sd = 2)\nres_ks$p.value`,
-        desc: "Compare la répartition empirique F_n à la fonction théorique F_0 via la norme sup."
+        desc: "Compare F_n à la loi théorique au moyen de la distance sup. Le test à un échantillon est exact si F_0 est entièrement spécifiée, sans paramètres estimés sur ces mêmes données; sinon le calibrage standard de ks.test n’est pas valide sans correction/bootstrap."
       },
       {
         id: "fc-21", theme: "tests", category: "Tests de Comparaison",
@@ -469,7 +469,7 @@ plot(fit, col = "indigo", lwd = 2)</code></pre>
         question: "22. Comment appliquer la correction de Benjamini-Hochberg (FDR) ?",
         hint: "p.adjust(p_vals, method = 'BH')",
         code: `p_raw <- c(runif(90, 0.05, 1), runif(10, 0, 0.001))\np_bh <- p.adjust(p_raw, method = "BH")\nsum(p_bh < 0.05)`,
-        desc: "Contrôle du taux de faux découverts (False Discovery Rate) plus puissant que Bonferroni."
+        desc: "Contrôle le taux attendu de fausses découvertes (FDR), sous indépendance ou certaines dépendances positives; ce n’est pas une garantie universelle et les p-values doivent être valides."
       },
 
       // 23-26 RÉGRESSION & GLM
@@ -545,21 +545,21 @@ plot(fit, col = "indigo", lwd = 2)</code></pre>
         question: "32. Comment estimer la courbe de survie de Kaplan-Meier avec données censurées ?",
         hint: "library(survival); survfit(Surv(temps, statut) ~ 1)",
         code: `library(survival)\ntemps <- c(2, 3, 5, 6, 8, 9, 12, 15)\nstatut <- c(1, 1, 0, 1, 1, 0, 1, 0) # 0 = censuré, 1 = événement\nfit <- survfit(Surv(temps, statut) ~ 1)\nsummary(fit)\nplot(fit, xlab = "Temps", ylab = "Probabilité de Survie", col = "indigo", lwd = 2)`,
-        desc: "Estimation non-paramétrique de la fonction de survie S(t) en présence de censures à droite."
+        desc: "Estimateur non paramétrique de Kaplan–Meier pour la survie avec censure à droite. Interprétation usuelle sous censure indépendante/non informative; survfit attend un indicateur événement (1) / censuré (0)."
       },
       {
         id: "fc-33", theme: "avance", category: "Processus Stochastiques",
         question: "33. Comment simuler un Processus de Galton-Watson et évaluer la probabilité d'extinction ?",
         hint: "Z_{n+1} = sum_{i=1}^{Z_n} X_{n,i} avec loi des enfants Poisson(mu)",
         code: `simu_galton_watson <- function(mu, n_gen = 10) {\n  Z <- numeric(n_gen)\n  Z[1] <- 1\n  for(g in 2:n_gen) {\n    if(Z[g-1] == 0) { Z[g] <- 0 } else {\n      Z[g] <- sum(rpois(Z[g-1], lambda = mu))\n    }\n  }\n  Z\n}\nextinction_rate <- mean(replicate(500, simu_galton_watson(mu = 0.9, n_gen = 15)[15] == 0))\nprint(extinction_rate)`,
-        desc: "Processus de branchement. Si mu <= 1, l'extinction est presque sûre (sauf cas dégénéré)."
+        desc: "Le code estime P(Z_15=0), extinction avant la génération 15, pas la probabilité ultime. Pour une loi de reproduction Poisson(mu), la probabilité d’extinction ultime est le plus petit point fixe q de exp(mu(q−1)); elle vaut 1 pour mu≤1 et est <1 pour mu>1."
       },
       {
         id: "fc-34", theme: "avance", category: "Validation & Sélection",
         question: "34. Comment effectuer une Sélection de Modèle par AIC et Validation Croisée 10-fold ?",
         hint: "step() pour AIC et boucle de cross-validation",
-        code: `mod_full <- lm(mpg ~ ., data = mtcars)\nmod_opt <- step(mod_full, direction = "both", trace = FALSE)\nsummary(mod_opt)\n\n# Validation Croisée 10-fold empirique\nset.seed(42)\nk <- 10; folds <- sample(rep(1:k, length.out = nrow(mtcars)))\nmse_k <- sapply(1:k, function(i) {\n  test <- mtcars[folds == i, ]; train <- mtcars[folds != i, ]\n  fit <- lm(formula(mod_opt), data = train)\n  mean((test$mpg - predict(fit, test))^2)\n})\nmean(mse_k) # Mean Cross-Validated MSE`,
-        desc: "Critères d'information AIC/BIC et estimation de l'erreur de généralisation par K-fold CV."
+        code: `# Refaire la sélection AIC dans chaque pli pour éviter une fuite\nset.seed(42)\nk <- 10; folds <- sample(rep(1:k, length.out = nrow(mtcars)))\nmse_k <- sapply(1:k, function(i) {\n  test <- mtcars[folds == i, ]; train <- mtcars[folds != i, ]\n  fit_i <- step(lm(mpg ~ ., data = train), direction = "both", trace = FALSE)\n  mean((test$mpg - predict(fit_i, newdata = test))^2)\n})\nmean(mse_k) # estimation CV de l'erreur de prédiction\n\n# Modèle final à ajuster ensuite sur toutes les données\nmod_final <- step(lm(mpg ~ ., data = mtcars), direction = "both", trace = FALSE)`,
+        desc: "AIC pour sélectionner un modèle; l’évaluation CV doit refaire toute sélection dans chaque pli (sinon fuite d’information). Pour régler plusieurs hyperparamètres, une validation croisée imbriquée peut être nécessaire."
       },
       {
         id: "fc-35", theme: "avance", category: "Optimisation Stochastique",

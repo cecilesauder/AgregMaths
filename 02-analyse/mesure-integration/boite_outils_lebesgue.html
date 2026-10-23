@@ -89,7 +89,7 @@
   <div class="tool-card" data-id="l1">
     <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Convergence monotone (Beppo-Levi)</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que la suite $(f_n)$ est <mark>positive ET croissante</mark> en $n$ — aucune domination à chercher, la croissance suffit.</p></div>
-    <div class="formula-box">$$0\leq f_n \nearrow f \implies \int f_n \to \int f \quad (\text{même si } +\infty)$$</div>
+    <div class="formula-box">Pour des fonctions mesurables positives avec $f_n\uparrow f$ presque partout, $\int f_n\to\int f$ (éventuellement $+\infty$).</div>
     <div class="mini-demo"><span class="lbl">Astuce</span>Marche aussi pour les séries à termes positifs : $\int\sum g_n = \sum\int g_n$ (en posant $f_n=\sum_{k\leq n}g_k$, croissante car les $g_k\geq0$).</div>
   </div>
 
@@ -107,7 +107,7 @@
   <div class="tool-card" data-id="l3">
     <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Lemme de Fatou</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu n'as pas de domination sous la main mais que tu veux juste une <mark>inégalité</mark> (pas une égalité).</p></div>
-    <div class="formula-box">$$f_n \geq 0 \implies \int \liminf f_n \leq \liminf \int f_n$$</div>
+    <div class="formula-box">Pour des fonctions mesurables positives, $\int \liminf f_n\leq\liminf\int f_n$.</div>
     <div class="mini-demo"><span class="lbl">Utilité pratique</span>Souvent utilisé comme brique de démonstration DANS la preuve du théorème de convergence dominée lui-même — savoir le sortir en dépannage si Lebesgue direct ne s'applique pas.</div>
   </div>
 
@@ -131,7 +131,7 @@
   <div class="tool-card" data-id="l6">
     <div class="tool-header"><div><span class="tool-num">Outil 06</span><div class="tool-title">Continuité et dérivation sous $\int$</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te donne $F(x)=\int f(x,t)\,dt$ et qu'on te demande de montrer que $F$ est continue ou dérivable en $x$.</p></div>
-    <div class="mini-demo"><span class="lbl">Méthode : c'est toujours de la domination déguisée</span>Pour la continuité : domination de $|f(x,t)|$ par une fonction intégrable en $t$, indépendante de $x$ (proche d'un point). Pour la dérivabilité : même chose mais sur $|\partial f/\partial x(x,t)|$. C'est le théorème de convergence dominée (outil 2), appliqué à une suite $x_n\to x_0$ à la place de $f_n$.</div>
+    <div class="mini-demo"><span class="lbl">Méthode : c'est toujours de la domination déguisée</span>Pour $F(x)=\int f(x,t)\,d\mu(t)$ : pour la continuité en $x_0$, supposer $f(x,t)\to f(x_0,t)$ pour presque tout $t$ et une domination intégrable locale indépendante de $x$. Pour dériver, supposer la différentiabilité en $x$ presque partout et une domination intégrable locale des dérivées; alors $F\prime(x)=\int\partial_x f(x,t)\,d\mu(t)$.</div>
   </div>
 
   <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>
@@ -143,9 +143,9 @@
     <div class="correction">
       <span class="correction-label">Correction — piège de domination</span>
       <div class="step">Pour $x$ fixé $>0$ : $f_n(x)=\frac{nx}{1+n^2x^2} \to 0$ quand $n\to\infty$ (le dénominateur domine).</div>
-      <div class="step">Peut-on dominer par une fonction indépendante de $n$ ? $\sup_x f_n(x) = \frac{1}{2}$ (atteint en $x=1/n$) — donc PAS de domination uniforme indépendante de $n$ possible directement par une constante ; il faut chercher plus finement, ou calculer directement.</div>
-      <div class="step">Calcul direct : $\int_0^1 \frac{nx}{1+n^2x^2}dx = \frac{1}{2n}\ln(1+n^2x^2)\Big|_0^1 = \frac{\ln(1+n^2)}{2n} \to 0$.</div>
-      <div class="step">La limite est 0 — la même que $\int(\lim f_n) = \int 0 = 0$ — mais ici on l'a obtenue par calcul direct, pas par domination : bon réflexe d'avoir cherché la domination d'abord, mais de savoir basculer sur le calcul direct si elle échoue. $\blacksquare$</div>
+      <div class="step">On a $0\le f_n(x)\le 1/2$ pour tout $n,x$ (le maximum en $x$ est atteint en $x=1/n$). La fonction constante $g=1/2$ est intégrable sur $[0,1]$ et domine la suite : le théorème de convergence dominée s’applique.</div>
+      <div class="step">Par convergence dominée, la limite de l’intégrale vaut l’intégrale de la limite ponctuelle, soit 0. Le calcul direct confirme : $\int_0^1 \frac{nx}{1+n^2x^2}dx = \frac{\ln(1+n^2)}{2n} \to 0$.</div>
+      <div class="step">La limite est 0, également égale à $\int_0^1 0\,dx$. Cet exemple illustre que le majorant intégrable commun peut être la constante $1/2$. $\blacksquare$</div>
     </div>
   </div>
 

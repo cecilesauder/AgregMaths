@@ -72,7 +72,7 @@
 
   <div class="how-to-box">
     <span class="label">Le fil rouge de ce chapitre</span>
-    Toute la réduction tourne autour de <mark>trouver un polynôme qui annule l'endomorphisme</mark>, puis d'exploiter sa factorisation. Polynôme caractéristique et polynôme minimal sont les deux stars — presque toutes les questions se ramènent à les calculer et à les factoriser.
+    Les énoncés de cette fiche concernent un endomorphisme d’un espace vectoriel <b>de dimension finie sur un corps K</b>. Toute la réduction tourne autour de <mark>trouver un polynôme annulateur</mark>, puis d’exploiter sa factorisation. Préciser le corps est indispensable : les critères de racines simples peuvent échouer en caractéristique positive.
   </div>
 
   <h2 class="section-title">🧰 Boîte à outils</h2>
@@ -92,7 +92,7 @@
     <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Polynôme caractéristique</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande les valeurs propres d'un endomorphisme ou d'une matrice.</p></div>
     <div class="formula-box">$$\chi_u(X) = \det(XI - u)$$</div>
-    <div class="mini-demo"><span class="lbl">À retenir</span>Les racines de $\chi_u$ sont exactement les valeurs propres. $\deg\chi_u = \dim E$. Le coefficient dominant vaut toujours 1 (unitaire).</div>
+    <div class="mini-demo"><span class="lbl">À retenir</span>En dimension finie, les racines de $\chi_u$ dans le corps de base sont les valeurs propres qui y appartiennent; pour toutes les voir, travailler dans un corps où $\chi_u$ est scindé. $\deg\chi_u=\dim E$. Le coefficient dominant vaut toujours 1 (unitaire).</div>
     <div class="example-box"><span class="lbl">Exemple</span>$A=\begin{pmatrix}2&1\\0&3\end{pmatrix}$ : $\chi_A(X)=(X-2)(X-3)$ (matrice triangulaire → valeurs propres sur la diagonale, lecture directe).</div>
   </div>
 
@@ -103,7 +103,7 @@
       <b>Critère 1 (via χ)</b> : $u$ diagonalisable $\iff$ $\chi_u$ scindé ET pour chaque valeur propre $\lambda$, $\dim(\text{sous-espace propre}) = $ multiplicité de $\lambda$ dans $\chi_u$.<br>
       <b>Critère 2 (via un annulateur)</b> : $u$ diagonalisable $\iff$ il existe un polynôme annulateur de $u$ scindé à racines simples. (Souvent plus rapide si tu connais déjà un tel polynôme, ex $u^2=u$.)
     </div>
-    <div class="example-box"><span class="lbl">Exemple d'usage du critère 2</span>Si $u^2=\text{id}$ (une symétrie), le polynôme $X^2-1=(X-1)(X+1)$ est annulateur, scindé, racines simples → $u$ diagonalisable, sans calculer $\chi_u$.</div>
+    <div class="example-box"><span class="lbl">Exemple d'usage du critère 2</span>Si $u^2=\text{id}$ et $\operatorname{car}(K)\neq2$, le polynôme $X^2-1=(X-1)(X+1)$ est annulateur, scindé à racines simples, donc $u$ est diagonalisable sans calculer $\chi_u$. En caractéristique 2, cette conclusion n’est pas automatique.</div>
   </div>
 
   <div class="tool-card" data-id="d3">
@@ -137,14 +137,14 @@
   <div class="tool-card" data-id="d7">
     <div class="tool-header"><div><span class="tool-num">Outil 07</span><div class="tool-title">Puissances via diagonalisation</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande $A^n$ pour tout $n$, ou de résoudre une suite récurrente linéaire, ou une équation différentielle linéaire à coefficients constants.</p></div>
-    <div class="formula-box">$$A = PDP^{-1} \implies A^n = PD^nP^{-1}$$</div>
+    <div class="formula-box">Si A est diagonalisable, $A=PDP^{-1}$ et alors $A^n=PD^nP^{-1}$. Si elle ne l’est pas, utiliser Jordan, Dunford ou une récurrence issue d’un polynôme annulateur.</div>
     <div class="mini-demo"><span class="lbl">Méthode complète</span>1) Diagonaliser $A=PDP^{-1}$. 2) $D^n$ = puissances des coefficients diagonaux (trivial). 3) Recomposer $A^n=PD^nP^{-1}$.</div>
   </div>
 
   <div class="tool-card" data-id="d8">
     <div class="tool-header"><div><span class="tool-num">Outil 08</span><div class="tool-title">Endomorphisme nilpotent</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te dit "u nilpotent" (il existe $k$ avec $u^k=0$).</p></div>
-    <div class="mini-demo"><span class="lbl">Ce qu'il faut savoir</span>u nilpotent $\iff$ seule valeur propre possible est 0 $\iff \chi_u(X)=X^n$. u nilpotent non nul n'est JAMAIS diagonalisable (sauf si $u=0$) — car son seul candidat de diagonalisation serait la matrice nulle.</div>
+    <div class="mini-demo"><span class="lbl">Ce qu'il faut savoir</span>En dimension finie, $u$ nilpotent $\iff \chi_u(X)=X^n$. Ses valeurs propres dans une clôture algébrique sont toutes nulles; sur un corps non algébriquement clos, l’absence de valeurs propres non nulles dans le corps de base ne suffit pas. u nilpotent non nul n'est JAMAIS diagonalisable (sauf si $u=0$) — car son seul candidat de diagonalisation serait la matrice nulle.</div>
     <div class="example-box"><span class="lbl">Exemple</span>$N=\begin{pmatrix}0&1\\0&0\end{pmatrix}$ : $N^2=0$, nilpotente d'indice 2, non diagonalisable (sauf la matrice nulle elle-même).</div>
   </div>
 
@@ -165,7 +165,7 @@
 
   <div class="exo-card" data-id="de2">
     <div class="exo-header"><span class="exo-title">Exercice 2</span><span class="diff-tag diff-moyen">Moyen</span></div>
-    <div class="exo-statement">Soit $u$ un endomorphisme vérifiant $u^3 = u$. Montrer que $u$ est diagonalisable.</div>
+    <div class="exo-statement">Soit $u$ un endomorphisme d’un espace de dimension finie sur un corps de caractéristique différente de 2, vérifiant $u^3=u$. Montrer que $u$ est diagonalisable.</div>
     <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
     <div class="correction">
       <span class="correction-label">Correction — outil 2, critère 2 directement</span>

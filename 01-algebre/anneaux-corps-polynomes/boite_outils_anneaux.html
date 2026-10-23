@@ -72,7 +72,7 @@
 
   <div class="how-to-box">
     <span class="label">Le fil rouge de ce chapitre</span>
-    Un anneau, c'est un groupe (pour +) <mark>auquel on rajoute une deuxième opération</mark> (×). Beaucoup d'outils vont être des clones de ceux des groupes : idéal ↔ sous-groupe distingué, anneau quotient ↔ groupe quotient, morphisme d'anneaux ↔ morphisme de groupes. Ne les réapprends pas de zéro : repère le parallèle.
+    Convention de cette fiche : anneaux commutatifs unitaires, sous-anneaux contenant la même unité et morphismes préservant l’unité. Un anneau a un groupe additif et une multiplication distributive. Le parallèle avec les groupes aide à mémoriser, mais les définitions d’idéal et de quotient gardent leurs hypothèses propres.
   </div>
 
   <h2 class="section-title">🧰 Boîte à outils</h2>
@@ -92,16 +92,16 @@
   <div class="tool-card" data-id="r1">
     <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Critère de sous-anneau</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de vérifier qu'une partie B de A est un sous-anneau.</p></div>
-    <div class="mini-demo"><span class="lbl">Les 4 points à vérifier</span>1) $1 \in B$ (l'unité de A est dans B). 2) B stable par $-$ (différence). 3) B stable par $\times$. Remarque : contrairement aux sous-groupes, pas besoin de vérifier "stable par inverse" pour × — un sous-anneau n'a pas forcément les inverses multiplicatifs.</div>
+    <div class="mini-demo"><span class="lbl">Les points à vérifier</span>Dans la convention unitaire de cette fiche : $1\in B$, $B$ est stable par différence et par multiplication. Remarque : contrairement aux sous-groupes multiplicatifs, pas besoin d’inverses multiplicatifs; un sous-anneau n’est pas nécessairement un corps.</div>
     <div class="example-box"><span class="lbl">Exemple</span>$\mathbb{Z} \subset \mathbb{Q}$ est un sous-anneau : $1\in\mathbb{Z}$, stable par $-$ et $\times$. ✓</div>
   </div>
 
   <div class="tool-card" data-id="r2">
     <div class="tool-header"><div><span class="tool-num">Outil 02 · attention au piège</span><div class="tool-title">Idéal — différent d'un sous-anneau !</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on parle d'<mark>idéal</mark> — ne confonds jamais avec "sous-anneau", ce sont deux notions différentes avec des critères différents !</p></div>
-    <div class="mini-demo"><span class="lbl">Les 2 points à vérifier</span>1) I est un sous-groupe de (A,+) (donc : $0\in I$, stable par $+$ et $-$). 2) <mark>Stabilité externe</mark> : pour tout $a\in A$ (pas seulement dans I !) et tout $x \in I$, $ax \in I$.</div>
+    <div class="mini-demo"><span class="lbl">Les 2 points à vérifier</span>Dans un anneau commutatif, vérifier : 1) I est un sous-groupe de (A,+); 2) pour tout $a\in A$ et $x\in I$, $ax\in I$. Dans un anneau non commutatif, préciser idéal à gauche/droite ou bilatère et vérifier les deux côtés pour un idéal bilatère.</div>
     <div class="mini-demo"><span class="lbl">La différence clé à retenir</span>Un sous-anneau doit contenir 1. Un idéal, presque jamais (sauf le cas trivial I=A) — car si $1\in I$, alors pour tout $a\in A$, $a=a\times 1 \in I$, donc $I=A$.</div>
-    <div class="example-box"><span class="lbl">Exemple</span>$n\mathbb{Z}$ est un idéal de $\mathbb{Z}$ : sous-groupe pour +, et pour tout $a\in\mathbb{Z}$, $a\times(nk)=n(ak)\in n\mathbb{Z}$. Mais ce n'est PAS un sous-anneau (1 n'est pas un multiple de n si n≠1).</div>
+    <div class="example-box"><span class="lbl">Exemple</span>$n\mathbb{Z}$ est un idéal de $\mathbb{Z}$ : sous-groupe pour +, et pour tout $a\in\mathbb{Z}$, $a\times(nk)=n(ak)\in n\mathbb{Z}$. Mais ce n'est PAS un sous-anneau (1 n'est pas un multiple de n si n≥2).</div>
   </div>
 
   <div class="tool-card" data-id="r3">
@@ -115,7 +115,7 @@
     <div class="tool-header"><div><span class="tool-num">Outil 04 · le pont, comme pour les groupes</span><div class="tool-title">ker(f) est un idéal</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que H est défini comme "les x tels que f(x)=0" pour un morphisme d'anneaux f.</p></div>
     <div class="mini-demo"><span class="lbl">Démonstration (calquée sur les groupes + un point en plus)</span>Sous-groupe pour + : exactement comme l'outil 4 de la boîte groupes. Stabilité externe : si $x \in \ker(f)$ et $a\in A$, $f(ax)=f(a)f(x)=f(a)\times 0=0$, donc $ax\in\ker(f)$.</div>
-    <div class="example-box"><span class="lbl">Exemple</span>$f:\mathbb{Z}\to\mathbb{Z}/n\mathbb{Z}$ la surjection canonique : $\ker(f)=n\mathbb{Z}$, un idéal (jamais un sous-anneau, sauf n=1).</div>
+    <div class="example-box"><span class="lbl">Exemple</span>$f:\mathbb{Z}\to\mathbb{Z}/n\mathbb{Z}$ la surjection canonique : $\ker(f)=n\mathbb{Z}$, un idéal. Pour n≥2, ce n’est pas un sous-anneau unitaire, car il ne contient pas 1.</div>
   </div>
 
   <div class="tool-card" data-id="r5">
@@ -147,9 +147,9 @@
   </div>
 
   <div class="tool-card" data-id="r9">
-    <div class="tool-header"><div><span class="tool-num">Outil 09 · résultat à fort rendement</span><div class="tool-title">$\mathbb{Z}/n\mathbb{Z}$ est un corps $\iff n$ premier</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="tool-header"><div><span class="tool-num">Outil 09 · résultat à fort rendement</span><div class="tool-title">Pour $n\ge2$, $\mathbb{Z}/n\mathbb{Z}$ est un corps $\iff n$ est premier</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande si $\mathbb{Z}/n\mathbb{Z}$ est un corps, ou de justifier l'existence d'inverses.</p></div>
-    <div class="mini-demo"><span class="lbl">Démonstration (via l'outil 7)</span>$\mathbb{Z}/n\mathbb{Z}$ est un corps $\iff$ tout élément non nul est inversible $\iff$ tout $x\in\{1,\ldots,n-1\}$ vérifie $\text{pgcd}(x,n)=1$ $\iff$ $n$ n'a aucun diviseur commun avec un nombre plus petit que lui $\iff$ $n$ est premier.</div>
+    <div class="mini-demo"><span class="lbl">Démonstration (via l'outil 7)</span>Pour un entier $n\ge2$, $\mathbb{Z}/n\mathbb{Z}$ est un corps si et seulement si tout élément non nul est inversible, c’est-à-dire si et seulement si tout $x\in\{1,\ldots,n-1\}$ est premier avec $n$. Cela équivaut à la primalité de $n$.</div>
   </div>
 
   <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>

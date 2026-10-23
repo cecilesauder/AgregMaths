@@ -72,7 +72,7 @@
 
   <div class="how-to-box">
     <span class="label">Le fil rouge</span>
-    Diagonaliser, c'était trouver une base de vecteurs propres. Jordan, c'est le <mark>"plan B" quand ça échoue</mark> : on trouve la base "la moins mauvaise possible", avec des 1 juste au-dessus de la diagonale. Toujours basé sur le lemme des noyaux, juste avec des puissances de $(X-\lambda)$ au lieu de $(X-\lambda)$ tout seul.
+    Pour un endomorphisme d’un espace de dimension finie sur un corps K, si le polynôme caractéristique est scindé sur K, la forme de Jordan donne une base avec des 1 juste au-dessus de la diagonale. La décomposition repose sur les puissances des facteurs $(X-\lambda)$ et le lemme des noyaux.
   </div>
 
   <h2 class="section-title">🧰 Boîte à outils</h2>
@@ -102,7 +102,7 @@
   <div class="tool-card" data-id="j3">
     <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Théorème de Jordan</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Énoncé général à citer quand on te demande de justifier l'existence d'une réduite de Jordan.</p></div>
-    <div class="mini-demo"><span class="lbl">Énoncé</span>Si $\chi_u$ est scindé, $u$ est semblable à une matrice diagonale par blocs, chaque bloc étant un $J_k(\lambda)$. Cette décomposition est <b>unique à l'ordre des blocs près</b>.</div>
+    <div class="mini-demo"><span class="lbl">Énoncé</span>Pour $u$ sur un espace de dimension finie sur K, si $\chi_u$ est scindé sur K, $u$ est semblable à une matrice diagonale par blocs, chaque bloc étant un $J_k(\lambda)$. La liste des blocs est <b>unique à l’ordre des blocs près</b>.</div>
     <div class="example-box"><span class="lbl">Cas particulier à noter</span>Si tous les blocs sont de taille 1, on retombe exactement sur la diagonalisation — Jordan généralise la diagonalisation, ce n'est pas une notion complètement séparée.</div>
   </div>
 
@@ -110,13 +110,13 @@
     <div class="tool-header"><div><span class="tool-num">Outil 04 · pour les calculs pratiques</span><div class="tool-title">Compter les blocs via les rangs</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de déterminer explicitement la forme de Jordan (combien de blocs, de quelles tailles).</p></div>
     <div class="formula-box">$$\text{nb de blocs de taille} \geq k \text{ pour } \lambda = \text{rg}(u-\lambda\text{id})^{k-1} - \text{rg}(u-\lambda\text{id})^{k}$$</div>
-    <div class="mini-demo"><span class="lbl">Méthode pratique</span>Calcule $\text{rg}(u-\lambda\text{id})^0, \text{rg}(u-\lambda\text{id})^1, \text{rg}(u-\lambda\text{id})^2,\ldots$ jusqu'à stabilisation. Les différences successives te donnent directement le nombre de blocs de chaque taille.</div>
+    <div class="mini-demo"><span class="lbl">Méthode pratique</span>Calcule $\text{rg}(u-\lambda\text{id})^0, \text{rg}(u-\lambda\text{id})^1, \text{rg}(u-\lambda\text{id})^2,\ldots$ jusqu'à stabilisation. Cette différence donne le nombre de blocs de taille au moins k. Pour obtenir le nombre de blocs de taille exactement k, soustrais le nombre de blocs de taille au moins k+1.</div>
   </div>
 
   <div class="tool-card" data-id="j5">
     <div class="tool-header"><div><span class="tool-num">Outil 05</span><div class="tool-title">Puissances via Jordan</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande $u^n$ et que $u$ n'est PAS diagonalisable.</p></div>
-    <div class="mini-demo"><span class="lbl">Astuce de calcul sur un bloc</span>$J_k(\lambda) = \lambda I + N$ où $N$ est nilpotente (des 1 sur la sur-diagonale). Comme $\lambda I$ et $N$ commutent, le binôme de Newton s'applique : $J_k(\lambda)^n = \sum_{i=0}^{k-1}\binom{n}{i}\lambda^{n-i}N^i$ (somme finie car $N^k=0$).</div>
+    <div class="mini-demo"><span class="lbl">Astuce de calcul sur un bloc</span>$J_k(\lambda) = \lambda I + N$ où $N$ est nilpotente (des 1 sur la sur-diagonale). Comme $\lambda I$ et $N$ commutent, le binôme de Newton s'applique : $J_k(\lambda)^n = \sum_{i=0}^{\min(n,k-1)}\binom{n}{i}\lambda^{n-i}N^i$ (somme finie car $N^k=0$).</div>
   </div>
 
   <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>
@@ -153,9 +153,9 @@
     <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
     <div class="correction">
       <span class="correction-label">Correction — argument de construction directe (classique)</span>
-      <div class="step">Comme $N^2\neq0$, il existe $v$ avec $N^2v\neq0$. Considérons la famille $(v, Nv, N^2v)$.</div>
-      <div class="step">Montrons qu'elle est libre : si $av+bNv+cN^2v=0$, appliquons $N^2$ : $aN^2v=0$ (car $N^3v=N^4v=0$), donc $a=0$ (puisque $N^2v\neq0$). Puis applique $N$ à ce qui reste : $bN^2v=0$, donc $b=0$. Enfin $c=0$.</div>
-      <div class="step">3 vecteurs libres dans un espace de dimension 3 : c'est une base ! Dans cette base, $N(N^2v)=0$, $N(Nv)=N^2v$, $N(v)=Nv$ — exactement la structure d'un bloc $J_3(0)$ (des 1 juste au-dessus de la diagonale, des 0 sur la diagonale car $\lambda=0$). $\blacksquare$</div>
+      <div class="step">Comme $N^2\neq0$, il existe $v$ avec $N^2v\neq0$. Considérons la famille $(N^2v, Nv, v)$.</div>
+      <div class="step">Montrons qu'elle est libre : si $aN^2v+bNv+cv=0$, appliquons $N^2$ : $aN^2v=0$ (car $N^3v=N^4v=0$), donc $a=0$ (puisque $N^2v\neq0$). Puis applique $N$ à ce qui reste : $bN^2v=0$, donc $b=0$. Enfin $c=0$.</div>
+      <div class="step">3 vecteurs libres dans un espace de dimension 3 : c'est une base ! Dans la base ordonnée $(N^2v,Nv,v)$, $N(N^2v)=0$, $N(Nv)=N^2v$, $N(v)=Nv$ — exactement la structure d'un bloc $J_3(0)$ (des 1 juste au-dessus de la diagonale, des 0 sur la diagonale car $\lambda=0$). $\blacksquare$</div>
       <div class="step">Cette méthode de "partir du vecteur qui survit le plus longtemps" ($N^2v\neq0$) est LA technique standard pour construire une base de Jordan à la main, à généraliser pour plusieurs blocs.</div>
     </div>
   </div>

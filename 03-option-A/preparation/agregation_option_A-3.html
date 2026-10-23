@@ -451,7 +451,7 @@
     <div class="cell">Préparation oraux leçons (algèbre + analyse). Entraînement au format : plan 3 pages, développement 15 min.</div>
     <div class="cell">~15h</div>
     <div class="cell">Juin 2027</div>
-    <div class="cell">Entraînement modélisation option A : textes passés, chronomètre 4h + exposé 40 min. Oraux blancs avec quelqu'un si possible.</div>
+    <div class="cell">Entraînement modélisation option A : textes passés, préparation chronométrée de 4 h et épreuve orale jusqu’à 1 h 15, selon la notice officielle. Oraux blancs si possible.</div>
     <div class="cell">~20h</div>
   </div>
 
@@ -628,7 +628,7 @@ n = <span class="num">1000</span>; X = <span class="kw">zeros</span>(<span class
       </div>
       <div class="thm-box">
         <strong>Théorème de convergence des martingales (Doob L¹)</strong>
-        Si (Mₙ) est une martingale bornée dans L¹ (i.e. sup E[|Mₙ|] < ∞), alors Mₙ → M∞ p.s. et dans L¹.
+        Si $(M_n)$ est une martingale et $\sup_n\mathbb E|M_n|<\infty$, alors elle converge presque sûrement vers une limite finie. Pour conclure à la convergence dans $L^1$, il faut en plus l’uniforme intégrabilité.
       </div>
       <div class="thm-box">
         <strong>Théorème d'arrêt optionnel (Doob)</strong>
@@ -638,7 +638,7 @@ n = <span class="num">1000</span>; X = <span class="kw">zeros</span>(<span class
       <ul>
         <li>Probabilité de ruine du joueur (martingale exponentielle)</li>
         <li>Marche aléatoire simple : Sₙ = X₁+…+Xₙ est une martingale si E[X₁]=0</li>
-        <li>Sₙ² - n·Var(X₁) est une martingale</li>
+        <li>Si les incréments Xᵢ sont indépendants, centrés et de même variance finie σ², alors Sₙ²−nσ² est une martingale.</li>
         <li>Processus de Galton-Watson</li>
       </ul>
     </div>
@@ -669,10 +669,10 @@ n = <span class="num">1000</span>; X = <span class="kw">zeros</span>(<span class
       </div>
       <div class="thm-box">
         <strong>Borne de Cramér-Rao</strong>
-        Pour tout estimateur sans biais T_n de θ : Var_θ(T_n) ≥ 1 / (n · I(θ)) où I(θ) = E[(∂/∂θ log f(X;θ))²] est l'information de Fisher.
+        Sous les hypothèses de régularité usuelles (dérivabilité de la vraisemblance et dérivation sous l’intégrale justifiée), pour un échantillon i.i.d. de taille $n$ et un estimateur sans biais régulier : $\operatorname{Var}_\theta(T_n)\geq1/(nI(\theta))$, où $I(\theta)$ est l’information par observation.
       </div>
       <h3>Intervalles de confiance</h3>
-      <p>IC de niveau 1-α pour μ (variance connue σ²) : [X̄_n ± z_{α/2} · σ/√n] où z_{α/2} est le quantile de N(0,1).</p>
+      <p>Pour un échantillon i.i.d. normal de variance connue $\sigma^2$, l’intervalle de niveau $1-\alpha$ est $[\bar X_n\pm z_{1-\alpha/2}\sigma/\sqrt n]$. Sans normalité, cette formule est en général asymptotique sous des hypothèses appropriées, et non exacte en échantillon fini.</p>
       <h3>Tests d'hypothèse</h3>
       <ul>
         <li><strong>Erreur type I</strong> : rejeter H₀ à tort (risque α = niveau du test)</li>
@@ -681,7 +681,7 @@ n = <span class="num">1000</span>; X = <span class="kw">zeros</span>(<span class
       </ul>
       <div class="thm-box">
         <strong>Lemme de Neyman-Pearson</strong>
-        Le test le plus puissant de niveau α pour H₀:θ=θ₀ contre H₁:θ=θ₁ est le test du rapport de vraisemblance : rejeter H₀ si L(θ₁;x)/L(θ₀;x) > k.
+        Pour des hypothèses simples, le lemme de Neyman–Pearson caractérise un test le plus puissant par un seuil du rapport de vraisemblance; la règle d’égalité au seuil doit être précisée, et une randomisation peut être nécessaire en modèle discret pour atteindre exactement le niveau $\alpha$.
       </div>
       <h3>Tests classiques</h3>
       <ul>
@@ -794,7 +794,7 @@ n = <span class="num">1000</span>; X = <span class="kw">zeros</span>(<span class
     </div>
     <ul>
       <li>Phase 1 : lire sans chronomètre, comprendre la structure (problème → modèle → résultats)</li>
-      <li>Phase 2 : chronomètre 4h, choisir entre 2 textes, construire l'exposé</li>
+      <li>Phase 2 : chronométrer 4 h de préparation et s’entraîner à l’épreuve jusqu’à 1 h 15; vérifier les modalités exactes dans la notice officielle</li>
       <li>Phase 3 : présenter à voix haute (enregistre-toi, ou présente à quelqu'un)</li>
       <li>Critère clé : est-ce que tu pars d'un problème <em>concret</em> et que les maths semblent le servir ?</li>
     </ul>
@@ -976,18 +976,18 @@ const questions = [
       "Xₙ → 2 presque sûrement"
     ],
     correct: 1,
-    expl: "La LGN (Kolmogorov) dit que X̄ₙ = (X₁+…+Xₙ)/n → E[X₁] = 2 presque sûrement, sous la condition E[|X₁|] < ∞. La convergence p.s. est plus forte que la convergence en probabilité. C'est le TCL qui donne √n(X̄ₙ-μ)/σ → N(0,1)."
+    expl: "Sous l’hypothèse E|X₁|<∞, la loi forte des grands nombres donne X̄ₙ→2 presque sûrement. Le TCL, sous variance finie positive, porte sur la variable centrée-réduite √n(X̄ₙ−2)/σ, qui converge en loi vers N(0,1)."
   },
   {
-    q: "Parmi les modes de convergence suivants, lequel est le plus fort ?",
+    q: "Quelle implication entre modes de convergence est toujours vraie ?",
     opts: [
-      "Convergence en loi",
-      "Convergence en probabilité",
-      "Convergence presque sûre",
-      "Convergence en moyenne quadratique (L²)"
+      "Convergence presque sûre ⇒ convergence en probabilité",
+      "Convergence en loi ⇒ convergence en probabilité",
+      "Convergence presque sûre ⇔ convergence en L²",
+      "Convergence en probabilité ⇒ convergence presque sûre"
     ],
-    correct: 2,
-    expl: "La convergence p.s. implique la convergence en probabilité, qui implique la convergence en loi. La convergence L² implique la convergence en probabilité. Mais p.s. et L² ne se comparent pas en général. Cependant la p.s. est considérée la 'plus forte' dans le sens de la hiérarchie classique p.s. ⟹ en proba ⟹ en loi."
+    correct: 0,
+    expl: "La convergence presque sûre implique la convergence en probabilité, qui implique la convergence en loi. La convergence en L² implique aussi la convergence en probabilité; convergence presque sûre et L² ne sont pas comparables en général."
   },
   {
     q: "Une chaîne de Markov irréductible et apériodique sur un espace fini admet une mesure stationnaire π. Que peut-on conclure ?",
@@ -1020,7 +1020,7 @@ const questions = [
       "La puissance d'un test statistique"
     ],
     correct: 1,
-    expl: "La borne de Cramér-Rao stipule que pour tout estimateur sans biais T_n de θ : Var(T_n) ≥ 1/(n·I(θ)) où I(θ) est l'information de Fisher. Un estimateur qui atteint cette borne est dit efficace. Elle ne s'applique qu'aux estimateurs sans biais."
+    expl: "Sous les hypothèses de régularité de Cramér–Rao, cette borne porte sur la variance des estimateurs sans biais réguliers; elle n’est pas universelle pour tout modèle ou estimateur."
   },
   {
     q: "Le lemme de Neyman-Pearson caractérise :",
@@ -1031,7 +1031,7 @@ const questions = [
       "La taille optimale d'un échantillon"
     ],
     correct: 0,
-    expl: "Le lemme de Neyman-Pearson dit : pour tester H₀:θ=θ₀ contre H₁:θ=θ₁ (hypothèses simples), le test le plus puissant de niveau α est le test du rapport de vraisemblance. On rejette H₀ si L(θ₁;x)/L(θ₀;x) > k, où k est choisi pour que P(rejeter H₀|H₀)=α."
+    expl: "Pour deux hypothèses simples, un test le plus puissant de niveau α est donné par un seuil sur le rapport de vraisemblance. La règle au seuil doit être précisée; dans un modèle discret, une randomisation peut être requise pour obtenir exactement le niveau α."
   },
   {
     q: "Pour un processus de Poisson N(t) d'intensité λ sur ℝ₊, quelle est la loi de N(t) ?",
@@ -1071,11 +1071,11 @@ const questions = [
     opts: [
       "Le candidat présente le texte intégralement en le résumant",
       "On dispose de 2h de préparation puis 30 min devant le jury",
-      "On dispose de 4h de préparation avec un ordi, puis 40 min d'exposé + questions",
+      "La préparation dure 4 heures et l’épreuve ne dépasse pas 1 h 15",
       "Il faut obligatoirement programmer un algorithme en Scilab"
     ],
     correct: 2,
-    expl: "Format exact de l'oral modélisation : 4h de préparation avec une bibliothèque et un ordinateur (Scilab), choix entre 2 textes, puis exposé construit de 40 min devant le jury + entretien d'environ 20 min. La simulation est très valorisée mais pas obligatoire. Ce qui est attendu : partir du problème concret, présenter le modèle mathématique, les résultats clés, illustrer par simulation si pertinent."
+    expl: "Selon la page ministérielle des épreuves du concours externe spécial, la préparation dure 4 heures et l’épreuve dure au maximum 1 h 15. Deux textes sont proposés; le candidat construit un exposé à partir du texte choisi. Consulter la notice de la session pour les détails pratiques. L’illustration logicielle est pertinente lorsqu’elle sert l’analyse du modèle."
   }
 ];
 

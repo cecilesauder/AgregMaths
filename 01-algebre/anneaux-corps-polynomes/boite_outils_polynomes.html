@@ -82,7 +82,7 @@
     <tr><td class="signal-txt">"pgcd de deux polynômes"</td><td class="tool-name">Outil 2 — pgcd & Bézout</td></tr>
     <tr><td class="signal-txt">"a est racine de P"</td><td class="tool-name">Outil 3 — racine ⟺ (X-a) divise P</td></tr>
     <tr><td class="signal-txt">"ordre de multiplicité d'une racine"</td><td class="tool-name">Outil 4 — multiplicité et dérivées</td></tr>
-    <tr><td class="signal-txt">"nombre de racines", "P scindé"</td><td class="tool-name">Outil 5 — racines ≤ degré</td></tr>
+    <tr><td class="signal-txt">"nombre de racines", "nombre de racines de P (comptées avec multiplicité, dans le corps considéré)"</td><td class="tool-name">Outil 5 — racines ≤ degré</td></tr>
     <tr><td class="signal-txt">"montrer que P est irréductible"</td><td class="tool-name">Outil 6 — stratégies d'irréductibilité</td></tr>
     <tr><td class="signal-txt">"factoriser sur C", "sur R", "sur Q"</td><td class="tool-name">Outil 7 — irréductibles selon le corps</td></tr>
     <tr><td class="signal-txt">"relations entre coefficients et racines"</td><td class="tool-name">Outil 8 — relations de Viète</td></tr>
@@ -113,7 +113,7 @@
   <div class="tool-card" data-id="p4">
     <div class="tool-header"><div><span class="tool-num">Outil 04</span><div class="tool-title">Multiplicité d'une racine et dérivées</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande l'<mark>ordre de multiplicité</mark> d'une racine, ou de vérifier qu'une racine est "simple", "double", etc.</p></div>
-    <div class="formula-box">$$a \text{ racine d'ordre } k \iff P(a)=P'(a)=\cdots=P^{(k-1)}(a)=0 \text{ et } P^{(k)}(a)\neq 0$$</div>
+    <div class="formula-box">$$En caractéristique 0 (ou si car(K)>k), une racine a est d’ordre k si P(a)=P'(a)=…=P^(k−1)(a)=0 et P^(k)(a)≠0. En caractéristique positive, ce critère peut échouer (ex. X^p en caractéristique p).$$</div>
     <div class="mini-demo"><span class="lbl">Méthode pratique</span>Calcule $P(a)$, si $=0$ passe à $P'(a)$, si $=0$ passe à $P''(a)$, etc., jusqu'à trouver une dérivée non nulle en $a$. Le nombre de dérivées nulles avant celle-ci donne l'ordre.</div>
     <div class="example-box"><span class="lbl">Exemple</span>$P=(X-2)^3$ : $P(2)=0$, $P'(X)=3(X-2)^2$ donc $P'(2)=0$, $P''(X)=6(X-2)$ donc $P''(2)=0$, $P'''(X)=6\neq0$. Racine d'ordre exactement 3. ✓</div>
   </div>
@@ -130,7 +130,7 @@
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de montrer qu'un polynôme est irréductible (l'équivalent d'un nombre premier).</p></div>
     <div class="mini-demo"><span class="lbl">Boîte à stratégies, dans l'ordre à essayer</span>
       1) <b>Degré 2 ou 3</b> : irréductible $\iff$ pas de racine dans le corps (facile à tester).<br>
-      2) <b>Critère d'Eisenstein</b> : si un nombre premier $p$ divise tous les coefficients sauf le dominant, et $p^2$ ne divise pas le coefficient constant, alors P est irréductible sur $\mathbb{Q}$.<br>
+      2) <b>Critère d'Eisenstein</b> : pour $P\in\mathbb{Z}[X]$ de degré positif et de coefficient dominant non divisible par un nombre premier $p$, si $p$ divise tous les autres coefficients et $p^2$ ne divise pas le coefficient constant, alors P est irréductible sur $\mathbb{Q}$.<br>
       3) <b>Réduction modulo p</b> : si P mod p est irréductible dans $(\mathbb{Z}/p\mathbb{Z})[X]$ et même degré, alors P est irréductible sur $\mathbb{Q}$.
     </div>
     <div class="example-box"><span class="lbl">Exemple Eisenstein</span>$P=X^4+2X+2$ : $p=2$ divise 2 et 2 (coefficients non dominants), mais $p^2=4$ ne divise pas le coefficient constant 2. Eisenstein s'applique : P est irréductible sur $\mathbb{Q}$.</div>

@@ -77,7 +77,7 @@
 
   <div class="how-to-box">
     <span class="label">Le fil rouge</span>
-    Une suite de fonctions peut converger "point par point" (simple) sans que le comportement global soit contrôlé (uniforme). <mark>Convergence simple ne suffit presque jamais</mark> pour faire quoi que ce soit d'utile (intégrer, dériver) — il faut monter en uniforme.
+    Une suite de fonctions peut converger "point par point" (simple) sans que le comportement global soit contrôlé (uniforme). <mark>La convergence simple seule ne permet pas en général d’intervertir</mark> limite et intégrale ou de dériver terme à terme. La convergence uniforme est un critère suffisant dans certains cadres; convergence dominée, monotone et d’autres théorèmes donnent aussi des interversions.
   </div>
 
   <h2 class="section-title">🧰 Boîte à outils</h2>
@@ -114,7 +114,7 @@
   <div class="tool-card" data-id="u3">
     <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Interversion limite / intégrale</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande si $\lim\int f_n = \int\lim f_n$.</p></div>
-    <div class="mini-demo"><span class="lbl">Condition suffisante (sur un segment)</span>Si $f_n\to f$ <b>uniformément</b> sur $[a,b]$ et les $f_n$ continues, alors $\int_a^b f_n \to \int_a^b f$.</div>
+    <div class="mini-demo"><span class="lbl">Condition suffisante (sur un segment)</span>Si $f_n\to f$ uniformément sur $[a,b]$ (par exemple avec $f_n$ continues), alors les intégrales de Riemann convergent : $\int_a^b f_n\to\int_a^b f$. C’est un critère suffisant, pas le seul (en Lebesgue, on peut notamment utiliser la convergence dominée).</div>
     <div class="example-box">
       <span class="lbl">Contre-exemple avec ton exemple</span>
       $\int_0^1 x^n\,dx = \frac{1}{n+1}\to0$. Et $\int_0^1 f(x)\,dx=\int_0^1 0\,dx=0$ (car $f=0$ sauf en un point). Ici ça marche par coïncidence — mais retiens que ce n'est pas garanti sans convergence uniforme (le classique "bosse glissante" est un exemple où ça échoue vraiment).
@@ -124,7 +124,7 @@
   <div class="tool-card" data-id="u4">
     <div class="tool-header"><div><span class="tool-num">Outil 04 · piège fréquent</span><div class="tool-title">Dérivation terme à terme</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande si $f'=\lim f_n'$ — <mark>attention, la condition porte sur les DÉRIVÉES, pas sur les $f_n$ !</mark></p></div>
-    <div class="mini-demo"><span class="lbl">Énoncé exact</span>Si $f_n\to f$ simplement (juste simplement !), $f_n'\to g$ <b>uniformément</b>, et les $f_n'$ continues, alors $f$ est dérivable et $f'=g$.</div>
+    <div class="mini-demo"><span class="lbl">Théorème (version suffisante classique)</span>Sur un même intervalle I, si $f_n\in C^1(I)$, si $f_n'\to g$ uniformément et si $f_n(x_0)$ converge en un point $x_0\in I$, alors $f_n$ converge uniformément sur I vers une fonction dérivable $f$ et $f'=g$.</div>
     <div class="example-box" style="border-color:var(--red);">
       <span class="lbl" style="color:var(--red)">⚠ Piège classique</span>
       Beaucoup de candidats vérifient la convergence uniforme des $f_n$ au lieu de celle des $f_n'$ — c'est l'inverse qu'il faut vérifier ici !
@@ -161,7 +161,7 @@
       <div class="step">Sur $[0,1[$, la limite simple est $f=0$ partout — cette fois continue !</div>
       <div class="step">Mais $\sup_{x\in[0,1[} |x^n - 0| = \sup_{x\in[0,1[} x^n = 1$ (la borne sup n'est jamais atteinte mais s'approche de 1).</div>
       <div class="step">Donc $\sup|f_n-f|=1 \not\to 0$ : <b>toujours pas uniforme</b>, même si la limite est continue cette fois !</div>
-      <div class="step">Leçon importante : "limite continue" est nécessaire mais pas suffisant pour conclure à l'uniformité — ça ne sert qu'à exclure l'uniformité (contraposée), jamais à l'affirmer.</div>
+      <div class="step">Leçon : si les $f_n$ sont continues et convergent uniformément, leur limite est continue; la continuité de la limite seule ne suffit pas à établir la convergence uniforme.</div>
     </div>
   </div>
 

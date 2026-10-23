@@ -90,7 +90,7 @@
     <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Rayon de convergence (Hadamard)</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te donne une série entière et qu'on demande son rayon de convergence.</p></div>
     <div class="formula-box">1/R = limite sup de la racine n-ième de |a_n|</div>
-    <div class="mini-demo"><span class="lbl">Méthode alternative souvent plus rapide</span>Si la limite du rapport |a_(n+1)|/|a_n| existe, elle donne directement 1/R (règle de d'Alembert) — à essayer en premier, plus simple à calculer que la limsup dans la majorité des cas.</div>
+    <div class="mini-demo"><span class="lbl">Méthode alternative souvent plus rapide</span>Si les $a_n$ sont non nuls à partir d’un certain rang et si la limite de $|a_{n+1}/a_n|$ existe dans $[0,+\infty]$, elle vaut $1/R$ (règle de d’Alembert); sinon utiliser la formule de Cauchy–Hadamard.</div>
     <div class="example-box"><span class="lbl">À l'intérieur vs sur le bord</span>La série converge absolument si |z| moins petit que R, diverge si |z| plus grand que R. Sur le cercle |z|=R lui-même : aucune règle générale, à étudier au cas par cas.</div>
   </div>
 
@@ -104,28 +104,28 @@
     <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Équations de Cauchy-Riemann</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te donne f = P + iQ (parties réelle et imaginaire) et qu'on demande si f est holomorphe.</p></div>
     <div class="formula-box">dérivée partielle de P par rapport à x = dérivée partielle de Q par rapport à y<br>dérivée partielle de P par rapport à y = moins la dérivée partielle de Q par rapport à x</div>
-    <div class="mini-demo"><span class="lbl">À retenir</span>Avec une hypothèse de régularité C1, ces deux équations sont nécessaires ET suffisantes pour l'holomorphie — c'est un critère de calcul très concret, à la portée d'un calcul de dérivées partielles classiques.</div>
+    <div class="mini-demo"><span class="lbl">À retenir</span>Sur un ouvert de $\mathbb C$, si les parties réelle et imaginaire sont de classe $C^1$, les équations de Cauchy–Riemann sont nécessaires et suffisantes à l’holomorphie.</div>
   </div>
 
   <div class="tool-card" data-id="s4">
     <div class="tool-header"><div><span class="tool-num">Outil 04 · fondation de tout le reste</span><div class="tool-title">Formule intégrale de Cauchy</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande d'exprimer la valeur de f en un point via une intégrale sur un contour l'entourant.</p></div>
-    <div class="formula-box">f(a) = (1 / 2i pi) fois l'intégrale sur le cercle de f(z)/(z-a) dz</div>
-    <div class="mini-demo"><span class="lbl">Pourquoi c'est si puissant</span>Cette formule dit que connaître f seulement SUR le bord d'un disque suffit à connaître f partout à l'intérieur — une rigidité qui n'a aucun équivalent en analyse réelle. C'est la brique qui permet de démontrer l'outil 2 (holomorphe = analytique).</div>
+    <div class="formula-box">Si $f$ est holomorphe sur un voisinage du disque fermé, $a$ est intérieur et le cercle est orienté positivement : $f(a)=\frac1{2\pi i}\int_{\partial D}\frac{f(z)}{z-a}\,dz$.</div>
+    <div class="mini-demo"><span class="lbl">Pourquoi c'est si puissant</span>Dans la classe des fonctions holomorphes sur un voisinage du disque, cette formule exprime la valeur intérieure à partir des valeurs au bord. Elle ne s’étend pas aux fonctions quelconques.</div>
   </div>
 
   <div class="tool-card" data-id="s5">
     <div class="tool-header"><div><span class="tool-num">Outil 05</span><div class="tool-title">Théorème des résidus</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de calculer une intégrale (souvent réelle et difficile) via un contour complexe astucieux.</p></div>
-    <div class="formula-box">intégrale sur le contour = 2i pi fois la somme des résidus aux pôles à l'intérieur</div>
+    <div class="formula-box">Pour une fonction méromorphe dans le domaine, sans pôle sur le contour positif : $\int_\Gamma f(z)\,dz=2\pi i\sum_a n(\Gamma,a)\operatorname{Res}(f,a)$; pour un contour simple positif, $n(\Gamma,a)=1$ à l’intérieur.</div>
     <div class="mini-demo"><span class="lbl">Méthode pratique en 3 étapes</span>1) Choisir un contour fermé judicieux (souvent un demi-cercle qu'on fait tendre vers l'infini). 2) Identifier les pôles à l'intérieur et calculer leurs résidus. 3) Relier l'intégrale sur le contour à l'intégrale réelle qu'on cherche (en montrant que la partie "arc de cercle" tend vers 0).</div>
   </div>
 
   <div class="tool-card" data-id="s6">
     <div class="tool-header"><div><span class="tool-num">Outil 06</span><div class="tool-title">Principe des zéros isolés</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de montrer qu'une fonction holomorphe est nulle partout, à partir du fait qu'elle s'annule "beaucoup".</p></div>
-    <div class="mini-demo"><span class="lbl">Énoncé</span>Si f holomorphe s'annule sur un ensemble ayant un point d'accumulation dans le domaine (par exemple une infinité de zéros dans un compact), alors f est identiquement nulle sur toute la composante connexe.</div>
-    <div class="example-box"><span class="lbl">Conséquence pratique — prolongement analytique</span>Si un prolongement holomorphe existe, il est toujours unique — deux fonctions holomorphes qui coïncident sur un ensemble avec point d'accumulation coïncident partout.</div>
+    <div class="mini-demo"><span class="lbl">Énoncé</span>Si $f$ est holomorphe sur un domaine et si ses zéros ont un point d’accumulation situé dans ce domaine, alors $f$ est nulle sur la composante connexe correspondante. Une infinité de zéros dans un compact inclus dans le domaine fournit un tel point d’accumulation.</div>
+    <div class="example-box"><span class="lbl">Conséquence pratique — prolongement analytique</span>Sur un domaine connexe, si un prolongement holomorphe existe, il est unique : deux fonctions holomorphes qui y coïncident sur un ensemble avec point d’accumulation dans le domaine coïncident partout.</div>
   </div>
 
   <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>
@@ -156,12 +156,12 @@
 
   <div class="exo-card" data-id="se3">
     <div class="exo-header"><span class="exo-title">Exercice 3 — type oral</span><span class="diff-tag diff-dur">Plus difficile</span></div>
-    <div class="exo-statement">Soit f holomorphe et bornée sur C tout entier. Montrer que f est constante (théorème de Liouville), en admettant l'inégalité de Cauchy : la dérivée n-ième de f en 0 est majorée en module par n! fois M sur R puissance n, où M majore |f| et R est le rayon d'un cercle quelconque.</div>
+    <div class="exo-statement">Soit f holomorphe et bornée sur C tout entier. Montrer que f est constante (théorème de Liouville), en admettant l'inégalité de Cauchy : la dérivée n-ième de f en 0 est majorée en module par n! fois M sur R puissance n, où $M$ majore $|f|$ sur le cercle centré en 0 de rayon $R$ (f holomorphe sur le disque correspondant).</div>
     <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
     <div class="correction">
       <span class="correction-label">Correction — grand classique, combine outils 2 et 4</span>
       <div class="step">f holomorphe sur C entier : par l'outil 2, f est développable en série entière avec un rayon de convergence infini, et les coefficients sont a_n = (dérivée n-ième de f en 0) divisée par n!.</div>
-      <div class="step">Par l'inégalité de Cauchy admise, pour tout rayon R : |dérivée n-ième de f en 0)| est majorée par n! fois M / R puissance n, où M majore |f| sur tout C (borne globale, indépendante de R car f est bornée sur C entier).</div>
+      <div class="step">Par l’inégalité de Cauchy sur le cercle centré en 0 de rayon $R$, pour tout $R>0$ : $|f^{(n)}(0)|\leq n!M/R^n$, où M majore |f| sur tout C (borne globale, indépendante de R car f est bornée sur C entier).</div>
       <div class="step">Donc |a_n| est majoré par M / R puissance n, pour tout n supérieur ou égal à 1, et pour TOUT R (aussi grand qu'on veut, puisque f est holomorphe sur C entier).</div>
       <div class="step">En faisant tendre R vers l'infini, le majorant tend vers 0. Donc a_n = 0 pour tout n supérieur ou égal à 1. Il ne reste que a_0 : f est constante, égale à f(0). Résultat spectaculaire et classique : aucune fonction holomorphe non constante ne peut être bornée sur C entier.</div>
     </div>

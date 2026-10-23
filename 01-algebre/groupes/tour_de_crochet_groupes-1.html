@@ -145,9 +145,18 @@ function pegPos(i, total) {
 
 function drawCircle() {
   svg.innerHTML = '';
-  n = parseInt(document.getElementById('input-n').value) || 12;
-  k = parseInt(document.getElementById('input-k').value) || 1;
-  k = k % n;
+  const nInput = Number(document.getElementById('input-n').value);
+  const kInput = Number(document.getElementById('input-k').value);
+  const resultBox = document.getElementById('result-box');
+  resultBox.classList.remove('show');
+  if (!Number.isInteger(nInput) || nInput < 3 || nInput > 30 || !Number.isInteger(kInput)) {
+    resultBox.classList.add('show');
+    document.getElementById('result-text').textContent = 'Saisir un entier n entre 3 et 30 et un entier k.';
+    document.getElementById('btn-step').disabled = true;
+    return false;
+  }
+  n = nInput;
+  k = ((kInput % n) + n) % n;
 
   // pegs
   for (let i = 0; i < n; i++) {
@@ -172,6 +181,8 @@ function drawCircle() {
     svg.appendChild(label);
   }
   highlightPeg(0, true);
+  document.getElementById('btn-step').disabled = false;
+  return true;
 }
 
 function highlightPeg(i, isCurrent) {
@@ -243,7 +254,7 @@ function doStep() {
 }
 
 function showAllOrbits() {
-  drawCircle();
+  if (!drawCircle()) return;
   const d = pgcd(k, n);
   const colors = ["#f0c375", "#8fcbe8", "#b592e8", "#6fd19c", "#f08787", "#e8a5d8", "#a5e8d8", "#d8c8a5"];
   const seen = new Set();

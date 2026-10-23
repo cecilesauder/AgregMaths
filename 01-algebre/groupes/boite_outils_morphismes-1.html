@@ -105,7 +105,7 @@
 
   <div class="how-to-box">
     <span class="label">Comment utiliser cette page</span>
-    Le vrai problème n'est pas de comprendre chaque propriété une fois qu'on te la montre — c'est de savoir <b>laquelle sortir</b> face à un énoncé. Le tableau ci-dessous fonctionne comme un aiguillage : tu repères une formulation dans l'énoncé, elle te renvoie à l'outil correspondant. Apprends d'abord ce tableau par cœur, les détails de chaque outil viendront ensuite en renfort.
+    Cette fiche utilise la notation additive pour la loi de groupe; les résultats valent aussi en notation multiplicative, en remplaçant 0 par l’élément neutre et −x par l’inverse. Le vrai problème n'est pas de comprendre chaque propriété une fois qu'on te la montre — c'est de savoir <b>laquelle sortir</b> face à un énoncé. Le tableau ci-dessous fonctionne comme un aiguillage : tu repères une formulation dans l'énoncé, elle te renvoie à l'outil correspondant.
   </div>
 
   <table class="signal-table">
@@ -231,7 +231,7 @@
     </div>
     <div class="mini-demo">
       <span class="lbl">Pourquoi ça marche</span>
-      Si $f(x)=f(y)$, alors $f(x-y) = f(x)-f(y) = 0$ (via outils 1 et 3 combinés), donc $x-y \in \ker(f)$. Si $\ker(f)=\{0\}$, alors $x-y=0$, donc $x=y$.
+      Si $\ker(f)=\{0\}$ et $f(x)=f(y)$, alors $f(x-y)=0$, donc $x-y=0$ et $x=y$. Réciproquement, si $f$ est injective et $x\in\ker(f)$, alors $f(x)=0=f(0)$, donc $x=0$.
     </div>
     <div class="example-box">
       <span class="lbl">Ton exemple</span>
@@ -251,7 +251,7 @@
     </div>
     <div class="mini-demo">
       <span class="lbl">Intuition (à revoir avec le crochet)</span>
-      Le quotient $G/\ker(f)$ "regroupe en un seul paquet" tous les éléments qui donnent la même image par $f$. Ce théorème dit que ces paquets sont exactement en bijection (et même en correspondance de structure) avec les valeurs atteintes par $f$.
+      Le noyau $\ker(f)$ est distingué, donc le quotient $G/\ker(f)$ est un groupe bien défini. Il regroupe les éléments ayant la même image; l’application $x+\ker(f)\mapsto f(x)$ est alors un isomorphisme de groupes vers $\operatorname{Im}(f)$.
     </div>
     <div class="example-box">
       <span class="lbl">Ton exemple (à vérifier plus tard ensemble)</span>

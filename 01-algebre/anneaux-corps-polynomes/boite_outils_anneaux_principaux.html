@@ -89,14 +89,14 @@
   <div class="tool-card" data-id="s1">
     <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Anneau principal — définition</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu vois "anneau principal" ou qu'on te demande de le vérifier.</p></div>
-    <div class="mini-demo"><span class="lbl">Définition</span>Un anneau intègre A est principal si <b>tout idéal de A est engendré par un seul élément</b> : $I = (a) = \{ax : x\in A\}$.</div>
+    <div class="mini-demo"><span class="lbl">Définition</span>Un anneau intègre A est principal si <b>tout idéal de A est engendré par un seul élément</b> : $I=(a)=\{ax:x\in A\}$; l’idéal nul est $(0)$.</div>
     <div class="example-box"><span class="lbl">Les deux exemples à connaître par cœur</span>$\mathbb{Z}$ est principal (tout idéal est $n\mathbb{Z}$). $K[X]$ (K corps) est principal — c'est l'outil 2 juste après.</div>
   </div>
 
   <div class="tool-card" data-id="s2">
     <div class="tool-header"><div><span class="tool-num">Outil 02 · résultat central</span><div class="tool-title">K[X] est principal</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Ce résultat sert de base à presque tout le reste (Bézout, pgcd bien défini, etc. pour les polynômes).</p></div>
-    <div class="mini-demo"><span class="lbl">Démonstration (via la division euclidienne, outil 1 des polynômes)</span>Soit $I$ un idéal non nul de $K[X]$. Prends $P\in I$ non nul de degré minimal. Pour tout $Q\in I$, la division euclidienne donne $Q=BP+R$ avec $\deg R<\deg P$. Comme $R=Q-BP\in I$ (idéal) et $\deg R<\deg P$ minimal, on a forcément $R=0$. Donc $Q\in(P)$ : $I=(P)$.</div>
+    <div class="mini-demo"><span class="lbl">Démonstration (via la division euclidienne, outil 1 des polynômes)</span>Si $I=(0)$, il est engendré par 0. Sinon, soit $P\in I$ non nul de degré minimal. Pour tout $Q\in I$, la division euclidienne (car K est un corps) donne $Q=BP+R$ avec $\deg R<\deg P$. Comme $R=Q-BP\in I$, la minimalité impose $R=0$. Donc $Q\in(P)$ : $I=(P)$.</div>
     <div class="example-box"><span class="lbl">Ce que ça débloque</span>C'est exactement pourquoi Bézout marche pour les polynômes (outil 2 de la fiche précédente) — même démonstration que pour $\mathbb{Z}$, juste "taille" remplacée par "degré".</div>
   </div>
 
@@ -111,7 +111,7 @@
     <div class="tool-header"><div><span class="tool-num">Outil 04</span><div class="tool-title">Extension de corps et son degré</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu vois $L/K$ (L extension de K) ou $[L:K]$.</p></div>
     <div class="mini-demo"><span class="lbl">Définition</span>Si $K\subset L$ sont deux corps, $L$ est naturellement un $K$-espace vectoriel. $[L:K] := \dim_K(L)$ s'appelle le <b>degré</b> de l'extension.</div>
-    <div class="mini-demo"><span class="lbl">Formule multiplicative (à connaître)</span>Si $K\subset L\subset M$ : $[M:K] = [M:L]\times[L:K]$ (base de M sur K = produit cartésien des bases).</div>
+    <div class="mini-demo"><span class="lbl">Formule multiplicative (à connaître)</span>Si $K\subset L\subset M$ et si les degrés sont finis, $[M:K]=[M:L][L:K]$. Les produits $b_ja_i$, où $(b_j)$ est une base de $M$ sur $L$ et $(a_i)$ une base de $L$ sur $K$, forment une base de $M$ sur $K$.</div>
     <div class="example-box"><span class="lbl">Exemple</span>$[\mathbb{C}:\mathbb{R}]=2$ (base $\{1,i\}$).</div>
   </div>
 
@@ -125,7 +125,7 @@
   <div class="tool-card" data-id="s6">
     <div class="tool-header"><div><span class="tool-num">Outil 06 · relie tout le chapitre</span><div class="tool-title">$K(\alpha) \cong K[X]/(P_{\min})$</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de décrire $K(\alpha)$ (le plus petit corps contenant K et α) pour α algébrique.</p></div>
-    <div class="mini-demo"><span class="lbl">Comment on l'obtient</span>Application directe de l'outil 6 de la boîte "anneaux — bases" (1er théorème d'isomorphisme) : le morphisme d'évaluation $f:K[X]\to L$, $f(Q)=Q(\alpha)$ a pour noyau $(P_{\min})$ et pour image $K(\alpha)$.</div>
+    <div class="mini-demo"><span class="lbl">Comment on l'obtient</span>Application directe de l'outil 6 de la boîte "anneaux — bases" (1er théorème d'isomorphisme) : le morphisme d'évaluation $f:K[X]\to L$, $f(Q)=Q(\alpha)$ a pour noyau $(P_{\min})$ et pour image $K[\alpha]$. Comme $\alpha$ est algébrique, $K[\alpha]$ est un corps et coïncide avec $K(\alpha)$.</div>
     <div class="example-box"><span class="lbl">Exemple, le retour</span>$\mathbb{R}[X]/(X^2+1) \cong \mathbb{C} = \mathbb{R}(i)$ — exactement l'exemple qu'on avait vu dans la boîte "anneaux : bases", maintenant tu comprends pourquoi ça marche : $i$ est algébrique sur $\mathbb{R}$, de polynôme minimal $X^2+1$.</div>
     <div class="mini-demo"><span class="lbl">Bonus</span>$[K(\alpha):K] = \deg(P_{\min})$. Ex : $[\mathbb{C}:\mathbb{R}]=[\mathbb{R}(i):\mathbb{R}]=\deg(X^2+1)=2$.</div>
   </div>
@@ -152,7 +152,7 @@
       <span class="correction-label">Correction — outil 4, formule multiplicative</span>
       <div class="step">$\mathbb{Q} \subset \mathbb{Q}(\sqrt2) \subset \mathbb{Q}(\sqrt2,\sqrt3)$.</div>
       <div class="step">$[\mathbb{Q}(\sqrt2):\mathbb{Q}]=2$ (exercice 1).</div>
-      <div class="step">Comme $\sqrt3\notin\mathbb{Q}(\sqrt2)$, le polynôme minimal de $\sqrt3$ sur $\mathbb{Q}(\sqrt2)$ reste $X^2-3$ (toujours irréductible sur ce corps plus grand), donc $[\mathbb{Q}(\sqrt2,\sqrt3):\mathbb{Q}(\sqrt2)]=2$.</div>
+      <div class="step">Comme $\sqrt3\notin\mathbb{Q}(\sqrt2)$, le polynôme minimal de $\sqrt3$ sur $\mathbb{Q}(\sqrt2)$ reste $X^2-3$ (irréductible sur ce corps, car un polynôme quadratique réductible y aurait une racine; l’hypothèse exclut précisément une racine $\sqrt3$), donc $[\mathbb{Q}(\sqrt2,\sqrt3):\mathbb{Q}(\sqrt2)]=2$.</div>
       <div class="step">Par la formule multiplicative : $[\mathbb{Q}(\sqrt2,\sqrt3):\mathbb{Q}] = 2\times2=4$. $\blacksquare$</div>
     </div>
   </div>

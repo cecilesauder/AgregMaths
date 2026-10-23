@@ -94,13 +94,13 @@
     <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Coefficients de Fourier</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te donne une fonction 2 pi-périodique et qu'on demande ses coefficients de Fourier.</p></div>
     <div class="formula-box">c_n(f) = (1 / 2 pi) fois l'intégrale sur [0, 2 pi] de f(t) fois e^(-int) dt</div>
-    <div class="mini-demo"><span class="lbl">Version réelle, souvent plus pratique</span>Avec a_n et b_n (coefficients en cosinus et sinus) : a_n = (1/pi) intégrale de f(t)cos(nt)dt, b_n = (1/pi) intégrale de f(t)sin(nt)dt. Astuce : si f est paire, tous les b_n sont nuls ; si f est impaire, tous les a_n sont nuls — vérifie toujours la parité avant de te lancer dans le calcul, ça peut diviser le travail par deux.</div>
+    <div class="mini-demo"><span class="lbl">Version réelle, souvent plus pratique</span>Convention réelle : $f\sim a_0/2+\sum_{n\ge1}(a_n\cos nt+b_n\sin nt)$, avec $a_0=(1/\pi)\int_{-\pi}^{\pi}f(t)dt$ et, pour $n\ge1$, $a_n=(1/\pi)\int_{-\pi}^{\pi}f(t)\cos(nt)dt$, $b_n=(1/\pi)\int_{-\pi}^{\pi}f(t)\sin(nt)dt$. Astuce : si f est paire, tous les b_n sont nuls ; si f est impaire, tous les a_n sont nuls — vérifie toujours la parité avant de te lancer dans le calcul, ça peut diviser le travail par deux.</div>
   </div>
 
   <div class="tool-card" data-id="fo2">
     <div class="tool-header"><div><span class="tool-num">Outil 02</span><div class="tool-title">Théorème de Dirichlet — convergence ponctuelle</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande la valeur de la série de Fourier en UN point précis, notamment un point de discontinuité.</p></div>
-    <div class="mini-demo"><span class="lbl">Énoncé</span>Si f est C1 par morceaux, sa série de Fourier converge en tout point x vers la demi-somme des limites à droite et à gauche de f en x. Aux points où f est continue, ça redonne simplement f(x).</div>
+    <div class="mini-demo"><span class="lbl">Énoncé</span>Pour une fonction périodique C¹ par morceaux au sens usuel (nombre fini de morceaux et limites latérales aux raccords), sa série de Fourier converge en chaque point $x$ vers $\tfrac12(f(x^-)+f(x^+))$. Aux points de continuité, cette valeur est $f(x)$.</div>
     <div class="example-box"><span class="lbl">Application classique</span>Utile pour calculer des sommes de séries numériques : on évalue la série de Fourier en un point bien choisi (souvent 0 ou pi) où l'on connaît la valeur de f, et on en déduit la somme numérique cherchée.</div>
   </div>
 
@@ -114,8 +114,8 @@
   <div class="tool-card" data-id="fo4">
     <div class="tool-header"><div><span class="tool-num">Outil 04</span><div class="tool-title">Convergence normale / uniforme de la série</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande si la série de Fourier converge uniformément vers f (pas juste ponctuellement).</p></div>
-    <div class="mini-demo"><span class="lbl">Condition suffisante</span>Si f est continue, 2 pi-périodique, et C1 par morceaux, alors la série de Fourier converge normalement (donc uniformément) vers f. Condition strictement plus forte que Dirichlet (qui ne donne que la convergence simple, et seulement vers la demi-somme aux points de discontinuité).</div>
-    <div class="example-box" style="border-color:var(--red);"><span class="lbl" style="color:var(--red)">⚠ Piège classique</span>Sans l'hypothèse de continuité de f (juste continue par morceaux avec des sauts), la convergence ne peut PAS être uniforme — d'ailleurs sans aucune régularité supplémentaire, la série de Fourier peut même diverger en certains points (contre-exemple de Fejér / Du Bois-Reymond, résultat de culture à connaître).</div>
+    <div class="mini-demo"><span class="lbl">Condition suffisante</span>Sous des hypothèses usuelles de régularité par morceaux, la série de Fourier d’une fonction continue converge uniformément vers f; cela n’implique pas en général la convergence normale. La convergence normale demande par exemple que la somme des valeurs absolues des coefficients soit finie. Dirichlet donne la convergence ponctuelle vers la demi-somme des limites latérales.</div>
+    <div class="example-box" style="border-color:var(--red);"><span class="lbl" style="color:var(--red)">⚠ Piège classique</span>Une série de Fourier ne peut pas converger uniformément vers une fonction discontinue (limite uniforme de fonctions continues). Pour une fonction continue seulement, la convergence ponctuelle de sa série de Fourier n’est pas garantie en tout point : il existe des exemples classiques de divergence. À distinguer des moyennes de Fejér, qui convergent uniformément pour une fonction continue périodique.</div>
   </div>
 
   <div class="tool-card" data-id="fo5">
@@ -144,12 +144,12 @@
 
   <div class="exo-card" data-id="foe2">
     <div class="exo-header"><span class="exo-title">Exercice 2</span><span class="diff-tag diff-moyen">Moyen</span></div>
-    <div class="exo-statement">Soit f(x) = |x| sur [-pi, pi], prolongée par périodicité. On admet a_0 = pi/2 et a_n = (2/(pi n carré)) fois ((-1) puissance n moins 1), b_n = 0. En utilisant Dirichlet au point x=0, calculer la somme sur les n impairs de 1/n carré.</div>
+    <div class="exo-statement">Soit f(x) = |x| sur [-pi, pi], prolongée par périodicité. Avec la convention $f\sim a_0/2+\sum_{n\ge1}a_n\cos(nx)$, on a $a_0=\pi$ (donc terme constant $a_0/2=\pi/2$) et $a_n=\frac{2}{\pi n^2}((−1)^n−1)$, $b_n=0$. En utilisant Dirichlet au point x=0, calculer la somme sur les n impairs de 1/n carré.</div>
     <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
     <div class="correction">
       <span class="correction-label">Correction — outil 2, application classique</span>
       <div class="step">f est continue en 0 (donc pas besoin de demi-somme, f(0) suffit) : f(0) = 0.</div>
-      <div class="step">Par Dirichlet : 0 = a_0 + somme sur n de a_n (car cos(0)=1 et b_n=0). Donc 0 = pi/2 + somme de a_n.</div>
+      <div class="step">Par Dirichlet : 0 = a_0/2 + somme sur n de a_n (car cos(0)=1 et b_n=0). Donc 0 = pi/2 + somme de a_n.</div>
       <div class="step">Pour n pair, a_n = 0 (car (-1)^n - 1 = 0). Pour n impair, a_n = (2/(pi n carré)) fois (-2) = -4/(pi n carré).</div>
       <div class="step">Donc 0 = pi/2 - (4/pi) fois la somme sur les n impairs de 1/n carré. On isole : la somme sur les n impairs de 1/n carré = pi carré / 8. Résultat classique retrouvé par Fourier.</div>
     </div>
@@ -161,7 +161,7 @@
     <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
     <div class="correction">
       <span class="correction-label">Correction — outil 3, Parseval en action</span>
-      <div class="step">Parseval en version réelle : (1/pi) fois l'intégrale de f au carré sur [-pi,pi] = 2 fois a_0 au carré, plus la somme sur n de (a_n carré + b_n carré). Ici a_0=0 et tous les a_n=0.</div>
+      <div class="step">Parseval en version réelle : (1/\pi) fois l’intégrale de $|f|^2$ sur $[-\pi,\pi] = a_0^2/2 + la somme sur n≥1 de $(a_n^2+b_n^2)$. Ici a_0=0 et tous les a_n=0.</div>
       <div class="step">Calcul du membre de gauche : (1/pi) fois l'intégrale de x carré sur [-pi,pi] = (1/pi) fois (2 pi cube / 3) = 2 pi carré / 3.</div>
       <div class="step">Membre de droite : somme sur n de b_n carré = somme sur n de 4/n carré (le signe au carré disparaît).</div>
       <div class="step">Égalité : 2 pi carré/3 = 4 fois la somme de 1/n carré. On isole : la somme sur tout n positif de 1/n carré = pi carré / 6. Le résultat le plus célèbre de la théorie (problème de Bâle), retrouvé directement par Fourier et Parseval, sans probabilités ni fonction zêta.</div>

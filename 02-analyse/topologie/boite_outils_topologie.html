@@ -102,7 +102,7 @@
     <div class="tool-header"><div><span class="tool-num">Outil 02 · très utilisé</span><div class="tool-title">Théorème du point fixe de Banach</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de montrer l'existence et l'unicité d'une solution à une équation $f(x)=x$, souvent déguisée en équation différentielle ou intégrale.</p></div>
     <div class="mini-demo"><span class="lbl">Énoncé</span>Si $(E,d)$ complet et $f:E\to E$ est $k$-lipschitzienne avec $k<1$ (contractante), alors $f$ admet un <b>unique</b> point fixe, et $x_{n+1}=f(x_n)$ converge vers ce point fixe pour n'importe quel point de départ.</div>
-    <div class="example-box"><span class="lbl">Application classique à connaître</span>Théorème de Cauchy-Lipschitz (existence/unicité des solutions d'équations différentielles) : on transforme l'équation en un problème de point fixe sur un espace de fonctions complet.</div>
+    <div class="example-box"><span class="lbl">Application classique à connaître</span>Pour utiliser Banach dans une preuve de Cauchy–Lipschitz, choisir un espace complet stable par l’opérateur et établir sa contraction (souvent sur un intervalle assez court). L’existence-unicité pour l’EDO requiert les hypothèses de régularité usuelles sur le champ de vecteurs.</div>
   </div>
 
   <div class="tool-card" data-id="t3">
@@ -118,7 +118,7 @@
     <div class="mini-demo"><span class="lbl">Énoncé exact</span>Dans $\mathbb{R}^n$ (dimension finie) : $K$ compact $\iff K$ fermé et borné.</div>
     <div class="example-box" style="border-color:var(--red);">
       <span class="lbl" style="color:var(--red)">⚠ Piège classique d'agrégation</span>
-      En dimension infinie, c'est FAUX : la boule unité fermée d'un espace de fonctions n'est <b>jamais</b> compacte. Un candidat qui écrit "fermé borné donc compact" dans un espace de fonctions perd des points immédiatement.
+      Dans tout espace normé de dimension infinie muni de sa topologie de norme, la boule unité fermée n’est pas compacte. L’énoncé « fermé borné implique compact » ne s’étend donc pas, en général, aux espaces de fonctions.
     </div>
   </div>
 

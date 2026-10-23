@@ -103,15 +103,15 @@
   <div class="tool-card" data-id="a4">
     <div class="tool-header"><div><span class="tool-num">Outil 04 · le plus utilisé</span><div class="tool-title">Théorème orbite-stabilisateur</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande <mark>la taille d'une orbite ou d'un stabilisateur</mark> connaissant l'autre et $|G|$.</p></div>
-    <div class="formula-box" style="background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent);margin-bottom:0.9rem;">$$|\text{Orb}(x)| \times |\text{Stab}(x)| = |G|$$</div>
-    <div class="mini-demo"><span class="lbl">Pourquoi c'est vrai</span>C'est Lagrange appliqué à $H=\text{Stab}(x)$ : $|G/\text{Stab}(x)| = |G|/|\text{Stab}(x)|$, et on montre qu'il y a une bijection entre les classes $G/\text{Stab}(x)$ et les éléments de l'orbite.</div>
+    <div class="formula-box" style="background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent);margin-bottom:0.9rem;">$$|\text{Orb}(x)| \times |\text{Stab}(x)| = |G| \quad (G\text{ fini})$$</div>
+    <div class="mini-demo"><span class="lbl">Pourquoi c'est vrai</span>Pour $G$ fini, Lagrange donne le nombre de classes à gauche $G/\text{Stab}(x)$. La bijection est $g\,\text{Stab}(x)\mapsto g\cdot x$; elle est bien définie et bijective, d’où la formule.</div>
     <div class="example-box"><span class="lbl">Exemple</span>$|G|=6$, $|\text{Stab}(1)|=2$ donc $|\text{Orb}(1)|=6/2=3$ — cohérent avec $\text{Orb}(1)=\{1,2,3\}$ trouvé directement.</div>
   </div>
 
   <div class="tool-card" data-id="a5">
     <div class="tool-header"><div><span class="tool-num">Outil 05</span><div class="tool-title">Équation aux classes</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de <mark>compter les éléments de X en sommant sur les orbites</mark>, en particulier pour des démonstrations sur l'ordre des groupes (ex : groupes d'ordre $p^2$).</p></div>
-    <div class="formula-box" style="background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent);margin-bottom:0.9rem;">$$|X| = \sum_i |\text{Orb}(x_i)|$$</div>
+    <div class="formula-box" style="background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent);margin-bottom:0.9rem;">$$|X| = \sum_i |\text{Orb}(x_i)| \quad (X\text{ fini})$$</div>
     <div class="mini-demo"><span class="lbl">À retenir</span>La somme porte sur un représentant $x_i$ par orbite distincte (pas sur tous les éléments de X un par un).</div>
   </div>
 
@@ -126,7 +126,7 @@
     <div class="tool-header"><div><span class="tool-num">Outil 07</span><div class="tool-title">Centre = points fixes de la conjugaison</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on parle du <mark>centre $Z(G)$</mark> (les éléments qui commutent avec tout le monde) dans un contexte d'action par conjugaison.</p></div>
     <div class="mini-demo"><span class="lbl">Pourquoi</span>$x \in Z(G) \iff gxg^{-1}=x$ pour tout $g$ $\iff$ $\text{Orb}(x)=\{x\}$ (orbite réduite à un point) sous l'action par conjugaison.</div>
-    <div class="example-box"><span class="lbl">Application classique (grand classique d'oral)</span>Un groupe d'ordre $p^2$ ($p$ premier) est abélien : l'équation aux classes force $Z(G) \neq \{e\}$, puis on montre que $G/Z(G)$ cyclique ⟹ G abélien.</div>
+    <div class="example-box"><span class="lbl">Application classique (grand classique d'oral)</span>Pour $|G|=p^2$, l’équation aux classes montre que $Z(G)$ n’est pas trivial. Alors $|G/Z(G)|=1$ ou $p$; dans le second cas, le quotient est cyclique. Si $G/Z(G)=\langle aZ(G)\rangle$, chaque élément s’écrit $a^i z$; ces éléments commutent car $z$ est central, donc $G$ est abélien.</div>
   </div>
 
   <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>
@@ -150,8 +150,7 @@
     <div class="correction">
       <span class="correction-label">Correction</span>
       <div class="step">Les tailles d'orbites divisent $|G|=8$, donc chaque taille $\in \{1,2,4,8\}$. On exclut 1 et on ne peut pas dépasser 5, donc chaque taille $\in \{2,4\}$.</div>
-      <div class="step">On cherche à écrire $5$ comme somme de 2 et de 4 : $4+... $ ne marche pas seul (reste 1, exclu), $2+2=4$ (reste 1, exclu). Seule solution : impossible avec ces contraintes sauf $2+... $ Reprenons : on doit sommer plusieurs orbites dont chacune vaut 2 ou 4, total = 5 (nombre impair). Or une somme de nombres pairs est toujours paire. <b>Contradiction : cette situation est impossible.</b></div>
-      <div class="step">C'est le point pédagogique de l'exercice : l'équation aux classes sert aussi à <b>montrer qu'une configuration ne peut pas exister</b>, pas seulement à calculer.</div>
+      <div class="step">Chaque orbite a une taille 2 ou 4; une somme de tels nombres est paire. Elle ne peut donc pas valoir 5 : les hypothèses de l’exercice sont incompatibles.</div>
     </div>
   </div>
 
@@ -164,7 +163,7 @@
       <div class="step">On fait agir $G$ sur lui-même par conjugaison (outil 6). L'équation aux classes (outil 5) donne $|G| = |Z(G)| + \sum |\text{classes non triviales}|$.</div>
       <div class="step">Chaque classe non triviale a une taille qui divise $|G|=p^2$ (orbite-stabilisateur) et qui est $>1$ (sinon l'élément serait dans le centre). Donc chaque taille vaut $p$ ou $p^2$.</div>
       <div class="step">Si $Z(G)=\{e\}$ : $p^2 = 1 + \sum(\text{multiples de } p)$, donc $p^2 \equiv 1 \pmod p$, soit $0 \equiv 1 \pmod p$ — impossible.</div>
-      <div class="step">Donc $Z(G) \neq \{e\}$. $\blacksquare$ (Ce résultat permet ensuite de montrer que $G$ est abélien, en étudiant $G/Z(G)$.)</div>
+      <div class="step">Donc $Z(G)\neq\{e\}$. Comme son ordre divise $p^2$, il vaut $p$ ou $p^2$. Si $|Z(G)|=p^2$, alors $G=Z(G)$ est abélien. Sinon $G/Z(G)$ est d’ordre $p$, donc cyclique. Si $G/Z(G)=\langle aZ(G)\rangle$, tout élément s’écrit $a^i z$ avec $z\in Z(G)$; deux éléments de cette forme commutent, donc $G$ est abélien. $\blacksquare$</div>
     </div>
   </div>
 

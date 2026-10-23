@@ -70,14 +70,14 @@
   <div class="page-title">🧰 Formes bilinéaires & espaces euclidiens</div>
   <div class="page-sub">Dernier chapitre d'algèbre — après ça, direction l'analyse</div>
 
-  <div class="chapter-banner">🎉 Ce chapitre boucle <b>toute l'algèbre du programme écrit</b> : groupes, anneaux, réduction, et maintenant ceci.</div>
+  <div class="chapter-banner">Cette fiche traite les formes bilinéaires et quadratiques, un thème du programme d’algèbre; elle ne remplace pas les autres titres du programme.</div>
 
   <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">0 / 0 éléments cochés</div>
 
   <div class="how-to-box">
     <span class="label">Le fil rouge</span>
-    Une forme quadratique, c'est une façon de "mesurer" les vecteurs. La question centrale : peut-on choisir de bonnes coordonnées pour que cette mesure devienne une simple somme de carrés ? Réponse : toujours oui (Sylvester), et l'<mark>algorithme de Gauss</mark> te donne comment faire concrètement.
+    Une forme quadratique associe une valeur scalaire à chaque vecteur. La question centrale est de choisir des coordonnées où elle devient une somme pondérée de carrés. Sur le corps réel et en dimension finie, la loi d’inertie de Sylvester classe les signes; l’<mark>algorithme de Gauss</mark> donne une méthode de réduction par changement de base.
   </div>
 
   <h2 class="section-title">🧰 Boîte à outils</h2>
@@ -96,7 +96,7 @@
     <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Forme bilinéaire symétrique & polarisation</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te donne $q(x)$ et qu'il faut retrouver la forme bilinéaire $b$ associée (par exemple pour trouver la matrice).</p></div>
     <div class="formula-box">$$b(x,y) = \frac{1}{2}\big(q(x+y)-q(x)-q(y)\big)$$</div>
-    <div class="mini-demo"><span class="lbl">À retenir</span>$q(x)=b(x,x)$. La formule de polarisation ci-dessus permet de reconstruire $b$ à partir de $q$ seule — utile car $q$ est souvent ce qui est donné dans l'énoncé.</div>
+    <div class="mini-demo"><span class="lbl">À retenir</span>$q(x)=b(x,x)$. Sur un corps de caractéristique différente de 2, la formule de polarisation permet de reconstruire $b$ à partir de $q$ seule — utile car $q$ est souvent ce qui est donné dans l'énoncé.</div>
   </div>
 
   <div class="tool-card" data-id="f2">
@@ -112,7 +112,7 @@
   <div class="tool-card" data-id="f3">
     <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Loi d'inertie de Sylvester — signature</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande la signature $(p,q)$ d'une forme quadratique.</p></div>
-    <div class="mini-demo"><span class="lbl">Définition et théorème</span>Après réduction de Gauss, $q=\sum_{i=1}^p c_i^2 - \sum_{j=1}^{q} d_j^2$. La paire $(p,q)$ (nombre de + et de −) est <b>indépendante de la décomposition choisie</b> — c'est ça, le contenu du théorème de Sylvester.</div>
+    <div class="mini-demo"><span class="lbl">Définition et théorème</span>Pour une forme quadratique réelle sur un espace de dimension finie, une réduction par congruence donne $q=\sum_{i=1}^p c_i^2 - \sum_{j=1}^{q} d_j^2$. La signature $(p,q)$ est indépendante de la base choisie (loi d’inertie de Sylvester).</div>
     <div class="example-box"><span class="lbl">Exemple (suite du précédent)</span>$q(x,y)=(x+2y)^2-y^2$ : signature $(1,1)$.</div>
     <div class="mini-demo"><span class="lbl">Cas particulier utile</span>$q$ définie positive $\iff$ signature $(n,0)$ $\iff$ toutes les valeurs propres de la matrice associée sont $>0$.</div>
   </div>
@@ -121,8 +121,8 @@
     <div class="tool-header"><div><span class="tool-num">Outil 04</span><div class="tool-title">Inégalité de Cauchy-Schwarz</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de prouver une inégalité impliquant un produit scalaire ou une somme de produits (souvent déguisée, ex : intégrales, sommes).</p></div>
     <div class="formula-box">$$|\langle x,y\rangle| \leq \|x\| \cdot \|y\|$$</div>
-    <div class="mini-demo"><span class="lbl">Démonstration classique (à savoir refaire)</span>Considérer $P(t)=\|x+ty\|^2 = \|x\|^2+2t\langle x,y\rangle+t^2\|y\|^2 \geq 0$ pour tout $t$. Un polynôme du second degré toujours positif a un discriminant $\leq 0$ : $4\langle x,y\rangle^2-4\|x\|^2\|y\|^2\leq0$.</div>
-    <div class="example-box"><span class="lbl">Cas d'égalité</span>Égalité $\iff$ $x,y$ colinéaires (le discriminant est nul exactement quand $P$ a une racine double, i.e. $x+ty=0$ pour un $t$).</div>
+    <div class="mini-demo"><span class="lbl">Démonstration classique (à savoir refaire)</span>Dans un espace préhilbertien réel, si $y\neq0$, le trinôme $P(t)=\|x-ty\|^2\geq0$ pour tout $t$ a un discriminant négatif ou nul, d’où $|\langle x,y\rangle|^2\leq\|x\|^2\|y\|^2$. Si $y=0$, l’inégalité est immédiate. En complexe, appliquer le même argument à $\|x-ty\|^2$ avec $t\in\mathbb C$ (ou choisir la phase pour rendre le produit scalaire réel).</div>
+    <div class="example-box"><span class="lbl">Cas d'égalité</span>Égalité si et seulement si $x$ et $y$ sont liés; cela inclut le cas où l’un des deux est nul.</div>
   </div>
 
   <div class="tool-card" data-id="f5">
@@ -134,7 +134,7 @@
   <div class="tool-card" data-id="f6">
     <div class="tool-header"><div><span class="tool-num">Outil 06 · résultat central, très cité</span><div class="tool-title">Théorème spectral</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
     <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te parle d'une <mark>matrice symétrique réelle</mark> — un des théorèmes les plus rentables du programme.</p></div>
-    <div class="mini-demo"><span class="lbl">Énoncé</span>Toute matrice symétrique réelle est diagonalisable, <b>dans une base orthonormée</b>. C'est plus fort que le critère habituel de diagonalisabilité : la symétrie garantit à la fois diagonalisabilité ET orthogonalité des vecteurs propres.</div>
+    <div class="mini-demo"><span class="lbl">Énoncé</span>Toute matrice symétrique réelle est diagonalisable orthogonalement pour le produit scalaire euclidien standard. Pour une forme sur un espace abstrait, fixer d’abord un produit scalaire et distinguer cette diagonalisation spectrale de la réduction par congruence de Sylvester.</div>
     <div class="example-box"><span class="lbl">Application directe</span>Toute forme quadratique réelle peut être diagonalisée dans une base orthonormée (en diagonalisant sa matrice associée, qui est toujours symétrique) — pont direct avec le chapitre "réduction".</div>
   </div>
 
