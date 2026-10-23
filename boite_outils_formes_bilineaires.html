@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boîte à outils — Formes bilinéaires & espaces euclidiens</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+  :root { --bg:#14161d;--surface:#1e212c;--surface2:#262a38;--border:#383e52;--accent:#f0c375;--accent2:#8fcbe8;--accent3:#b592e8;--green:#6fd19c;--red:#f08787;--text:#eef1f7;--text-dim:#9aa5bd; }
+  *{box-sizing:border-box;margin:0;padding:0;} body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',sans-serif;padding:1.5rem;line-height:1.6;}
+  .wrap{max-width:980px;margin:0 auto;}
+  .page-title{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--accent);text-align:center;margin-bottom:0.2rem;}
+  .page-sub{text-align:center;color:var(--text-dim);font-size:0.93rem;margin-bottom:1.5rem;}
+  .progress-bar-wrap{background:var(--surface2);border-radius:999px;height:10px;margin-bottom:0.4rem;overflow:hidden;border:1px solid var(--border);}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--accent2),var(--green));width:0%;transition:width 0.4s;}
+  .progress-label{text-align:center;font-size:0.78rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:1.8rem;}
+  h2.section-title{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--accent);border-bottom:2px solid var(--border);padding-bottom:0.6rem;margin-bottom:1.2rem;}
+  .how-to-box{background:var(--surface);border:1px solid var(--accent2);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.8rem;font-size:0.92rem;}
+  .how-to-box .label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .signal-table{width:100%;border-collapse:collapse;margin-bottom:2.2rem;background:var(--surface);border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+  .signal-table th{background:var(--surface2);color:var(--accent);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;padding:0.7rem 0.9rem;text-align:left;font-family:'JetBrains Mono',monospace;}
+  .signal-table td{padding:0.7rem 0.9rem;border-top:1px solid var(--border);font-size:0.88rem;vertical-align:top;}
+  .signal-table tr:hover td{background:var(--surface2);}
+  .signal-table .signal-txt{color:var(--accent2);font-style:italic;}
+  .signal-table .tool-name{color:var(--accent);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:0.82rem;}
+  .tool-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;margin-bottom:1.4rem;position:relative;overflow:hidden;}
+  .tool-card.memo{border-color:var(--green);}
+  .tool-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent3),var(--accent2),var(--accent));}
+  .tool-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.9rem;}
+  .tool-num{font-family:'JetBrains Mono',monospace;color:var(--text-dim);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;}
+  .tool-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--accent);margin-top:0.2rem;}
+  .memo-check{display:flex;align-items:center;gap:0.4rem;cursor:pointer;user-select:none;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:0.3rem 0.75rem;font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text-dim);white-space:nowrap;}
+  .memo-check.checked{background:var(--green);color:#0d1a12;border-color:var(--green);}
+  .signal-box{background:linear-gradient(135deg,#2e2617 0%,#1e212c 100%);border:1px solid var(--accent);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;}
+  .signal-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.3rem;}
+  .signal-box p{font-size:0.9rem;}
+  .mini-demo{background:var(--surface2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;font-size:0.88rem;}
+  .mini-demo .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .example-box{background:#16211a;border:1px solid var(--green);border-radius:10px;padding:0.85rem 1.1rem;font-size:0.88rem;}
+  .example-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .formula-box{background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent);margin-bottom:0.9rem;}
+  mark{background:rgba(240,195,117,0.25);color:var(--accent);padding:0.05em 0.3em;border-radius:4px;font-weight:600;}
+  .exo-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.2rem;}
+  .exo-card.done{border-color:var(--green);}
+  .exo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;gap:1rem;}
+  .exo-title{font-weight:700;color:var(--accent);font-size:1rem;}
+  .diff-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:0.2rem 0.55rem;border-radius:999px;white-space:nowrap;}
+  .diff-facile{background:#16331f;color:var(--green);border:1px solid #245234;}
+  .diff-moyen{background:#332a16;color:var(--accent);border:1px solid #524224;}
+  .diff-dur{background:#331616;color:var(--red);border:1px solid #522424;}
+  .exo-statement{font-size:0.94rem;margin-bottom:0.9rem;}
+  .toggle-btn{background:var(--surface2);border:1px solid var(--accent3);color:var(--accent3);padding:0.45rem 1.1rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.76rem;}
+  .toggle-btn:hover{background:var(--accent3);color:#14161d;}
+  .correction{display:none;margin-top:0.9rem;padding-top:0.9rem;border-top:1px dashed var(--border);}
+  .correction.show{display:block;}
+  .correction-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;display:block;}
+  .correction .step{margin-bottom:0.55rem;padding-left:0.7rem;border-left:2px solid var(--border);font-size:0.9rem;}
+  .exo-footer{display:flex;justify-content:space-between;align-items:center;margin-top:0.9rem;}
+  .check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--accent3);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;user-select:none;background:var(--surface2);}
+  .check-box.checked{background:var(--green);border-color:var(--green);color:#0d1a12;}
+  .reset-btn{display:block;margin:1rem auto 2rem;background:none;border:1px solid var(--red);color:var(--red);padding:0.5rem 1.4rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.78rem;}
+  .chapter-banner{background:linear-gradient(135deg,#2e1f3d 0%,#1e212c 100%);border:1px solid var(--accent3);border-radius:14px;padding:1.2rem 1.6rem;margin-bottom:2rem;text-align:center;font-size:0.95rem;}
+  .chapter-banner b{color:var(--accent3);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-title">🧰 Formes bilinéaires & espaces euclidiens</div>
+  <div class="page-sub">Dernier chapitre d'algèbre — après ça, direction l'analyse</div>
+
+  <div class="chapter-banner">🎉 Ce chapitre boucle <b>toute l'algèbre du programme écrit</b> : groupes, anneaux, réduction, et maintenant ceci.</div>
+
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">0 / 0 éléments cochés</div>
+
+  <div class="how-to-box">
+    <span class="label">Le fil rouge</span>
+    Une forme quadratique, c'est une façon de "mesurer" les vecteurs. La question centrale : peut-on choisir de bonnes coordonnées pour que cette mesure devienne une simple somme de carrés ? Réponse : toujours oui (Sylvester), et l'<mark>algorithme de Gauss</mark> te donne comment faire concrètement.
+  </div>
+
+  <h2 class="section-title">🧰 Boîte à outils</h2>
+  <table class="signal-table">
+    <tr><th>Si l'énoncé dit / contient...</th><th>Alors pense à...</th></tr>
+    <tr><td class="signal-txt">"forme quadratique", "q(x)"</td><td class="tool-name">Outil 1 — forme bilinéaire & polarisation</td></tr>
+    <tr><td class="signal-txt">"décomposer en carrés", "réduire q"</td><td class="tool-name">Outil 2 — algorithme de Gauss</td></tr>
+    <tr><td class="signal-txt">"signature de q"</td><td class="tool-name">Outil 3 — loi d'inertie de Sylvester</td></tr>
+    <tr><td class="signal-txt">"produit scalaire", "norme", inégalité à démontrer</td><td class="tool-name">Outil 4 — Cauchy-Schwarz</td></tr>
+    <tr><td class="signal-txt">"orthonormaliser", "base orthonormée"</td><td class="tool-name">Outil 5 — Gram-Schmidt</td></tr>
+    <tr><td class="signal-txt">"matrice symétrique réelle"</td><td class="tool-name">Outil 6 — théorème spectral</td></tr>
+    <tr><td class="signal-txt">"isométrie", "groupe orthogonal O(E)"</td><td class="tool-name">Outil 7 — isométries</td></tr>
+  </table>
+
+  <div class="tool-card" data-id="f1">
+    <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Forme bilinéaire symétrique & polarisation</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te donne $q(x)$ et qu'il faut retrouver la forme bilinéaire $b$ associée (par exemple pour trouver la matrice).</p></div>
+    <div class="formula-box">$$b(x,y) = \frac{1}{2}\big(q(x+y)-q(x)-q(y)\big)$$</div>
+    <div class="mini-demo"><span class="lbl">À retenir</span>$q(x)=b(x,x)$. La formule de polarisation ci-dessus permet de reconstruire $b$ à partir de $q$ seule — utile car $q$ est souvent ce qui est donné dans l'énoncé.</div>
+  </div>
+
+  <div class="tool-card" data-id="f2">
+    <div class="tool-header"><div><span class="tool-num">Outil 02 · outil de calcul le plus utile</span><div class="tool-title">Algorithme de Gauss</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de décomposer une forme quadratique en somme/différence de carrés — LA compétence pratique de ce chapitre.</p></div>
+    <div class="mini-demo"><span class="lbl">Méthode, étape par étape</span>
+      1) S'il y a un terme carré $x_1^2$ : regrouper tous les termes en $x_1$ (par "complétion du carré", comme au collège), isoler $c(x_1 + \ldots)^2$, puis recommencer sur ce qui reste (qui ne contient plus $x_1$).<br>
+      2) S'il n'y a aucun terme carré mais un terme croisé $x_1x_2$ : poser $x_1=u+v$, $x_2=u-v$ pour faire apparaître des carrés ($x_1x_2=u^2-v^2$), puis revenir au cas 1.
+    </div>
+    <div class="example-box"><span class="lbl">Exemple</span>$q(x,y)=x^2+4xy+3y^2 = (x+2y)^2-4y^2+3y^2=(x+2y)^2-y^2$. Deux carrés, un + et un −.</div>
+  </div>
+
+  <div class="tool-card" data-id="f3">
+    <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Loi d'inertie de Sylvester — signature</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande la signature $(p,q)$ d'une forme quadratique.</p></div>
+    <div class="mini-demo"><span class="lbl">Définition et théorème</span>Après réduction de Gauss, $q=\sum_{i=1}^p c_i^2 - \sum_{j=1}^{q} d_j^2$. La paire $(p,q)$ (nombre de + et de −) est <b>indépendante de la décomposition choisie</b> — c'est ça, le contenu du théorème de Sylvester.</div>
+    <div class="example-box"><span class="lbl">Exemple (suite du précédent)</span>$q(x,y)=(x+2y)^2-y^2$ : signature $(1,1)$.</div>
+    <div class="mini-demo"><span class="lbl">Cas particulier utile</span>$q$ définie positive $\iff$ signature $(n,0)$ $\iff$ toutes les valeurs propres de la matrice associée sont $>0$.</div>
+  </div>
+
+  <div class="tool-card" data-id="f4">
+    <div class="tool-header"><div><span class="tool-num">Outil 04</span><div class="tool-title">Inégalité de Cauchy-Schwarz</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de prouver une inégalité impliquant un produit scalaire ou une somme de produits (souvent déguisée, ex : intégrales, sommes).</p></div>
+    <div class="formula-box">$$|\langle x,y\rangle| \leq \|x\| \cdot \|y\|$$</div>
+    <div class="mini-demo"><span class="lbl">Démonstration classique (à savoir refaire)</span>Considérer $P(t)=\|x+ty\|^2 = \|x\|^2+2t\langle x,y\rangle+t^2\|y\|^2 \geq 0$ pour tout $t$. Un polynôme du second degré toujours positif a un discriminant $\leq 0$ : $4\langle x,y\rangle^2-4\|x\|^2\|y\|^2\leq0$.</div>
+    <div class="example-box"><span class="lbl">Cas d'égalité</span>Égalité $\iff$ $x,y$ colinéaires (le discriminant est nul exactement quand $P$ a une racine double, i.e. $x+ty=0$ pour un $t$).</div>
+  </div>
+
+  <div class="tool-card" data-id="f5">
+    <div class="tool-header"><div><span class="tool-num">Outil 05</span><div class="tool-title">Procédé de Gram-Schmidt</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de construire une base orthonormée à partir d'une base quelconque.</p></div>
+    <div class="mini-demo"><span class="lbl">Idée de la méthode</span>Construire les vecteurs un par un : $e_1 = v_1/\|v_1\|$. Puis pour chaque nouveau $v_k$, soustraire ses projections sur les $e_i$ déjà construits, avant de normaliser : $$u_k = v_k - \sum_{i<k}\langle v_k,e_i\rangle e_i, \qquad e_k=u_k/\|u_k\|$$</div>
+  </div>
+
+  <div class="tool-card" data-id="f6">
+    <div class="tool-header"><div><span class="tool-num">Outil 06 · résultat central, très cité</span><div class="tool-title">Théorème spectral</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te parle d'une <mark>matrice symétrique réelle</mark> — un des théorèmes les plus rentables du programme.</p></div>
+    <div class="mini-demo"><span class="lbl">Énoncé</span>Toute matrice symétrique réelle est diagonalisable, <b>dans une base orthonormée</b>. C'est plus fort que le critère habituel de diagonalisabilité : la symétrie garantit à la fois diagonalisabilité ET orthogonalité des vecteurs propres.</div>
+    <div class="example-box"><span class="lbl">Application directe</span>Toute forme quadratique réelle peut être diagonalisée dans une base orthonormée (en diagonalisant sa matrice associée, qui est toujours symétrique) — pont direct avec le chapitre "réduction".</div>
+  </div>
+
+  <div class="tool-card" data-id="f7">
+    <div class="tool-header"><div><span class="tool-num">Outil 07</span><div class="tool-title">Isométries et groupe orthogonal</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on parle d'endomorphismes conservant le produit scalaire, ou de $O(E)$.</p></div>
+    <div class="mini-demo"><span class="lbl">Caractérisation pratique</span>$u\in O(E) \iff$ $u$ conserve la norme $\iff$ la matrice de $u$ dans une base orthonormée vérifie $A^TA=I$.</div>
+    <div class="example-box"><span class="lbl">Classification en dimension 2</span>$O(2)$ = rotations (déterminant $+1$) et réflexions (déterminant $-1$) — un grand classique de leçon d'oral.</div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>
+
+  <div class="exo-card" data-id="fe1">
+    <div class="exo-header"><span class="exo-title">Exercice 1</span><span class="diff-tag diff-facile">Facile</span></div>
+    <div class="exo-statement">Réduire par la méthode de Gauss la forme quadratique $q(x,y,z)=x^2+2xy+2xz$, et donner sa signature.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outil 2</span>
+      <div class="step">On regroupe tous les termes en $x$ : $q=x^2+2x(y+z) = (x+y+z)^2-(y+z)^2$.</div>
+      <div class="step">Il reste $-(y+z)^2$, qui est déjà un carré (avec un signe −).</div>
+      <div class="step">$q(x,y,z)=(x+y+z)^2-(y+z)^2$. Signature $(1,1)$ — et remarque que $z$ seul n'apparaît dans aucun carré "pur" : la forme est dégénérée (rang 2 sur 3 variables).</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="fe2">
+    <div class="exo-header"><span class="exo-title">Exercice 2</span><span class="diff-tag diff-moyen">Moyen</span></div>
+    <div class="exo-statement">Appliquer Gram-Schmidt à la base $(v_1,v_2)=((1,1),(0,1))$ de $\mathbb{R}^2$ muni du produit scalaire usuel.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outil 5</span>
+      <div class="step">$\|v_1\|=\sqrt2$, donc $e_1 = (1/\sqrt2, 1/\sqrt2)$.</div>
+      <div class="step">$\langle v_2,e_1\rangle = 0\cdot\frac{1}{\sqrt2}+1\cdot\frac{1}{\sqrt2}=\frac{1}{\sqrt2}$.</div>
+      <div class="step">$u_2 = v_2 - \frac{1}{\sqrt2}e_1 = (0,1)-(1/2,1/2)=(-1/2,1/2)$.</div>
+      <div class="step">$\|u_2\|=\frac{1}{\sqrt2}$, donc $e_2=(-1/\sqrt2,1/\sqrt2)$. Base orthonormée obtenue : $(e_1,e_2)$. $\blacksquare$</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="fe3">
+    <div class="exo-header"><span class="exo-title">Exercice 3 — type oral</span><span class="diff-tag diff-dur">Plus difficile</span></div>
+    <div class="exo-statement">Soit $A$ une matrice symétrique réelle telle que $A^2=A$ (un projecteur symétrique). Montrer que les valeurs propres de $A$ sont seulement $0$ et $1$, et que $A$ est diagonalisable dans une base orthonormée.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outils 6 + boîte réduction (outil 2)</span>
+      <div class="step">$A^2=A$ donne $A^2-A=0$, donc $P=X^2-X=X(X-1)$ annule $A$. $P$ est scindé à racines simples ($0$ et $1$) : par le critère 2 de diagonalisabilité (chapitre précédent), $A$ est diagonalisable, et ses valeurs propres sont parmi $\{0,1\}$.</div>
+      <div class="step">$A$ étant de plus symétrique réelle, le théorème spectral (outil 6) garantit que cette diagonalisation se fait dans une base <b>orthonormée</b> — pas besoin de le redémontrer, c'est automatique dès qu'on a "symétrique réelle".</div>
+      <div class="step">$\blacksquare$ Cet exercice montre bien comment les deux chapitres (réduction + formes bilinéaires) se combinent naturellement à l'oral.</div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetProgress()">↺ Réinitialiser</button>
+</div>
+<script>
+const STORAGE_KEY = 'agreg_toolbox_bilineaires';
+function loadProgress(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch{return{};}}
+function saveProgress(d){localStorage.setItem(STORAGE_KEY,JSON.stringify(d));}
+function applyStoredProgress(){
+  const data=loadProgress();
+  document.querySelectorAll('.tool-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('memo');const chk=c.querySelector('.memo-check');chk.classList.add('checked');chk.textContent='✓ Mémorisé';}});
+  document.querySelectorAll('.exo-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('done');c.querySelector('.check-box').classList.add('checked');}});
+  updateProgressBar();
+}
+function toggleMemo(el){const c=el.closest('.tool-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('memo',data[id]);el.classList.toggle('checked',data[id]);el.textContent=data[id]?'✓ Mémorisé':'☐ Mémorisé';updateProgressBar();}
+function toggleExoCheck(el){const c=el.closest('.exo-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('done',data[id]);el.classList.toggle('checked',data[id]);updateProgressBar();}
+function updateProgressBar(){const total=document.querySelectorAll('.tool-card,.exo-card').length;const done=document.querySelectorAll('.tool-card.memo,.exo-card.done').length;const pct=total?Math.round((done/total)*100):0;document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${done} / ${total} éléments cochés (${pct}%)`;}
+function resetProgress(){if(confirm("Réinitialiser toute la progression ?")){localStorage.removeItem(STORAGE_KEY);document.querySelectorAll('.memo,.done').forEach(el=>el.classList.remove('memo','done'));document.querySelectorAll('.checked').forEach(el=>{el.classList.remove('checked');if(el.classList.contains('memo-check'))el.textContent='☐ Mémorisé';});updateProgressBar();}}
+function toggleCorrection(btn){const corr=btn.closest('.exo-card').querySelector('.correction');corr.classList.toggle('show');btn.textContent=corr.classList.contains('show')?"Masquer la correction":"Voir la correction";}
+applyStoredProgress();
+document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});});
+if(document.readyState!=='loading'){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});}
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boîte à outils — Topologie & espaces métriques</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+  :root { --bg:#14161d;--surface:#1e212c;--surface2:#262a38;--border:#383e52;--accent:#f0c375;--accent2:#8fcbe8;--accent3:#b592e8;--green:#6fd19c;--red:#f08787;--text:#eef1f7;--text-dim:#9aa5bd; }
+  *{box-sizing:border-box;margin:0;padding:0;} body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',sans-serif;padding:1.5rem;line-height:1.6;}
+  .wrap{max-width:980px;margin:0 auto;}
+  .page-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--accent2);text-align:center;margin-bottom:0.2rem;}
+  .page-sub{text-align:center;color:var(--text-dim);font-size:0.93rem;margin-bottom:1.5rem;}
+  .progress-bar-wrap{background:var(--surface2);border-radius:999px;height:10px;margin-bottom:0.4rem;overflow:hidden;border:1px solid var(--border);}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--accent2),var(--green));width:0%;transition:width 0.4s;}
+  .progress-label{text-align:center;font-size:0.78rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:1.8rem;}
+  h2.section-title{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--accent2);border-bottom:2px solid var(--border);padding-bottom:0.6rem;margin-bottom:1.2rem;}
+  .how-to-box{background:var(--surface);border:1px solid var(--accent);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.8rem;font-size:0.92rem;}
+  .how-to-box .label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .signal-table{width:100%;border-collapse:collapse;margin-bottom:2.2rem;background:var(--surface);border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+  .signal-table th{background:var(--surface2);color:var(--accent2);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;padding:0.7rem 0.9rem;text-align:left;font-family:'JetBrains Mono',monospace;}
+  .signal-table td{padding:0.7rem 0.9rem;border-top:1px solid var(--border);font-size:0.88rem;vertical-align:top;}
+  .signal-table tr:hover td{background:var(--surface2);}
+  .signal-table .signal-txt{color:var(--accent);font-style:italic;}
+  .signal-table .tool-name{color:var(--accent2);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:0.82rem;}
+  .tool-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;margin-bottom:1.4rem;position:relative;overflow:hidden;}
+  .tool-card.memo{border-color:var(--green);}
+  .tool-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent2),var(--accent3),var(--accent));}
+  .tool-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.9rem;}
+  .tool-num{font-family:'JetBrains Mono',monospace;color:var(--text-dim);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;}
+  .tool-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--accent2);margin-top:0.2rem;}
+  .memo-check{display:flex;align-items:center;gap:0.4rem;cursor:pointer;user-select:none;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:0.3rem 0.75rem;font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text-dim);white-space:nowrap;}
+  .memo-check.checked{background:var(--green);color:#0d1a12;border-color:var(--green);}
+  .signal-box{background:linear-gradient(135deg,#1a2e3d 0%,#1e212c 100%);border:1px solid var(--accent2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;}
+  .signal-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.3rem;}
+  .signal-box p{font-size:0.9rem;}
+  .mini-demo{background:var(--surface2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;font-size:0.88rem;}
+  .mini-demo .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--accent3);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .example-box{background:#16211a;border:1px solid var(--green);border-radius:10px;padding:0.85rem 1.1rem;font-size:0.88rem;}
+  .example-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .formula-box{background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent2);margin-bottom:0.9rem;}
+  mark{background:rgba(143,203,232,0.2);color:var(--accent2);padding:0.05em 0.3em;border-radius:4px;font-weight:600;}
+  .exo-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.2rem;}
+  .exo-card.done{border-color:var(--green);}
+  .exo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;gap:1rem;}
+  .exo-title{font-weight:700;color:var(--accent2);font-size:1rem;}
+  .diff-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:0.2rem 0.55rem;border-radius:999px;white-space:nowrap;}
+  .diff-facile{background:#16331f;color:var(--green);border:1px solid #245234;}
+  .diff-moyen{background:#332a16;color:var(--accent);border:1px solid #524224;}
+  .diff-dur{background:#331616;color:var(--red);border:1px solid #522424;}
+  .exo-statement{font-size:0.94rem;margin-bottom:0.9rem;}
+  .toggle-btn{background:var(--surface2);border:1px solid var(--accent3);color:var(--accent3);padding:0.45rem 1.1rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.76rem;}
+  .toggle-btn:hover{background:var(--accent3);color:#14161d;}
+  .correction{display:none;margin-top:0.9rem;padding-top:0.9rem;border-top:1px dashed var(--border);}
+  .correction.show{display:block;}
+  .correction-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;display:block;}
+  .correction .step{margin-bottom:0.55rem;padding-left:0.7rem;border-left:2px solid var(--border);font-size:0.9rem;}
+  .exo-footer{display:flex;justify-content:space-between;align-items:center;margin-top:0.9rem;}
+  .check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--accent3);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;user-select:none;background:var(--surface2);}
+  .check-box.checked{background:var(--green);border-color:var(--green);color:#0d1a12;}
+  .reset-btn{display:block;margin:1rem auto 2rem;background:none;border:1px solid var(--red);color:var(--red);padding:0.5rem 1.4rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.78rem;}
+  .chapter-banner{background:linear-gradient(135deg,#1a2e3d 0%,#1e212c 100%);border:1px solid var(--accent2);border-radius:14px;padding:1.1rem 1.5rem;margin-bottom:1.8rem;text-align:center;font-size:0.93rem;}
+  .chapter-banner b{color:var(--accent2);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-title">🧰 Topologie & espaces métriques</div>
+  <div class="page-sub">Premier chapitre d'analyse — les fondations de tout le reste</div>
+
+  <div class="chapter-banner">🆕 Nouveau grand bloc : <b>l'analyse</b>. Le vocabulaire change (continu, compact, complet) mais la logique boîte à outils reste identique.</div>
+
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">0 / 0 éléments cochés</div>
+
+  <div class="how-to-box">
+    <span class="label">Le fil rouge</span>
+    En dimension finie (R^n), presque tout est automatique (fermé borné = compact). C'est en <mark>dimension infinie</mark> (espaces de fonctions) que les choses se compliquent et qu'il faut redoubler de rigueur — c'est là que Lebesgue et Hilbert vont vivre.
+  </div>
+
+  <h2 class="section-title">🧰 Boîte à outils</h2>
+  <table class="signal-table">
+    <tr><th>Si l'énoncé dit / contient...</th><th>Alors pense à...</th></tr>
+    <tr><td class="signal-txt">"espace complet", "suite de Cauchy"</td><td class="tool-name">Outil 1 — complétude</td></tr>
+    <tr><td class="signal-txt">"f k-lipschitzienne", "point fixe"</td><td class="tool-name">Outil 2 — théorème de Banach</td></tr>
+    <tr><td class="signal-txt">"K compact"</td><td class="tool-name">Outil 3 — compacité</td></tr>
+    <tr><td class="signal-txt">"fermé borné" en dimension finie</td><td class="tool-name">Outil 4 — Heine-Borel (dim finie SEULEMENT)</td></tr>
+    <tr><td class="signal-txt">"f continue sur un compact"</td><td class="tool-name">Outil 5 — continuité uniforme (Heine)</td></tr>
+    <tr><td class="signal-txt">"connexe", "théorème des valeurs intermédiaires"</td><td class="tool-name">Outil 6 — connexité</td></tr>
+  </table>
+
+  <div class="tool-card" data-id="t1">
+    <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Complétude</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te parle d'espace complet ou de suite de Cauchy.</p></div>
+    <div class="mini-demo"><span class="lbl">Définitions</span>Une suite $(x_n)$ est de <b>Cauchy</b> si $\forall\varepsilon,\exists N, \forall p,q\geq N, d(x_p,x_q)<\varepsilon$ (les termes se rapprochent entre eux, pas forcément d'une limite connue). Un espace est <b>complet</b> si toute suite de Cauchy y converge.</div>
+    <div class="example-box"><span class="lbl">Exemples à connaître</span>$\mathbb{R}^n$ est complet. $\mathbb{Q}$ ne l'est PAS ($\sqrt2$ est limite d'une suite de Cauchy de rationnels, mais $\sqrt2\notin\mathbb{Q}$). $C([a,b])$ muni de la norme sup EST complet.</div>
+  </div>
+
+  <div class="tool-card" data-id="t2">
+    <div class="tool-header"><div><span class="tool-num">Outil 02 · très utilisé</span><div class="tool-title">Théorème du point fixe de Banach</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de montrer l'existence et l'unicité d'une solution à une équation $f(x)=x$, souvent déguisée en équation différentielle ou intégrale.</p></div>
+    <div class="mini-demo"><span class="lbl">Énoncé</span>Si $(E,d)$ complet et $f:E\to E$ est $k$-lipschitzienne avec $k<1$ (contractante), alors $f$ admet un <b>unique</b> point fixe, et $x_{n+1}=f(x_n)$ converge vers ce point fixe pour n'importe quel point de départ.</div>
+    <div class="example-box"><span class="lbl">Application classique à connaître</span>Théorème de Cauchy-Lipschitz (existence/unicité des solutions d'équations différentielles) : on transforme l'équation en un problème de point fixe sur un espace de fonctions complet.</div>
+  </div>
+
+  <div class="tool-card" data-id="t3">
+    <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Compacité — définition</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te parle d'un ensemble compact.</p></div>
+    <div class="mini-demo"><span class="lbl">Deux caractérisations équivalentes (espaces métriques)</span>1) De tout recouvrement par des ouverts, on peut extraire un sous-recouvrement fini. 2) (Bolzano-Weierstrass) Toute suite de $K$ admet une sous-suite convergente <b>dans K</b>.</div>
+    <div class="mini-demo"><span class="lbl">Laquelle utiliser</span>En pratique, la caractérisation par les suites (2) est presque toujours plus facile à manipuler dans les exercices.</div>
+  </div>
+
+  <div class="tool-card" data-id="t4">
+    <div class="tool-header"><div><span class="tool-num">Outil 04 · piège classique</span><div class="tool-title">Heine-Borel — SEULEMENT en dimension finie</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu es tenté·e d'écrire "fermé borné donc compact" — <mark>vérifie d'abord que tu es en dimension finie !</mark></p></div>
+    <div class="mini-demo"><span class="lbl">Énoncé exact</span>Dans $\mathbb{R}^n$ (dimension finie) : $K$ compact $\iff K$ fermé et borné.</div>
+    <div class="example-box" style="border-color:var(--red);">
+      <span class="lbl" style="color:var(--red)">⚠ Piège classique d'agrégation</span>
+      En dimension infinie, c'est FAUX : la boule unité fermée d'un espace de fonctions n'est <b>jamais</b> compacte. Un candidat qui écrit "fermé borné donc compact" dans un espace de fonctions perd des points immédiatement.
+    </div>
+  </div>
+
+  <div class="tool-card" data-id="t5">
+    <div class="tool-header"><div><span class="tool-num">Outil 05</span><div class="tool-title">Théorème de Heine — continuité uniforme</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de montrer qu'une fonction est <mark>uniformément</mark> continue, et qu'elle est continue sur un compact.</p></div>
+    <div class="mini-demo"><span class="lbl">Énoncé</span>Une fonction continue sur un compact est automatiquement uniformément continue.</div>
+    <div class="example-box"><span class="lbl">Pourquoi c'est utile</span>La continuité uniforme est souvent difficile à établir directement ; sur un compact, elle est gratuite dès qu'on a la continuité simple.</div>
+  </div>
+
+  <div class="tool-card" data-id="t6">
+    <div class="tool-header"><div><span class="tool-num">Outil 06</span><div class="tool-title">Connexité</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on parle de connexité, ou qu'on veut démontrer une version du théorème des valeurs intermédiaires.</p></div>
+    <div class="mini-demo"><span class="lbl">Définition et résultat clé</span>$E$ est connexe s'il ne peut pas être partitionné en deux ouverts non vides disjoints. <b>L'image d'un connexe par une fonction continue est connexe</b> — c'est ce résultat qui généralise le TVI (les connexes de $\mathbb{R}$ sont exactement les intervalles).</div>
+    <div class="example-box"><span class="lbl">Connexe par arcs</span>Plus fort et souvent plus facile à vérifier : $E$ est connexe par arcs (tout couple de points relié par un chemin continu) $\Rightarrow$ connexe (mais pas l'inverse en général).</div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>
+
+  <div class="exo-card" data-id="te1">
+    <div class="exo-header"><span class="exo-title">Exercice 1</span><span class="diff-tag diff-facile">Facile</span></div>
+    <div class="exo-statement">Montrer que $\mathbb{Q}$ n'est pas complet, en exhibant une suite de Cauchy de rationnels dont la limite n'est pas dans $\mathbb{Q}$.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction</span>
+      <div class="step">Prenons $x_n$ = troncature de $\sqrt2$ à $n$ décimales (ex : $x_1=1.4$, $x_2=1.41$, $x_3=1.414$...). Chaque $x_n\in\mathbb{Q}$.</div>
+      <div class="step">$(x_n)$ est de Cauchy : $|x_p-x_q|\leq10^{-\min(p,q)}\to0$.</div>
+      <div class="step">Dans $\mathbb{R}$, $x_n\to\sqrt2$. Mais $\sqrt2\notin\mathbb{Q}$ (résultat classique). Donc $(x_n)$ est de Cauchy dans $\mathbb{Q}$ mais ne converge pas dans $\mathbb{Q}$ : $\mathbb{Q}$ n'est pas complet. $\blacksquare$</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="te2">
+    <div class="exo-header"><span class="exo-title">Exercice 2</span><span class="diff-tag diff-moyen">Moyen</span></div>
+    <div class="exo-statement">Soit $f:[0,1]\to[0,1]$ continue avec $|f(x)-f(y)|\leq\frac{1}{2}|x-y|$ pour tous $x,y$. Montrer que $f$ admet un unique point fixe.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outil 2 directement</span>
+      <div class="step">$[0,1]$ muni de la distance usuelle est complet (fermé borné de $\mathbb{R}$, dimension finie).</div>
+      <div class="step">$f$ est $\frac{1}{2}$-lipschitzienne avec $\frac{1}{2}<1$ : c'est une contraction.</div>
+      <div class="step">Par le théorème du point fixe de Banach (outil 2), $f$ admet un unique point fixe dans $[0,1]$. $\blacksquare$ — application directe, aucun calcul nécessaire.</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="te3">
+    <div class="exo-header"><span class="exo-title">Exercice 3 — piège classique</span><span class="diff-tag diff-dur">Plus difficile</span></div>
+    <div class="exo-statement">La boule unité fermée de $C([0,1])$ (fonctions continues, norme sup) est-elle compacte ? Justifier en exhibant une suite sans sous-suite convergente.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outil 4, le piège en action</span>
+      <div class="step">Non, elle n'est PAS compacte, malgré le réflexe "fermé borné" — car on est en dimension infinie.</div>
+      <div class="step">Contre-exemple : $f_n(x) = x^n$. Chaque $f_n \in$ boule unité ($\|f_n\|_\infty=1$).</div>
+      <div class="step">Cette suite converge simplement vers la fonction discontinue (0 sur $[0,1[$, 1 en 1), mais PAS uniformément — donc aucune sous-suite ne peut converger uniformément vers une fonction continue (la limite simple n'est même pas continue).</div>
+      <div class="step">Aucune sous-suite convergente dans $C([0,1])$ : la boule unité n'est pas compacte. $\blacksquare$ — exactement l'exemple à ressortir si le jury pose ce piège.</div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetProgress()">↺ Réinitialiser</button>
+</div>
+<script>
+const STORAGE_KEY = 'agreg_toolbox_topologie';
+function loadProgress(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch{return{};}}
+function saveProgress(d){localStorage.setItem(STORAGE_KEY,JSON.stringify(d));}
+function applyStoredProgress(){
+  const data=loadProgress();
+  document.querySelectorAll('.tool-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('memo');const chk=c.querySelector('.memo-check');chk.classList.add('checked');chk.textContent='✓ Mémorisé';}});
+  document.querySelectorAll('.exo-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('done');c.querySelector('.check-box').classList.add('checked');}});
+  updateProgressBar();
+}
+function toggleMemo(el){const c=el.closest('.tool-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('memo',data[id]);el.classList.toggle('checked',data[id]);el.textContent=data[id]?'✓ Mémorisé':'☐ Mémorisé';updateProgressBar();}
+function toggleExoCheck(el){const c=el.closest('.exo-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('done',data[id]);el.classList.toggle('checked',data[id]);updateProgressBar();}
+function updateProgressBar(){const total=document.querySelectorAll('.tool-card,.exo-card').length;const done=document.querySelectorAll('.tool-card.memo,.exo-card.done').length;const pct=total?Math.round((done/total)*100):0;document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${done} / ${total} éléments cochés (${pct}%)`;}
+function resetProgress(){if(confirm("Réinitialiser toute la progression ?")){localStorage.removeItem(STORAGE_KEY);document.querySelectorAll('.memo,.done').forEach(el=>el.classList.remove('memo','done'));document.querySelectorAll('.checked').forEach(el=>{el.classList.remove('checked');if(el.classList.contains('memo-check'))el.textContent='☐ Mémorisé';});updateProgressBar();}}
+function toggleCorrection(btn){const corr=btn.closest('.exo-card').querySelector('.correction');corr.classList.toggle('show');btn.textContent=corr.classList.contains('show')?"Masquer la correction":"Voir la correction";}
+applyStoredProgress();
+document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});});
+if(document.readyState!=='loading'){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});}
+</script>
+</body>
+</html>

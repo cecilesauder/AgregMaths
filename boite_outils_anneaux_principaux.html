@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boîte à outils — Anneaux principaux & extensions de corps</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+  :root { --bg:#14161d;--surface:#1e212c;--surface2:#262a38;--border:#383e52;--accent:#f0c375;--accent2:#8fcbe8;--accent3:#b592e8;--green:#6fd19c;--red:#f08787;--text:#eef1f7;--text-dim:#9aa5bd; }
+  *{box-sizing:border-box;margin:0;padding:0;} body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',sans-serif;padding:1.5rem;line-height:1.6;}
+  .wrap{max-width:980px;margin:0 auto;}
+  .page-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--accent);text-align:center;margin-bottom:0.2rem;}
+  .page-sub{text-align:center;color:var(--text-dim);font-size:0.93rem;margin-bottom:1.5rem;}
+  .progress-bar-wrap{background:var(--surface2);border-radius:999px;height:10px;margin-bottom:0.4rem;overflow:hidden;border:1px solid var(--border);}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--accent2),var(--green));width:0%;transition:width 0.4s;}
+  .progress-label{text-align:center;font-size:0.78rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:1.8rem;}
+  h2.section-title{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--accent);border-bottom:2px solid var(--border);padding-bottom:0.6rem;margin-bottom:1.2rem;}
+  .how-to-box{background:var(--surface);border:1px solid var(--accent2);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.8rem;font-size:0.92rem;}
+  .how-to-box .label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .signal-table{width:100%;border-collapse:collapse;margin-bottom:2.2rem;background:var(--surface);border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+  .signal-table th{background:var(--surface2);color:var(--accent);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;padding:0.7rem 0.9rem;text-align:left;font-family:'JetBrains Mono',monospace;}
+  .signal-table td{padding:0.7rem 0.9rem;border-top:1px solid var(--border);font-size:0.88rem;vertical-align:top;}
+  .signal-table tr:hover td{background:var(--surface2);}
+  .signal-table .signal-txt{color:var(--accent2);font-style:italic;}
+  .signal-table .tool-name{color:var(--accent);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:0.82rem;}
+  .tool-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;margin-bottom:1.4rem;position:relative;overflow:hidden;}
+  .tool-card.memo{border-color:var(--green);}
+  .tool-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent3),var(--accent2),var(--accent));}
+  .tool-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.9rem;}
+  .tool-num{font-family:'JetBrains Mono',monospace;color:var(--text-dim);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;}
+  .tool-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--accent);margin-top:0.2rem;}
+  .memo-check{display:flex;align-items:center;gap:0.4rem;cursor:pointer;user-select:none;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:0.3rem 0.75rem;font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text-dim);white-space:nowrap;}
+  .memo-check.checked{background:var(--green);color:#0d1a12;border-color:var(--green);}
+  .signal-box{background:linear-gradient(135deg,#2e2617 0%,#1e212c 100%);border:1px solid var(--accent);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;}
+  .signal-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.3rem;}
+  .signal-box p{font-size:0.9rem;}
+  .mini-demo{background:var(--surface2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;font-size:0.88rem;}
+  .mini-demo .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .example-box{background:#16211a;border:1px solid var(--green);border-radius:10px;padding:0.85rem 1.1rem;font-size:0.88rem;}
+  .example-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .formula-box{background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent);margin-bottom:0.9rem;}
+  mark{background:rgba(240,195,117,0.25);color:var(--accent);padding:0.05em 0.3em;border-radius:4px;font-weight:600;}
+  .exo-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.2rem;}
+  .exo-card.done{border-color:var(--green);}
+  .exo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;gap:1rem;}
+  .exo-title{font-weight:700;color:var(--accent);font-size:1rem;}
+  .diff-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:0.2rem 0.55rem;border-radius:999px;white-space:nowrap;}
+  .diff-facile{background:#16331f;color:var(--green);border:1px solid #245234;}
+  .diff-moyen{background:#332a16;color:var(--accent);border:1px solid #524224;}
+  .diff-dur{background:#331616;color:var(--red);border:1px solid #522424;}
+  .exo-statement{font-size:0.94rem;margin-bottom:0.9rem;}
+  .toggle-btn{background:var(--surface2);border:1px solid var(--accent3);color:var(--accent3);padding:0.45rem 1.1rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.76rem;}
+  .toggle-btn:hover{background:var(--accent3);color:#14161d;}
+  .correction{display:none;margin-top:0.9rem;padding-top:0.9rem;border-top:1px dashed var(--border);}
+  .correction.show{display:block;}
+  .correction-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;display:block;}
+  .correction .step{margin-bottom:0.55rem;padding-left:0.7rem;border-left:2px solid var(--border);font-size:0.9rem;}
+  .exo-footer{display:flex;justify-content:space-between;align-items:center;margin-top:0.9rem;}
+  .check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--accent3);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;user-select:none;background:var(--surface2);}
+  .check-box.checked{background:var(--green);border-color:var(--green);color:#0d1a12;}
+  .reset-btn{display:block;margin:1rem auto 2rem;background:none;border:1px solid var(--red);color:var(--red);padding:0.5rem 1.4rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.78rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-title">🧰 Anneaux principaux & extensions de corps</div>
+  <div class="page-sub">Dernier morceau du chapitre anneaux — beaucoup de contenu déjà vu, juste reformulé</div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">0 / 0 éléments cochés</div>
+
+  <div class="how-to-box">
+    <span class="label">Bonne nouvelle avant de commencer</span>
+    Tu as déjà tout le matériau : Bézout (outil 2 des polynômes), pgcd, division euclidienne. Cette section ne fait que <mark>nommer proprement</mark> une structure que tu manipules déjà sans le savoir.
+  </div>
+
+  <h2 class="section-title">🧰 Boîte à outils</h2>
+  <table class="signal-table">
+    <tr><th>Si l'énoncé dit / contient...</th><th>Alors pense à...</th></tr>
+    <tr><td class="signal-txt">"anneau principal"</td><td class="tool-name">Outil 1 — définition + exemples</td></tr>
+    <tr><td class="signal-txt">"tout idéal de K[X] est..."</td><td class="tool-name">Outil 2 — K[X] est principal</td></tr>
+    <tr><td class="signal-txt">"anneau factoriel", "décomposition en irréductibles"</td><td class="tool-name">Outil 3 — factorialité</td></tr>
+    <tr><td class="signal-txt">"extension de corps", "L/K", "[L:K]"</td><td class="tool-name">Outil 4 — degré d'une extension</td></tr>
+    <tr><td class="signal-txt">"élément algébrique", "polynôme minimal"</td><td class="tool-name">Outil 5 — élément algébrique</td></tr>
+    <tr><td class="signal-txt">"K(a) ≅ K[X]/(polynôme minimal)"</td><td class="tool-name">Outil 6 — construction K(a)</td></tr>
+  </table>
+
+  <div class="tool-card" data-id="s1">
+    <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Anneau principal — définition</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu vois "anneau principal" ou qu'on te demande de le vérifier.</p></div>
+    <div class="mini-demo"><span class="lbl">Définition</span>Un anneau intègre A est principal si <b>tout idéal de A est engendré par un seul élément</b> : $I = (a) = \{ax : x\in A\}$.</div>
+    <div class="example-box"><span class="lbl">Les deux exemples à connaître par cœur</span>$\mathbb{Z}$ est principal (tout idéal est $n\mathbb{Z}$). $K[X]$ (K corps) est principal — c'est l'outil 2 juste après.</div>
+  </div>
+
+  <div class="tool-card" data-id="s2">
+    <div class="tool-header"><div><span class="tool-num">Outil 02 · résultat central</span><div class="tool-title">K[X] est principal</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Ce résultat sert de base à presque tout le reste (Bézout, pgcd bien défini, etc. pour les polynômes).</p></div>
+    <div class="mini-demo"><span class="lbl">Démonstration (via la division euclidienne, outil 1 des polynômes)</span>Soit $I$ un idéal non nul de $K[X]$. Prends $P\in I$ non nul de degré minimal. Pour tout $Q\in I$, la division euclidienne donne $Q=BP+R$ avec $\deg R<\deg P$. Comme $R=Q-BP\in I$ (idéal) et $\deg R<\deg P$ minimal, on a forcément $R=0$. Donc $Q\in(P)$ : $I=(P)$.</div>
+    <div class="example-box"><span class="lbl">Ce que ça débloque</span>C'est exactement pourquoi Bézout marche pour les polynômes (outil 2 de la fiche précédente) — même démonstration que pour $\mathbb{Z}$, juste "taille" remplacée par "degré".</div>
+  </div>
+
+  <div class="tool-card" data-id="s3">
+    <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Anneau factoriel</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on parle de décomposition en facteurs irréductibles, unique à l'ordre et aux inversibles près.</p></div>
+    <div class="mini-demo"><span class="lbl">À retenir</span>Un anneau factoriel : tout élément non nul, non inversible, se décompose en produit d'irréductibles, de façon <b>unique</b> (à l'ordre et à un inversible près). $\mathbb{Z}$ et $K[X]$ sont factoriels (conséquence du fait qu'ils sont principaux).</div>
+    <div class="mini-demo"><span class="lbl">Hiérarchie à retenir</span>corps $\subset$ anneau euclidien $\subset$ principal $\subset$ factoriel. Tout principal est factoriel, mais pas l'inverse (ex: $\mathbb{Z}[X]$ est factoriel mais pas principal).</div>
+  </div>
+
+  <div class="tool-card" data-id="s4">
+    <div class="tool-header"><div><span class="tool-num">Outil 04</span><div class="tool-title">Extension de corps et son degré</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu vois $L/K$ (L extension de K) ou $[L:K]$.</p></div>
+    <div class="mini-demo"><span class="lbl">Définition</span>Si $K\subset L$ sont deux corps, $L$ est naturellement un $K$-espace vectoriel. $[L:K] := \dim_K(L)$ s'appelle le <b>degré</b> de l'extension.</div>
+    <div class="mini-demo"><span class="lbl">Formule multiplicative (à connaître)</span>Si $K\subset L\subset M$ : $[M:K] = [M:L]\times[L:K]$ (base de M sur K = produit cartésien des bases).</div>
+    <div class="example-box"><span class="lbl">Exemple</span>$[\mathbb{C}:\mathbb{R}]=2$ (base $\{1,i\}$).</div>
+  </div>
+
+  <div class="tool-card" data-id="s5">
+    <div class="tool-header"><div><span class="tool-num">Outil 05</span><div class="tool-title">Élément algébrique et polynôme minimal</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on parle d'un élément $\alpha$ "algébrique sur K", ou de son "polynôme minimal".</p></div>
+    <div class="mini-demo"><span class="lbl">Définitions</span>$\alpha$ est algébrique sur $K$ s'il existe un polynôme non nul $P\in K[X]$ avec $P(\alpha)=0$. Le <b>polynôme minimal</b> de $\alpha$ est l'unique polynôme unitaire de plus petit degré qui annule $\alpha$ — il est toujours irréductible.</div>
+    <div class="example-box"><span class="lbl">Exemple</span>$\alpha=i$ sur $\mathbb{R}$ : polynôme minimal $X^2+1$ (irréductible sur $\mathbb{R}$, annule $i$, unitaire, degré minimal).</div>
+  </div>
+
+  <div class="tool-card" data-id="s6">
+    <div class="tool-header"><div><span class="tool-num">Outil 06 · relie tout le chapitre</span><div class="tool-title">$K(\alpha) \cong K[X]/(P_{\min})$</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de décrire $K(\alpha)$ (le plus petit corps contenant K et α) pour α algébrique.</p></div>
+    <div class="mini-demo"><span class="lbl">Comment on l'obtient</span>Application directe de l'outil 6 de la boîte "anneaux — bases" (1er théorème d'isomorphisme) : le morphisme d'évaluation $f:K[X]\to L$, $f(Q)=Q(\alpha)$ a pour noyau $(P_{\min})$ et pour image $K(\alpha)$.</div>
+    <div class="example-box"><span class="lbl">Exemple, le retour</span>$\mathbb{R}[X]/(X^2+1) \cong \mathbb{C} = \mathbb{R}(i)$ — exactement l'exemple qu'on avait vu dans la boîte "anneaux : bases", maintenant tu comprends pourquoi ça marche : $i$ est algébrique sur $\mathbb{R}$, de polynôme minimal $X^2+1$.</div>
+    <div class="mini-demo"><span class="lbl">Bonus</span>$[K(\alpha):K] = \deg(P_{\min})$. Ex : $[\mathbb{C}:\mathbb{R}]=[\mathbb{R}(i):\mathbb{R}]=\deg(X^2+1)=2$.</div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>
+
+  <div class="exo-card" data-id="se1">
+    <div class="exo-header"><span class="exo-title">Exercice 1</span><span class="diff-tag diff-facile">Facile</span></div>
+    <div class="exo-statement">Donner le polynôme minimal de $\sqrt{2}$ sur $\mathbb{Q}$, et en déduire $[\mathbb{Q}(\sqrt2):\mathbb{Q}]$.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction</span>
+      <div class="step">$\sqrt2$ est racine de $X^2-2$. Ce polynôme est irréductible sur $\mathbb{Q}$ (pas de racine rationnelle, car $\sqrt2$ est irrationnel — résultat classique).</div>
+      <div class="step">$X^2-2$ est unitaire, irréductible, annule $\sqrt2$ : c'est le polynôme minimal.</div>
+      <div class="step">Par l'outil 6 : $[\mathbb{Q}(\sqrt2):\mathbb{Q}] = \deg(X^2-2) = 2$. $\blacksquare$</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="se2">
+    <div class="exo-header"><span class="exo-title">Exercice 2</span><span class="diff-tag diff-moyen">Moyen</span></div>
+    <div class="exo-statement">Montrer que $\mathbb{Q}(\sqrt2,\sqrt3) $ a pour degré 4 sur $\mathbb{Q}$ (admettre que $\sqrt3 \notin \mathbb{Q}(\sqrt2)$).</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outil 4, formule multiplicative</span>
+      <div class="step">$\mathbb{Q} \subset \mathbb{Q}(\sqrt2) \subset \mathbb{Q}(\sqrt2,\sqrt3)$.</div>
+      <div class="step">$[\mathbb{Q}(\sqrt2):\mathbb{Q}]=2$ (exercice 1).</div>
+      <div class="step">Comme $\sqrt3\notin\mathbb{Q}(\sqrt2)$, le polynôme minimal de $\sqrt3$ sur $\mathbb{Q}(\sqrt2)$ reste $X^2-3$ (toujours irréductible sur ce corps plus grand), donc $[\mathbb{Q}(\sqrt2,\sqrt3):\mathbb{Q}(\sqrt2)]=2$.</div>
+      <div class="step">Par la formule multiplicative : $[\mathbb{Q}(\sqrt2,\sqrt3):\mathbb{Q}] = 2\times2=4$. $\blacksquare$</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="se3">
+    <div class="exo-header"><span class="exo-title">Exercice 3 — type oral</span><span class="diff-tag diff-dur">Plus difficile</span></div>
+    <div class="exo-statement">Montrer que $\mathbb{Z}[i] = \{a+bi : a,b\in\mathbb{Z}\}$ (les entiers de Gauss) est un anneau principal (admis : c'est un anneau euclidien pour la norme $N(a+bi)=a^2+b^2$).</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — même démonstration que l'outil 2, recyclée</span>
+      <div class="step">On recycle EXACTEMENT la démonstration de l'outil 2 (K[X] principal), en remplaçant "degré" par la norme $N$.</div>
+      <div class="step">Soit $I$ un idéal non nul de $\mathbb{Z}[i]$. Prends $z_0\in I$ non nul de norme minimale.</div>
+      <div class="step">Pour tout $z\in I$, la division euclidienne (admise ici) donne $z=qz_0+r$ avec $N(r)<N(z_0)$. Comme $r=z-qz_0\in I$ et $N(z_0)$ minimal, $r=0$.</div>
+      <div class="step">Donc $I=(z_0)$ : $\mathbb{Z}[i]$ est principal. $\blacksquare$ — même moule que Z et K[X], la clé était de reconnaître la structure identique derrière une norme différente.</div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetProgress()">↺ Réinitialiser</button>
+</div>
+<script>
+const STORAGE_KEY = 'agreg_toolbox_principaux';
+function loadProgress(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch{return{};}}
+function saveProgress(d){localStorage.setItem(STORAGE_KEY,JSON.stringify(d));}
+function applyStoredProgress(){
+  const data=loadProgress();
+  document.querySelectorAll('.tool-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('memo');const chk=c.querySelector('.memo-check');chk.classList.add('checked');chk.textContent='✓ Mémorisé';}});
+  document.querySelectorAll('.exo-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('done');c.querySelector('.check-box').classList.add('checked');}});
+  updateProgressBar();
+}
+function toggleMemo(el){const c=el.closest('.tool-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('memo',data[id]);el.classList.toggle('checked',data[id]);el.textContent=data[id]?'✓ Mémorisé':'☐ Mémorisé';updateProgressBar();}
+function toggleExoCheck(el){const c=el.closest('.exo-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('done',data[id]);el.classList.toggle('checked',data[id]);updateProgressBar();}
+function updateProgressBar(){const total=document.querySelectorAll('.tool-card,.exo-card').length;const done=document.querySelectorAll('.tool-card.memo,.exo-card.done').length;const pct=total?Math.round((done/total)*100):0;document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${done} / ${total} éléments cochés (${pct}%)`;}
+function resetProgress(){if(confirm("Réinitialiser toute la progression ?")){localStorage.removeItem(STORAGE_KEY);document.querySelectorAll('.memo,.done').forEach(el=>el.classList.remove('memo','done'));document.querySelectorAll('.checked').forEach(el=>{el.classList.remove('checked');if(el.classList.contains('memo-check'))el.textContent='☐ Mémorisé';});updateProgressBar();}}
+function toggleCorrection(btn){const corr=btn.closest('.exo-card').querySelector('.correction');corr.classList.toggle('show');btn.textContent=corr.classList.contains('show')?"Masquer la correction":"Voir la correction";}
+applyStoredProgress();
+document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});});
+if(document.readyState!=='loading'){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});}
+</script>
+</body>
+</html>

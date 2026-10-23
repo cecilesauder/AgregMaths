@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La topologie au crochet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+  :root {
+    --bg: #14161d; --surface: #1e212c; --surface2: #262a38; --border: #383e52;
+    --accent: #f0c375; --accent2: #8fcbe8; --accent3: #b592e8;
+    --green: #6fd19c; --red: #f08787; --text: #eef1f7; --text-dim: #9aa5bd;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Source Sans 3', sans-serif; padding: 1.5rem; line-height: 1.6; }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+  .page-title { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--accent); text-align: center; margin-bottom: 0.2rem; }
+  .page-sub { text-align: center; color: var(--text-dim); font-size: 0.95rem; margin-bottom: 1.8rem; }
+
+  .intro-box { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent3); border-radius: 0 12px 12px 0; padding: 1.2rem 1.5rem; margin-bottom: 2rem; font-size: 0.95rem; }
+  .intro-box b { color: var(--accent2); }
+
+  .section-block { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem 1.7rem; margin-bottom: 2rem; }
+  .section-block h2 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--accent); margin-bottom: 0.8rem; }
+  .section-block p { font-size: 0.94rem; margin-bottom: 0.8rem; }
+  .section-block .lexique { color: var(--accent2); font-weight: 700; }
+
+  .controls { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; align-items: center; }
+  .control-group { display: flex; flex-direction: column; gap: 0.3rem; align-items: center; }
+  .control-group label { font-size: 0.75rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; }
+  input[type=range] { width: 150px; }
+
+  svg { background: var(--surface2); border-radius: 16px; border: 1px solid var(--border); display: block; margin: 0 auto; }
+
+  .btn { background: var(--accent3); color: #14161d; border: none; padding: 0.6rem 1.3rem; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 0.88rem; font-family: 'Source Sans 3', sans-serif; }
+  .btn:hover { filter: brightness(1.1); }
+  .btn.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+  .btn.green { background: var(--green); color: #0d1a12; }
+
+  .btn-row { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0; }
+
+  .status-box { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; color: var(--accent2); margin: 0.8rem 0; min-height: 1.2rem; }
+
+  .result-box { display: none; background: linear-gradient(135deg, #16211a 0%, #1e212c 100%); border: 1px solid var(--green); border-radius: 14px; padding: 1.2rem 1.6rem; margin-top: 1rem; font-size: 0.94rem; }
+  .result-box.show { display: block; }
+  .result-box b { color: var(--green); }
+
+  mark { background: rgba(240, 195, 117, 0.25); color: var(--accent); padding: 0.05em 0.3em; border-radius: 4px; font-weight: 600; }
+
+  .toggle-pill { display: flex; gap: 0.4rem; background: var(--surface2); border-radius: 999px; padding: 0.3rem; border: 1px solid var(--border); }
+  .toggle-pill button { border: none; background: transparent; color: var(--text-dim); padding: 0.4rem 1rem; border-radius: 999px; cursor: pointer; font-size: 0.82rem; font-family: 'Source Sans 3', sans-serif; }
+  .toggle-pill button.active { background: var(--accent); color: #14161d; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-title">🧶 La topologie au crochet</div>
+  <div class="page-sub">Boules, ouverts, fermés, compacité — avec le vocabulaire que tu utilises déjà</div>
+
+  <div class="intro-box">
+    Bonne nouvelle : le mot <b>"boule"</b> en topologie, ce n'est pas une métaphore qu'on invente pour toi — c'est <mark>littéralement le même mot</mark> que tes boules au crochet (amigurumis). Une boule mathématique, c'est l'ensemble de tous les points à une certaine distance d'un centre. Exactement comme une boule de laine : un centre, et tout ce qui est "assez proche" de ce centre.
+  </div>
+
+  <!-- SECTION 1 : BOULE OUVERTE / FERMEE -->
+  <div class="section-block">
+    <h2>1. Boule ouverte vs boule fermée</h2>
+    <p>Imagine que tu crochètes une boule : tu fais des rangs qui s'arrondissent, jusqu'à obtenir une coque en laine. Cette coque, c'est <span class="lexique">la frontière</span> — la surface exacte à distance $r$ du centre.</p>
+    <p><span class="lexique">La boule fermée</span> $B_f(x,r) = \{y : d(x,y) \leq r\}$ : c'est ta boule <b>avec sa coque en laine incluse</b> — le rembourrage ET le tissu qui l'enferme.</p>
+    <p><span class="lexique">La boule ouverte</span> $B(x,r) = \{y : d(x,y) < r\}$ : c'est <b>seulement le rembourrage, sans la coque</b> — comme si tu retirais le fil de laine et qu'il ne restait que la bourre à l'intérieur, sans jamais toucher là où était le tissu.</p>
+
+    <div class="controls">
+      <div class="control-group">
+        <label>Rayon r</label>
+        <input type="range" id="radius-slider" min="20" max="150" value="80">
+      </div>
+      <div class="toggle-pill">
+        <button id="btn-open" class="active" onclick="setBallType('open')">Boule ouverte</button>
+        <button id="btn-closed" onclick="setBallType('closed')">Boule fermée</button>
+      </div>
+    </div>
+    <svg id="svg-ball" width="500" height="300" viewBox="0 0 500 300"></svg>
+    <div class="status-box" id="ball-status">Clique n'importe où sur le cercle pour déplacer le centre de la boule</div>
+  </div>
+
+  <!-- SECTION 2 : OUVERT / VOISINAGE -->
+  <div class="section-block">
+    <h2>2. Un ensemble "ouvert" — le test du petit coussin</h2>
+    <p>Un ensemble $U$ est <span class="lexique">ouvert</span> si, pour <b>chaque point</b> que tu choisis dedans, tu peux poser un petit coussin rond (une boule ouverte, même minuscule) centré sur ce point, <b>sans qu'il ne dépasse</b> de $U$.</p>
+    <p>Clique un point à l'intérieur de la forme ci-dessous : le coussin qui apparaît doit tenir entièrement dedans pour que la forme soit "ouverte" en ce point.</p>
+
+    <div class="controls">
+      <div class="toggle-pill">
+        <button id="btn-shape-open" class="active" onclick="setShapeType('open')">Forme "ouverte" (sans le bord)</button>
+        <button id="btn-shape-closed" onclick="setShapeType('closed')">Forme "fermée" (avec le bord)</button>
+      </div>
+    </div>
+    <svg id="svg-open" width="500" height="300" viewBox="0 0 500 300"></svg>
+    <div class="status-box" id="open-status">Clique un point à l'intérieur ou sur le bord de la forme</div>
+  </div>
+
+  <!-- SECTION 3 : COMPACITE -->
+  <div class="section-block">
+    <h2>3. Compacité — recouvrir avec des coussins</h2>
+    <p>La compacité, c'est répondre à cette question : <mark>peut-on toujours recouvrir entièrement la forme avec un NOMBRE FINI de coussins</mark>, même si les coussins sont petits ?</p>
+    <p>Choisis une taille de coussin, puis clique sur la forme pour poser des coussins un par un jusqu'à ce qu'elle soit entièrement recouverte.</p>
+
+    <div class="controls">
+      <div class="control-group">
+        <label>Taille des coussins</label>
+        <input type="range" id="cover-radius" min="20" max="60" value="35">
+      </div>
+    </div>
+    <svg id="svg-cover" width="500" height="300" viewBox="0 0 500 300"></svg>
+    <div class="btn-row">
+      <button class="btn secondary" onclick="resetCover()">↺ Recommencer</button>
+      <button class="btn green" onclick="finishCover()">✓ J'ai fini de recouvrir</button>
+    </div>
+    <div class="status-box" id="cover-status">Coussins posés : 0</div>
+    <div class="result-box" id="cover-result"></div>
+  </div>
+
+</div>
+
+<script>
+/* ===== SECTION 1 : BOULE OUVERTE/FERMEE ===== */
+const svgBall = document.getElementById('svg-ball');
+let ballCenter = {x: 250, y: 150};
+let ballType = 'open';
+
+function setBallType(t) {
+  ballType = t;
+  document.getElementById('btn-open').classList.toggle('active', t==='open');
+  document.getElementById('btn-closed').classList.toggle('active', t==='closed');
+  drawBall();
+}
+
+function drawBall() {
+  svgBall.innerHTML = '';
+  const r = document.getElementById('radius-slider').value;
+  const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  circle.setAttribute("cx", ballCenter.x);
+  circle.setAttribute("cy", ballCenter.y);
+  circle.setAttribute("r", r);
+  if (ballType === 'open') {
+    circle.setAttribute("fill", "#f0c37533");
+    circle.setAttribute("stroke", "#f0c375");
+    circle.setAttribute("stroke-width", 2.5);
+    circle.setAttribute("stroke-dasharray", "6,6");
+  } else {
+    circle.setAttribute("fill", "#f0c37555");
+    circle.setAttribute("stroke", "#f0c375");
+    circle.setAttribute("stroke-width", 3.5);
+  }
+  svgBall.appendChild(circle);
+
+  const centerDot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  centerDot.setAttribute("cx", ballCenter.x);
+  centerDot.setAttribute("cy", ballCenter.y);
+  centerDot.setAttribute("r", 4);
+  centerDot.setAttribute("fill", "#eef1f7");
+  svgBall.appendChild(centerDot);
+
+  document.getElementById('ball-status').innerHTML = ballType === 'open'
+    ? `Boule <b style="color:#f0c375">ouverte</b> de rayon ${r} — la coque en pointillés n'est <b>pas incluse</b> (c'est comme si le fil de laine lui-même n'existait pas)`
+    : `Boule <b style="color:#f0c375">fermée</b> de rayon ${r} — la coque (trait plein) fait partie de la boule`;
+}
+
+svgBall.addEventListener('click', (e) => {
+  const rect = svgBall.getBoundingClientRect();
+  const scaleX = 500 / rect.width, scaleY = 300 / rect.height;
+  ballCenter = { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
+  drawBall();
+});
+document.getElementById('radius-slider').addEventListener('input', drawBall);
+drawBall();
+
+/* ===== SECTION 2 : OUVERT / TEST DU COUSSIN ===== */
+const svgOpen = document.getElementById('svg-open');
+let shapeType = 'open';
+const shapePath = "M 100,150 Q 100,60 250,60 Q 400,60 400,150 Q 400,240 250,240 Q 100,240 100,150 Z";
+
+function setShapeType(t) {
+  shapeType = t;
+  document.getElementById('btn-shape-open').classList.toggle('active', t==='open');
+  document.getElementById('btn-shape-closed').classList.toggle('active', t==='closed');
+  drawOpenDemo();
+}
+
+function drawOpenDemo(testPoint, cushionR, fits) {
+  svgOpen.innerHTML = '';
+  const shape = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  shape.setAttribute("d", shapePath);
+  shape.setAttribute("fill", "#8fcbe833");
+  shape.setAttribute("stroke", "#8fcbe8");
+  shape.setAttribute("stroke-width", shapeType === 'open' ? 2.5 : 3.5);
+  if (shapeType === 'open') shape.setAttribute("stroke-dasharray", "6,6");
+  svgOpen.appendChild(shape);
+
+  if (testPoint) {
+    const cushion = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    cushion.setAttribute("cx", testPoint.x);
+    cushion.setAttribute("cy", testPoint.y);
+    cushion.setAttribute("r", cushionR);
+    cushion.setAttribute("fill", fits ? "#6fd19c55" : "#f0878755");
+    cushion.setAttribute("stroke", fits ? "#6fd19c" : "#f08787");
+    cushion.setAttribute("stroke-width", 2.5);
+    svgOpen.appendChild(cushion);
+
+    const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    dot.setAttribute("cx", testPoint.x); dot.setAttribute("cy", testPoint.y); dot.setAttribute("r", 4);
+    dot.setAttribute("fill", "#eef1f7");
+    svgOpen.appendChild(dot);
+  }
+}
+
+function isInsideShape(x, y) {
+  // approximation: distance to ellipse center vs radii, generous check
+  const cx=250, cy=150, rx=150, ry=90;
+  return ((x-cx)**2)/(rx**2) + ((y-cy)**2)/(ry**2);
+}
+
+svgOpen.addEventListener('click', (e) => {
+  const rect = svgOpen.getBoundingClientRect();
+  const scaleX = 500 / rect.width, scaleY = 300 / rect.height;
+  const x = (e.clientX - rect.left) * scaleX, y = (e.clientY - rect.top) * scaleY;
+  const val = isInsideShape(x, y);
+  const cushionR = 25;
+  // check if a cushion of radius cushionR around point stays inside ellipse boundary (approx by testing edge)
+  const cx=250, cy=150, rx=150, ry=90;
+  const distToCenterNorm = Math.sqrt(val);
+  const approxDistToEdge = (1 - distToCenterNorm) * Math.min(rx,ry);
+  let fits = approxDistToEdge > cushionR && val <= 1;
+  let onBoundary = val > 0.92 && val <= 1.05;
+
+  if (val > 1.05) {
+    document.getElementById('open-status').innerHTML = "Ce point est en dehors de la forme — clique dedans ou sur le bord !";
+    drawOpenDemo();
+    return;
+  }
+
+  drawOpenDemo({x,y}, cushionR, fits);
+
+  if (shapeType === 'closed' && onBoundary) {
+    document.getElementById('open-status').innerHTML =
+      `<span style="color:#f08787">Coussin qui déborde !</span> Ce point est sur le bord d'une forme <b>fermée</b> (le bord est inclus dans la forme). Mais aucun coussin, même minuscule, ne peut tenir entièrement dedans à cet endroit — le coussin dépasse toujours un peu à l'extérieur. <mark>C'est exactement pourquoi une forme fermée avec son bord n'est jamais "ouverte" en un point du bord.</mark>`;
+  } else if (fits) {
+    document.getElementById('open-status').innerHTML =
+      `<span style="color:#6fd19c">Le coussin tient entièrement dedans !</span> Ce point vérifie la condition d'ouverture.`;
+  } else {
+    document.getElementById('open-status').innerHTML =
+      `<span style="color:#f08787">Le coussin déborde.</span> Essaie un point plus au centre, ou réduis le rayon du coussin dans ta tête : la condition demande qu'il existe AU MOINS UN coussin (même minuscule) qui tienne — essaie de cliquer plus loin du bord pour comparer.`;
+  }
+});
+drawOpenDemo();
+
+/* ===== SECTION 3 : COMPACITE ===== */
+const svgCover = document.getElementById('svg-cover');
+let coverBalls = [];
+
+function drawCover() {
+  svgCover.innerHTML = '';
+  const shape = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  shape.setAttribute("d", shapePath);
+  shape.setAttribute("fill", "none");
+  shape.setAttribute("stroke", "#eef1f7");
+  shape.setAttribute("stroke-width", 3);
+  svgCover.appendChild(shape);
+
+  coverBalls.forEach(b => {
+    const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    c.setAttribute("cx", b.x); c.setAttribute("cy", b.y); c.setAttribute("r", b.r);
+    c.setAttribute("fill", "#b592e844");
+    c.setAttribute("stroke", "#b592e8");
+    c.setAttribute("stroke-width", 2);
+    svgCover.appendChild(c);
+  });
+
+  document.getElementById('cover-status').textContent = `Coussins posés : ${coverBalls.length}`;
+}
+
+svgCover.addEventListener('click', (e) => {
+  const rect = svgCover.getBoundingClientRect();
+  const scaleX = 500 / rect.width, scaleY = 300 / rect.height;
+  const x = (e.clientX - rect.left) * scaleX, y = (e.clientY - rect.top) * scaleY;
+  const r = parseInt(document.getElementById('cover-radius').value);
+  coverBalls.push({x, y, r});
+  drawCover();
+});
+
+function resetCover() {
+  coverBalls = [];
+  document.getElementById('cover-result').classList.remove('show');
+  drawCover();
+}
+
+function finishCover() {
+  const n = coverBalls.length;
+  document.getElementById('cover-result').classList.add('show');
+  document.getElementById('cover-result').innerHTML =
+    `Tu as recouvert la forme avec <b>${n} coussins</b> — un nombre <b>fini</b>. C'est exactement la définition de la compacité : peu importe la taille des coussins choisie (même minuscule), <mark>un nombre fini suffit toujours</mark> pour une forme comme celle-ci (fermée et bornée, en dimension finie).<br><br>
+    Rappelle-toi l'exercice piège de la fiche topologie : dans un espace de <b>fonctions</b> (dimension infinie), ce ne serait plus vrai — même en recouvrant avec des coussins minuscules, il faudrait une infinité de coussins pour couvrir la boule unité de $C([0,1])$. C'est la différence fondamentale entre dimension finie et infinie.`;
+}
+drawCover();
+</script>
+</body>
+</html>

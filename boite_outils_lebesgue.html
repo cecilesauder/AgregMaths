@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boîte à outils — Intégration de Lebesgue</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+  :root { --bg:#14161d;--surface:#1e212c;--surface2:#262a38;--border:#383e52;--accent:#f0c375;--accent2:#8fcbe8;--accent3:#b592e8;--green:#6fd19c;--red:#f08787;--text:#eef1f7;--text-dim:#9aa5bd; }
+  *{box-sizing:border-box;margin:0;padding:0;} body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',sans-serif;padding:1.5rem;line-height:1.6;}
+  .wrap{max-width:980px;margin:0 auto;}
+  .page-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--accent2);text-align:center;margin-bottom:0.2rem;}
+  .page-sub{text-align:center;color:var(--text-dim);font-size:0.93rem;margin-bottom:1.5rem;}
+  .progress-bar-wrap{background:var(--surface2);border-radius:999px;height:10px;margin-bottom:0.4rem;overflow:hidden;border:1px solid var(--border);}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--accent2),var(--green));width:0%;transition:width 0.4s;}
+  .progress-label{text-align:center;font-size:0.78rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:1.8rem;}
+  h2.section-title{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--accent2);border-bottom:2px solid var(--border);padding-bottom:0.6rem;margin-bottom:1.2rem;}
+  .how-to-box{background:var(--surface);border:1px solid var(--accent);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.8rem;font-size:0.92rem;}
+  .how-to-box .label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .signal-table{width:100%;border-collapse:collapse;margin-bottom:2.2rem;background:var(--surface);border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+  .signal-table th{background:var(--surface2);color:var(--accent2);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;padding:0.7rem 0.9rem;text-align:left;font-family:'JetBrains Mono',monospace;}
+  .signal-table td{padding:0.7rem 0.9rem;border-top:1px solid var(--border);font-size:0.88rem;vertical-align:top;}
+  .signal-table tr:hover td{background:var(--surface2);}
+  .signal-table .signal-txt{color:var(--accent);font-style:italic;}
+  .signal-table .tool-name{color:var(--accent2);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:0.82rem;}
+  .tool-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;margin-bottom:1.4rem;position:relative;overflow:hidden;}
+  .tool-card.memo{border-color:var(--green);}
+  .tool-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent2),var(--accent3),var(--accent));}
+  .tool-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.9rem;}
+  .tool-num{font-family:'JetBrains Mono',monospace;color:var(--text-dim);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;}
+  .tool-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--accent2);margin-top:0.2rem;}
+  .memo-check{display:flex;align-items:center;gap:0.4rem;cursor:pointer;user-select:none;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:0.3rem 0.75rem;font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text-dim);white-space:nowrap;}
+  .memo-check.checked{background:var(--green);color:#0d1a12;border-color:var(--green);}
+  .signal-box{background:linear-gradient(135deg,#1a2e3d 0%,#1e212c 100%);border:1px solid var(--accent2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;}
+  .signal-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.3rem;}
+  .signal-box p{font-size:0.9rem;}
+  .mini-demo{background:var(--surface2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;font-size:0.88rem;}
+  .mini-demo .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--accent3);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .example-box{background:#16211a;border:1px solid var(--green);border-radius:10px;padding:0.85rem 1.1rem;font-size:0.88rem;}
+  .example-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .formula-box{background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent2);margin-bottom:0.9rem;}
+  mark{background:rgba(143,203,232,0.2);color:var(--accent2);padding:0.05em 0.3em;border-radius:4px;font-weight:600;}
+  .exo-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.2rem;}
+  .exo-card.done{border-color:var(--green);}
+  .exo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;gap:1rem;}
+  .exo-title{font-weight:700;color:var(--accent2);font-size:1rem;}
+  .diff-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:0.2rem 0.55rem;border-radius:999px;white-space:nowrap;}
+  .diff-facile{background:#16331f;color:var(--green);border:1px solid #245234;}
+  .diff-moyen{background:#332a16;color:var(--accent);border:1px solid #524224;}
+  .diff-dur{background:#331616;color:var(--red);border:1px solid #522424;}
+  .exo-statement{font-size:0.94rem;margin-bottom:0.9rem;}
+  .toggle-btn{background:var(--surface2);border:1px solid var(--accent3);color:var(--accent3);padding:0.45rem 1.1rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.76rem;}
+  .toggle-btn:hover{background:var(--accent3);color:#14161d;}
+  .correction{display:none;margin-top:0.9rem;padding-top:0.9rem;border-top:1px dashed var(--border);}
+  .correction.show{display:block;}
+  .correction-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;display:block;}
+  .correction .step{margin-bottom:0.55rem;padding-left:0.7rem;border-left:2px solid var(--border);font-size:0.9rem;}
+  .exo-footer{display:flex;justify-content:space-between;align-items:center;margin-top:0.9rem;}
+  .check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--accent3);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;user-select:none;background:var(--surface2);}
+  .check-box.checked{background:var(--green);border-color:var(--green);color:#0d1a12;}
+  .reset-btn{display:block;margin:1rem auto 2rem;background:none;border:1px solid var(--red);color:var(--red);padding:0.5rem 1.4rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.78rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-title">🧰 Intégration de Lebesgue</div>
+  <div class="page-sub">Prolonge directement les problèmes de convergence qu'on vient de voir</div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">0 / 0 éléments cochés</div>
+
+  <div class="how-to-box">
+    <span class="label">Le fil rouge</span>
+    Toute la difficulté de ce chapitre : <mark>sous quelles conditions peut-on échanger limite et intégrale</mark> ? La réponse dépend du théorème que tu choisis — c'est le tableau de signaux le plus important de tout le programme d'analyse.
+  </div>
+
+  <h2 class="section-title">🧰 Boîte à outils</h2>
+  <table class="signal-table">
+    <tr><th>Si l'énoncé dit / contient...</th><th>Alors pense à...</th></tr>
+    <tr><td class="signal-txt">"$f_n$ positives, croissante en n"</td><td class="tool-name">Outil 1 — convergence monotone</td></tr>
+    <tr><td class="signal-txt">"$|f_n|\leq g$, g intégrable indépendante de n"</td><td class="tool-name">Outil 2 — convergence dominée</td></tr>
+    <tr><td class="signal-txt">pas de domination disponible, juste une inégalité voulue</td><td class="tool-name">Outil 3 — lemme de Fatou</td></tr>
+    <tr><td class="signal-txt">"intégrale double", "$\iint$"</td><td class="tool-name">Outil 4 — Fubini-Tonelli</td></tr>
+    <tr><td class="signal-txt">"espace $L^p$", norme $\|f\|_p$</td><td class="tool-name">Outil 5 — espaces Lp et Hölder</td></tr>
+    <tr><td class="signal-txt">"continuité/dérivabilité sous le signe intégrale"</td><td class="tool-name">Outil 6 — théorèmes de continuité/dérivation sous $\int$</td></tr>
+  </table>
+
+  <div class="tool-card" data-id="l1">
+    <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Convergence monotone (Beppo-Levi)</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que la suite $(f_n)$ est <mark>positive ET croissante</mark> en $n$ — aucune domination à chercher, la croissance suffit.</p></div>
+    <div class="formula-box">$$0\leq f_n \nearrow f \implies \int f_n \to \int f \quad (\text{même si } +\infty)$$</div>
+    <div class="mini-demo"><span class="lbl">Astuce</span>Marche aussi pour les séries à termes positifs : $\int\sum g_n = \sum\int g_n$ (en posant $f_n=\sum_{k\leq n}g_k$, croissante car les $g_k\geq0$).</div>
+  </div>
+
+  <div class="tool-card" data-id="l2">
+    <div class="tool-header"><div><span class="tool-num">Outil 02 · le plus utilisé de tout le programme</span><div class="tool-title">Convergence dominée (Lebesgue)</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande $\lim\int f_n$ et que tu peux trouver une fonction $g$ intégrable qui majore $|f_n|$ pour <b>tout</b> $n$ à la fois.</p></div>
+    <div class="mini-demo"><span class="lbl">Les 3 hypothèses à vérifier, dans l'ordre</span>
+      1) $f_n \to f$ presque partout.<br>
+      2) $\exists g$ intégrable (indépendante de $n$ !) telle que $|f_n|\leq g$ pour tout $n$.<br>
+      3) Conclusion : $f$ intégrable et $\int f_n \to \int f$.
+    </div>
+    <div class="example-box" style="border-color:var(--red);"><span class="lbl" style="color:var(--red)">⚠ Piège classique</span>La domination doit être <b>indépendante de $n$</b> — majorer $|f_n|$ par une constante qui dépend de $n$ (même si elle tend vers 0 !) ne suffit PAS à appliquer ce théorème directement.</div>
+  </div>
+
+  <div class="tool-card" data-id="l3">
+    <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Lemme de Fatou</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu n'as pas de domination sous la main mais que tu veux juste une <mark>inégalité</mark> (pas une égalité).</p></div>
+    <div class="formula-box">$$f_n \geq 0 \implies \int \liminf f_n \leq \liminf \int f_n$$</div>
+    <div class="mini-demo"><span class="lbl">Utilité pratique</span>Souvent utilisé comme brique de démonstration DANS la preuve du théorème de convergence dominée lui-même — savoir le sortir en dépannage si Lebesgue direct ne s'applique pas.</div>
+  </div>
+
+  <div class="tool-card" data-id="l4">
+    <div class="tool-header"><div><span class="tool-num">Outil 04</span><div class="tool-title">Fubini-Tonelli</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu dois intervertir l'ordre d'intégration dans une intégrale double.</p></div>
+    <div class="mini-demo"><span class="lbl">Deux versions, réflexe à avoir</span>
+      <b>Tonelli</b> : $f\geq0$ (mesurable) — toujours licite d'intervertir, sans autre condition, même si le résultat vaut $+\infty$.<br>
+      <b>Fubini</b> : besoin de $\int\int|f| < \infty$ (intégrabilité globale) avant de pouvoir intervertir pour une fonction de signe quelconque.
+    </div>
+    <div class="example-box" style="border-color:var(--red);"><span class="lbl" style="color:var(--red)">⚠ Réflexe à avoir</span>Toujours vérifier l'intégrabilité (souvent via Tonelli sur $|f|$ d'abord !) avant d'appliquer Fubini sur $f$ elle-même.</div>
+  </div>
+
+  <div class="tool-card" data-id="l5">
+    <div class="tool-header"><div><span class="tool-num">Outil 05</span><div class="tool-title">Espaces $L^p$ et inégalité de Hölder</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu vois une norme $\|f\|_p$ ou qu'on te demande de majorer $\int fg$.</p></div>
+    <div class="formula-box">$$\|fg\|_1 \leq \|f\|_p \|g\|_q \quad \text{avec } \frac1p+\frac1q=1$$</div>
+    <div class="mini-demo"><span class="lbl">Cas particulier à connaître</span>$p=q=2$ : c'est exactement Cauchy-Schwarz (vue dans le chapitre formes bilinéaires), mais version intégrale : $\int|fg| \leq \|f\|_2\|g\|_2$.</div>
+  </div>
+
+  <div class="tool-card" data-id="l6">
+    <div class="tool-header"><div><span class="tool-num">Outil 06</span><div class="tool-title">Continuité et dérivation sous $\int$</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te donne $F(x)=\int f(x,t)\,dt$ et qu'on te demande de montrer que $F$ est continue ou dérivable en $x$.</p></div>
+    <div class="mini-demo"><span class="lbl">Méthode : c'est toujours de la domination déguisée</span>Pour la continuité : domination de $|f(x,t)|$ par une fonction intégrable en $t$, indépendante de $x$ (proche d'un point). Pour la dérivabilité : même chose mais sur $|\partial f/\partial x(x,t)|$. C'est le théorème de convergence dominée (outil 2), appliqué à une suite $x_n\to x_0$ à la place de $f_n$.</div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>
+
+  <div class="exo-card" data-id="le1">
+    <div class="exo-header"><span class="exo-title">Exercice 1</span><span class="diff-tag diff-facile">Facile</span></div>
+    <div class="exo-statement">Calculer $\lim_{n\to\infty}\int_0^1 \dfrac{nx}{1+n^2x^2}\,dx$ en justifiant soigneusement l'interversion (ou son absence).</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — piège de domination</span>
+      <div class="step">Pour $x$ fixé $>0$ : $f_n(x)=\frac{nx}{1+n^2x^2} \to 0$ quand $n\to\infty$ (le dénominateur domine).</div>
+      <div class="step">Peut-on dominer par une fonction indépendante de $n$ ? $\sup_x f_n(x) = \frac{1}{2}$ (atteint en $x=1/n$) — donc PAS de domination uniforme indépendante de $n$ possible directement par une constante ; il faut chercher plus finement, ou calculer directement.</div>
+      <div class="step">Calcul direct : $\int_0^1 \frac{nx}{1+n^2x^2}dx = \frac{1}{2n}\ln(1+n^2x^2)\Big|_0^1 = \frac{\ln(1+n^2)}{2n} \to 0$.</div>
+      <div class="step">La limite est 0 — la même que $\int(\lim f_n) = \int 0 = 0$ — mais ici on l'a obtenue par calcul direct, pas par domination : bon réflexe d'avoir cherché la domination d'abord, mais de savoir basculer sur le calcul direct si elle échoue. $\blacksquare$</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="le2">
+    <div class="exo-header"><span class="exo-title">Exercice 2</span><span class="diff-tag diff-moyen">Moyen</span></div>
+    <div class="exo-statement">Montrer que $\displaystyle\lim_{n\to\infty}\int_0^n \left(1-\frac{x}{n}\right)^n e^{x/2}\,dx = \int_0^\infty e^{-x/2}\,dx$, en utilisant la convergence dominée.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outil 2 appliqué proprement</span>
+      <div class="step">Poser $f_n(x) = \left(1-\frac{x}{n}\right)^n e^{x/2} \cdot \mathbb{1}_{[0,n]}(x)$, prolongée par 0 au-delà, pour se ramener à une intégrale sur $[0,\infty[$.</div>
+      <div class="step">Convergence simple : $(1-x/n)^n \to e^{-x}$ (limite classique), donc $f_n(x) \to e^{-x}e^{x/2}=e^{-x/2}$ pour chaque $x$ fixé.</div>
+      <div class="step">Domination : on utilise l'inégalité classique $(1-x/n)^n \leq e^{-x}$ pour $0\leq x\leq n$ (car $\ln(1-u)\leq -u$). Donc $|f_n(x)| \leq e^{-x}e^{x/2}=e^{-x/2}$, qui est bien intégrable sur $[0,\infty[$ et indépendante de $n$.</div>
+      <div class="step">Les 3 hypothèses de l'outil 2 sont vérifiées : convergence dominée s'applique, $\int f_n \to \int_0^\infty e^{-x/2}dx$. $\blacksquare$</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="le3">
+    <div class="exo-header"><span class="exo-title">Exercice 3 — type oral</span><span class="diff-tag diff-dur">Plus difficile</span></div>
+    <div class="exo-statement">Soit $F(x) = \displaystyle\int_0^\infty e^{-t^2}\cos(xt)\,dt$. Montrer que $F$ est dérivable sur $\mathbb{R}$ et exprimer $F'(x)$ sous forme d'une intégrale.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outil 6, dérivation sous le signe intégrale</span>
+      <div class="step">On pose $f(x,t)=e^{-t^2}\cos(xt)$. $\partial f/\partial x (x,t) = -t\,e^{-t^2}\sin(xt)$.</div>
+      <div class="step">Domination de la dérivée partielle : $|{-t\,e^{-t^2}\sin(xt)}| \leq t\,e^{-t^2}$, qui est intégrable sur $[0,\infty[$ et <b>indépendante de $x$</b>.</div>
+      <div class="step">Les hypothèses du théorème de dérivation sous $\int$ (outil 6, basé sur convergence dominée) sont vérifiées : $F$ est dérivable et on peut dériver sous le signe intégrale.</div>
+      <div class="step">$F'(x) = \displaystyle\int_0^\infty -t\,e^{-t^2}\sin(xt)\,dt$. $\blacksquare$ (Remarque culturelle : cette méthode permet ensuite, via une intégration par parties, d'obtenir une équation différentielle sur $F$ et de calculer $F$ explicitement — un classique de développement d'oral.)</div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetProgress()">↺ Réinitialiser</button>
+</div>
+<script>
+const STORAGE_KEY = 'agreg_toolbox_lebesgue';
+function loadProgress(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch{return{};}}
+function saveProgress(d){localStorage.setItem(STORAGE_KEY,JSON.stringify(d));}
+function applyStoredProgress(){
+  const data=loadProgress();
+  document.querySelectorAll('.tool-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('memo');const chk=c.querySelector('.memo-check');chk.classList.add('checked');chk.textContent='✓ Mémorisé';}});
+  document.querySelectorAll('.exo-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('done');c.querySelector('.check-box').classList.add('checked');}});
+  updateProgressBar();
+}
+function toggleMemo(el){const c=el.closest('.tool-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('memo',data[id]);el.classList.toggle('checked',data[id]);el.textContent=data[id]?'✓ Mémorisé':'☐ Mémorisé';updateProgressBar();}
+function toggleExoCheck(el){const c=el.closest('.exo-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('done',data[id]);el.classList.toggle('checked',data[id]);updateProgressBar();}
+function updateProgressBar(){const total=document.querySelectorAll('.tool-card,.exo-card').length;const done=document.querySelectorAll('.tool-card.memo,.exo-card.done').length;const pct=total?Math.round((done/total)*100):0;document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${done} / ${total} éléments cochés (${pct}%)`;}
+function resetProgress(){if(confirm("Réinitialiser toute la progression ?")){localStorage.removeItem(STORAGE_KEY);document.querySelectorAll('.memo,.done').forEach(el=>el.classList.remove('memo','done'));document.querySelectorAll('.checked').forEach(el=>{el.classList.remove('checked');if(el.classList.contains('memo-check'))el.textContent='☐ Mémorisé';});updateProgressBar();}}
+function toggleCorrection(btn){const corr=btn.closest('.exo-card').querySelector('.correction');corr.classList.toggle('show');btn.textContent=corr.classList.contains('show')?"Masquer la correction":"Voir la correction";}
+applyStoredProgress();
+document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});});
+if(document.readyState!=='loading'){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});}
+</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boîte à outils — Séries entières & fonctions holomorphes</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+  :root { --bg:#14161d;--surface:#1e212c;--surface2:#262a38;--border:#383e52;--accent:#f0c375;--accent2:#8fcbe8;--accent3:#b592e8;--green:#6fd19c;--red:#f08787;--text:#eef1f7;--text-dim:#9aa5bd; }
+  *{box-sizing:border-box;margin:0;padding:0;} body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',sans-serif;padding:1.5rem;line-height:1.6;}
+  .wrap{max-width:980px;margin:0 auto;}
+  .page-title{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--accent2);text-align:center;margin-bottom:0.2rem;}
+  .page-sub{text-align:center;color:var(--text-dim);font-size:0.93rem;margin-bottom:1.5rem;}
+  .progress-bar-wrap{background:var(--surface2);border-radius:999px;height:10px;margin-bottom:0.4rem;overflow:hidden;border:1px solid var(--border);}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--accent2),var(--green));width:0%;transition:width 0.4s;}
+  .progress-label{text-align:center;font-size:0.78rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:1.8rem;}
+  h2.section-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--accent2);border-bottom:2px solid var(--border);padding-bottom:0.6rem;margin-bottom:1.2rem;}
+  .how-to-box{background:var(--surface);border:1px solid var(--accent);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.8rem;font-size:0.92rem;}
+  .how-to-box .label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .signal-table{width:100%;border-collapse:collapse;margin-bottom:2.2rem;background:var(--surface);border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+  .signal-table th{background:var(--surface2);color:var(--accent2);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;padding:0.7rem 0.9rem;text-align:left;font-family:'JetBrains Mono',monospace;}
+  .signal-table td{padding:0.7rem 0.9rem;border-top:1px solid var(--border);font-size:0.88rem;vertical-align:top;}
+  .signal-table tr:hover td{background:var(--surface2);}
+  .signal-table .signal-txt{color:var(--accent);font-style:italic;}
+  .signal-table .tool-name{color:var(--accent2);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:0.82rem;}
+  .tool-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;margin-bottom:1.4rem;position:relative;overflow:hidden;}
+  .tool-card.memo{border-color:var(--green);}
+  .tool-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent2),var(--accent3),var(--accent));}
+  .tool-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.9rem;}
+  .tool-num{font-family:'JetBrains Mono',monospace;color:var(--text-dim);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;}
+  .tool-title{font-family:'Playfair Display',serif;font-size:1.12rem;color:var(--accent2);margin-top:0.2rem;}
+  .memo-check{display:flex;align-items:center;gap:0.4rem;cursor:pointer;user-select:none;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:0.3rem 0.75rem;font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text-dim);white-space:nowrap;}
+  .memo-check.checked{background:var(--green);color:#0d1a12;border-color:var(--green);}
+  .signal-box{background:linear-gradient(135deg,#1a2e3d 0%,#1e212c 100%);border:1px solid var(--accent2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;}
+  .signal-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.3rem;}
+  .signal-box p{font-size:0.9rem;}
+  .mini-demo{background:var(--surface2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;font-size:0.88rem;}
+  .mini-demo .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--accent3);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .example-box{background:#16211a;border:1px solid var(--green);border-radius:10px;padding:0.85rem 1.1rem;font-size:0.88rem;}
+  .example-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .formula-box{background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent2);margin-bottom:0.9rem;}
+  mark{background:rgba(143,203,232,0.2);color:var(--accent2);padding:0.05em 0.3em;border-radius:4px;font-weight:600;}
+  .exo-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.2rem;}
+  .exo-card.done{border-color:var(--green);}
+  .exo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;gap:1rem;}
+  .exo-title{font-weight:700;color:var(--accent2);font-size:1rem;}
+  .diff-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:0.2rem 0.55rem;border-radius:999px;white-space:nowrap;}
+  .diff-facile{background:#16331f;color:var(--green);border:1px solid #245234;}
+  .diff-moyen{background:#332a16;color:var(--accent);border:1px solid #524224;}
+  .diff-dur{background:#331616;color:var(--red);border:1px solid #522424;}
+  .exo-statement{font-size:0.94rem;margin-bottom:0.9rem;}
+  .toggle-btn{background:var(--surface2);border:1px solid var(--accent3);color:var(--accent3);padding:0.45rem 1.1rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.76rem;}
+  .toggle-btn:hover{background:var(--accent3);color:#14161d;}
+  .correction{display:none;margin-top:0.9rem;padding-top:0.9rem;border-top:1px dashed var(--border);}
+  .correction.show{display:block;}
+  .correction-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;display:block;}
+  .correction .step{margin-bottom:0.55rem;padding-left:0.7rem;border-left:2px solid var(--border);font-size:0.9rem;}
+  .exo-footer{display:flex;justify-content:space-between;align-items:center;margin-top:0.9rem;}
+  .check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--accent3);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;user-select:none;background:var(--surface2);}
+  .check-box.checked{background:var(--green);border-color:var(--green);color:#0d1a12;}
+  .reset-btn{display:block;margin:1rem auto 2rem;background:none;border:1px solid var(--red);color:var(--red);padding:0.5rem 1.4rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.78rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-title">🧰 Séries entières & fonctions holomorphes</div>
+  <div class="page-sub">Dernière étape avant Fourier — les fonctions "parfaites" de l'analyse</div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">0 / 0 éléments cochés</div>
+
+  <div class="how-to-box">
+    <span class="label">Le fil rouge</span>
+    Sur C, être dérivable une fois (holomorphe) équivaut à être indéfiniment dérivable ET développable en série entière. C'est une rigidité extraordinaire, totalement absente sur R — c'est ce qui rend ce chapitre si différent (et si puissant).
+  </div>
+
+  <h2 class="section-title">🧰 Boîte à outils</h2>
+  <table class="signal-table">
+    <tr><th>Si l'énoncé dit / contient...</th><th>Alors pense à...</th></tr>
+    <tr><td class="signal-txt">"rayon de convergence"</td><td class="tool-name">Outil 1 — formule de Hadamard</td></tr>
+    <tr><td class="signal-txt">"f holomorphe"</td><td class="tool-name">Outil 2 — holomorphe = analytique</td></tr>
+    <tr><td class="signal-txt">"équations de Cauchy-Riemann"</td><td class="tool-name">Outil 3 — caractérisation par les parties réelle/imaginaire</td></tr>
+    <tr><td class="signal-txt">"formule intégrale de Cauchy"</td><td class="tool-name">Outil 4 — formule de Cauchy</td></tr>
+    <tr><td class="signal-txt">"calculer une intégrale via un contour"</td><td class="tool-name">Outil 5 — théorème des résidus</td></tr>
+    <tr><td class="signal-txt">"f s'annule sur un ensemble avec point d'accumulation"</td><td class="tool-name">Outil 6 — principe des zéros isolés</td></tr>
+  </table>
+
+  <div class="tool-card" data-id="s1">
+    <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Rayon de convergence (Hadamard)</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te donne une série entière et qu'on demande son rayon de convergence.</p></div>
+    <div class="formula-box">1/R = limite sup de la racine n-ième de |a_n|</div>
+    <div class="mini-demo"><span class="lbl">Méthode alternative souvent plus rapide</span>Si la limite du rapport |a_(n+1)|/|a_n| existe, elle donne directement 1/R (règle de d'Alembert) — à essayer en premier, plus simple à calculer que la limsup dans la majorité des cas.</div>
+    <div class="example-box"><span class="lbl">À l'intérieur vs sur le bord</span>La série converge absolument si |z| moins petit que R, diverge si |z| plus grand que R. Sur le cercle |z|=R lui-même : aucune règle générale, à étudier au cas par cas.</div>
+  </div>
+
+  <div class="tool-card" data-id="s2">
+    <div class="tool-header"><div><span class="tool-num">Outil 02 · le résultat le plus frappant du chapitre</span><div class="tool-title">Holomorphe = analytique (sur C)</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te dit "f holomorphe" — retiens que c'est BEAUCOUP plus fort qu'être simplement dérivable au sens réel.</p></div>
+    <div class="mini-demo"><span class="lbl">L'énoncé qui change tout</span>f holomorphe sur un ouvert de C si et seulement si f est développable en série entière au voisinage de chaque point de cet ouvert. Conséquence : dérivable une fois sur C entraîne automatiquement indéfiniment dérivable — un contraste total avec R, où on peut être dérivable une fois et pas deux.</div>
+  </div>
+
+  <div class="tool-card" data-id="s3">
+    <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Équations de Cauchy-Riemann</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te donne f = P + iQ (parties réelle et imaginaire) et qu'on demande si f est holomorphe.</p></div>
+    <div class="formula-box">dérivée partielle de P par rapport à x = dérivée partielle de Q par rapport à y<br>dérivée partielle de P par rapport à y = moins la dérivée partielle de Q par rapport à x</div>
+    <div class="mini-demo"><span class="lbl">À retenir</span>Avec une hypothèse de régularité C1, ces deux équations sont nécessaires ET suffisantes pour l'holomorphie — c'est un critère de calcul très concret, à la portée d'un calcul de dérivées partielles classiques.</div>
+  </div>
+
+  <div class="tool-card" data-id="s4">
+    <div class="tool-header"><div><span class="tool-num">Outil 04 · fondation de tout le reste</span><div class="tool-title">Formule intégrale de Cauchy</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande d'exprimer la valeur de f en un point via une intégrale sur un contour l'entourant.</p></div>
+    <div class="formula-box">f(a) = (1 / 2i pi) fois l'intégrale sur le cercle de f(z)/(z-a) dz</div>
+    <div class="mini-demo"><span class="lbl">Pourquoi c'est si puissant</span>Cette formule dit que connaître f seulement SUR le bord d'un disque suffit à connaître f partout à l'intérieur — une rigidité qui n'a aucun équivalent en analyse réelle. C'est la brique qui permet de démontrer l'outil 2 (holomorphe = analytique).</div>
+  </div>
+
+  <div class="tool-card" data-id="s5">
+    <div class="tool-header"><div><span class="tool-num">Outil 05</span><div class="tool-title">Théorème des résidus</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de calculer une intégrale (souvent réelle et difficile) via un contour complexe astucieux.</p></div>
+    <div class="formula-box">intégrale sur le contour = 2i pi fois la somme des résidus aux pôles à l'intérieur</div>
+    <div class="mini-demo"><span class="lbl">Méthode pratique en 3 étapes</span>1) Choisir un contour fermé judicieux (souvent un demi-cercle qu'on fait tendre vers l'infini). 2) Identifier les pôles à l'intérieur et calculer leurs résidus. 3) Relier l'intégrale sur le contour à l'intégrale réelle qu'on cherche (en montrant que la partie "arc de cercle" tend vers 0).</div>
+  </div>
+
+  <div class="tool-card" data-id="s6">
+    <div class="tool-header"><div><span class="tool-num">Outil 06</span><div class="tool-title">Principe des zéros isolés</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de montrer qu'une fonction holomorphe est nulle partout, à partir du fait qu'elle s'annule "beaucoup".</p></div>
+    <div class="mini-demo"><span class="lbl">Énoncé</span>Si f holomorphe s'annule sur un ensemble ayant un point d'accumulation dans le domaine (par exemple une infinité de zéros dans un compact), alors f est identiquement nulle sur toute la composante connexe.</div>
+    <div class="example-box"><span class="lbl">Conséquence pratique — prolongement analytique</span>Si un prolongement holomorphe existe, il est toujours unique — deux fonctions holomorphes qui coïncident sur un ensemble avec point d'accumulation coïncident partout.</div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>
+
+  <div class="exo-card" data-id="se1">
+    <div class="exo-header"><span class="exo-title">Exercice 1</span><span class="diff-tag diff-facile">Facile</span></div>
+    <div class="exo-statement">Déterminer le rayon de convergence de la série entière de terme général a_n = 1 / n! (fois z puissance n).</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outil 1, règle de d'Alembert</span>
+      <div class="step">Rapport a_(n+1)/a_n = (1/(n+1)!) fois (n!/1) = 1/(n+1), qui tend vers 0.</div>
+      <div class="step">1/R = 0, donc R = plus l'infini. La série converge pour tout z complexe.</div>
+      <div class="step">Sans surprise : c'est la série de l'exponentielle complexe, définie et holomorphe sur C tout entier.</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="se2">
+    <div class="exo-header"><span class="exo-title">Exercice 2</span><span class="diff-tag diff-moyen">Moyen</span></div>
+    <div class="exo-statement">Vérifier que f(z) = z carré est holomorphe sur C en utilisant les équations de Cauchy-Riemann.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outil 3</span>
+      <div class="step">Écrivons z = x + iy. Alors f(z) = (x+iy) au carré = x carré - y carré + 2ixy. Donc P(x,y) = x carré - y carré et Q(x,y) = 2xy.</div>
+      <div class="step">dP/dx = 2x, dQ/dy = 2x : première équation vérifiée.</div>
+      <div class="step">dP/dy = -2y, dQ/dx = 2y, donc moins dQ/dx = -2y : deuxième équation aussi vérifiée. Les équations de Cauchy-Riemann sont satisfaites partout : f est holomorphe sur C tout entier.</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="se3">
+    <div class="exo-header"><span class="exo-title">Exercice 3 — type oral</span><span class="diff-tag diff-dur">Plus difficile</span></div>
+    <div class="exo-statement">Soit f holomorphe et bornée sur C tout entier. Montrer que f est constante (théorème de Liouville), en admettant l'inégalité de Cauchy : la dérivée n-ième de f en 0 est majorée en module par n! fois M sur R puissance n, où M majore |f| et R est le rayon d'un cercle quelconque.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — grand classique, combine outils 2 et 4</span>
+      <div class="step">f holomorphe sur C entier : par l'outil 2, f est développable en série entière avec un rayon de convergence infini, et les coefficients sont a_n = (dérivée n-ième de f en 0) divisée par n!.</div>
+      <div class="step">Par l'inégalité de Cauchy admise, pour tout rayon R : |dérivée n-ième de f en 0)| est majorée par n! fois M / R puissance n, où M majore |f| sur tout C (borne globale, indépendante de R car f est bornée sur C entier).</div>
+      <div class="step">Donc |a_n| est majoré par M / R puissance n, pour tout n supérieur ou égal à 1, et pour TOUT R (aussi grand qu'on veut, puisque f est holomorphe sur C entier).</div>
+      <div class="step">En faisant tendre R vers l'infini, le majorant tend vers 0. Donc a_n = 0 pour tout n supérieur ou égal à 1. Il ne reste que a_0 : f est constante, égale à f(0). Résultat spectaculaire et classique : aucune fonction holomorphe non constante ne peut être bornée sur C entier.</div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetProgress()">↺ Réinitialiser</button>
+</div>
+<script>
+const STORAGE_KEY = 'agreg_toolbox_holomorphes';
+function loadProgress(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch{return{};}}
+function saveProgress(d){localStorage.setItem(STORAGE_KEY,JSON.stringify(d));}
+function applyStoredProgress(){
+  const data=loadProgress();
+  document.querySelectorAll('.tool-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('memo');const chk=c.querySelector('.memo-check');chk.classList.add('checked');chk.textContent='✓ Mémorisé';}});
+  document.querySelectorAll('.exo-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('done');c.querySelector('.check-box').classList.add('checked');}});
+  updateProgressBar();
+}
+function toggleMemo(el){const c=el.closest('.tool-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('memo',data[id]);el.classList.toggle('checked',data[id]);el.textContent=data[id]?'✓ Mémorisé':'☐ Mémorisé';updateProgressBar();}
+function toggleExoCheck(el){const c=el.closest('.exo-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('done',data[id]);el.classList.toggle('checked',data[id]);updateProgressBar();}
+function updateProgressBar(){const total=document.querySelectorAll('.tool-card,.exo-card').length;const done=document.querySelectorAll('.tool-card.memo,.exo-card.done').length;const pct=total?Math.round((done/total)*100):0;document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${done} / ${total} éléments cochés (${pct}%)`;}
+function resetProgress(){if(confirm("Réinitialiser toute la progression ?")){localStorage.removeItem(STORAGE_KEY);document.querySelectorAll('.memo,.done').forEach(el=>el.classList.remove('memo','done'));document.querySelectorAll('.checked').forEach(el=>{el.classList.remove('checked');if(el.classList.contains('memo-check'))el.textContent='☐ Mémorisé';});updateProgressBar();}}
+function toggleCorrection(btn){const corr=btn.closest('.exo-card').querySelector('.correction');corr.classList.toggle('show');btn.textContent=corr.classList.contains('show')?"Masquer la correction":"Voir la correction";}
+applyStoredProgress();
+document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});});
+if(document.readyState!=='loading'){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});}
+</script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le tour de crochet — visualiser les groupes cycliques</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+  :root {
+    --bg: #14161d; --surface: #1e212c; --surface2: #262a38; --border: #383e52;
+    --accent: #f0c375; --accent2: #8fcbe8; --accent3: #b592e8;
+    --green: #6fd19c; --red: #f08787; --text: #eef1f7; --text-dim: #9aa5bd;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Source Sans 3', sans-serif; padding: 1.5rem; line-height: 1.6; }
+  .wrap { max-width: 950px; margin: 0 auto; }
+  .page-title { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--accent); text-align: center; margin-bottom: 0.3rem; }
+  .page-sub { text-align: center; color: var(--text-dim); font-size: 0.95rem; margin-bottom: 2rem; }
+
+  .intro-box {
+    background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent3);
+    border-radius: 0 12px 12px 0; padding: 1.2rem 1.5rem; margin-bottom: 2rem; font-size: 0.95rem;
+  }
+  .intro-box b { color: var(--accent2); }
+
+  .controls {
+    display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 1.2rem 1.5rem; margin-bottom: 1.5rem;
+  }
+  .control-group { display: flex; flex-direction: column; gap: 0.4rem; align-items: center; }
+  .control-group label { font-size: 0.78rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
+  .control-group input[type=number] {
+    width: 70px; padding: 0.5rem; text-align: center; font-size: 1.1rem;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .canvas-wrap { display: flex; justify-content: center; margin-bottom: 1.5rem; }
+  svg { background: var(--surface); border-radius: 20px; border: 1px solid var(--border); }
+
+  .peg-label { font-family: 'JetBrains Mono', monospace; font-size: 13px; fill: var(--text-dim); }
+  .peg-label.visited { fill: var(--accent); font-weight: 700; }
+  .peg-label.current { fill: var(--bg); font-weight: 700; }
+
+  .btn-row { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .btn {
+    background: var(--accent3); color: #14161d; border: none; padding: 0.7rem 1.5rem;
+    border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 0.92rem;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .btn:hover { filter: brightness(1.1); }
+  .btn.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+  .btn.green { background: var(--green); color: #0d1a12; }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .status-box {
+    background: var(--surface2); border-radius: 12px; padding: 1.2rem 1.5rem;
+    text-align: center; margin-bottom: 1.5rem; font-family: 'JetBrains Mono', monospace;
+  }
+  .status-line { font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .status-big { font-size: 1.6rem; color: var(--accent); font-weight: 700; }
+  .status-highlight { color: var(--accent2); }
+
+  .result-box {
+    display: none; background: linear-gradient(135deg, #16211a 0%, #1e212c 100%);
+    border: 1px solid var(--green); border-radius: 14px; padding: 1.4rem 1.6rem; margin-bottom: 1.5rem;
+  }
+  .result-box.show { display: block; }
+  .result-box p { font-size: 0.98rem; margin-bottom: 0.5rem; }
+  .result-box b { color: var(--green); }
+
+  .crochet-note {
+    background: linear-gradient(135deg, #2e2617 0%, #1e212c 100%); border: 1px solid var(--accent);
+    border-radius: 12px; padding: 1.2rem 1.5rem; margin-top: 2rem; font-size: 0.94rem;
+  }
+  .crochet-note .label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 0.5rem; }
+
+  mark { background: rgba(240, 195, 117, 0.25); color: var(--accent); padding: 0.05em 0.3em; border-radius: 4px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-title">🧶 Le tour de crochet</div>
+  <div class="page-sub">Une image concrète pour "voir" ce que fait un groupe cyclique</div>
+
+  <div class="intro-box">
+    Imagine un tour de crochet avec <b>n mailles</b> posées en cercle, numérotées 0, 1, 2... À chaque étape, ton fil <b>saute de k mailles</b>. La question "quel est l'ordre de k" devient très concrète : <mark>combien de sauts avant que le fil revienne pile sur la maille 0 ?</mark>
+  </div>
+
+  <div class="controls">
+    <div class="control-group">
+      <label>n (mailles du tour)</label>
+      <input type="number" id="input-n" value="12" min="3" max="30">
+    </div>
+    <div class="control-group">
+      <label>k (taille du saut)</label>
+      <input type="number" id="input-k" value="8" min="1" max="30">
+    </div>
+    <div class="control-group">
+      <label>&nbsp;</label>
+      <button class="btn secondary" onclick="resetCircle()">↺ Nouveau tour</button>
+    </div>
+  </div>
+
+  <div class="canvas-wrap">
+    <svg id="svg-canvas" width="500" height="500" viewBox="0 0 500 500"></svg>
+  </div>
+
+  <div class="status-box">
+    <div class="status-line">Maille de départ : <span class="status-highlight">0</span> — Position actuelle : <span class="status-big" id="current-pos">0</span></div>
+    <div class="status-line" id="jump-count">Sauts effectués : 0</div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" id="btn-step" onclick="doStep()">→ Saut suivant (+k)</button>
+    <button class="btn green" id="btn-allstars" onclick="showAllOrbits()">🌸 Voir toutes les étoiles (toutes les mailles de départ)</button>
+  </div>
+
+  <div class="result-box" id="result-box">
+    <p>🎉 <b>Le fil est revenu à la maille 0 !</b></p>
+    <p id="result-text"></p>
+  </div>
+
+  <div class="crochet-note">
+    <span class="label">🧶 Traduction en langage groupes</span>
+    <p>Le nombre de sauts pour revenir à 0 = <mark>l'ordre de k</mark>. L'ensemble des mailles touchées par ton fil = <mark>le sous-groupe engendré ⟨k⟩</mark>. Si ton étoile ne couvre pas toutes les mailles, le nombre d'étoiles nécessaires pour tout couvrir (en partant de mailles différentes) = <mark>pgcd(k,n)</mark> — et chaque étoile a exactement "ordre(k)" mailles.</p>
+  </div>
+</div>
+
+<script>
+let n = 12, k = 8;
+let current = 0;
+let jumps = 0;
+let visited = [0];
+let running = false;
+
+const svg = document.getElementById('svg-canvas');
+const CX = 250, CY = 250, R = 190;
+
+function pegPos(i, total) {
+  const angle = (2 * Math.PI * i / total) - Math.PI/2;
+  return { x: CX + R * Math.cos(angle), y: CY + R * Math.sin(angle) };
+}
+
+function drawCircle() {
+  svg.innerHTML = '';
+  n = parseInt(document.getElementById('input-n').value) || 12;
+  k = parseInt(document.getElementById('input-k').value) || 1;
+  k = k % n;
+
+  // pegs
+  for (let i = 0; i < n; i++) {
+    const pos = pegPos(i, n);
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cx", pos.x);
+    circle.setAttribute("cy", pos.y);
+    circle.setAttribute("r", 16);
+    circle.setAttribute("fill", "#262a38");
+    circle.setAttribute("stroke", "#383e52");
+    circle.setAttribute("stroke-width", 1.5);
+    circle.setAttribute("id", "peg-" + i);
+    svg.appendChild(circle);
+
+    const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    label.setAttribute("x", pos.x);
+    label.setAttribute("y", pos.y + 4);
+    label.setAttribute("text-anchor", "middle");
+    label.setAttribute("class", "peg-label");
+    label.setAttribute("id", "label-" + i);
+    label.textContent = i;
+    svg.appendChild(label);
+  }
+  highlightPeg(0, true);
+}
+
+function highlightPeg(i, isCurrent) {
+  const circle = document.getElementById("peg-" + i);
+  const label = document.getElementById("label-" + i);
+  if (!circle) return;
+  if (isCurrent) {
+    circle.setAttribute("fill", "#f0c375");
+    label.setAttribute("class", "peg-label current");
+  } else {
+    circle.setAttribute("fill", "#3a3020");
+    label.setAttribute("class", "peg-label visited");
+  }
+}
+
+function drawLine(from, to, color) {
+  const p1 = pegPos(from, n);
+  const p2 = pegPos(to, n);
+  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  line.setAttribute("x1", p1.x);
+  line.setAttribute("y1", p1.y);
+  line.setAttribute("x2", p2.x);
+  line.setAttribute("y2", p2.y);
+  line.setAttribute("stroke", color || "#b592e8");
+  line.setAttribute("stroke-width", 2.2);
+  line.setAttribute("opacity", 0.85);
+  svg.insertBefore(line, svg.firstChild.nextSibling);
+}
+
+function resetCircle() {
+  current = 0;
+  jumps = 0;
+  visited = [0];
+  running = false;
+  document.getElementById('result-box').classList.remove('show');
+  document.getElementById('btn-step').disabled = false;
+  drawCircle();
+  updateStatus();
+}
+
+function updateStatus() {
+  document.getElementById('current-pos').textContent = current;
+  document.getElementById('jump-count').textContent = `Sauts effectués : ${jumps}`;
+}
+
+function pgcd(a, b) { return b === 0 ? a : pgcd(b, a % b); }
+
+function doStep() {
+  const next = (current + k) % n;
+  drawLine(current, next);
+  current = next;
+  jumps++;
+  if (!visited.includes(current)) visited.push(current);
+  if (current === 0) {
+    highlightPeg(0, true);
+    document.getElementById('btn-step').disabled = true;
+    running = false;
+    const d = pgcd(k, n);
+    const box = document.getElementById('result-box');
+    box.classList.add('show');
+    document.getElementById('result-text').innerHTML =
+      `Il t'a fallu <b>${jumps} sauts</b> pour boucler : c'est <b>l'ordre de ${k}</b> dans ce cercle de ${n} mailles.<br>
+       Le sous-groupe ⟨${k}⟩ = {${visited.sort((a,b)=>a-b).join(', ')}} a exactement ${jumps} éléments.<br>
+       pgcd(${k},${n}) = ${d} → vérifie : ${n}/${d} = ${n/d} ✓`;
+  } else {
+    highlightPeg(current, true);
+  }
+  updateStatus();
+}
+
+function showAllOrbits() {
+  drawCircle();
+  const d = pgcd(k, n);
+  const colors = ["#f0c375", "#8fcbe8", "#b592e8", "#6fd19c", "#f08787", "#e8a5d8", "#a5e8d8", "#d8c8a5"];
+  const seen = new Set();
+  let colorIdx = 0;
+  for (let start = 0; start < n; start++) {
+    if (seen.has(start)) continue;
+    const color = colors[colorIdx % colors.length];
+    colorIdx++;
+    let pos = start;
+    seen.add(pos);
+    let steps = 0;
+    do {
+      const next = (pos + k) % n;
+      drawLine(pos, next, color);
+      pos = next;
+      seen.add(pos);
+      steps++;
+    } while (pos !== start && steps < n + 1);
+  }
+  document.getElementById('result-box').classList.add('show');
+  document.getElementById('result-text').innerHTML =
+    `Il faut <b>${d} étoiles</b> de couleurs différentes pour couvrir toutes les mailles (pgcd(${k},${n})=${d}). Chaque étoile a <b>${n/d} mailles</b> — c'est exactement l'ordre de ${k}. Ces étoiles sont les <mark>classes modulo ⟨${k}⟩</mark>.`;
+}
+
+document.getElementById('input-n').addEventListener('change', resetCircle);
+document.getElementById('input-k').addEventListener('change', resetCircle);
+
+resetCircle();
+</script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiches murales — Algèbre · Agrégation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161923;
+    --border: #2a3347;
+    --accent: #e8b86d;
+    --accent2: #7eb8d4;
+    --accent3: #9b72cf;
+    --green: #5dba8a;
+    --red: #e07070;
+    --text: #d4dbe8;
+    --text-dim: #6b7a94;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    padding: 2rem;
+  }
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 0.3rem;
+  }
+  .page-sub {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+  }
+  .nav {
+    display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+  }
+  .nav a {
+    color: var(--text-dim); text-decoration: none; font-size: 0.82rem;
+    border: 1px solid var(--border); padding: 0.4rem 1rem; border-radius: 999px;
+  }
+  .nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .fiche-wall {
+    max-width: 1100px;
+    margin: 0 auto 4rem;
+    break-inside: avoid;
+    page-break-after: always;
+  }
+  .fiche-card {
+    background: linear-gradient(160deg, #161923 0%, #1a1f2e 100%);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .fiche-card::before {
+    content: "";
+    position: absolute; top:0; left:0; right:0; height: 6px;
+    background: linear-gradient(90deg, var(--accent3), var(--accent2), var(--accent));
+  }
+  .fiche-num {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .fiche-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem;
+    color: var(--accent);
+    margin: 0.3rem 0 1.2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.8rem;
+  }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+  .block {
+    background: #10131b;
+    border-left: 4px solid var(--accent3);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .block.thm { border-left-color: var(--accent); }
+  .block.warn { border-left-color: var(--red); }
+  .block.ex { border-left-color: var(--green); }
+  .block.tool { border-left-color: var(--accent2); }
+
+  .block-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent3);
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .block.thm .block-label { color: var(--accent); }
+  .block.warn .block-label { color: var(--red); }
+  .block.ex .block-label { color: var(--green); }
+  .block.tool .block-label { color: var(--accent2); }
+
+  .block p { font-size: 0.98rem; line-height: 1.6; }
+  .block ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+  .block li { font-size: 0.94rem; margin-bottom: 0.3rem; line-height: 1.5; }
+
+  .formula {
+    font-family: 'JetBrains Mono', monospace;
+    background: #06070a;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    color: var(--accent2);
+    margin: 0.6rem 0;
+    text-align: center;
+  }
+
+  .hierarchy {
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    flex-wrap: wrap; margin: 1rem 0;
+  }
+  .hierarchy .node {
+    background: var(--surface); border: 1px solid var(--accent3);
+    padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.9rem;
+    font-family: 'JetBrains Mono', monospace; color: var(--text);
+  }
+  .hierarchy .arrow { color: var(--accent); font-size: 1.2rem; }
+
+  .tag-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    padding: 0.25rem 0.7rem; border-radius: 999px;
+    background: #1a2e3d; color: var(--accent2); border: 1px solid #2a4457;
+  }
+
+  .print-note {
+    max-width: 1100px; margin: 0 auto 2rem; text-align:center;
+    color: var(--text-dim); font-size: 0.85rem; font-style: italic;
+  }
+
+  @media print {
+    body { background: white; color: black; }
+    .nav, .print-note { display: none; }
+    .fiche-card { border: 1px solid #ccc; background: white; }
+    .fiche-title { color: #1F4E79; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">Fiches murales — Algèbre</div>
+<div class="page-sub">Programme écrit de l'agrégation externe · à afficher, customiser, s'approprier</div>
+
+<div class="nav">
+  <a href="#f1">1. Groupes</a>
+  <a href="#f2">2. Anneaux & corps</a>
+  <a href="#f3">3. Arithmétique</a>
+  <a href="#f4">4. Réduction des endomorphismes</a>
+  <a href="#f5">5. Formes bilinéaires & quadratiques</a>
+  <a href="#f6">6. Dualité & espaces euclidiens</a>
+</div>
+
+<div class="print-note">💡 Chaque fiche est pensée pour tenir sur un écran ou une page. Zoome, imprime, ou affiche-les en boucle sur une tablette.</div>
+
+<!-- FICHE 1 : GROUPES -->
+<div class="fiche-wall" id="f1">
+<div class="fiche-card">
+  <span class="fiche-num">Algèbre · Fiche 01</span>
+  <div class="fiche-title">Groupes</div>
+  <div class="tag-row">
+    <span class="tag">morphisme</span><span class="tag">sous-groupe</span><span class="tag">quotient</span><span class="tag">action de groupe</span><span class="tag">Sylow</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="block">
+        <span class="block-label">Définition</span>
+        <p>(G, ·) est un groupe si · est associative, admet un neutre e, et tout élément a un inverse. Abélien si commutatif.</p>
+      </div>
+      <div class="block">
+        <span class="block-label">Sous-groupes</span>
+        <p>H ⊂ G est un sous-groupe ssi H≠∅, stable par produit et par inverse. Le noyau et l'image d'un morphisme sont des sous-groupes.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Théorème de Lagrange</span>
+        <p>Si G fini et H sous-groupe de G, alors |H| divise |G|. L'ordre d'un élément divise |G|.</p>
+      </div>
+    </div>
+    <div>
+      <div class="block tool">
+        <span class="block-label">Groupe quotient</span>
+        <p>Si H distingué (normal) dans G, G/H hérite d'une structure de groupe. H distingué ⟺ gHg⁻¹ = H pour tout g.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Théorèmes d'isomorphisme</span>
+        <p>1er théorème : G/ker(f) ≅ Im(f) pour tout morphisme f. À connaître par cœur, ressert partout.</p>
+      </div>
+      <div class="block ex">
+        <span class="block-label">Exemples classiques</span>
+        <ul>
+          <li>Groupe symétrique S_n : ordre n!, engendré par les transpositions</li>
+          <li>Groupes diédraux D_n : symétries d'un polygone</li>
+          <li>Z/nZ, (Z/nZ)* : groupes cycliques et leurs inversibles</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="block warn">
+    <span class="block-label">Pièges classiques</span>
+    <p>Un sous-groupe distingué n'est pas toujours le noyau d'un morphisme évident — il faut parfois le construire. Action de groupe : bien distinguer orbite, stabilisateur, et la formule |orbite|×|stabilisateur| = |G| (pour G fini).</p>
+  </div>
+</div>
+</div>
+
+<!-- FICHE 2 : ANNEAUX ET CORPS -->
+<div class="fiche-wall" id="f2">
+<div class="fiche-card">
+  <span class="fiche-num">Algèbre · Fiche 02</span>
+  <div class="fiche-title">Anneaux & corps</div>
+  <div class="tag-row">
+    <span class="tag">idéal</span><span class="tag">anneau principal</span><span class="tag">factoriel</span><span class="tag">extension de corps</span><span class="tag">corps finis</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="block">
+        <span class="block-label">Définitions clés</span>
+        <p><b>Idéal</b> I de A : sous-groupe additif stable par multiplication externe (a·I ⊂ I). <b>Anneau intègre</b> : sans diviseur de zéro. <b>Corps</b> : anneau intègre où tout élément non nul est inversible.</p>
+      </div>
+      <div class="hierarchy">
+        <div class="node">corps</div><div class="arrow">⊂</div>
+        <div class="node">anneau euclidien</div><div class="arrow">⊂</div>
+        <div class="node">principal</div><div class="arrow">⊂</div>
+        <div class="node">factoriel</div>
+      </div>
+      <div class="block tool">
+        <span class="block-label">Anneau principal</span>
+        <p>Tout idéal est engendré par un seul élément. Exemples : Z, K[X] (K corps). Dans un anneau principal : Bézout, PGCD bien défini.</p>
+      </div>
+    </div>
+    <div>
+      <div class="block ex">
+        <span class="block-label">Corps finis</span>
+        <p>Pour tout p premier et n≥1, il existe un unique corps à p^n éléments : F_{p^n}. Le groupe multiplicatif (F_{p^n})* est cyclique d'ordre p^n - 1.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Polynômes irréductibles</span>
+        <p>K[X] est principal si K est un corps. Critère d'Eisenstein pour l'irréductibilité sur Q. Un polynôme de degré 2 ou 3 est irréductible ssi il n'a pas de racine.</p>
+      </div>
+      <div class="block">
+        <span class="block-label">Extensions de corps</span>
+        <p>L/K extension : [L:K] = dim_K(L). Si α algébrique sur K, K(α) ≅ K[X]/(P) où P = polynôme minimal de α.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block warn">
+    <span class="block-label">Attention</span>
+    <p>Anneau factoriel ≠ anneau principal (Z[X] est factoriel mais pas principal). Bien vérifier les hypothèses avant d'appliquer Bézout : ça ne marche que dans un anneau principal (ou au moins où les idéaux (a,b) sont engendrés par 1 élément).</p>
+  </div>
+</div>
+</div>
+
+<!-- FICHE 3 : ARITHMETIQUE -->
+<div class="fiche-wall" id="f3">
+<div class="fiche-card">
+  <span class="fiche-num">Algèbre · Fiche 03</span>
+  <div class="fiche-title">Arithmétique</div>
+  <div class="tag-row">
+    <span class="tag">Bézout</span><span class="tag">congruences</span><span class="tag">CRT</span><span class="tag">indicatrice d'Euler</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="block thm">
+        <span class="block-label">Bézout</span>
+        <p>a,b ∈ Z, d = pgcd(a,b). Il existe u,v ∈ Z tels que au + bv = d. Calcul explicite par l'algorithme d'Euclide étendu.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Théorème chinois (CRT)</span>
+        <p>Si m,n premiers entre eux : Z/mnZ ≅ Z/mZ × Z/nZ. Permet de résoudre des systèmes de congruences simultanées.</p>
+      </div>
+      <div class="block">
+        <span class="block-label">Indicatrice d'Euler φ</span>
+        <p>φ(n) = nombre d'entiers entre 1 et n premiers avec n. Multiplicative : φ(mn)=φ(m)φ(n) si m∧n=1. φ(p^k) = p^k - p^{k-1}.</p>
+      </div>
+    </div>
+    <div>
+      <div class="block thm">
+        <span class="block-label">Petit théorème de Fermat / Euler</span>
+        <p>Si p premier et a∧p=1 : a^{p-1} ≡ 1 [p]. Généralisation d'Euler : a^{φ(n)} ≡ 1 [n] si a∧n=1.</p>
+      </div>
+      <div class="block ex">
+        <span class="block-label">Applications</span>
+        <ul>
+          <li>Cryptographie RSA (repose sur Euler + factorisation difficile)</li>
+          <li>Tests de primalité</li>
+          <li>Résolution d'équations diophantiennes ax+by=c</li>
+        </ul>
+      </div>
+      <div class="block tool">
+        <span class="block-label">Valuation p-adique</span>
+        <p>v_p(n) = exposant de p dans la décomposition de n. Formule de Legendre pour v_p(n!) = Σ ⌊n/p^k⌋.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FICHE 4 : REDUCTION DES ENDOMORPHISMES -->
+<div class="fiche-wall" id="f4">
+<div class="fiche-card">
+  <span class="fiche-num">Algèbre · Fiche 04</span>
+  <div class="fiche-title">Réduction des endomorphismes</div>
+  <div class="tag-row">
+    <span class="tag">diagonalisation</span><span class="tag">trigonalisation</span><span class="tag">polynôme minimal</span><span class="tag">Jordan</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="block">
+        <span class="block-label">Polynôme caractéristique</span>
+        <p>χ_u(X) = det(XI - u). Ses racines sont les valeurs propres. deg χ_u = dim E.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Critère de diagonalisabilité</span>
+        <p>u diagonalisable ⟺ χ_u scindé ET pour chaque valeur propre, dim(sous-espace propre) = multiplicité. Équivalent : le polynôme minimal est scindé à racines simples.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Cayley-Hamilton</span>
+        <p>χ_u(u) = 0. Le polynôme minimal divise toujours le polynôme caractéristique.</p>
+      </div>
+    </div>
+    <div>
+      <div class="block tool">
+        <span class="block-label">Trigonalisation</span>
+        <p>u trigonalisable ⟺ χ_u scindé. Sur C, tout endomorphisme est trigonalisable (corps algébriquement clos).</p>
+      </div>
+      <div class="block ex">
+        <span class="block-label">Réduction de Jordan</span>
+        <p>Si χ_u scindé, u est semblable à une somme de blocs de Jordan J_k(λ) (λ sur la diagonale, 1 sur la sur-diagonale). Base de la classification à similitude près.</p>
+      </div>
+      <div class="block warn">
+        <span class="block-label">Piège fréquent</span>
+        <p>Diagonalisable ≠ inversible (0 peut être valeur propre). Ne pas confondre "scindé" (racines dans le corps) et "scindé à racines simples" (condition plus forte pour diagonaliser).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <span class="block-label">Méthode pratique pour un exercice</span>
+    <p>1) Calculer χ_u et factoriser → valeurs propres. 2) Calculer les sous-espaces propres et leurs dimensions. 3) Comparer aux multiplicités algébriques. 4) Si échec → chercher le polynôme minimal ou passer à Jordan.</p>
+  </div>
+</div>
+</div>
+
+<!-- FICHE 5 : FORMES BILINEAIRES -->
+<div class="fiche-wall" id="f5">
+<div class="fiche-card">
+  <span class="fiche-num">Algèbre · Fiche 05</span>
+  <div class="fiche-title">Formes bilinéaires & quadratiques</div>
+  <div class="tag-row">
+    <span class="tag">Gram-Schmidt</span><span class="tag">signature</span><span class="tag">Sylvester</span><span class="tag">isométries</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="block">
+        <span class="block-label">Forme bilinéaire symétrique</span>
+        <p>b : E×E → K bilinéaire, symétrique. Forme quadratique associée : q(x) = b(x,x). Identité de polarisation : b(x,y) = ½(q(x+y) - q(x) - q(y)).</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Loi d'inertie de Sylvester</span>
+        <p>Sur R, toute forme quadratique se décompose en somme/différence de carrés. Le nombre de + et de − (signature (p,q)) ne dépend pas de la décomposition choisie.</p>
+      </div>
+    </div>
+    <div>
+      <div class="block tool">
+        <span class="block-label">Gram-Schmidt</span>
+        <p>Procédé d'orthonormalisation : à partir d'une base quelconque, construire une base orthonormée par récurrence, en soustrayant les projections successives.</p>
+      </div>
+      <div class="block ex">
+        <span class="block-label">Produit scalaire euclidien</span>
+        <p>Forme bilinéaire symétrique définie positive. Base orthonormée → matrice de la forme = identité. Cauchy-Schwarz : |b(x,y)| ≤ √(q(x))·√(q(y)).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block warn">
+    <span class="block-label">Rang vs signature</span>
+    <p>Le rang d'une forme quadratique = p+q (nombre total de termes non nuls dans une décomposition). Une forme est définie positive ⟺ signature (n,0) ⟺ toutes les valeurs propres de la matrice associée sont strictement positives.</p>
+  </div>
+</div>
+</div>
+
+<!-- FICHE 6 : DUALITE ET ESPACES EUCLIDIENS -->
+<div class="fiche-wall" id="f6">
+<div class="fiche-card">
+  <span class="fiche-num">Algèbre · Fiche 06</span>
+  <div class="fiche-title">Dualité & espaces euclidiens</div>
+  <div class="tag-row">
+    <span class="tag">forme linéaire</span><span class="tag">base duale</span><span class="tag">orthogonal</span><span class="tag">isométries</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="block">
+        <span class="block-label">Espace dual</span>
+        <p>E* = L(E,K), ensemble des formes linéaires sur E. Si dim E = n finie, dim E* = n. Base duale (e_i*) : e_i*(e_j) = δ_ij (symbole de Kronecker).</p>
+      </div>
+      <div class="block tool">
+        <span class="block-label">Bidual</span>
+        <p>En dimension finie, E ≅ E** canoniquement (via l'évaluation). Isomorphisme non canonique entre E et E* (dépend du choix de base, sauf si structure euclidienne).</p>
+      </div>
+    </div>
+    <div>
+      <div class="block thm">
+        <span class="block-label">Théorème de représentation de Riesz</span>
+        <p>En dimension finie avec produit scalaire, toute forme linéaire φ s'écrit φ(x) = ⟨a,x⟩ pour un unique a ∈ E. Identifie canoniquement E et E*.</p>
+      </div>
+      <div class="block ex">
+        <span class="block-label">Isométries d'un espace euclidien</span>
+        <p>Groupe orthogonal O(E) : endomorphismes conservant le produit scalaire. En dimension 2 : rotations et réflexions. Toute isométrie est diagonalisable par blocs (blocs 1×1 = ±1, blocs 2×2 = rotations).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <span class="block-label">Orthogonal d'un sous-espace</span>
+    <p>F⊥ = {x ∈ E : ⟨x,y⟩=0 ∀y∈F}. En dimension finie : dim F + dim F⊥ = dim E, et (F⊥)⊥ = F. Décomposition E = F ⊕ F⊥ (somme directe orthogonale).</p>
+  </div>
+</div>
+</div>
+
+</body>
+</html>

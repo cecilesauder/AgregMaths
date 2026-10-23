@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boîte à outils — Morphismes de groupes</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+  :root {
+    --bg: #14161d; --surface: #1e212c; --surface2: #262a38; --border: #383e52;
+    --accent: #f0c375; --accent2: #8fcbe8; --accent3: #b592e8;
+    --green: #6fd19c; --red: #f08787; --text: #eef1f7; --text-dim: #9aa5bd;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Source Sans 3', sans-serif; padding: 1.5rem; line-height: 1.6; }
+  .wrap { max-width: 980px; margin: 0 auto; }
+
+  .page-title { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--accent); text-align: center; margin-bottom: 0.2rem; }
+  .page-sub { text-align: center; color: var(--text-dim); font-size: 0.93rem; margin-bottom: 1.5rem; }
+
+  .progress-bar-wrap { background: var(--surface2); border-radius: 999px; height: 10px; margin-bottom: 0.4rem; overflow: hidden; border: 1px solid var(--border); }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent3), var(--accent2), var(--green)); width: 0%; transition: width 0.4s; }
+  .progress-label { text-align: center; font-size: 0.78rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; margin-bottom: 1.8rem; }
+
+  .how-to-box {
+    background: var(--surface); border: 1px solid var(--accent2); border-radius: 12px;
+    padding: 1.2rem 1.5rem; margin-bottom: 2rem; font-size: 0.93rem;
+  }
+  .how-to-box .label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.1em; display:block; margin-bottom:0.5rem;}
+
+  /* TABLE DE SIGNAUX */
+  .signal-table {
+    width: 100%; border-collapse: collapse; margin-bottom: 2.5rem;
+    background: var(--surface); border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .signal-table th {
+    background: var(--surface2); color: var(--accent); font-size: 0.78rem;
+    text-transform: uppercase; letter-spacing: 0.08em; padding: 0.8rem 1rem; text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .signal-table td { padding: 0.8rem 1rem; border-top: 1px solid var(--border); font-size: 0.92rem; vertical-align: top; }
+  .signal-table tr:hover td { background: var(--surface2); }
+  .signal-table .signal-txt { color: var(--accent2); font-style: italic; }
+  .signal-table .tool-name { color: var(--accent); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+
+  .tool-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 1.5rem 1.7rem; margin-bottom: 1.5rem; position: relative; overflow: hidden;
+  }
+  .tool-card.memo { border-color: var(--green); }
+  .tool-card::before { content:""; position:absolute; top:0; left:0; right:0; height:5px; background: linear-gradient(90deg, var(--accent3), var(--accent2), var(--accent)); }
+
+  .tool-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+  .tool-num { font-family: 'JetBrains Mono', monospace; color: var(--text-dim); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .tool-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--accent); margin-top: 0.2rem; }
+
+  .memo-check {
+    display: flex; align-items: center; gap: 0.4rem; cursor: pointer; user-select: none;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 999px;
+    padding: 0.35rem 0.8rem; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace;
+    color: var(--text-dim); white-space: nowrap;
+  }
+  .memo-check.checked { background: var(--green); color: #0d1a12; border-color: var(--green); }
+
+  .signal-box {
+    background: linear-gradient(135deg, #2e2617 0%, #1e212c 100%); border: 1px solid var(--accent);
+    border-radius: 10px; padding: 0.9rem 1.2rem; margin-bottom: 1rem;
+  }
+  .signal-box .lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; display:block; margin-bottom:0.3rem; }
+  .signal-box p { font-size: 0.94rem; }
+
+  .formula-box {
+    background: #0b0d12; border: 1px solid var(--border); border-radius: 10px;
+    padding: 0.9rem 1.3rem; margin-bottom: 1rem; text-align: center; font-size: 1.1rem; color: var(--accent);
+  }
+
+  .mini-demo {
+    background: var(--surface2); border-radius: 10px; padding: 0.9rem 1.2rem; margin-bottom: 1rem; font-size: 0.9rem;
+  }
+  .mini-demo .lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.1em; display:block; margin-bottom:0.4rem; }
+
+  .example-box {
+    background: #16211a; border: 1px solid var(--green); border-radius: 10px;
+    padding: 0.9rem 1.2rem; font-size: 0.92rem;
+  }
+  .example-box .lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; display:block; margin-bottom:0.4rem; }
+
+  mark { background: rgba(240, 195, 117, 0.25); color: var(--accent); padding: 0.05em 0.3em; border-radius: 4px; font-weight: 600; }
+
+  .reset-btn { display: block; margin: 1rem auto 2rem; background: none; border: 1px solid var(--red); color: var(--red); padding: 0.5rem 1.4rem; border-radius: 8px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="page-title">🧰 Boîte à outils — Morphismes de groupes</div>
+  <div class="page-sub">Chaque outil = une propriété + le signal qui doit te la faire venir en tête</div>
+
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">0 / 0 outils mémorisés</div>
+
+  <div class="how-to-box">
+    <span class="label">Comment utiliser cette page</span>
+    Le vrai problème n'est pas de comprendre chaque propriété une fois qu'on te la montre — c'est de savoir <b>laquelle sortir</b> face à un énoncé. Le tableau ci-dessous fonctionne comme un aiguillage : tu repères une formulation dans l'énoncé, elle te renvoie à l'outil correspondant. Apprends d'abord ce tableau par cœur, les détails de chaque outil viendront ensuite en renfort.
+  </div>
+
+  <table class="signal-table">
+    <tr><th>Si l'énoncé dit / contient...</th><th>Alors pense à...</th></tr>
+    <tr><td class="signal-txt">"soit f un morphisme de groupes"</td><td class="tool-name">Outil 1 — la règle d'or</td></tr>
+    <tr><td class="signal-txt">tu dois calculer ou utiliser f(0)</td><td class="tool-name">Outil 2 — image du neutre</td></tr>
+    <tr><td class="signal-txt">tu vois f(-x) ou f(x⁻¹)</td><td class="tool-name">Outil 3 — image de l'inverse</td></tr>
+    <tr><td class="signal-txt">"montrer que ker(f) est un sous-groupe"</td><td class="tool-name">Outil 4 — noyau = sous-groupe</td></tr>
+    <tr><td class="signal-txt">"montrer que Im(f) est un sous-groupe"</td><td class="tool-name">Outil 5 — image = sous-groupe</td></tr>
+    <tr><td class="signal-txt">"montrer que f est injective"</td><td class="tool-name">Outil 6 — injectif ⟺ ker={0}</td></tr>
+    <tr><td class="signal-txt">"quotient", "G/ker(f)", "isomorphe à l'image"</td><td class="tool-name">Outil 7 — 1er théorème d'isomorphisme</td></tr>
+  </table>
+
+  <!-- OUTIL 1 -->
+  <div class="tool-card" data-id="t1">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 01 · la règle d'or</span><div class="tool-title">$f(x+y) = f(x)+f(y)$</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal de déclenchement</span>
+      <p>Dès que tu vois "f est un morphisme" (ou "f respecte la structure de groupe"), <mark>cette égalité est toujours vraie, sans exception</mark>. C'est la définition même. Tu as le droit de l'écrire à tout moment sans la justifier.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Pourquoi c'est vrai</span>
+      Ce n'est pas à démontrer : c'est <b>la définition</b> d'un morphisme de groupes. Tout le reste de la boîte à outils se déduit de cette seule ligne.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Ton exemple</span>
+      $f(x)=2x$ dans $\mathbb{Z}/6\mathbb{Z}$ : $f(x+y)=2(x+y)=2x+2y=f(x)+f(y)$. ✓
+    </div>
+  </div>
+
+  <!-- OUTIL 2 -->
+  <div class="tool-card" data-id="t2">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 02</span><div class="tool-title">$f(0) = 0$</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal de déclenchement</span>
+      <p>Dès que tu dois vérifier <mark>qu'un ensemble contient l'élément neutre</mark> (première étape de "montrer que c'est un sous-groupe"), et que cet ensemble est défini via un morphisme f, cet outil règle l'étape en une ligne.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Démonstration (à savoir refaire)</span>
+      Écris l'outil 1 avec $y=0$ : $f(x+0) = f(x)+f(0)$, donc $f(x) = f(x) + f(0)$. En simplifiant des deux côtés (on retire $f(x)$), il reste $f(0) = 0$.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Ton exemple</span>
+      $f(0) = 2 \times 0 = 0$. ✓ (trivial ici, mais le principe se généralise à n'importe quel morphisme, même compliqué)
+    </div>
+  </div>
+
+  <!-- OUTIL 3 -->
+  <div class="tool-card" data-id="t3">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 03</span><div class="tool-title">$f(-x) = -f(x)$</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal de déclenchement</span>
+      <p>Dès que tu dois vérifier <mark>la stabilité par inverse</mark> (dernière étape de "montrer que c'est un sous-groupe"), et que l'ensemble est défini via f.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Démonstration (à savoir refaire)</span>
+      Écris l'outil 1 avec $y=-x$ : $f(x + (-x)) = f(x) + f(-x)$, donc $f(0) = f(x)+f(-x)$. Par l'outil 2, $f(0)=0$, donc $0 = f(x)+f(-x)$, ce qui donne $f(-x) = -f(x)$.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Ton exemple</span>
+      $f(-x) = 2(-x) = -2x = -f(x)$. ✓ C'est exactement ce que tu as utilisé pour conclure que $-x \in \ker(f)$ tout à l'heure !
+    </div>
+  </div>
+
+  <!-- OUTIL 4 -->
+  <div class="tool-card" data-id="t4">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 04 · tu l'as démontré toi-même</span><div class="tool-title">$\ker(f)$ est un sous-groupe</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal de déclenchement</span>
+      <p>Dès que l'énoncé demande de <mark>montrer qu'un certain ensemble est un sous-groupe</mark>, ET que cet ensemble est défini comme "les x tels que f(x)=0" pour un morphisme f — reconnais que c'est un noyau déguisé.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Démonstration (celle que tu as faite)</span>
+      1) $0 \in \ker(f)$ par l'outil 2. 2) Si $x,y \in \ker(f)$ : $f(x+y)=f(x)+f(y)=0+0=0$ (outil 1) donc $x+y \in \ker(f)$. 3) Si $x \in \ker(f)$ : $f(-x)=-f(x)=-0=0$ (outil 3) donc $-x \in \ker(f)$.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Ton exemple</span>
+      $\ker(f) = \{0,3\}$ dans $\mathbb{Z}/6\mathbb{Z}$ — tu as vérifié à la main que c'était stable, puis démontré pourquoi ça marche toujours.
+    </div>
+  </div>
+
+  <!-- OUTIL 5 -->
+  <div class="tool-card" data-id="t5">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 05 · même logique, à l'arrivée</span><div class="tool-title">$\text{Im}(f)$ est un sous-groupe</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal de déclenchement</span>
+      <p>Dès que l'énoncé demande de montrer qu'un ensemble de valeurs atteintes par un morphisme est un sous-groupe (de l'ensemble d'arrivée).</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Démonstration (calquée sur l'outil 4)</span>
+      1) $0 = f(0) \in \text{Im}(f)$. 2) Si $a,b \in \text{Im}(f)$, il existe $x,y$ avec $f(x)=a$, $f(y)=b$. Alors $a+b = f(x)+f(y)=f(x+y) \in \text{Im}(f)$. 3) Si $a=f(x) \in \text{Im}(f)$, alors $-a = -f(x) = f(-x) \in \text{Im}(f)$.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Ton exemple</span>
+      $\text{Im}(f) = \{0,2,4\}$ dans $\mathbb{Z}/6\mathbb{Z}$ — même structure de preuve que pour ker(f), juste "de l'autre côté".
+    </div>
+  </div>
+
+  <!-- OUTIL 6 -->
+  <div class="tool-card" data-id="t6">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 06</span><div class="tool-title">f injective $\iff$ $\ker(f) = \{0\}$</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal de déclenchement</span>
+      <p>Dès que l'énoncé demande de <mark>montrer qu'un morphisme est injectif</mark> — ne reviens JAMAIS à la définition générale de l'injectivité (f(x)=f(y) ⟹ x=y), c'est beaucoup plus lourd. Utilise directement ce critère, propre aux morphismes.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Pourquoi ça marche</span>
+      Si $f(x)=f(y)$, alors $f(x-y) = f(x)-f(y) = 0$ (via outils 1 et 3 combinés), donc $x-y \in \ker(f)$. Si $\ker(f)=\{0\}$, alors $x-y=0$, donc $x=y$.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Ton exemple</span>
+      Ici $\ker(f) = \{0,3\} \neq \{0\}$, donc $f$ n'est <b>pas</b> injective — cohérent avec le fait que tu avais trouvé $f(0)=f(3)=0$ (deux entrées différentes, même sortie).
+    </div>
+  </div>
+
+  <!-- OUTIL 7 -->
+  <div class="tool-card" data-id="t7">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 07 · le plus puissant, pour plus tard</span><div class="tool-title">$G/\ker(f) \cong \text{Im}(f)$</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal de déclenchement</span>
+      <p>Dès que tu vois "quotient" dans un énoncé, ou qu'on te demande de montrer que <mark>deux groupes sont isomorphes</mark> alors que l'un est un quotient et l'autre une image. C'est un théorème qu'on admet et qu'on applique — pas à redémontrer à chaque fois.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Intuition (à revoir avec le crochet)</span>
+      Le quotient $G/\ker(f)$ "regroupe en un seul paquet" tous les éléments qui donnent la même image par $f$. Ce théorème dit que ces paquets sont exactement en bijection (et même en correspondance de structure) avec les valeurs atteintes par $f$.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Ton exemple (à vérifier plus tard ensemble)</span>
+      $\mathbb{Z}/6\mathbb{Z}$ divisé par $\ker(f)=\{0,3\}$ donne 3 paquets : $\{0,3\}, \{1,4\}, \{2,5\}$. Et $\text{Im}(f)=\{0,2,4\}$ a aussi 3 éléments. Pas un hasard !
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetProgress()">↺ Réinitialiser</button>
+
+</div>
+
+<script>
+const STORAGE_KEY = 'agreg_toolbox_morphismes';
+
+function loadProgress() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
+function saveProgress(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+function applyStoredProgress() {
+  const data = loadProgress();
+  document.querySelectorAll('.tool-card').forEach(card => {
+    const id = card.dataset.id;
+    if (data[id]) {
+      card.classList.add('memo');
+      const chk = card.querySelector('.memo-check');
+      chk.classList.add('checked');
+      chk.textContent = '✓ Mémorisé';
+    }
+  });
+  updateProgressBar();
+}
+
+function toggleMemo(el) {
+  const card = el.closest('.tool-card');
+  const id = card.dataset.id;
+  const data = loadProgress();
+  data[id] = !data[id];
+  saveProgress(data);
+  card.classList.toggle('memo', data[id]);
+  el.classList.toggle('checked', data[id]);
+  el.textContent = data[id] ? '✓ Mémorisé' : '☐ Mémorisé';
+  updateProgressBar();
+}
+
+function updateProgressBar() {
+  const total = document.querySelectorAll('.tool-card').length;
+  const done = document.querySelectorAll('.tool-card.memo').length;
+  const pct = total ? Math.round((done/total)*100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${done} / ${total} outils mémorisés (${pct}%)`;
+}
+
+function resetProgress() {
+  if (confirm("Réinitialiser la progression de cette boîte à outils ?")) {
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('.memo').forEach(el => el.classList.remove('memo'));
+    document.querySelectorAll('.checked').forEach(el => { el.classList.remove('checked'); el.textContent = '☐ Mémorisé'; });
+    updateProgressBar();
+  }
+}
+
+applyStoredProgress();
+
+document.addEventListener("DOMContentLoaded", function() {
+  renderMathInElement(document.body, { delimiters: [{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}] });
+});
+if (document.readyState !== 'loading') {
+  renderMathInElement(document.body, { delimiters: [{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}] });
+}
+</script>
+</body>
+</html>

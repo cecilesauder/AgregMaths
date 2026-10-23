@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boîte à outils — Sous-groupes distingués & quotients</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+  :root {
+    --bg: #14161d; --surface: #1e212c; --surface2: #262a38; --border: #383e52;
+    --accent: #f0c375; --accent2: #8fcbe8; --accent3: #b592e8;
+    --green: #6fd19c; --red: #f08787; --text: #eef1f7; --text-dim: #9aa5bd;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Source Sans 3', sans-serif; padding: 1.5rem; line-height: 1.6; }
+  .wrap { max-width: 980px; margin: 0 auto; }
+
+  .page-title { font-family: 'Playfair Display', serif; font-size: 1.85rem; color: var(--accent); text-align: center; margin-bottom: 0.2rem; }
+  .page-sub { text-align: center; color: var(--text-dim); font-size: 0.93rem; margin-bottom: 1.5rem; }
+
+  .progress-bar-wrap { background: var(--surface2); border-radius: 999px; height: 10px; margin-bottom: 0.4rem; overflow: hidden; border: 1px solid var(--border); }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent3), var(--accent2), var(--green)); width: 0%; transition: width 0.4s; }
+  .progress-label { text-align: center; font-size: 0.78rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; margin-bottom: 1.8rem; }
+
+  .nav { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; position: sticky; top: 0; background: var(--bg); padding: 0.8rem 0; z-index: 50; }
+  .nav a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; border: 1px solid var(--border); padding: 0.35rem 0.9rem; border-radius: 999px; background: var(--surface); }
+  .nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+  h2.section-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--accent); border-bottom: 2px solid var(--border); padding-bottom: 0.6rem; margin-bottom: 1.2rem; }
+
+  .how-to-box { background: var(--surface); border: 1px solid var(--accent2); border-radius: 12px; padding: 1.1rem 1.4rem; margin-bottom: 1.8rem; font-size: 0.92rem; }
+  .how-to-box .label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.1em; display:block; margin-bottom:0.4rem;}
+
+  .signal-table { width: 100%; border-collapse: collapse; margin-bottom: 2.5rem; background: var(--surface); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
+  .signal-table th { background: var(--surface2); color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.7rem 0.9rem; text-align: left; font-family: 'JetBrains Mono', monospace; }
+  .signal-table td { padding: 0.7rem 0.9rem; border-top: 1px solid var(--border); font-size: 0.88rem; vertical-align: top; }
+  .signal-table tr:hover td { background: var(--surface2); }
+  .signal-table .signal-txt { color: var(--accent2); font-style: italic; }
+  .signal-table .tool-name { color: var(--accent); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+
+  .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.4rem 1.6rem; margin-bottom: 1.4rem; position: relative; overflow: hidden; }
+  .tool-card.memo { border-color: var(--green); }
+  .tool-card::before { content:""; position:absolute; top:0; left:0; right:0; height:5px; background: linear-gradient(90deg, var(--accent3), var(--accent2), var(--accent)); }
+  .tool-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.9rem; }
+  .tool-num { font-family: 'JetBrains Mono', monospace; color: var(--text-dim); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .tool-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--accent); margin-top: 0.2rem; }
+  .memo-check { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; user-select: none; background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 0.3rem 0.75rem; font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; color: var(--text-dim); white-space: nowrap; }
+  .memo-check.checked { background: var(--green); color: #0d1a12; border-color: var(--green); }
+
+  .signal-box { background: linear-gradient(135deg, #2e2617 0%, #1e212c 100%); border: 1px solid var(--accent); border-radius: 10px; padding: 0.85rem 1.1rem; margin-bottom: 0.9rem; }
+  .signal-box .lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; display:block; margin-bottom:0.3rem; }
+  .signal-box p { font-size: 0.9rem; }
+
+  .mini-demo { background: var(--surface2); border-radius: 10px; padding: 0.85rem 1.1rem; margin-bottom: 0.9rem; font-size: 0.88rem; }
+  .mini-demo .lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.1em; display:block; margin-bottom:0.4rem; }
+
+  .example-box { background: #16211a; border: 1px solid var(--green); border-radius: 10px; padding: 0.85rem 1.1rem; font-size: 0.88rem; }
+  .example-box .lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; display:block; margin-bottom:0.4rem; }
+
+  mark { background: rgba(240, 195, 117, 0.25); color: var(--accent); padding: 0.05em 0.3em; border-radius: 4px; font-weight: 600; }
+
+  /* EXERCICES */
+  .exo-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.3rem 1.5rem; margin-bottom: 1.2rem; }
+  .exo-card.done { border-color: var(--green); }
+  .exo-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; gap: 1rem; }
+  .exo-title { font-weight: 700; color: var(--accent); font-size: 1rem; }
+  .diff-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; padding: 0.2rem 0.55rem; border-radius: 999px; white-space: nowrap; }
+  .diff-facile { background: #16331f; color: var(--green); border: 1px solid #245234; }
+  .diff-moyen { background: #332a16; color: var(--accent); border: 1px solid #524224; }
+  .diff-dur { background: #331616; color: var(--red); border: 1px solid #522424; }
+  .exo-statement { font-size: 0.94rem; margin-bottom: 0.9rem; }
+  .toggle-btn { background: var(--surface2); border: 1px solid var(--accent3); color: var(--accent3); padding: 0.45rem 1.1rem; border-radius: 8px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; }
+  .toggle-btn:hover { background: var(--accent3); color: #14161d; }
+  .correction { display: none; margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px dashed var(--border); }
+  .correction.show { display: block; }
+  .correction-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; display: block; }
+  .correction .step { margin-bottom: 0.55rem; padding-left: 0.7rem; border-left: 2px solid var(--border); font-size: 0.9rem; }
+  .exo-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 0.9rem; }
+  .check-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--accent3); flex-shrink: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; user-select: none; background: var(--surface2); }
+  .check-box.checked { background: var(--green); border-color: var(--green); color: #0d1a12; }
+
+  .reset-btn { display: block; margin: 1rem auto 2rem; background: none; border: 1px solid var(--red); color: var(--red); padding: 0.5rem 1.4rem; border-radius: 8px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="page-title">🧰 Sous-groupes distingués & groupes quotients</div>
+  <div class="page-sub">Suite directe des morphismes — même logique : signal → outil → exemple</div>
+
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">0 / 0 éléments cochés</div>
+
+  <div class="nav">
+    <a href="#outils">🧰 Boîte à outils</a>
+    <a href="#exercices">✏️ Exercices</a>
+  </div>
+
+  <div class="how-to-box">
+    <span class="label">Rappel du principe</span>
+    On prolonge directement la boîte à outils des morphismes. Le lien central à retenir tout de suite : <mark>ker(f) est TOUJOURS distingué</mark> — c'est le pont entre les deux boîtes à outils.
+  </div>
+
+  <section id="outils">
+  <h2 class="section-title">🧰 Boîte à outils</h2>
+
+  <table class="signal-table">
+    <tr><th>Si l'énoncé dit / contient...</th><th>Alors pense à...</th></tr>
+    <tr><td class="signal-txt">"montrer que H est distingué dans G"</td><td class="tool-name">Outil 1 — définition</td></tr>
+    <tr><td class="signal-txt">"G abélien" + un sous-groupe quelconque</td><td class="tool-name">Outil 2 — raccourci abélien</td></tr>
+    <tr><td class="signal-txt">"H = ker(f)" pour un morphisme f</td><td class="tool-name">Outil 3 — noyau toujours distingué</td></tr>
+    <tr><td class="signal-txt">"indice de H dans G égal à 2"</td><td class="tool-name">Outil 4 — raccourci indice 2</td></tr>
+    <tr><td class="signal-txt">"construire G/H", "loi quotient"</td><td class="tool-name">Outil 5 — groupe quotient</td></tr>
+    <tr><td class="signal-txt">"calculer |G/H|", "ordre du quotient"</td><td class="tool-name">Outil 6 — ordre du quotient</td></tr>
+    <tr><td class="signal-txt">"projection canonique", "surjection canonique π"</td><td class="tool-name">Outil 7 — projection canonique</td></tr>
+    <tr><td class="signal-txt">"montrer que G/ker(f) est isomorphe à..."</td><td class="tool-name">Outil 8 — 1er théorème d'isomorphisme</td></tr>
+  </table>
+
+  <!-- OUTIL 1 -->
+  <div class="tool-card" data-id="q1">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 01 · la définition</span><div class="tool-title">H distingué $\iff \forall g \in G, gHg^{-1}=H$</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal</span>
+      <p>Question directe "montrer que H est distingué (normal)", sans autre info exploitable (pas de morphisme, pas d'indice 2, pas d'abélianité). C'est la méthode par défaut, la plus lourde — à utiliser en dernier recours.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Méthode pratique</span>
+      Prendre $g \in G$ et $h \in H$ quelconques, calculer $ghg^{-1}$, et montrer que ce résultat est encore dans $H$ (souvent en revenant à une caractérisation concrète des éléments de H).
+    </div>
+    <div class="example-box">
+      <span class="lbl">Exemple</span>
+      Dans $G=(\mathbb{Z},+)$ (abélien), $H=n\mathbb{Z}$ : $g+h-g = h \in H$ toujours. Distingué trivialement (voir outil 2).
+    </div>
+  </div>
+
+  <!-- OUTIL 2 -->
+  <div class="tool-card" data-id="q2">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 02 · raccourci le plus fréquent</span><div class="tool-title">G abélien $\Rightarrow$ tout sous-groupe est distingué</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal</span>
+      <p>Dès que l'énoncé précise ou que tu sais que <mark>G est abélien (commutatif)</mark> — ne perds jamais de temps à vérifier la distinction à la main, c'est automatique.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Pourquoi c'est vrai</span>
+      $gHg^{-1}$ : si $G$ commutatif, $ghg^{-1} = hgg^{-1} = h$. Donc $gHg^{-1}=H$ pour tout g, sans aucune condition sur H.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Exemple</span>
+      $\mathbb{Z}/n\mathbb{Z}$ est abélien : absolument tous ses sous-groupes (voir Démo 4 de la fiche précédente) sont automatiquement distingués. Zéro travail à faire.
+    </div>
+  </div>
+
+  <!-- OUTIL 3 -->
+  <div class="tool-card" data-id="q3">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 03 · le pont avec les morphismes</span><div class="tool-title">ker(f) est toujours distingué</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal</span>
+      <p>Dès que H est défini comme le <mark>noyau d'un morphisme</mark> — même dans un groupe non-abélien — inutile de vérifier, c'est automatique.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Démonstration (courte)</span>
+      Soit $x \in \ker(f)$, $g \in G$. Calculons $f(gxg^{-1})$ : comme $f$ est un morphisme, $f(gxg^{-1}) = f(g)f(x)f(g)^{-1} = f(g) \cdot e \cdot f(g)^{-1} = e$. Donc $gxg^{-1} \in \ker(f)$.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Exemple</span>
+      $f : \mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$ la surjection canonique, $\ker(f) = n\mathbb{Z}$ — distingué automatiquement (et de toute façon $\mathbb{Z}$ est abélien, double raison).
+    </div>
+  </div>
+
+  <!-- OUTIL 4 -->
+  <div class="tool-card" data-id="q4">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 04 · astuce à fort rendement</span><div class="tool-title">[G:H]=2 $\Rightarrow$ H distingué</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal</span>
+      <p>Dès que tu sais (ou calcules) que <mark>H a exactement 2 classes à gauche</mark> dans G (indice 2) — même si G n'est pas abélien. C'est un raccourci très utilisé sur des exemples comme $A_n$ dans $S_n$.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Pourquoi ça marche</span>
+      Si $[G:H]=2$, il n'y a que 2 classes à gauche : $H$ et $G \setminus H$. Pour $g \notin H$ : $gH = G\setminus H$ et $Hg = G\setminus H$ aussi (par élimination, une seule classe possible en dehors de H). Donc $gH=Hg$ pour tout g : distingué.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Exemple classique à connaître</span>
+      $A_n$ (permutations paires) est distingué dans $S_n$ car $[S_n:A_n]=2$ — c'est LE réflexe à avoir sur ce couple de groupes, il tombe souvent.
+    </div>
+  </div>
+
+  <!-- OUTIL 5 -->
+  <div class="tool-card" data-id="q5">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 05</span><div class="tool-title">Construction du groupe quotient G/H</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal</span>
+      <p>Dès qu'on te demande de <mark>vérifier que la loi sur G/H est bien définie</mark>, ou de justifier l'existence du quotient.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Ce qu'il faut savoir dire</span>
+      $G/H$ = ensemble des classes $gH$. La loi $(gH)(g'H) = (gg')H$ n'est bien définie (ne dépend pas des représentants choisis) <mark>que si H est distingué</mark> — c'est précisément pour ça qu'on a besoin de la distinction.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Exemple</span>
+      $\mathbb{Z}/n\mathbb{Z}$ est littéralement le premier exemple de groupe quotient que tu manipules depuis le début de nos séances !
+    </div>
+  </div>
+
+  <!-- OUTIL 6 -->
+  <div class="tool-card" data-id="q6">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 06</span><div class="tool-title">$|G/H| = |G|/|H|$</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal</span>
+      <p>Dès qu'on te demande <mark>l'ordre (le cardinal) du groupe quotient</mark> — c'est directement une reformulation du théorème de Lagrange.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Pourquoi c'est vrai</span>
+      C'est exactement le "$k$" (nombre de classes) de la démonstration du théorème de Lagrange qu'on a vue : $|G| = k \times |H|$, et $k = |G/H|$ par définition.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Exemple</span>
+      $|S_n / A_n| = |S_n|/|A_n| = n!/(n!/2) = 2$ — cohérent avec l'indice 2 de l'outil 4.
+    </div>
+  </div>
+
+  <!-- OUTIL 7 -->
+  <div class="tool-card" data-id="q7">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 07</span><div class="tool-title">Projection canonique $\pi : G \to G/H$</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal</span>
+      <p>Dès qu'on parle de "l'application $g \mapsto gH$" ou "la surjection canonique" — c'est toujours un morphisme surjectif, et son noyau est toujours H.</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Ce qu'il faut savoir dire</span>
+      $\pi(g) = gH$. Morphisme : $\pi(gg') = gg'H = (gH)(g'H) = \pi(g)\pi(g')$. Surjective par construction (toute classe a un représentant). $\ker(\pi) = \{g : gH = H\} = H$.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Exemple</span>
+      $\pi : \mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$, $\pi(x) = x \bmod n$ — c'est la projection canonique que tu utilises depuis le début sans forcément l'avoir nommée ainsi.
+    </div>
+  </div>
+
+  <!-- OUTIL 8 -->
+  <div class="tool-card" data-id="q8">
+    <div class="tool-header">
+      <div><span class="tool-num">Outil 08 · le théorème le plus cité à l'oral</span><div class="tool-title">$G/\ker(f) \cong \text{Im}(f)$</div></div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div>
+    </div>
+    <div class="signal-box">
+      <span class="lbl">📡 Signal</span>
+      <p>Dès qu'on te demande de <mark>montrer qu'un quotient est isomorphe à un autre groupe</mark> — cherche s'il existe un morphisme naturel dont ce quotient serait "G/ker" et l'autre groupe "Im".</p>
+    </div>
+    <div class="mini-demo">
+      <span class="lbl">Méthode pratique en 3 étapes</span>
+      1) Trouver/construire un morphisme $f: G \to K$ pertinent. 2) Calculer $\ker(f)$ et vérifier qu'il vaut bien $H$. 3) Calculer $\text{Im}(f)$ — c'est le groupe isomorphe à $G/H$.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Exemple déjà vu</span>
+      Avec $f(x)=2x$ dans $\mathbb{Z}/6\mathbb{Z}$ : $\ker(f)=\{0,3\}$, donc $(\mathbb{Z}/6\mathbb{Z})/\{0,3\} \cong \text{Im}(f) = \{0,2,4\}$. On avait vérifié : 3 classes des deux côtés !
+    </div>
+  </div>
+
+  </section>
+
+  <!-- ===================== EXERCICES ===================== -->
+  <section id="exercices">
+  <h2 class="section-title">✏️ Exercices type annales</h2>
+
+  <div class="exo-card" data-id="qe1">
+    <div class="exo-header">
+      <span class="exo-title">Exercice 1</span>
+      <span class="diff-tag diff-facile">Facile</span>
+    </div>
+    <div class="exo-statement">
+      Soit $G$ un groupe abélien et $H$ un sous-groupe quelconque de $G$. Montrer que $H$ est distingué dans $G$.
+    </div>
+    <div class="exo-footer">
+      <button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button>
+      <div class="check-box" onclick="toggleExoCheck(this)">✓</div>
+    </div>
+    <div class="correction">
+      <span class="correction-label">Correction — reconnaître l'outil 2</span>
+      <div class="step">Soit $g \in G$ et $h \in H$ quelconques.</div>
+      <div class="step">$G$ étant abélien : $ghg^{-1} = hgg^{-1} = h \in H$.</div>
+      <div class="step">Donc $gHg^{-1} \subset H$ pour tout $g$, et par symétrie (même argument avec $g^{-1}$) $gHg^{-1}=H$. $H$ est distingué. $\blacksquare$</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="qe2">
+    <div class="exo-header">
+      <span class="exo-title">Exercice 2</span>
+      <span class="diff-tag diff-moyen">Moyen</span>
+    </div>
+    <div class="exo-statement">
+      On note $A_3 \subset S_3$ le sous-groupe des permutations paires de $\{1,2,3\}$ (donc $|A_3|=3$, $|S_3|=6$). Montrer que $A_3$ est distingué dans $S_3$, puis décrire le groupe quotient $S_3/A_3$.
+    </div>
+    <div class="exo-footer">
+      <button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button>
+      <div class="check-box" onclick="toggleExoCheck(this)">✓</div>
+    </div>
+    <div class="correction">
+      <span class="correction-label">Correction — reconnaître l'outil 4 puis l'outil 6</span>
+      <div class="step">$[S_3:A_3] = |S_3|/|A_3| = 6/3 = 2$.</div>
+      <div class="step">Par l'outil 4 (indice 2 ⟹ distingué), $A_3$ est distingué dans $S_3$ — pas besoin de vérifier $gA_3g^{-1}=A_3$ à la main.</div>
+      <div class="step">Par l'outil 6, $|S_3/A_3| = |S_3|/|A_3| = 2$. Un groupe à 2 éléments est toujours isomorphe à $\mathbb{Z}/2\mathbb{Z}$.</div>
+      <div class="step">$S_3/A_3 \cong \mathbb{Z}/2\mathbb{Z}$ — les deux classes sont "permutations paires" et "permutations impaires". $\blacksquare$</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="qe3">
+    <div class="exo-header">
+      <span class="exo-title">Exercice 3</span>
+      <span class="diff-tag diff-moyen">Moyen</span>
+    </div>
+    <div class="exo-statement">
+      Soit $f : \mathbb{Z}/12\mathbb{Z} \to \mathbb{Z}/12\mathbb{Z}$ définie par $f(x) = 4x \bmod 12$. Déterminer $\ker(f)$, $\text{Im}(f)$, et en déduire à quel groupe est isomorphe $(\mathbb{Z}/12\mathbb{Z})/\ker(f)$.
+    </div>
+    <div class="exo-footer">
+      <button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button>
+      <div class="check-box" onclick="toggleExoCheck(this)">✓</div>
+    </div>
+    <div class="correction">
+      <span class="correction-label">Correction — reconnaître les outils 4 (boîte morphismes) et 8</span>
+      <div class="step">On vérifie d'abord que $f$ est un morphisme : $f(x+y)=4(x+y)=4x+4y=f(x)+f(y)$. ✓</div>
+      <div class="step">$\ker(f) = \{x : 4x \equiv 0 \pmod{12}\}$. En testant : $x=0,3,6,9$ conviennent (multiples de 3). $\ker(f)=\{0,3,6,9\}$, qui a 4 éléments.</div>
+      <div class="step">$\text{Im}(f)$ : on calcule $f(0)=0, f(1)=4, f(2)=8, f(3)=0,\ldots$ — les valeurs distinctes sont $\{0,4,8\}$, soit 3 éléments.</div>
+      <div class="step">Par l'outil 8 : $(\mathbb{Z}/12\mathbb{Z})/\{0,3,6,9\} \cong \{0,4,8\}$. Ce dernier groupe, muni de l'addition mod 12, est cyclique d'ordre 3, donc isomorphe à $\mathbb{Z}/3\mathbb{Z}$. $\blacksquare$</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="qe4">
+    <div class="exo-header">
+      <span class="exo-title">Exercice 4 — type oral</span>
+      <span class="diff-tag diff-dur">Plus difficile</span>
+    </div>
+    <div class="exo-statement">
+      Soit $G$ un groupe fini et $H$ un sous-groupe distingué de $G$ tel que $\text{pgcd}(|H|, |G/H|) = 1$. On admet qu'il existe alors un sous-groupe $K$ de $G$ avec $K \cap H = \{e\}$ et $|K| = |G/H|$. Montrer que dans ce cas $G = HK$ (tout élément de $G$ s'écrit $hk$ avec $h\in H, k\in K$), en comptant les éléments.
+    </div>
+    <div class="exo-footer">
+      <button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button>
+      <div class="check-box" onclick="toggleExoCheck(this)">✓</div>
+    </div>
+    <div class="correction">
+      <span class="correction-label">Correction — argument de comptage (classique à l'oral)</span>
+      <div class="step">Considérons l'application $\varphi : H \times K \to G$, $(h,k) \mapsto hk$.</div>
+      <div class="step">Elle est injective : si $h_1k_1 = h_2k_2$, alors $h_2^{-1}h_1 = k_2k_1^{-1} \in H \cap K = \{e\}$ (car $H\cap K=\{e\}$ par hypothèse), donc $h_1=h_2$ et $k_1=k_2$.</div>
+      <div class="step">$|H \times K| = |H| \times |K| = |H| \times |G/H| = |G|$ (par l'outil 6, en utilisant $|K|=|G/H|$).</div>
+      <div class="step">$\varphi$ est donc une injection entre deux ensembles finis de même cardinal $|G|$ : c'est une bijection. Donc tout élément de $G$ s'écrit $hk$. $\blacksquare$</div>
+      <div class="step">Cet argument de comptage ("injectif + même cardinal = bijectif") revient très souvent, à avoir en réflexe.</div>
+    </div>
+  </div>
+
+  </section>
+
+  <button class="reset-btn" onclick="resetProgress()">↺ Réinitialiser</button>
+
+</div>
+
+<script>
+const STORAGE_KEY = 'agreg_toolbox_quotients';
+
+function loadProgress() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
+function saveProgress(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+function applyStoredProgress() {
+  const data = loadProgress();
+  document.querySelectorAll('.tool-card').forEach(card => {
+    const id = card.dataset.id;
+    if (data[id]) {
+      card.classList.add('memo');
+      const chk = card.querySelector('.memo-check');
+      chk.classList.add('checked');
+      chk.textContent = '✓ Mémorisé';
+    }
+  });
+  document.querySelectorAll('.exo-card').forEach(card => {
+    const id = card.dataset.id;
+    if (data[id]) {
+      card.classList.add('done');
+      card.querySelector('.check-box').classList.add('checked');
+    }
+  });
+  updateProgressBar();
+}
+
+function toggleMemo(el) {
+  const card = el.closest('.tool-card');
+  const id = card.dataset.id;
+  const data = loadProgress();
+  data[id] = !data[id];
+  saveProgress(data);
+  card.classList.toggle('memo', data[id]);
+  el.classList.toggle('checked', data[id]);
+  el.textContent = data[id] ? '✓ Mémorisé' : '☐ Mémorisé';
+  updateProgressBar();
+}
+
+function toggleExoCheck(el) {
+  const card = el.closest('.exo-card');
+  const id = card.dataset.id;
+  const data = loadProgress();
+  data[id] = !data[id];
+  saveProgress(data);
+  card.classList.toggle('done', data[id]);
+  el.classList.toggle('checked', data[id]);
+  updateProgressBar();
+}
+
+function updateProgressBar() {
+  const total = document.querySelectorAll('.tool-card, .exo-card').length;
+  const done = document.querySelectorAll('.tool-card.memo, .exo-card.done').length;
+  const pct = total ? Math.round((done/total)*100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${done} / ${total} éléments cochés (${pct}%)`;
+}
+
+function resetProgress() {
+  if (confirm("Réinitialiser toute la progression de cette page ?")) {
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('.memo, .done').forEach(el => el.classList.remove('memo','done'));
+    document.querySelectorAll('.checked').forEach(el => { el.classList.remove('checked'); if(el.classList.contains('memo-check')) el.textContent = '☐ Mémorisé'; });
+    updateProgressBar();
+  }
+}
+
+function toggleCorrection(btn) {
+  const corr = btn.closest('.exo-card').querySelector('.correction');
+  corr.classList.toggle('show');
+  btn.textContent = corr.classList.contains('show') ? "Masquer la correction" : "Voir la correction";
+}
+
+applyStoredProgress();
+
+document.addEventListener("DOMContentLoaded", function() {
+  renderMathInElement(document.body, { delimiters: [{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}] });
+});
+if (document.readyState !== 'loading') {
+  renderMathInElement(document.body, { delimiters: [{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}] });
+}
+</script>
+</body>
+</html>

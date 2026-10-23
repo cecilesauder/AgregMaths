@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boîte à outils — Réduction de Jordan</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+  :root { --bg:#14161d;--surface:#1e212c;--surface2:#262a38;--border:#383e52;--accent:#f0c375;--accent2:#8fcbe8;--accent3:#b592e8;--green:#6fd19c;--red:#f08787;--text:#eef1f7;--text-dim:#9aa5bd; }
+  *{box-sizing:border-box;margin:0;padding:0;} body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',sans-serif;padding:1.5rem;line-height:1.6;}
+  .wrap{max-width:980px;margin:0 auto;}
+  .page-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--accent);text-align:center;margin-bottom:0.2rem;}
+  .page-sub{text-align:center;color:var(--text-dim);font-size:0.93rem;margin-bottom:1.5rem;}
+  .progress-bar-wrap{background:var(--surface2);border-radius:999px;height:10px;margin-bottom:0.4rem;overflow:hidden;border:1px solid var(--border);}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--accent2),var(--green));width:0%;transition:width 0.4s;}
+  .progress-label{text-align:center;font-size:0.78rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:1.8rem;}
+  h2.section-title{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--accent);border-bottom:2px solid var(--border);padding-bottom:0.6rem;margin-bottom:1.2rem;}
+  .how-to-box{background:var(--surface);border:1px solid var(--accent2);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.8rem;font-size:0.92rem;}
+  .how-to-box .label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .signal-table{width:100%;border-collapse:collapse;margin-bottom:2.2rem;background:var(--surface);border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+  .signal-table th{background:var(--surface2);color:var(--accent);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;padding:0.7rem 0.9rem;text-align:left;font-family:'JetBrains Mono',monospace;}
+  .signal-table td{padding:0.7rem 0.9rem;border-top:1px solid var(--border);font-size:0.88rem;vertical-align:top;}
+  .signal-table tr:hover td{background:var(--surface2);}
+  .signal-table .signal-txt{color:var(--accent2);font-style:italic;}
+  .signal-table .tool-name{color:var(--accent);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:0.82rem;}
+  .tool-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;margin-bottom:1.4rem;position:relative;overflow:hidden;}
+  .tool-card.memo{border-color:var(--green);}
+  .tool-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent3),var(--accent2),var(--accent));}
+  .tool-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.9rem;}
+  .tool-num{font-family:'JetBrains Mono',monospace;color:var(--text-dim);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;}
+  .tool-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--accent);margin-top:0.2rem;}
+  .memo-check{display:flex;align-items:center;gap:0.4rem;cursor:pointer;user-select:none;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:0.3rem 0.75rem;font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text-dim);white-space:nowrap;}
+  .memo-check.checked{background:var(--green);color:#0d1a12;border-color:var(--green);}
+  .signal-box{background:linear-gradient(135deg,#2e2617 0%,#1e212c 100%);border:1px solid var(--accent);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;}
+  .signal-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.3rem;}
+  .signal-box p{font-size:0.9rem;}
+  .mini-demo{background:var(--surface2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;font-size:0.88rem;}
+  .mini-demo .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .example-box{background:#16211a;border:1px solid var(--green);border-radius:10px;padding:0.85rem 1.1rem;font-size:0.88rem;}
+  .example-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .formula-box{background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent);margin-bottom:0.9rem;}
+  mark{background:rgba(240,195,117,0.25);color:var(--accent);padding:0.05em 0.3em;border-radius:4px;font-weight:600;}
+  .exo-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.2rem;}
+  .exo-card.done{border-color:var(--green);}
+  .exo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;gap:1rem;}
+  .exo-title{font-weight:700;color:var(--accent);font-size:1rem;}
+  .diff-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:0.2rem 0.55rem;border-radius:999px;white-space:nowrap;}
+  .diff-facile{background:#16331f;color:var(--green);border:1px solid #245234;}
+  .diff-moyen{background:#332a16;color:var(--accent);border:1px solid #524224;}
+  .diff-dur{background:#331616;color:var(--red);border:1px solid #522424;}
+  .exo-statement{font-size:0.94rem;margin-bottom:0.9rem;}
+  .toggle-btn{background:var(--surface2);border:1px solid var(--accent3);color:var(--accent3);padding:0.45rem 1.1rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.76rem;}
+  .toggle-btn:hover{background:var(--accent3);color:#14161d;}
+  .correction{display:none;margin-top:0.9rem;padding-top:0.9rem;border-top:1px dashed var(--border);}
+  .correction.show{display:block;}
+  .correction-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;display:block;}
+  .correction .step{margin-bottom:0.55rem;padding-left:0.7rem;border-left:2px solid var(--border);font-size:0.9rem;}
+  .exo-footer{display:flex;justify-content:space-between;align-items:center;margin-top:0.9rem;}
+  .check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--accent3);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;user-select:none;background:var(--surface2);}
+  .check-box.checked{background:var(--green);border-color:var(--green);color:#0d1a12;}
+  .reset-btn{display:block;margin:1rem auto 2rem;background:none;border:1px solid var(--red);color:var(--red);padding:0.5rem 1.4rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.78rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-title">🧰 Réduction de Jordan</div>
+  <div class="page-sub">Que faire quand ce n'est PAS diagonalisable — mais que χ reste scindé</div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">0 / 0 éléments cochés</div>
+
+  <div class="how-to-box">
+    <span class="label">Le fil rouge</span>
+    Diagonaliser, c'était trouver une base de vecteurs propres. Jordan, c'est le <mark>"plan B" quand ça échoue</mark> : on trouve la base "la moins mauvaise possible", avec des 1 juste au-dessus de la diagonale. Toujours basé sur le lemme des noyaux, juste avec des puissances de $(X-\lambda)$ au lieu de $(X-\lambda)$ tout seul.
+  </div>
+
+  <h2 class="section-title">🧰 Boîte à outils</h2>
+  <table class="signal-table">
+    <tr><th>Si l'énoncé dit / contient...</th><th>Alors pense à...</th></tr>
+    <tr><td class="signal-txt">"sous-espace caractéristique"</td><td class="tool-name">Outil 1 — décomposition caractéristique</td></tr>
+    <tr><td class="signal-txt">"bloc de Jordan $J_k(\lambda)$"</td><td class="tool-name">Outil 2 — définition d'un bloc</td></tr>
+    <tr><td class="signal-txt">"réduire à la Jordan", "forme de Jordan"</td><td class="tool-name">Outil 3 — théorème de Jordan</td></tr>
+    <tr><td class="signal-txt">"nombre de blocs de taille k"</td><td class="tool-name">Outil 4 — formule des rangs</td></tr>
+    <tr><td class="signal-txt">"calculer $u^n$" avec u non diagonalisable</td><td class="tool-name">Outil 5 — puissances via Jordan</td></tr>
+  </table>
+
+  <div class="tool-card" data-id="j1">
+    <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Sous-espaces caractéristiques</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que $\chi_u$ est scindé mais qu'il y a des multiplicités $>1$ avec un sous-espace propre "trop petit" (diagonalisation impossible).</p></div>
+    <div class="mini-demo"><span class="lbl">Définition et lien avec le lemme des noyaux</span>Le sous-espace caractéristique associé à $\lambda$ est $\ker(u-\lambda\text{id})^{m_\lambda}$ où $m_\lambda$ = multiplicité de $\lambda$ dans $\chi_u$. Par Cayley-Hamilton, $\chi_u(u)=0=\prod(u-\lambda_i\text{id})^{m_i}$, et le lemme des noyaux (facteurs premiers entre eux car $\lambda_i$ distincts) donne : $$E = \bigoplus_i \ker(u-\lambda_i\text{id})^{m_i}$$</div>
+    <div class="example-box"><span class="lbl">Différence avec la diagonalisation</span>Ici on prend le noyau de $(u-\lambda\text{id})^{m}$ (puissance $m$), pas juste $(u-\lambda\text{id})$ — c'est ce qui permet de "récupérer" toute la dimension même quand le sous-espace propre est trop petit.</div>
+  </div>
+
+  <div class="tool-card" data-id="j2">
+    <div class="tool-header"><div><span class="tool-num">Outil 02</span><div class="tool-title">Bloc de Jordan $J_k(\lambda)$</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande d'écrire la matrice réduite elle-même.</p></div>
+    <div class="formula-box">$$J_k(\lambda) = \begin{pmatrix}\lambda&1&&\\&\lambda&\ddots&\\&&\ddots&1\\&&&\lambda\end{pmatrix} \text{ (taille } k\times k\text{)}$$</div>
+    <div class="mini-demo"><span class="lbl">À retenir</span>$\lambda$ sur la diagonale, des 1 juste au-dessus. Sur chaque sous-espace caractéristique, $u$ restreint est semblable à une somme directe de tels blocs (toujours avec le même $\lambda$).</div>
+  </div>
+
+  <div class="tool-card" data-id="j3">
+    <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Théorème de Jordan</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Énoncé général à citer quand on te demande de justifier l'existence d'une réduite de Jordan.</p></div>
+    <div class="mini-demo"><span class="lbl">Énoncé</span>Si $\chi_u$ est scindé, $u$ est semblable à une matrice diagonale par blocs, chaque bloc étant un $J_k(\lambda)$. Cette décomposition est <b>unique à l'ordre des blocs près</b>.</div>
+    <div class="example-box"><span class="lbl">Cas particulier à noter</span>Si tous les blocs sont de taille 1, on retombe exactement sur la diagonalisation — Jordan généralise la diagonalisation, ce n'est pas une notion complètement séparée.</div>
+  </div>
+
+  <div class="tool-card" data-id="j4">
+    <div class="tool-header"><div><span class="tool-num">Outil 04 · pour les calculs pratiques</span><div class="tool-title">Compter les blocs via les rangs</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de déterminer explicitement la forme de Jordan (combien de blocs, de quelles tailles).</p></div>
+    <div class="formula-box">$$\text{nb de blocs de taille} \geq k \text{ pour } \lambda = \text{rg}(u-\lambda\text{id})^{k-1} - \text{rg}(u-\lambda\text{id})^{k}$$</div>
+    <div class="mini-demo"><span class="lbl">Méthode pratique</span>Calcule $\text{rg}(u-\lambda\text{id})^0, \text{rg}(u-\lambda\text{id})^1, \text{rg}(u-\lambda\text{id})^2,\ldots$ jusqu'à stabilisation. Les différences successives te donnent directement le nombre de blocs de chaque taille.</div>
+  </div>
+
+  <div class="tool-card" data-id="j5">
+    <div class="tool-header"><div><span class="tool-num">Outil 05</span><div class="tool-title">Puissances via Jordan</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande $u^n$ et que $u$ n'est PAS diagonalisable.</p></div>
+    <div class="mini-demo"><span class="lbl">Astuce de calcul sur un bloc</span>$J_k(\lambda) = \lambda I + N$ où $N$ est nilpotente (des 1 sur la sur-diagonale). Comme $\lambda I$ et $N$ commutent, le binôme de Newton s'applique : $J_k(\lambda)^n = \sum_{i=0}^{k-1}\binom{n}{i}\lambda^{n-i}N^i$ (somme finie car $N^k=0$).</div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>
+
+  <div class="exo-card" data-id="je1">
+    <div class="exo-header"><span class="exo-title">Exercice 1</span><span class="diff-tag diff-facile">Facile</span></div>
+    <div class="exo-statement">Soit $A=\begin{pmatrix}2&1\\0&2\end{pmatrix}$. Montrer que $A$ n'est pas diagonalisable, et écrire sa forme de Jordan (elle l'est déjà !).</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction</span>
+      <div class="step">$\chi_A(X)=(X-2)^2$ : une seule valeur propre, 2, de multiplicité 2.</div>
+      <div class="step">Sous-espace propre : $\ker(A-2I)=\ker\begin{pmatrix}0&1\\0&0\end{pmatrix}$, qui a pour dimension 1 (seulement le vecteur $(1,0)$ et ses multiples).</div>
+      <div class="step">$\dim(\text{sous-espace propre})=1 \neq 2=$ multiplicité. Par l'outil 2 de la fiche réduction, $A$ n'est PAS diagonalisable.</div>
+      <div class="step">$A$ est déjà exactement sous forme de Jordan : $A=J_2(2)$, un unique bloc de taille 2. $\blacksquare$</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="je2">
+    <div class="exo-header"><span class="exo-title">Exercice 2</span><span class="diff-tag diff-moyen">Moyen</span></div>
+    <div class="exo-statement">Soit $u$ un endomorphisme de $\mathbb{R}^3$ avec $\chi_u(X)=(X-1)^3$, et $\text{rg}(u-\text{id})=1$. Déterminer la forme de Jordan de $u$.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outil 4</span>
+      <div class="step">$\text{rg}(u-\text{id})^0 = \text{rg}(\text{id}) = 3$ (par convention, la puissance 0 c'est l'identité).</div>
+      <div class="step">$\text{rg}(u-\text{id})^1 = 1$ (donné).</div>
+      <div class="step">Nombre de blocs de taille $\geq 1$ = $3-1=2$. Il y a donc <b>2 blocs</b> au total pour la valeur propre 1 (et la somme des tailles fait 3, la dimension totale).</div>
+      <div class="step">Avec 2 blocs dont les tailles somment à 3 : c'est forcément un bloc de taille 2 et un bloc de taille 1. Forme de Jordan : $J_2(1) \oplus J_1(1)$, soit $\begin{pmatrix}1&1&0\\0&1&0\\0&0&1\end{pmatrix}$. $\blacksquare$</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="je3">
+    <div class="exo-header"><span class="exo-title">Exercice 3 — type oral</span><span class="diff-tag diff-dur">Plus difficile</span></div>
+    <div class="exo-statement">Soit $N$ nilpotente d'indice 3 sur $\mathbb{R}^3$ (i.e. $N^2\neq0$, $N^3=0$). Montrer que $N$ est semblable à $J_3(0)$ (un unique bloc).</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — argument de construction directe (classique)</span>
+      <div class="step">Comme $N^2\neq0$, il existe $v$ avec $N^2v\neq0$. Considérons la famille $(v, Nv, N^2v)$.</div>
+      <div class="step">Montrons qu'elle est libre : si $av+bNv+cN^2v=0$, appliquons $N^2$ : $aN^2v=0$ (car $N^3v=N^4v=0$), donc $a=0$ (puisque $N^2v\neq0$). Puis applique $N$ à ce qui reste : $bN^2v=0$, donc $b=0$. Enfin $c=0$.</div>
+      <div class="step">3 vecteurs libres dans un espace de dimension 3 : c'est une base ! Dans cette base, $N(N^2v)=0$, $N(Nv)=N^2v$, $N(v)=Nv$ — exactement la structure d'un bloc $J_3(0)$ (des 1 juste au-dessus de la diagonale, des 0 sur la diagonale car $\lambda=0$). $\blacksquare$</div>
+      <div class="step">Cette méthode de "partir du vecteur qui survit le plus longtemps" ($N^2v\neq0$) est LA technique standard pour construire une base de Jordan à la main, à généraliser pour plusieurs blocs.</div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetProgress()">↺ Réinitialiser</button>
+</div>
+<script>
+const STORAGE_KEY = 'agreg_toolbox_jordan';
+function loadProgress(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch{return{};}}
+function saveProgress(d){localStorage.setItem(STORAGE_KEY,JSON.stringify(d));}
+function applyStoredProgress(){
+  const data=loadProgress();
+  document.querySelectorAll('.tool-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('memo');const chk=c.querySelector('.memo-check');chk.classList.add('checked');chk.textContent='✓ Mémorisé';}});
+  document.querySelectorAll('.exo-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('done');c.querySelector('.check-box').classList.add('checked');}});
+  updateProgressBar();
+}
+function toggleMemo(el){const c=el.closest('.tool-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('memo',data[id]);el.classList.toggle('checked',data[id]);el.textContent=data[id]?'✓ Mémorisé':'☐ Mémorisé';updateProgressBar();}
+function toggleExoCheck(el){const c=el.closest('.exo-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('done',data[id]);el.classList.toggle('checked',data[id]);updateProgressBar();}
+function updateProgressBar(){const total=document.querySelectorAll('.tool-card,.exo-card').length;const done=document.querySelectorAll('.tool-card.memo,.exo-card.done').length;const pct=total?Math.round((done/total)*100):0;document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${done} / ${total} éléments cochés (${pct}%)`;}
+function resetProgress(){if(confirm("Réinitialiser toute la progression ?")){localStorage.removeItem(STORAGE_KEY);document.querySelectorAll('.memo,.done').forEach(el=>el.classList.remove('memo','done'));document.querySelectorAll('.checked').forEach(el=>{el.classList.remove('checked');if(el.classList.contains('memo-check'))el.textContent='☐ Mémorisé';});updateProgressBar();}}
+function toggleCorrection(btn){const corr=btn.closest('.exo-card').querySelector('.correction');corr.classList.toggle('show');btn.textContent=corr.classList.contains('show')?"Masquer la correction":"Voir la correction";}
+applyStoredProgress();
+document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});});
+if(document.readyState!=='loading'){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});}
+</script>
+</body>
+</html>

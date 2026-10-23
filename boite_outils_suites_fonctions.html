@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boîte à outils — Suites & séries de fonctions</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+  :root { --bg:#14161d;--surface:#1e212c;--surface2:#262a38;--border:#383e52;--accent:#f0c375;--accent2:#8fcbe8;--accent3:#b592e8;--green:#6fd19c;--red:#f08787;--text:#eef1f7;--text-dim:#9aa5bd; }
+  *{box-sizing:border-box;margin:0;padding:0;} body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',sans-serif;padding:1.5rem;line-height:1.6;}
+  .wrap{max-width:980px;margin:0 auto;}
+  .page-title{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--accent2);text-align:center;margin-bottom:0.2rem;}
+  .page-sub{text-align:center;color:var(--text-dim);font-size:0.93rem;margin-bottom:1.5rem;}
+  .progress-bar-wrap{background:var(--surface2);border-radius:999px;height:10px;margin-bottom:0.4rem;overflow:hidden;border:1px solid var(--border);}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--accent2),var(--green));width:0%;transition:width 0.4s;}
+  .progress-label{text-align:center;font-size:0.78rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:1.8rem;}
+  h2.section-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--accent2);border-bottom:2px solid var(--border);padding-bottom:0.6rem;margin-bottom:1.2rem;}
+  .how-to-box{background:var(--surface);border:1px solid var(--accent);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1.8rem;font-size:0.92rem;}
+  .how-to-box .label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .signal-table{width:100%;border-collapse:collapse;margin-bottom:2.2rem;background:var(--surface);border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+  .signal-table th{background:var(--surface2);color:var(--accent2);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;padding:0.7rem 0.9rem;text-align:left;font-family:'JetBrains Mono',monospace;}
+  .signal-table td{padding:0.7rem 0.9rem;border-top:1px solid var(--border);font-size:0.88rem;vertical-align:top;}
+  .signal-table tr:hover td{background:var(--surface2);}
+  .signal-table .signal-txt{color:var(--accent);font-style:italic;}
+  .signal-table .tool-name{color:var(--accent2);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:0.82rem;}
+  .tool-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;margin-bottom:1.4rem;position:relative;overflow:hidden;}
+  .tool-card.memo{border-color:var(--green);}
+  .tool-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent2),var(--accent3),var(--accent));}
+  .tool-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.9rem;}
+  .tool-num{font-family:'JetBrains Mono',monospace;color:var(--text-dim);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;}
+  .tool-title{font-family:'Playfair Display',serif;font-size:1.12rem;color:var(--accent2);margin-top:0.2rem;}
+  .memo-check{display:flex;align-items:center;gap:0.4rem;cursor:pointer;user-select:none;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:0.3rem 0.75rem;font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text-dim);white-space:nowrap;}
+  .memo-check.checked{background:var(--green);color:#0d1a12;border-color:var(--green);}
+  .signal-box{background:linear-gradient(135deg,#1a2e3d 0%,#1e212c 100%);border:1px solid var(--accent2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;}
+  .signal-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.3rem;}
+  .signal-box p{font-size:0.9rem;}
+  .mini-demo{background:var(--surface2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;font-size:0.88rem;}
+  .mini-demo .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--accent3);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .example-box{background:#16211a;border:1px solid var(--green);border-radius:10px;padding:0.85rem 1.1rem;font-size:0.88rem;}
+  .example-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .formula-box{background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent2);margin-bottom:0.9rem;}
+  mark{background:rgba(143,203,232,0.2);color:var(--accent2);padding:0.05em 0.3em;border-radius:4px;font-weight:600;}
+  .exo-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.2rem;}
+  .exo-card.done{border-color:var(--green);}
+  .exo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;gap:1rem;}
+  .exo-title{font-weight:700;color:var(--accent2);font-size:1rem;}
+  .diff-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:0.2rem 0.55rem;border-radius:999px;white-space:nowrap;}
+  .diff-facile{background:#16331f;color:var(--green);border:1px solid #245234;}
+  .diff-moyen{background:#332a16;color:var(--accent);border:1px solid #524224;}
+  .diff-dur{background:#331616;color:var(--red);border:1px solid #522424;}
+  .exo-statement{font-size:0.94rem;margin-bottom:0.9rem;}
+  .toggle-btn{background:var(--surface2);border:1px solid var(--accent3);color:var(--accent3);padding:0.45rem 1.1rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.76rem;}
+  .toggle-btn:hover{background:var(--accent3);color:#14161d;}
+  .correction{display:none;margin-top:0.9rem;padding-top:0.9rem;border-top:1px dashed var(--border);}
+  .correction.show{display:block;}
+  .correction-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;display:block;}
+  .correction .step{margin-bottom:0.55rem;padding-left:0.7rem;border-left:2px solid var(--border);font-size:0.9rem;}
+  .exo-footer{display:flex;justify-content:space-between;align-items:center;margin-top:0.9rem;}
+  .check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--accent3);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;user-select:none;background:var(--surface2);}
+  .check-box.checked{background:var(--green);border-color:var(--green);color:#0d1a12;}
+  .reset-btn{display:block;margin:1rem auto 2rem;background:none;border:1px solid var(--red);color:var(--red);padding:0.5rem 1.4rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.78rem;}
+  .anchor-banner{background:linear-gradient(135deg,#2e1f3d 0%,#1e212c 100%);border:1px solid var(--accent3);border-radius:14px;padding:1.1rem 1.5rem;margin-bottom:1.8rem;text-align:center;font-size:0.93rem;}
+  .anchor-banner b{color:var(--accent3);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-title">🧰 Suites & séries de fonctions</div>
+  <div class="page-sub">Convergence simple vs uniforme — avec ton exemple traumatisant $x^n$ comme fil conducteur 😅</div>
+
+  <div class="anchor-banner">🎯 Ton exemple $f_n(x)=x^n$ sur $[0,1]$ (exercice 3 de la topologie) va servir d'ancre dans TOUT ce chapitre — il illustre à lui seul 90% des pièges de convergence.</div>
+
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">0 / 0 éléments cochés</div>
+
+  <div class="how-to-box">
+    <span class="label">Le fil rouge</span>
+    Une suite de fonctions peut converger "point par point" (simple) sans que le comportement global soit contrôlé (uniforme). <mark>Convergence simple ne suffit presque jamais</mark> pour faire quoi que ce soit d'utile (intégrer, dériver) — il faut monter en uniforme.
+  </div>
+
+  <h2 class="section-title">🧰 Boîte à outils</h2>
+  <table class="signal-table">
+    <tr><th>Si l'énoncé dit / contient...</th><th>Alors pense à...</th></tr>
+    <tr><td class="signal-txt">"$f_n\to f$", nature de la convergence à déterminer</td><td class="tool-name">Outil 1 — simple vs uniforme</td></tr>
+    <tr><td class="signal-txt">"$\Sigma f_n$ converge normalement"</td><td class="tool-name">Outil 2 — convergence normale (Weierstrass)</td></tr>
+    <tr><td class="signal-txt">"$\int f_n \to \int f$ ?"</td><td class="tool-name">Outil 3 — interversion limite/intégrale</td></tr>
+    <tr><td class="signal-txt">"$f$ est dérivable, $f'=$?"</td><td class="tool-name">Outil 4 — dérivation terme à terme</td></tr>
+    <tr><td class="signal-txt">"suite monotone" + "limite continue" + "compact"</td><td class="tool-name">Outil 5 — théorème de Dini</td></tr>
+  </table>
+
+  <div class="tool-card" data-id="u1">
+    <div class="tool-header"><div><span class="tool-num">Outil 01 · la distinction fondamentale</span><div class="tool-title">Convergence simple vs uniforme</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te donne une suite de fonctions et qu'on demande la nature de la convergence.</p></div>
+    <div class="mini-demo"><span class="lbl">Définitions côte à côte</span>
+      <b>Simple</b> : pour <i>chaque</i> $x$ fixé, $f_n(x)\to f(x)$. La vitesse peut dépendre de $x$.<br>
+      <b>Uniforme</b> : $\sup_x|f_n(x)-f(x)| \to 0$. Une seule vitesse pour TOUS les $x$ en même temps.
+    </div>
+    <div class="example-box">
+      <span class="lbl">Ton exemple, disséqué</span>
+      $f_n(x)=x^n$ sur $[0,1]$ : converge simplement vers $f(x)=0$ si $x<1$, $f(1)=1$. Mais $\sup_x|f_n(x)-f(x)| = 1$ pour tout $n$ (regarde $x$ proche de 1) — donc <mark>ça ne converge PAS uniformément</mark>. Et remarque : la limite simple (0 puis 1) est discontinue, alors que chaque $f_n$ est continue — signe classique d'une convergence non uniforme.
+    </div>
+    <div class="mini-demo"><span class="lbl">Réflexe à avoir</span>Si la limite simple est discontinue alors que les $f_n$ sont continues, la convergence n'est JAMAIS uniforme (contraposée de : uniforme + continues ⟹ limite continue).</div>
+  </div>
+
+  <div class="tool-card" data-id="u2">
+    <div class="tool-header"><div><span class="tool-num">Outil 02 · le plus facile à vérifier</span><div class="tool-title">Convergence normale (Weierstrass)</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande d'étudier la convergence d'une SÉRIE de fonctions $\sum f_n$ — c'est souvent la méthode la plus rapide.</p></div>
+    <div class="formula-box">$$\sum\|f_n\|_\infty < \infty \implies \text{convergence normale} \implies \text{uniforme} \implies \text{simple}$$</div>
+    <div class="mini-demo"><span class="lbl">Méthode pratique</span>Majorer $|f_n(x)|$ par une constante $M_n$ indépendante de $x$, et montrer que $\sum M_n$ converge (souvent une série numérique classique, type Riemann ou géométrique).</div>
+  </div>
+
+  <div class="tool-card" data-id="u3">
+    <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Interversion limite / intégrale</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande si $\lim\int f_n = \int\lim f_n$.</p></div>
+    <div class="mini-demo"><span class="lbl">Condition suffisante (sur un segment)</span>Si $f_n\to f$ <b>uniformément</b> sur $[a,b]$ et les $f_n$ continues, alors $\int_a^b f_n \to \int_a^b f$.</div>
+    <div class="example-box">
+      <span class="lbl">Contre-exemple avec ton exemple</span>
+      $\int_0^1 x^n\,dx = \frac{1}{n+1}\to0$. Et $\int_0^1 f(x)\,dx=\int_0^1 0\,dx=0$ (car $f=0$ sauf en un point). Ici ça marche par coïncidence — mais retiens que ce n'est pas garanti sans convergence uniforme (le classique "bosse glissante" est un exemple où ça échoue vraiment).
+    </div>
+  </div>
+
+  <div class="tool-card" data-id="u4">
+    <div class="tool-header"><div><span class="tool-num">Outil 04 · piège fréquent</span><div class="tool-title">Dérivation terme à terme</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande si $f'=\lim f_n'$ — <mark>attention, la condition porte sur les DÉRIVÉES, pas sur les $f_n$ !</mark></p></div>
+    <div class="mini-demo"><span class="lbl">Énoncé exact</span>Si $f_n\to f$ simplement (juste simplement !), $f_n'\to g$ <b>uniformément</b>, et les $f_n'$ continues, alors $f$ est dérivable et $f'=g$.</div>
+    <div class="example-box" style="border-color:var(--red);">
+      <span class="lbl" style="color:var(--red)">⚠ Piège classique</span>
+      Beaucoup de candidats vérifient la convergence uniforme des $f_n$ au lieu de celle des $f_n'$ — c'est l'inverse qu'il faut vérifier ici !
+    </div>
+  </div>
+
+  <div class="tool-card" data-id="u5">
+    <div class="tool-header"><div><span class="tool-num">Outil 05</span><div class="tool-title">Théorème de Dini</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu as une convergence <mark>simple + monotone + compact + continuité</mark> — Dini te donne l'uniforme "gratuitement".</p></div>
+    <div class="mini-demo"><span class="lbl">Énoncé</span>Si $f_n\to f$ simplement sur un compact $K$, les $f_n$ et $f$ continues, et la suite $(f_n)$ monotone (croissante ou décroissante en $n$) — alors la convergence est automatiquement <b>uniforme</b>.</div>
+    <div class="example-box"><span class="lbl">Pourquoi ton exemple n'y échappe pas</span>$f_n(x)=x^n$ sur $[0,1]$ (compact !) est bien décroissante en $n$ pour chaque $x$ fixé... mais la limite $f$ est DISCONTINUE. Dini ne s'applique donc pas — cohérent avec le fait qu'on sait déjà que la convergence n'est pas uniforme !</div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>
+
+  <div class="exo-card" data-id="ue1">
+    <div class="exo-header"><span class="exo-title">Exercice 1</span><span class="diff-tag diff-facile">Facile</span></div>
+    <div class="exo-statement">Étudier la convergence normale de la série $\sum_{n\geq1} \frac{\sin(nx)}{n^2}$ sur $\mathbb{R}$.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outil 2</span>
+      <div class="step">$\left|\frac{\sin(nx)}{n^2}\right| \leq \frac{1}{n^2}$ pour tout $x$ (majoration indépendante de $x$).</div>
+      <div class="step">$\sum\frac{1}{n^2}$ converge (série de Riemann, exposant $2>1$).</div>
+      <div class="step">Par l'outil 2, la série converge normalement sur $\mathbb{R}$, donc uniformément. $\blacksquare$</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="ue2">
+    <div class="exo-header"><span class="exo-title">Exercice 2</span><span class="diff-tag diff-moyen">Moyen</span></div>
+    <div class="exo-statement">Reprendre $f_n(x)=x^n$ sur $[0,1[$ cette fois (on retire le point 1). La convergence est-elle uniforme sur $[0,1[$ ?</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — piège subtil, montre les limites de "limite continue"</span>
+      <div class="step">Sur $[0,1[$, la limite simple est $f=0$ partout — cette fois continue !</div>
+      <div class="step">Mais $\sup_{x\in[0,1[} |x^n - 0| = \sup_{x\in[0,1[} x^n = 1$ (la borne sup n'est jamais atteinte mais s'approche de 1).</div>
+      <div class="step">Donc $\sup|f_n-f|=1 \not\to 0$ : <b>toujours pas uniforme</b>, même si la limite est continue cette fois !</div>
+      <div class="step">Leçon importante : "limite continue" est nécessaire mais pas suffisant pour conclure à l'uniformité — ça ne sert qu'à exclure l'uniformité (contraposée), jamais à l'affirmer.</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="ue3">
+    <div class="exo-header"><span class="exo-title">Exercice 3 — type oral</span><span class="diff-tag diff-dur">Plus difficile</span></div>
+    <div class="exo-statement">Soit $f_n(x) = \dfrac{x}{1+n x^2}$ sur $\mathbb{R}$. Montrer que $(f_n)$ converge uniformément vers 0, mais que $(f_n')$ ne converge pas uniformément vers 0.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — illustre le piège de l'outil 4</span>
+      <div class="step">Pour $f_n$ : en étudiant les variations (dérivée nulle en $x=\pm1/\sqrt n$), on trouve $\sup_x|f_n(x)| = \frac{1}{2\sqrt n} \to 0$. Convergence uniforme vers 0. ✓</div>
+      <div class="step">$f_n'(x) = \dfrac{1-nx^2}{(1+nx^2)^2}$. En $x=0$ : $f_n'(0)=1$ pour tout $n$.</div>
+      <div class="step">Donc $f_n'(0)=1 \not\to 0$ : la suite des dérivées ne converge même pas simplement vers 0 en $x=0$, a fortiori pas uniformément.</div>
+      <div class="step">Ceci illustre précisément le piège de l'outil 4 : convergence uniforme des $f_n$ n'implique RIEN sur la convergence des $f_n'$ — ce sont deux conditions indépendantes. $\blacksquare$</div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetProgress()">↺ Réinitialiser</button>
+</div>
+<script>
+const STORAGE_KEY = 'agreg_toolbox_suites_fonctions';
+function loadProgress(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch{return{};}}
+function saveProgress(d){localStorage.setItem(STORAGE_KEY,JSON.stringify(d));}
+function applyStoredProgress(){
+  const data=loadProgress();
+  document.querySelectorAll('.tool-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('memo');const chk=c.querySelector('.memo-check');chk.classList.add('checked');chk.textContent='✓ Mémorisé';}});
+  document.querySelectorAll('.exo-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('done');c.querySelector('.check-box').classList.add('checked');}});
+  updateProgressBar();
+}
+function toggleMemo(el){const c=el.closest('.tool-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('memo',data[id]);el.classList.toggle('checked',data[id]);el.textContent=data[id]?'✓ Mémorisé':'☐ Mémorisé';updateProgressBar();}
+function toggleExoCheck(el){const c=el.closest('.exo-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('done',data[id]);el.classList.toggle('checked',data[id]);updateProgressBar();}
+function updateProgressBar(){const total=document.querySelectorAll('.tool-card,.exo-card').length;const done=document.querySelectorAll('.tool-card.memo,.exo-card.done').length;const pct=total?Math.round((done/total)*100):0;document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${done} / ${total} éléments cochés (${pct}%)`;}
+function resetProgress(){if(confirm("Réinitialiser toute la progression ?")){localStorage.removeItem(STORAGE_KEY);document.querySelectorAll('.memo,.done').forEach(el=>el.classList.remove('memo','done'));document.querySelectorAll('.checked').forEach(el=>{el.classList.remove('checked');if(el.classList.contains('memo-check'))el.textContent='☐ Mémorisé';});updateProgressBar();}}
+function toggleCorrection(btn){const corr=btn.closest('.exo-card').querySelector('.correction');corr.classList.toggle('show');btn.textContent=corr.classList.contains('show')?"Masquer la correction":"Voir la correction";}
+applyStoredProgress();
+document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});});
+if(document.readyState!=='loading'){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});}
+</script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boîte à outils — Actions de groupe</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+  :root { --bg:#14161d;--surface:#1e212c;--surface2:#262a38;--border:#383e52;--accent:#f0c375;--accent2:#8fcbe8;--accent3:#b592e8;--green:#6fd19c;--red:#f08787;--text:#eef1f7;--text-dim:#9aa5bd; }
+  *{box-sizing:border-box;margin:0;padding:0;} body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',sans-serif;padding:1.5rem;line-height:1.6;}
+  .wrap{max-width:980px;margin:0 auto;}
+  .page-title{font-family:'Playfair Display',serif;font-size:1.85rem;color:var(--accent);text-align:center;margin-bottom:0.2rem;}
+  .page-sub{text-align:center;color:var(--text-dim);font-size:0.93rem;margin-bottom:1.5rem;}
+  .progress-bar-wrap{background:var(--surface2);border-radius:999px;height:10px;margin-bottom:0.4rem;overflow:hidden;border:1px solid var(--border);}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--accent2),var(--green));width:0%;transition:width 0.4s;}
+  .progress-label{text-align:center;font-size:0.78rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-bottom:1.8rem;}
+  h2.section-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--accent);border-bottom:2px solid var(--border);padding-bottom:0.6rem;margin-bottom:1.2rem;}
+  .signal-table{width:100%;border-collapse:collapse;margin-bottom:2.2rem;background:var(--surface);border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+  .signal-table th{background:var(--surface2);color:var(--accent);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;padding:0.7rem 0.9rem;text-align:left;font-family:'JetBrains Mono',monospace;}
+  .signal-table td{padding:0.7rem 0.9rem;border-top:1px solid var(--border);font-size:0.88rem;vertical-align:top;}
+  .signal-table tr:hover td{background:var(--surface2);}
+  .signal-table .signal-txt{color:var(--accent2);font-style:italic;}
+  .signal-table .tool-name{color:var(--accent);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:0.82rem;}
+  .tool-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;margin-bottom:1.4rem;position:relative;overflow:hidden;}
+  .tool-card.memo{border-color:var(--green);}
+  .tool-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent3),var(--accent2),var(--accent));}
+  .tool-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.9rem;}
+  .tool-num{font-family:'JetBrains Mono',monospace;color:var(--text-dim);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;}
+  .tool-title{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--accent);margin-top:0.2rem;}
+  .memo-check{display:flex;align-items:center;gap:0.4rem;cursor:pointer;user-select:none;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:0.3rem 0.75rem;font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text-dim);white-space:nowrap;}
+  .memo-check.checked{background:var(--green);color:#0d1a12;border-color:var(--green);}
+  .signal-box{background:linear-gradient(135deg,#2e2617 0%,#1e212c 100%);border:1px solid var(--accent);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;}
+  .signal-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.3rem;}
+  .signal-box p{font-size:0.9rem;}
+  .mini-demo{background:var(--surface2);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:0.9rem;font-size:0.88rem;}
+  .mini-demo .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  .example-box{background:#16211a;border:1px solid var(--green);border-radius:10px;padding:0.85rem 1.1rem;font-size:0.88rem;}
+  .example-box .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;}
+  mark{background:rgba(240,195,117,0.25);color:var(--accent);padding:0.05em 0.3em;border-radius:4px;font-weight:600;}
+  .exo-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1.2rem;}
+  .exo-card.done{border-color:var(--green);}
+  .exo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;gap:1rem;}
+  .exo-title{font-weight:700;color:var(--accent);font-size:1rem;}
+  .diff-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:0.2rem 0.55rem;border-radius:999px;white-space:nowrap;}
+  .diff-facile{background:#16331f;color:var(--green);border:1px solid #245234;}
+  .diff-moyen{background:#332a16;color:var(--accent);border:1px solid #524224;}
+  .diff-dur{background:#331616;color:var(--red);border:1px solid #522424;}
+  .exo-statement{font-size:0.94rem;margin-bottom:0.9rem;}
+  .toggle-btn{background:var(--surface2);border:1px solid var(--accent3);color:var(--accent3);padding:0.45rem 1.1rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.76rem;}
+  .toggle-btn:hover{background:var(--accent3);color:#14161d;}
+  .correction{display:none;margin-top:0.9rem;padding-top:0.9rem;border-top:1px dashed var(--border);}
+  .correction.show{display:block;}
+  .correction-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;display:block;}
+  .correction .step{margin-bottom:0.55rem;padding-left:0.7rem;border-left:2px solid var(--border);font-size:0.9rem;}
+  .exo-footer{display:flex;justify-content:space-between;align-items:center;margin-top:0.9rem;}
+  .check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--accent3);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;user-select:none;background:var(--surface2);}
+  .check-box.checked{background:var(--green);border-color:var(--green);color:#0d1a12;}
+  .reset-btn{display:block;margin:1rem auto 2rem;background:none;border:1px solid var(--red);color:var(--red);padding:0.5rem 1.4rem;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.78rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-title">🧰 Actions de groupe</div>
+  <div class="page-sub">Le dernier bloc du chapitre groupes — signal → outil → exemple</div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">0 / 0 éléments cochés</div>
+
+  <h2 class="section-title">🧰 Boîte à outils</h2>
+  <table class="signal-table">
+    <tr><th>Si l'énoncé dit / contient...</th><th>Alors pense à...</th></tr>
+    <tr><td class="signal-txt">"G agit sur X"</td><td class="tool-name">Outil 1 — définition</td></tr>
+    <tr><td class="signal-txt">"orbite de x"</td><td class="tool-name">Outil 2 — orbite</td></tr>
+    <tr><td class="signal-txt">"stabilisateur de x"</td><td class="tool-name">Outil 3 — stabilisateur, sous-groupe</td></tr>
+    <tr><td class="signal-txt">"calculer |Orb(x)|", lien avec |G|</td><td class="tool-name">Outil 4 — orbite-stabilisateur</td></tr>
+    <tr><td class="signal-txt">"partitionner X en orbites"</td><td class="tool-name">Outil 5 — équation aux classes</td></tr>
+    <tr><td class="signal-txt">"action par conjugaison", "classe de conjugaison"</td><td class="tool-name">Outil 6 — conjugaison</td></tr>
+    <tr><td class="signal-txt">"centre de G", "Z(G)"</td><td class="tool-name">Outil 7 — centre = points fixes</td></tr>
+  </table>
+
+  <div class="tool-card" data-id="a1">
+    <div class="tool-header"><div><span class="tool-num">Outil 01</span><div class="tool-title">Définition d'une action</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu vois "$G$ agit sur $X$" ou une application $G \times X \to X$, notée $g \cdot x$.</p></div>
+    <div class="mini-demo"><span class="lbl">Les 2 conditions à vérifier</span>1) $e \cdot x = x$ pour tout $x$ (le neutre ne bouge rien). 2) $g \cdot (h \cdot x) = (gh) \cdot x$ (composer les actions = agir avec le produit).</div>
+    <div class="example-box"><span class="lbl">Exemple</span>$S_3$ agit sur $\{1,2,3\}$ par $\sigma \cdot i = \sigma(i)$ — l'action la plus naturelle qui existe.</div>
+  </div>
+
+  <div class="tool-card" data-id="a2">
+    <div class="tool-header"><div><span class="tool-num">Outil 02</span><div class="tool-title">Orbite $\text{Orb}(x) = \{g \cdot x : g \in G\}$</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>"Où peut atterrir x si on lui applique tous les éléments de G ?" — c'est ça une orbite.</p></div>
+    <div class="mini-demo"><span class="lbl">À retenir</span>Les orbites forment TOUJOURS une partition de $X$ (deux orbites sont égales ou disjointes — même argument que pour les classes à gauche dans Lagrange).</div>
+    <div class="example-box"><span class="lbl">Exemple</span>Pour $S_3$ agissant sur $\{1,2,3\}$ : $\text{Orb}(1) = \{1,2,3\}$ tout entier (on peut envoyer 1 n'importe où par une permutation bien choisie).</div>
+  </div>
+
+  <div class="tool-card" data-id="a3">
+    <div class="tool-header"><div><span class="tool-num">Outil 03</span><div class="tool-title">Stabilisateur $\text{Stab}(x) = \{g : g\cdot x = x\}$</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>"Quels éléments de G laissent x sur place ?" — et réflexe immédiat : c'est TOUJOURS un sous-groupe de G, à vérifier comme pour ker(f) (même structure de preuve).</p></div>
+    <div class="mini-demo"><span class="lbl">Démonstration (à refaire vite)</span>$e \in \text{Stab}(x)$ trivialement. Si $g,h$ stabilisent $x$ : $(gh)\cdot x = g\cdot(h\cdot x)=g\cdot x=x$. Si $g$ stabilise $x$ : $g^{-1}\cdot x = g^{-1}\cdot(g\cdot x) = (g^{-1}g)\cdot x = x$.</div>
+    <div class="example-box"><span class="lbl">Exemple</span>$\text{Stab}(1)$ dans $S_3$ = permutations qui fixent 1 = les permutations de $\{2,3\}$ seulement = 2 éléments (identité et la transposition (2 3)).</div>
+  </div>
+
+  <div class="tool-card" data-id="a4">
+    <div class="tool-header"><div><span class="tool-num">Outil 04 · le plus utilisé</span><div class="tool-title">Théorème orbite-stabilisateur</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande <mark>la taille d'une orbite ou d'un stabilisateur</mark> connaissant l'autre et $|G|$.</p></div>
+    <div class="formula-box" style="background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent);margin-bottom:0.9rem;">$$|\text{Orb}(x)| \times |\text{Stab}(x)| = |G|$$</div>
+    <div class="mini-demo"><span class="lbl">Pourquoi c'est vrai</span>C'est Lagrange appliqué à $H=\text{Stab}(x)$ : $|G/\text{Stab}(x)| = |G|/|\text{Stab}(x)|$, et on montre qu'il y a une bijection entre les classes $G/\text{Stab}(x)$ et les éléments de l'orbite.</div>
+    <div class="example-box"><span class="lbl">Exemple</span>$|G|=6$, $|\text{Stab}(1)|=2$ donc $|\text{Orb}(1)|=6/2=3$ — cohérent avec $\text{Orb}(1)=\{1,2,3\}$ trouvé directement.</div>
+  </div>
+
+  <div class="tool-card" data-id="a5">
+    <div class="tool-header"><div><span class="tool-num">Outil 05</span><div class="tool-title">Équation aux classes</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on te demande de <mark>compter les éléments de X en sommant sur les orbites</mark>, en particulier pour des démonstrations sur l'ordre des groupes (ex : groupes d'ordre $p^2$).</p></div>
+    <div class="formula-box" style="background:#0b0d12;border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;color:var(--accent);margin-bottom:0.9rem;">$$|X| = \sum_i |\text{Orb}(x_i)|$$</div>
+    <div class="mini-demo"><span class="lbl">À retenir</span>La somme porte sur un représentant $x_i$ par orbite distincte (pas sur tous les éléments de X un par un).</div>
+  </div>
+
+  <div class="tool-card" data-id="a6">
+    <div class="tool-header"><div><span class="tool-num">Outil 06</span><div class="tool-title">Action par conjugaison</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès que tu vois "$G$ agit sur lui-même par conjugaison" ou "classe de conjugaison".</p></div>
+    <div class="mini-demo"><span class="lbl">Traduction du vocabulaire</span>Action : $g \cdot x = gxg^{-1}$. Ici $\text{Orb}(x)$ s'appelle la <b>classe de conjugaison</b> de x, et $\text{Stab}(x) = \{g : gxg^{-1}=x\}$ s'appelle le <b>centralisateur</b> de x.</div>
+    <div class="example-box"><span class="lbl">Lien avec l'outil 4</span>Taille d'une classe de conjugaison = $|G|$/taille du centralisateur — application directe du théorème orbite-stabilisateur.</div>
+  </div>
+
+  <div class="tool-card" data-id="a7">
+    <div class="tool-header"><div><span class="tool-num">Outil 07</span><div class="tool-title">Centre = points fixes de la conjugaison</div></div><div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisé</div></div>
+    <div class="signal-box"><span class="lbl">📡 Signal</span><p>Dès qu'on parle du <mark>centre $Z(G)$</mark> (les éléments qui commutent avec tout le monde) dans un contexte d'action par conjugaison.</p></div>
+    <div class="mini-demo"><span class="lbl">Pourquoi</span>$x \in Z(G) \iff gxg^{-1}=x$ pour tout $g$ $\iff$ $\text{Orb}(x)=\{x\}$ (orbite réduite à un point) sous l'action par conjugaison.</div>
+    <div class="example-box"><span class="lbl">Application classique (grand classique d'oral)</span>Un groupe d'ordre $p^2$ ($p$ premier) est abélien : l'équation aux classes force $Z(G) \neq \{e\}$, puis on montre que $G/Z(G)$ cyclique ⟹ G abélien.</div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:2rem;">✏️ Exercices</h2>
+
+  <div class="exo-card" data-id="ae1">
+    <div class="exo-header"><span class="exo-title">Exercice 1</span><span class="diff-tag diff-facile">Facile</span></div>
+    <div class="exo-statement">$S_4$ agit naturellement sur $\{1,2,3,4\}$. Calculer $|\text{Stab}(1)|$ en utilisant le théorème orbite-stabilisateur.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction</span>
+      <div class="step">$|G|=|S_4|=4!=24$. L'action est transitive donc $\text{Orb}(1)=\{1,2,3,4\}$, $|\text{Orb}(1)|=4$.</div>
+      <div class="step">Par l'outil 4 : $|\text{Stab}(1)| = |G|/|\text{Orb}(1)| = 24/4 = 6$.</div>
+      <div class="step">Vérification : $\text{Stab}(1)$ = permutations de $\{2,3,4\}$ seulement = $S_3$, et $|S_3|=6$. ✓</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="ae2">
+    <div class="exo-header"><span class="exo-title">Exercice 2</span><span class="diff-tag diff-moyen">Moyen</span></div>
+    <div class="exo-statement">Soit $G$ un groupe d'ordre 8 agissant sur un ensemble $X$ de 5 éléments. Sachant que les tailles d'orbites divisent $|G|$, et qu'aucune orbite n'a 1 seul élément, donner la seule décomposition possible de $5$ en somme de tailles d'orbites.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction</span>
+      <div class="step">Les tailles d'orbites divisent $|G|=8$, donc chaque taille $\in \{1,2,4,8\}$. On exclut 1 et on ne peut pas dépasser 5, donc chaque taille $\in \{2,4\}$.</div>
+      <div class="step">On cherche à écrire $5$ comme somme de 2 et de 4 : $4+... $ ne marche pas seul (reste 1, exclu), $2+2=4$ (reste 1, exclu). Seule solution : impossible avec ces contraintes sauf $2+... $ Reprenons : on doit sommer plusieurs orbites dont chacune vaut 2 ou 4, total = 5 (nombre impair). Or une somme de nombres pairs est toujours paire. <b>Contradiction : cette situation est impossible.</b></div>
+      <div class="step">C'est le point pédagogique de l'exercice : l'équation aux classes sert aussi à <b>montrer qu'une configuration ne peut pas exister</b>, pas seulement à calculer.</div>
+    </div>
+  </div>
+
+  <div class="exo-card" data-id="ae3">
+    <div class="exo-header"><span class="exo-title">Exercice 3 — grand classique d'oral</span><span class="diff-tag diff-dur">Plus difficile</span></div>
+    <div class="exo-statement">Montrer que si $|G|=p^2$ avec $p$ premier, alors $Z(G) \neq \{e\}$.</div>
+    <div class="exo-footer"><button class="toggle-btn" onclick="toggleCorrection(this)">Voir la correction</button><div class="check-box" onclick="toggleExoCheck(this)">✓</div></div>
+    <div class="correction">
+      <span class="correction-label">Correction — outils 5, 6, 7 combinés</span>
+      <div class="step">On fait agir $G$ sur lui-même par conjugaison (outil 6). L'équation aux classes (outil 5) donne $|G| = |Z(G)| + \sum |\text{classes non triviales}|$.</div>
+      <div class="step">Chaque classe non triviale a une taille qui divise $|G|=p^2$ (orbite-stabilisateur) et qui est $>1$ (sinon l'élément serait dans le centre). Donc chaque taille vaut $p$ ou $p^2$.</div>
+      <div class="step">Si $Z(G)=\{e\}$ : $p^2 = 1 + \sum(\text{multiples de } p)$, donc $p^2 \equiv 1 \pmod p$, soit $0 \equiv 1 \pmod p$ — impossible.</div>
+      <div class="step">Donc $Z(G) \neq \{e\}$. $\blacksquare$ (Ce résultat permet ensuite de montrer que $G$ est abélien, en étudiant $G/Z(G)$.)</div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetProgress()">↺ Réinitialiser</button>
+</div>
+<script>
+const STORAGE_KEY = 'agreg_toolbox_actions';
+function loadProgress(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch{return{};}}
+function saveProgress(d){localStorage.setItem(STORAGE_KEY,JSON.stringify(d));}
+function applyStoredProgress(){
+  const data=loadProgress();
+  document.querySelectorAll('.tool-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('memo');const chk=c.querySelector('.memo-check');chk.classList.add('checked');chk.textContent='✓ Mémorisé';}});
+  document.querySelectorAll('.exo-card').forEach(c=>{if(data[c.dataset.id]){c.classList.add('done');c.querySelector('.check-box').classList.add('checked');}});
+  updateProgressBar();
+}
+function toggleMemo(el){const c=el.closest('.tool-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('memo',data[id]);el.classList.toggle('checked',data[id]);el.textContent=data[id]?'✓ Mémorisé':'☐ Mémorisé';updateProgressBar();}
+function toggleExoCheck(el){const c=el.closest('.exo-card');const id=c.dataset.id;const data=loadProgress();data[id]=!data[id];saveProgress(data);c.classList.toggle('done',data[id]);el.classList.toggle('checked',data[id]);updateProgressBar();}
+function updateProgressBar(){const total=document.querySelectorAll('.tool-card,.exo-card').length;const done=document.querySelectorAll('.tool-card.memo,.exo-card.done').length;const pct=total?Math.round((done/total)*100):0;document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${done} / ${total} éléments cochés (${pct}%)`;}
+function resetProgress(){if(confirm("Réinitialiser toute la progression ?")){localStorage.removeItem(STORAGE_KEY);document.querySelectorAll('.memo,.done').forEach(el=>el.classList.remove('memo','done'));document.querySelectorAll('.checked').forEach(el=>{el.classList.remove('checked');if(el.classList.contains('memo-check'))el.textContent='☐ Mémorisé';});updateProgressBar();}}
+function toggleCorrection(btn){const corr=btn.closest('.exo-card').querySelector('.correction');corr.classList.toggle('show');btn.textContent=corr.classList.contains('show')?"Masquer la correction":"Voir la correction";}
+applyStoredProgress();
+document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});});
+if(document.readyState!=='loading'){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}]});}
+</script>
+</body>
+</html>

@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agrégation Maths — Option A · Probas & Stats</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161923;
+    --surface2: #1e2433;
+    --border: #2a3347;
+    --accent: #e8b86d;
+    --accent2: #7eb8d4;
+    --accent3: #9b72cf;
+    --text: #d4dbe8;
+    --text-dim: #6b7a94;
+    --green: #5dba8a;
+    --red: #e07070;
+    --radius: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0d0f14 0%, #161923 60%, #1a1f2e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 2.5rem 1.5rem;
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  header p { color: var(--text-dim); font-size: 0.85rem; margin-top: 0.2rem; }
+  nav {
+    display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap;
+  }
+  nav button {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.82rem;
+    transition: all 0.2s;
+  }
+  nav button:hover, nav button.active {
+    background: var(--accent);
+    color: #0d0f14;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* MAIN LAYOUT */
+  main { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent2);
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .card-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 0.8rem;
+  }
+  .card-title { font-weight: 600; font-size: 1rem; }
+  .tag {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tag-fondements { background: #2a1f3d; color: var(--accent3); border: 1px solid #3d2e57; }
+  .tag-convergence { background: #1a2e3d; color: var(--accent2); border: 1px solid #2a4457; }
+  .tag-markov { background: #1a2e24; color: var(--green); border: 1px solid #2a4734; }
+  .tag-martingale { background: #2e1a1a; color: var(--red); border: 1px solid #471f1f; }
+  .tag-stats { background: #2e2a1a; color: var(--accent); border: 1px solid #4a3f1a; }
+  .tag-scilab { background: #1a2025; color: #9bbbc8; border: 1px solid #2a3a45; }
+
+  ul { padding-left: 1.2rem; }
+  ul li { margin-bottom: 0.3rem; font-size: 0.92rem; }
+  p { font-size: 0.92rem; margin-bottom: 0.5rem; }
+
+  /* PLANNING TABLE */
+  .planning-grid {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .planning-grid .row {
+    display: contents;
+  }
+  .planning-grid .cell {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .planning-grid .cell:nth-child(3n+1) {
+    background: var(--surface2);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+  .planning-grid .cell:nth-child(3n+2) { background: var(--surface); }
+  .planning-grid .cell:nth-child(3n+3) {
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    text-align: right;
+  }
+  .planning-grid .header-row .cell {
+    background: var(--surface2);
+    font-weight: 600;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* FICHE */
+  .fiche { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem; margin-bottom: 1.2rem; }
+  .fiche h3 { margin-top: 0; }
+  .fiche-content { display: none; margin-top: 1rem; }
+  .fiche-content.open { display: block; }
+  .fiche-toggle {
+    background: none; border: 1px solid var(--border); color: var(--text-dim);
+    padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+    transition: all 0.2s; margin-top: 0.5rem;
+  }
+  .fiche-toggle:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  .def-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent3);
+    padding: 0.8rem 1rem;
+    margin: 0.8rem 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.88rem;
+  }
+  .thm-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    padding: 0.8rem 1rem;
+    margin: 0.8rem 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.88rem;
+  }
+  .thm-box strong, .def-box strong {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+    color: var(--accent);
+  }
+  .thm-box strong { color: var(--accent); }
+  .def-box strong { color: var(--accent3); }
+  .warn-box {
+    background: #1e1a0f;
+    border-left: 3px solid var(--accent);
+    padding: 0.7rem 1rem;
+    margin: 0.8rem 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.85rem;
+    color: #c9a94f;
+  }
+  .warn-box::before { content: "⚠ "; }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82em;
+    background: var(--surface2);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    color: var(--accent2);
+  }
+  pre {
+    background: #0a0c10;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    overflow-x: auto;
+    color: #a8c8d8;
+    margin: 0.8rem 0;
+    line-height: 1.7;
+  }
+  pre .comment { color: #4a5f70; }
+  pre .fn { color: var(--accent2); }
+  pre .kw { color: var(--accent3); }
+  pre .num { color: var(--green); }
+
+  /* QUIZ */
+  .quiz-container { margin-top: 1rem; }
+  .quiz-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .quiz-question {
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.5rem; }
+  .quiz-option {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    font-size: 0.88rem;
+    text-align: left;
+    color: var(--text);
+    transition: all 0.2s;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .quiz-option:hover:not(:disabled) { border-color: var(--accent2); color: var(--accent2); }
+  .quiz-option.correct { background: #0f2e1e; border-color: var(--green); color: var(--green); }
+  .quiz-option.wrong { background: #2e1010; border-color: var(--red); color: var(--red); }
+  .quiz-option.revealed { background: #1a2e1a; border-color: var(--green); color: var(--green); opacity: 0.7; }
+  .quiz-expl {
+    margin-top: 0.8rem;
+    padding: 0.8rem 1rem;
+    background: var(--surface2);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    display: none;
+    border-left: 3px solid var(--accent2);
+  }
+  .quiz-expl.show { display: block; }
+  .quiz-score {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+  .score-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--accent); }
+
+  .btn {
+    background: var(--accent);
+    color: #0d0f14;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    font-size: 0.88rem;
+    transition: all 0.2s;
+    margin-top: 0.8rem;
+  }
+  .btn:hover { background: #d4a45a; }
+  .btn-sec {
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-sec:hover { border-color: var(--accent2); color: var(--accent2); background: var(--surface2); }
+
+  .pill-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0; }
+  .pill { font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 999px; font-family: 'JetBrains Mono', monospace; }
+
+  /* JURY TIPS */
+  .jury-tip {
+    background: #1a1610;
+    border: 1px solid #3d3010;
+    border-radius: var(--radius);
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.88rem;
+  }
+  .jury-tip::before { content: "📋 "; }
+  .jury-tip strong { color: var(--accent); }
+
+  /* PROGRESS */
+  .progress-bar { background: var(--surface2); border-radius: 999px; height: 6px; margin: 0.5rem 0 1rem; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent3), var(--accent2)); transition: width 0.5s; }
+
+  /* SUBJECTS */
+  .subject-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .subject-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    min-width: 45px;
+  }
+  .subject-desc { flex: 1; }
+  .subject-keywords { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.2rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Agrégation externe — Mathématiques · Option A</h1>
+  <p>Probabilités & Statistiques · Préparation autonome · Session 2027</p>
+  <nav>
+    <button class="active" onclick="show('planning', this)">Planning</button>
+    <button onclick="show('fiches', this)">Fiches de cours</button>
+    <button onclick="show('quiz', this)">Quiz</button>
+    <button onclick="show('sujets', this)">Sujets passés</button>
+    <button onclick="show('scilab', this)">Scilab</button>
+    <button onclick="show('jury', this)">Conseils jury</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ========== PLANNING ========== -->
+<section id="planning" class="section active">
+  <h2>Planning de révision — 16 mois (mai 2026 → sept 2027)</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Vue d'ensemble</span>
+      <span class="tag tag-fondements">4 phases</span>
+    </div>
+    <p>Inscription au concours : octobre–novembre 2026 sur Cyclades. Épreuves écrites : printemps 2027. Oraux : juin–juillet 2027 à Strasbourg.</p>
+    <p>Le programme des épreuves est commun aux 3 options pour l'écrit (algèbre, analyse, probabilités). L'option A n'intervient qu'à l'oral de modélisation. Il faut donc tout réviser pour l'écrit, et se spécialiser sur proba/stats pour l'oral.</p>
+  </div>
+
+  <h3>Phase 1 — Remise à niveau (mai → août 2026)</h3>
+  <div class="planning-grid">
+    <div class="row header-row">
+      <div class="cell">Période</div>
+      <div class="cell">Contenu</div>
+      <div class="cell">Durée/sem</div>
+    </div>
+    <div class="cell">Mai–juin 2026</div>
+    <div class="cell">Algèbre linéaire : espaces vectoriels, réduction des endomorphismes, formes bilinéaires. Révision des bases du programme écrit.</div>
+    <div class="cell">~8h</div>
+    <div class="cell">Juillet 2026</div>
+    <div class="cell">Analyse : topologie, suites et séries de fonctions, intégration de Lebesgue (bases), espaces de Hilbert.</div>
+    <div class="cell">~10h</div>
+    <div class="cell">Août 2026</div>
+    <div class="cell">Probabilités — fondements : espaces de probabilité, variables aléatoires, lois usuelles, espérance. Premier contact avec Scilab.</div>
+    <div class="cell">~10h</div>
+  </div>
+
+  <h3>Phase 2 — Programme écrit (sept → déc 2026)</h3>
+  <div class="planning-grid">
+    <div class="row header-row">
+      <div class="cell">Période</div>
+      <div class="cell">Contenu</div>
+      <div class="cell">Durée/sem</div>
+    </div>
+    <div class="cell">Sept 2026</div>
+    <div class="cell">Algèbre : corps, anneaux, polynômes, arithmétique. Algèbre linéaire avancée.</div>
+    <div class="cell">~12h</div>
+    <div class="cell">Oct 2026</div>
+    <div class="cell">Analyse avancée : séries entières, fonctions holomorphes, suites/séries de fonctions. Inscription au concours sur Cyclades.</div>
+    <div class="cell">~12h</div>
+    <div class="cell">Nov 2026</div>
+    <div class="cell">Intégration, mesure. Espaces Lp. Transformée de Fourier. Géométrie différentielle (bases).</div>
+    <div class="cell">~12h</div>
+    <div class="cell">Déc 2026</div>
+    <div class="cell">Révisions générales écrit. Concours blancs sur annales. Identifier ses lacunes.</div>
+    <div class="cell">~15h</div>
+  </div>
+
+  <h3>Phase 3 — Spécialisation option A (jan → mars 2027)</h3>
+  <div class="planning-grid">
+    <div class="row header-row">
+      <div class="cell">Période</div>
+      <div class="cell">Contenu</div>
+      <div class="cell">Durée/sem</div>
+    </div>
+    <div class="cell">Jan 2027</div>
+    <div class="cell">Convergences (p.s., en proba, en loi). Loi des grands nombres, TCL. Fonctions caractéristiques.</div>
+    <div class="cell">~12h</div>
+    <div class="cell">Fév 2027</div>
+    <div class="cell">Martingales : définitions, convergence, théorème d'arrêt. Processus de Poisson sur ℝ.</div>
+    <div class="cell">~12h</div>
+    <div class="cell">Mars 2027</div>
+    <div class="cell">Chaînes de Markov : classification des états, mesure stationnaire, théorèmes de convergence. Simulation Scilab.</div>
+    <div class="cell">~12h</div>
+  </div>
+
+  <h3>Phase 4 — Statistique + oraux (avr → juin 2027)</h3>
+  <div class="planning-grid">
+    <div class="row header-row">
+      <div class="cell">Période</div>
+      <div class="cell">Contenu</div>
+      <div class="cell">Durée/sem</div>
+    </div>
+    <div class="cell">Avr 2027</div>
+    <div class="cell">Statistique inférentielle : estimation ponctuelle et par IC, tests d'hypothèse (Neyman-Pearson, chi-2, Student). Régression linéaire.</div>
+    <div class="cell">~15h</div>
+    <div class="cell">Mai 2027</div>
+    <div class="cell">Préparation oraux leçons (algèbre + analyse). Entraînement au format : plan 3 pages, développement 15 min.</div>
+    <div class="cell">~15h</div>
+    <div class="cell">Juin 2027</div>
+    <div class="cell">Entraînement modélisation option A : textes passés, chronomètre 4h + exposé 40 min. Oraux blancs avec quelqu'un si possible.</div>
+    <div class="cell">~20h</div>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem; border-color: #3d3010;">
+    <div class="card-header">
+      <span class="card-title">📚 Ressources gratuites clés</span>
+    </div>
+    <ul>
+      <li><strong>agreg.org</strong> — site officiel du jury : rapports, sujets, textes de modélisation passés (tout gratuit)</li>
+      <li><strong>devenirenseignant.gouv.fr</strong> — programme officiel PDF et rapports de jury</li>
+      <li><strong>Bardet & Malrieu</strong> — cours proba/stats agrég PDF gratuit en ligne (idpoisson.fr)</li>
+      <li><strong>BibliothèqueUniversitaire Montpellier</strong> — accès gratuit aux livres de référence (Billingsley, Durrett, Saporta…)</li>
+      <li><strong>Scilab</strong> — logiciel gratuit, manuel en ligne, tutoriels YouTube</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== FICHES ========== -->
+<section id="fiches" class="section">
+  <h2>Fiches de cours — Option A</h2>
+
+  <!-- FICHE 1 -->
+  <div class="fiche">
+    <div class="card-header">
+      <span class="card-title">1. Fondements des probabilités</span>
+      <span class="tag tag-fondements">Fondements</span>
+    </div>
+    <div class="pill-row">
+      <span class="pill tag-fondements">tribu</span>
+      <span class="pill tag-fondements">mesure</span>
+      <span class="pill tag-fondements">variable aléatoire</span>
+      <span class="pill tag-fondements">espérance</span>
+    </div>
+    <button class="fiche-toggle" onclick="toggleFiche(this)">▼ Ouvrir la fiche</button>
+    <div class="fiche-content">
+      <div class="def-box">
+        <strong>Définition — Espace de probabilité</strong>
+        Un espace de probabilité est un triplet (Ω, 𝒜, P) où Ω est l'espace des événements élémentaires, 𝒜 une tribu sur Ω (σ-algèbre), et P une mesure de probabilité : P(Ω)=1, σ-additivité.
+      </div>
+      <div class="def-box">
+        <strong>Définition — Variable aléatoire réelle</strong>
+        Une v.a.r. X : (Ω, 𝒜) → (ℝ, ℬ(ℝ)) est une application mesurable. Sa loi est la mesure image P∘X⁻¹ sur ℝ.
+      </div>
+      <div class="thm-box">
+        <strong>Théorème de transfert</strong>
+        Si X est une v.a. et h : ℝ → ℝ borélienne, alors E[h(X)] = ∫ h(x) dP_X(x) dès que cette intégrale est définie.
+      </div>
+      <div class="warn-box">Le jury signale que le théorème de transfert est souvent mal énoncé (oubli de l'hypothèse d'intégrabilité) ou mal appliqué. Soigner les hypothèses.</div>
+      <h3>Lois usuelles à maîtriser parfaitement</h3>
+      <ul>
+        <li><strong>Discrètes</strong> : Bernoulli, Binomiale B(n,p), Poisson P(λ), Géométrique, Hypergéométrique, Multinomiale</li>
+        <li><strong>Continues</strong> : Uniforme U[a,b], Exponentielle Exp(λ), Normale N(μ,σ²), Gamma Γ(α,β), Chi-deux χ²(n), Student t(n), Cauchy</li>
+      </ul>
+      <h3>Indépendance</h3>
+      <div class="def-box">
+        <strong>Définition — Indépendance</strong>
+        Des v.a. X₁,…,Xₙ sont indépendantes si et seulement si la loi jointe est le produit des lois marginales : P_{(X₁,…,Xₙ)} = P_{X₁} ⊗ … ⊗ P_{Xₙ}.
+      </div>
+      <p><strong>Attention :</strong> deux à deux indépendantes ≠ mutuellement indépendantes (contre-exemple classique à connaître).</p>
+    </div>
+  </div>
+
+  <!-- FICHE 2 -->
+  <div class="fiche">
+    <div class="card-header">
+      <span class="card-title">2. Convergences et théorèmes limites</span>
+      <span class="tag tag-convergence">Convergence</span>
+    </div>
+    <div class="pill-row">
+      <span class="pill tag-convergence">p.s.</span>
+      <span class="pill tag-convergence">en proba</span>
+      <span class="pill tag-convergence">en loi</span>
+      <span class="pill tag-convergence">L²</span>
+      <span class="pill tag-convergence">LGN · TCL</span>
+    </div>
+    <button class="fiche-toggle" onclick="toggleFiche(this)">▼ Ouvrir la fiche</button>
+    <div class="fiche-content">
+      <h3>Hiérarchie des convergences</h3>
+      <div class="def-box">
+        <strong>Implications (à sens unique)</strong>
+        p.s. ⟹ en proba ⟹ en loi<br>
+        Lᵖ (p≥1) ⟹ en proba<br>
+        ⚠ Aucune réciproque en général. Connaître des contre-exemples pour chaque flèche manquante.
+      </div>
+      <div class="thm-box">
+        <strong>Loi forte des grands nombres (Kolmogorov)</strong>
+        Si (Xₙ) i.i.d. avec E[|X₁|] < ∞, alors X̄ₙ = (X₁+…+Xₙ)/n → E[X₁] presque sûrement.
+      </div>
+      <div class="thm-box">
+        <strong>Théorème Central Limite (Lindeberg-Lévy)</strong>
+        Si (Xₙ) i.i.d., E[X₁]=μ, Var(X₁)=σ² < ∞, alors √n(X̄ₙ - μ)/σ → N(0,1) en loi.
+      </div>
+      <div class="warn-box">Le jury insiste : savoir démontrer le TCL via les fonctions caractéristiques (développement de log φ(t/√n) à l'ordre 2). C'est un développement classique à avoir en tête.</div>
+      <h3>Fonctions caractéristiques</h3>
+      <div class="def-box">
+        <strong>Définition</strong>
+        φ_X(t) = E[e^{itX}]. Caractérise la loi de X. Inversion : si φ_X ∈ L¹, alors X a une densité f_X = (2π)⁻¹ ∫ e^{-itx} φ_X(t) dt.
+      </div>
+      <p>Propriété : φ_{X+Y} = φ_X · φ_Y si X,Y indépendantes.</p>
+      <h3>Lemme de Borel-Cantelli</h3>
+      <div class="thm-box">
+        <strong>Borel-Cantelli</strong>
+        Si Σ P(Aₙ) < ∞ alors P(lim sup Aₙ) = 0.<br>
+        Réciproque (si les Aₙ sont indépendants) : si Σ P(Aₙ) = ∞ alors P(lim sup Aₙ) = 1.
+      </div>
+    </div>
+  </div>
+
+  <!-- FICHE 3 -->
+  <div class="fiche">
+    <div class="card-header">
+      <span class="card-title">3. Chaînes de Markov</span>
+      <span class="tag tag-markov">Markov</span>
+    </div>
+    <div class="pill-row">
+      <span class="pill tag-markov">propriété de Markov</span>
+      <span class="pill tag-markov">classification</span>
+      <span class="pill tag-markov">mesure stationnaire</span>
+      <span class="pill tag-markov">ergodicité</span>
+    </div>
+    <button class="fiche-toggle" onclick="toggleFiche(this)">▼ Ouvrir la fiche</button>
+    <div class="fiche-content">
+      <div class="def-box">
+        <strong>Définition — Chaîne de Markov homogène</strong>
+        (Xₙ)ₙ≥₀ à valeurs dans E (dénombrable) est une chaîne de Markov homogène de matrice de transition P si :<br>
+        P(Xₙ₊₁ = j | X₀,…,Xₙ) = P(Xₙ₊₁ = j | Xₙ) = P(Xₙ, j)
+      </div>
+      <h3>Classification des états</h3>
+      <ul>
+        <li><strong>Récurrent</strong> : P(Xₙ = i pour une infinité de n | X₀=i) = 1</li>
+        <li><strong>Transient</strong> : probabilité de retour < 1</li>
+        <li><strong>Récurrent positif</strong> : récurrent avec temps de retour d'espérance finie</li>
+        <li><strong>Récurrent nul</strong> : récurrent mais E[T_i | X₀=i] = ∞</li>
+        <li><strong>Périodique</strong> : période d(i) = pgcd{n≥1 : Pⁿ(i,i)>0}</li>
+      </ul>
+      <div class="thm-box">
+        <strong>Théorème ergodique</strong>
+        Si la chaîne est irréductible, apériodique et récurrente positive avec mesure stationnaire π, alors pour toute loi initiale : P(Xₙ = j) → π(j) quand n → ∞.
+      </div>
+      <div class="thm-box">
+        <strong>Existence et unicité de la mesure stationnaire</strong>
+        Une chaîne irréductible admet une mesure stationnaire si et seulement si elle est récurrente positive. Elle est alors unique (à une constante près pour les mesures, unique pour les probabilités).
+      </div>
+      <div class="warn-box">Connaître des exemples concrets : marche aléatoire sur ℤ (récurrente nulle), urne de Pólya, file d'attente M/M/1.</div>
+      <h3>Simulation Scilab</h3>
+      <pre><span class="comment">// Simulation d'une chaîne de Markov</span>
+P = [<span class="num">0.7</span> <span class="num">0.3</span>; <span class="num">0.4</span> <span class="num">0.6</span>]; <span class="comment">// matrice de transition</span>
+n = <span class="num">1000</span>; X = <span class="kw">zeros</span>(<span class="num">1</span>, n); X(<span class="num">1</span>) = <span class="num">1</span>;
+<span class="kw">for</span> k = <span class="num">1</span>:n-<span class="num">1</span>
+    u = <span class="fn">rand</span>();
+    <span class="kw">if</span> u < P(X(k), <span class="num">1</span>) <span class="kw">then</span> X(k+<span class="num">1</span>) = <span class="num">1</span>; <span class="kw">else</span> X(k+<span class="num">1</span>) = <span class="num">2</span>; <span class="kw">end</span>
+<span class="kw">end</span>
+<span class="fn">disp</span>([<span class="fn">sum</span>(X==<span class="num">1</span>)/n, <span class="fn">sum</span>(X==<span class="num">2</span>)/n]) <span class="comment">// fréquences empiriques</span></pre>
+    </div>
+  </div>
+
+  <!-- FICHE 4 -->
+  <div class="fiche">
+    <div class="card-header">
+      <span class="card-title">4. Martingales</span>
+      <span class="tag tag-martingale">Martingale</span>
+    </div>
+    <div class="pill-row">
+      <span class="pill tag-martingale">filtration</span>
+      <span class="pill tag-martingale">convergence</span>
+      <span class="pill tag-martingale">arrêt optionnel</span>
+    </div>
+    <button class="fiche-toggle" onclick="toggleFiche(this)">▼ Ouvrir la fiche</button>
+    <div class="fiche-content">
+      <div class="def-box">
+        <strong>Définition — Filtration et martingale</strong>
+        (𝒻ₙ)ₙ≥₀ est une filtration si 𝒻₀ ⊂ 𝒻₁ ⊂ … ⊂ 𝒻. (Mₙ) est une martingale par rapport à (𝒻ₙ) si :<br>
+        (i) Mₙ est 𝒻ₙ-mesurable, (ii) E[|Mₙ|] < ∞, (iii) E[Mₙ₊₁ | 𝒻ₙ] = Mₙ p.s.
+      </div>
+      <div class="thm-box">
+        <strong>Théorème de convergence des martingales (Doob L¹)</strong>
+        Si (Mₙ) est une martingale bornée dans L¹ (i.e. sup E[|Mₙ|] < ∞), alors Mₙ → M∞ p.s. et dans L¹.
+      </div>
+      <div class="thm-box">
+        <strong>Théorème d'arrêt optionnel (Doob)</strong>
+        Si T est un temps d'arrêt borné et (Mₙ) une martingale, alors E[M_T] = E[M₀].
+      </div>
+      <p><strong>Applications classiques à l'agrégation :</strong></p>
+      <ul>
+        <li>Probabilité de ruine du joueur (martingale exponentielle)</li>
+        <li>Marche aléatoire simple : Sₙ = X₁+…+Xₙ est une martingale si E[X₁]=0</li>
+        <li>Sₙ² - n·Var(X₁) est une martingale</li>
+        <li>Processus de Galton-Watson</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FICHE 5 -->
+  <div class="fiche">
+    <div class="card-header">
+      <span class="card-title">5. Statistique inférentielle</span>
+      <span class="tag tag-stats">Stats</span>
+    </div>
+    <div class="pill-row">
+      <span class="pill tag-stats">estimation</span>
+      <span class="pill tag-stats">IC</span>
+      <span class="pill tag-stats">tests</span>
+      <span class="pill tag-stats">régression</span>
+    </div>
+    <button class="fiche-toggle" onclick="toggleFiche(this)">▼ Ouvrir la fiche</button>
+    <div class="fiche-content">
+      <h3>Estimation ponctuelle</h3>
+      <div class="def-box">
+        <strong>Propriétés d'un estimateur T_n de θ</strong>
+        <ul style="margin-top:0.4rem">
+          <li><strong>Sans biais</strong> : E_θ[T_n] = θ pour tout θ</li>
+          <li><strong>Consistant</strong> : T_n → θ en probabilité quand n→∞</li>
+          <li><strong>Efficace</strong> : atteint la borne de Cramér-Rao</li>
+        </ul>
+      </div>
+      <div class="thm-box">
+        <strong>Borne de Cramér-Rao</strong>
+        Pour tout estimateur sans biais T_n de θ : Var_θ(T_n) ≥ 1 / (n · I(θ)) où I(θ) = E[(∂/∂θ log f(X;θ))²] est l'information de Fisher.
+      </div>
+      <h3>Intervalles de confiance</h3>
+      <p>IC de niveau 1-α pour μ (variance connue σ²) : [X̄_n ± z_{α/2} · σ/√n] où z_{α/2} est le quantile de N(0,1).</p>
+      <h3>Tests d'hypothèse</h3>
+      <ul>
+        <li><strong>Erreur type I</strong> : rejeter H₀ à tort (risque α = niveau du test)</li>
+        <li><strong>Erreur type II</strong> : ne pas rejeter H₀ faux (risque β)</li>
+        <li><strong>Puissance</strong> : 1 - β</li>
+      </ul>
+      <div class="thm-box">
+        <strong>Lemme de Neyman-Pearson</strong>
+        Le test le plus puissant de niveau α pour H₀:θ=θ₀ contre H₁:θ=θ₁ est le test du rapport de vraisemblance : rejeter H₀ si L(θ₁;x)/L(θ₀;x) > k.
+      </div>
+      <h3>Tests classiques</h3>
+      <ul>
+        <li><strong>Test du χ²</strong> : adéquation à une loi, indépendance dans un tableau de contingence</li>
+        <li><strong>Test de Student</strong> : comparaison de moyennes</li>
+        <li><strong>Test de Fisher</strong> : comparaison de variances</li>
+      </ul>
+      <h3>Régression linéaire</h3>
+      <p>Modèle : Y = Xβ + ε avec ε ~ N(0, σ²Iₙ). Estimateur MCO : β̂ = (XᵀX)⁻¹XᵀY. Sans biais, efficace (Gauss-Markov).</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ========== QUIZ ========== -->
+<section id="quiz" class="section">
+  <h2>Quiz — Probabilités & Statistiques</h2>
+
+  <div class="quiz-score" id="score-display" style="display:none">
+    <div class="score-num" id="score-num">0/0</div>
+    <div style="color:var(--text-dim); font-size:0.85rem; margin-top:0.3rem">Score actuel</div>
+  </div>
+
+  <div class="quiz-container" id="quiz-container"></div>
+  <button class="btn btn-sec" onclick="resetQuiz()">↺ Recommencer</button>
+</section>
+
+<!-- ========== SUJETS PASSÉS ========== -->
+<section id="sujets" class="section">
+  <h2>Textes de modélisation option A — Sessions passées</h2>
+
+  <div class="card">
+    <p>Ces textes donnent l'esprit exact de ce qui est attendu à l'oral. La même structure revient : un problème concret → modèle probabiliste → résultats → simulation. Télécharge-les sur <strong>agreg.org</strong> pour t'entraîner.</p>
+  </div>
+
+  <div class="subject-row">
+    <div class="subject-year">2023</div>
+    <div class="subject-desc">
+      <div><strong>Jeu de l'oie et chaînes de Markov</strong></div>
+      <div class="subject-keywords">Mots-clés : chaîne de Markov, temps d'atteinte, point absorbant, loi de la durée d'une partie</div>
+    </div>
+  </div>
+  <div class="subject-row">
+    <div class="subject-year">2022</div>
+    <div class="subject-desc">
+      <div><strong>Loi de Benford et détection de fraude</strong></div>
+      <div class="subject-keywords">Tests d'adéquation, loi de Benford discrète et continue, application à des données réelles, fichier fourni</div>
+    </div>
+  </div>
+  <div class="subject-row">
+    <div class="subject-year">2021</div>
+    <div class="subject-desc">
+      <div><strong>Nombre d'espèces par genre</strong></div>
+      <div class="subject-keywords">Famille de v.a. dépendant d'un paramètre, estimation, modèle de branchement</div>
+    </div>
+  </div>
+  <div class="subject-row">
+    <div class="subject-year">2019</div>
+    <div class="subject-desc">
+      <div><strong>Crue du Nil — bruit gaussien fractionnaire</strong></div>
+      <div class="subject-keywords">Séries temporelles, v.a. dépendantes, estimation de paramètre, données réelles fournies</div>
+    </div>
+  </div>
+  <div class="subject-row">
+    <div class="subject-year">2018</div>
+    <div class="subject-desc">
+      <div><strong>Ruine du joueur de casino</strong></div>
+      <div class="subject-keywords">Loi de Poisson, lois exponentielles, marches aléatoires, probabilité de ruine, théorèmes asymptotiques</div>
+    </div>
+  </div>
+  <div class="subject-row">
+    <div class="subject-year">2018</div>
+    <div class="subject-desc">
+      <div><strong>Propagation d'un polluant en milieu poreux</strong></div>
+      <div class="subject-keywords">Marche aléatoire, théorèmes limites, variables non indépendantes, modèle stochastique physique</div>
+    </div>
+  </div>
+  <div class="subject-row">
+    <div class="subject-year">2018</div>
+    <div class="subject-desc">
+      <div><strong>Estimation de dispersion de points aléatoires</strong></div>
+      <div class="subject-keywords">Loi uniforme, binomiale, Poisson, estimation, tests, données de sinistres</div>
+    </div>
+  </div>
+  <div class="subject-row">
+    <div class="subject-year">2015</div>
+    <div class="subject-desc">
+      <div><strong>Répartition de tâches entre deux processeurs</strong></div>
+      <div class="subject-keywords">TCL, convergence en loi, fonction caractéristique, algorithme randomisé</div>
+    </div>
+  </div>
+  <div class="subject-row">
+    <div class="subject-year">2015</div>
+    <div class="subject-desc">
+      <div><strong>Modèles de survie censurée</strong></div>
+      <div class="subject-keywords">Loi exponentielle, chi-deux, simulation de v.a., intervalle de confiance, tests</div>
+    </div>
+  </div>
+  <div class="subject-row">
+    <div class="subject-year">2015</div>
+    <div class="subject-desc">
+      <div><strong>Réseaux "petit monde"</strong></div>
+      <div class="subject-keywords">Raccourcis aléatoires, distance, loi binomiale, inégalité de Markov, modèle de graphes</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem; border-color: #1a2e3d;">
+    <div class="card-header">
+      <span class="card-title">💡 Comment utiliser ces textes</span>
+    </div>
+    <ul>
+      <li>Phase 1 : lire sans chronomètre, comprendre la structure (problème → modèle → résultats)</li>
+      <li>Phase 2 : chronomètre 4h, choisir entre 2 textes, construire l'exposé</li>
+      <li>Phase 3 : présenter à voix haute (enregistre-toi, ou présente à quelqu'un)</li>
+      <li>Critère clé : est-ce que tu pars d'un problème <em>concret</em> et que les maths semblent le servir ?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== SCILAB ========== -->
+<section id="scilab" class="section">
+  <h2>Scilab — Remise à niveau pour l'option A</h2>
+
+  <div class="card">
+    <p>Scilab est gratuit et disponible sur Ubuntu. Il te faudra principalement : générer des variables aléatoires, simuler des processus (chaînes de Markov, marches aléatoires), calculer des statistiques, tracer des graphiques. La syntaxe est proche de MATLAB.</p>
+  </div>
+
+  <h3>Installation Ubuntu</h3>
+  <pre><span class="comment"># Option 1 : dépôts (version parfois ancienne)</span>
+sudo apt update && sudo apt install scilab
+
+<span class="comment"># Option 2 : télécharger sur scilab.org (conseillé)</span>
+<span class="comment"># Télécharger le .tar.gz Linux 64-bit → extraire → lancer ./bin/scilab</span></pre>
+
+  <h3>Syntaxe de base</h3>
+  <pre><span class="comment">// Variables et opérations</span>
+a = <span class="num">3.14</span>;                     <span class="comment">// le ; évite l'affichage</span>
+v = [<span class="num">1</span> <span class="num">2</span> <span class="num">3</span> <span class="num">4</span> <span class="num">5</span>];            <span class="comment">// vecteur ligne</span>
+A = [<span class="num">1</span> <span class="num">2</span>; <span class="num">3</span> <span class="num">4</span>];              <span class="comment">// matrice 2x2</span>
+
+<span class="comment">// Boucles</span>
+<span class="kw">for</span> i = <span class="num">1</span>:<span class="num">10</span>
+    <span class="fn">disp</span>(i^<span class="num">2</span>)
+<span class="kw">end</span>
+
+<span class="comment">// Fonctions</span>
+<span class="kw">function</span> y = <span class="fn">carre</span>(x)
+    y = x.^<span class="num">2</span>   <span class="comment">// .^ = puissance terme à terme</span>
+<span class="kw">endfunction</span></pre>
+
+  <h3>Génération de variables aléatoires</h3>
+  <pre><span class="comment">// Uniforme U[0,1]</span>
+u = <span class="fn">rand</span>(<span class="num">1</span>, <span class="num">1000</span>);
+
+<span class="comment">// Normale N(0,1)</span>
+z = <span class="fn">grand</span>(<span class="num">1</span>, <span class="num">1000</span>, <span class="str">'nor'</span>, <span class="num">0</span>, <span class="num">1</span>);
+
+<span class="comment">// Exponentielle Exp(lambda)</span>
+lambda = <span class="num">2</span>;
+x = <span class="fn">grand</span>(<span class="num">1</span>, <span class="num">1000</span>, <span class="str">'exp'</span>, <span class="num">1</span>/lambda);
+
+<span class="comment">// Poisson P(mu)</span>
+y = <span class="fn">grand</span>(<span class="num">1</span>, <span class="num">1000</span>, <span class="str">'poi'</span>, <span class="num">3</span>);
+
+<span class="comment">// Binomiale B(n,p)</span>
+b = <span class="fn">grand</span>(<span class="num">1</span>, <span class="num">1000</span>, <span class="str">'bin'</span>, <span class="num">10</span>, <span class="num">0.3</span>);</pre>
+
+  <h3>Statistiques descriptives et graphiques</h3>
+  <pre><span class="comment">// Statistiques</span>
+x = <span class="fn">grand</span>(<span class="num">1</span>, <span class="num">500</span>, <span class="str">'nor'</span>, <span class="num">2</span>, <span class="num">1</span>);
+<span class="fn">disp</span>(<span class="fn">mean</span>(x))      <span class="comment">// moyenne</span>
+<span class="fn">disp</span>(<span class="fn">variance</span>(x))  <span class="comment">// variance</span>
+<span class="fn">disp</span>(<span class="fn">stdev</span>(x))     <span class="comment">// écart-type</span>
+
+<span class="comment">// Histogramme</span>
+<span class="fn">histplot</span>(<span class="num">20</span>, x)
+<span class="fn">xtitle</span>(<span class="str">'Histogramme N(2,1)'</span>, <span class="str">'x'</span>, <span class="str">'fréquence'</span>)
+
+<span class="comment">// Tracé de la densité théorique par-dessus</span>
+t = <span class="fn">linspace</span>(-<span class="num">2</span>, <span class="num">6</span>, <span class="num">200</span>);
+<span class="fn">plot</span>(t, <span class="fn">exp</span>(-(t-<span class="num">2</span>).^<span class="num">2</span>/<span class="num">2</span>) / <span class="fn">sqrt</span>(<span class="num">2</span>*%pi), <span class="str">'r'</span>)</pre>
+
+  <h3>Simulation : convergence du TCL</h3>
+  <pre><span class="comment">// Illustration du TCL : moyennes de Bernoulli(0.3)</span>
+N = <span class="num">5000</span>; n = <span class="num">30</span>; p = <span class="num">0.3</span>;
+moyennes = <span class="kw">zeros</span>(<span class="num">1</span>, N);
+<span class="kw">for</span> i = <span class="num">1</span>:N
+    X = <span class="fn">grand</span>(<span class="num">1</span>, n, <span class="str">'bin'</span>, <span class="num">1</span>, p);
+    moyennes(i) = (<span class="fn">mean</span>(X) - p) / <span class="fn">sqrt</span>(p*(<span class="num">1</span>-p)/n);
+<span class="kw">end</span>
+<span class="fn">histplot</span>(<span class="num">30</span>, moyennes)
+t = <span class="fn">linspace</span>(-<span class="num">4</span>, <span class="num">4</span>, <span class="num">200</span>);
+<span class="fn">plot</span>(t, <span class="fn">exp</span>(-t.^<span class="num">2</span>/<span class="num">2</span>)/<span class="fn">sqrt</span>(<span class="num">2</span>*%pi), <span class="str">'r'</span>)
+<span class="fn">xtitle</span>(<span class="str">'TCL en action'</span>, <span class="str">'valeur normalisée'</span>, <span class="str">'densité'</span>)</pre>
+
+  <div class="card" style="border-color: #1a2e24;">
+    <div class="card-header"><span class="card-title">🎯 Exercices Scilab à faire</span></div>
+    <ul>
+      <li>Simuler une marche aléatoire simple et estimer la probabilité de retour à l'origine</li>
+      <li>Simuler une chaîne de Markov à 3 états, vérifier la convergence vers la mesure stationnaire</li>
+      <li>Illustrer la loi des grands nombres : tracer X̄_n en fonction de n</li>
+      <li>Calculer un intervalle de confiance sur des données simulées, vérifier le taux de couverture</li>
+      <li>Tester l'adéquation d'un échantillon à une loi de Poisson (test du χ²)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== CONSEILS JURY ========== -->
+<section id="jury" class="section">
+  <h2>Conseils du jury — Sessions 2024 & 2025</h2>
+
+  <div class="card" style="margin-bottom:1.5rem">
+    <p>Ces extraits sont tirés des rapports officiels de jury. Ils définissent ce qui est vraiment attendu.</p>
+  </div>
+
+  <h3>Sur les leçons (épreuves orales 1 et 2)</h3>
+
+  <div class="jury-tip">
+    <strong>Maîtriser ce qu'on présente, pas tout présenter :</strong> "Des connaissances des bases fermement maîtrisées et intelligemment utilisées valent mieux qu'un étalage de savoirs emmagasinés sans recul et à peine digérés. Une maîtrise avérée et solide des bases assure déjà une note très convenable."
+  </div>
+
+  <div class="jury-tip">
+    <strong>Les 6 premières minutes :</strong> "La candidate ou le candidat devrait s'imaginer dans la situation où il doit introduire à un auditoire, pendant 6 minutes, une leçon destinée à être développée sur plusieurs séances. Quel est l'intérêt du sujet ? Comment se positionne-t-il dans un paysage mathématique plus large ?"
+  </div>
+
+  <div class="jury-tip">
+    <strong>Faire des dessins :</strong> "Le jury se désole du très petit nombre de candidats qui ont le réflexe de faire un dessin lorsque c'est pertinent. C'est pourtant un moyen extrêmement efficace pour faire saisir l'idée d'une preuve."
+  </div>
+
+  <div class="jury-tip">
+    <strong>Exemples obligatoires :</strong> "Les leçons doivent être illustrées avec des exemples judicieusement choisis. De nombreux titres se terminent par 'exemples et applications' : le jury attend que le plan soit riche en exemples."
+  </div>
+
+  <div class="jury-tip">
+    <strong>Le plan écrit (3 pages max) :</strong> "Il doit définir avec suffisamment de précision les notions mathématiques introduites, donner les énoncés complets (notamment les hypothèses) des résultats fondamentaux, citer des exemples et des applications."
+  </div>
+
+  <h3>Sur la modélisation option A</h3>
+
+  <div class="jury-tip">
+    <strong>Partir du concret :</strong> "C'est une épreuve de modélisation. On doit sentir que les maths sont au service du problème concret. Partir d'un problème concret est très apprécié."
+  </div>
+
+  <div class="jury-tip">
+    <strong>Aller-retour constant :</strong> "Durant la présentation, il doit y avoir un aller-retour régulier entre les résultats mathématiques énoncés et/ou démontrés, les simulations, la modélisation et les réponses aux problématiques."
+  </div>
+
+  <div class="jury-tip">
+    <strong>La simulation compte :</strong> "Typiquement, une simulation originale peut faire l'objet d'une valorisation car elle est originale. L'utilisation d'un logiciel nécessite de l'habitude — il faut s'entraîner avant."
+  </div>
+
+  <div class="jury-tip">
+    <strong>Apporter des éléments absents du texte :</strong> "Plus vous apportez d'éléments nouveaux (absents du texte) et pertinents, mieux c'est. Choisissez les preuves sur lesquelles vous êtes le plus à l'aise."
+  </div>
+
+  <h3>Sur le concours spécial docteurs</h3>
+
+  <div class="jury-tip">
+    <strong>Le dossier scientifique :</strong> "Le dossier (12 pages max) présente le parcours, les travaux de recherche et les activités d'enseignement. La mise en perspective didactique est évaluée : aptitude à rendre ses travaux accessibles à un public de non-spécialistes."
+  </div>
+
+  <div class="jury-tip">
+    <strong>Chiffres session 2024 :</strong> 365 postes ouverts au concours externe + 15 postes au concours spécial docteurs. Sur 2390 inscrits, 1209 présents aux deux épreuves. Le jury est bienveillant et cherche à valoriser les candidats.
+  </div>
+</section>
+
+</main>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleFiche(btn) {
+  const content = btn.nextElementSibling;
+  const open = content.classList.toggle('open');
+  btn.textContent = open ? '▲ Fermer la fiche' : '▼ Ouvrir la fiche';
+}
+
+// ===== QUIZ =====
+const questions = [
+  {
+    q: "Soit (Xₙ) une suite de v.a. i.i.d. avec E[X₁] = 2. Que dit la loi forte des grands nombres ?",
+    opts: [
+      "X̄ₙ → 2 en probabilité uniquement",
+      "X̄ₙ → 2 presque sûrement",
+      "√n(X̄ₙ - 2) → N(0,1) en loi",
+      "Xₙ → 2 presque sûrement"
+    ],
+    correct: 1,
+    expl: "La LGN (Kolmogorov) dit que X̄ₙ = (X₁+…+Xₙ)/n → E[X₁] = 2 presque sûrement, sous la condition E[|X₁|] < ∞. La convergence p.s. est plus forte que la convergence en probabilité. C'est le TCL qui donne √n(X̄ₙ-μ)/σ → N(0,1)."
+  },
+  {
+    q: "Parmi les modes de convergence suivants, lequel est le plus fort ?",
+    opts: [
+      "Convergence en loi",
+      "Convergence en probabilité",
+      "Convergence presque sûre",
+      "Convergence en moyenne quadratique (L²)"
+    ],
+    correct: 2,
+    expl: "La convergence p.s. implique la convergence en probabilité, qui implique la convergence en loi. La convergence L² implique la convergence en probabilité. Mais p.s. et L² ne se comparent pas en général. Cependant la p.s. est considérée la 'plus forte' dans le sens de la hiérarchie classique p.s. ⟹ en proba ⟹ en loi."
+  },
+  {
+    q: "Une chaîne de Markov irréductible et apériodique sur un espace fini admet une mesure stationnaire π. Que peut-on conclure ?",
+    opts: [
+      "π est unique et P(Xₙ = j) → π(j) pour toute loi initiale",
+      "π est unique mais la convergence ne dépend pas de la loi initiale",
+      "Il peut exister plusieurs mesures stationnaires",
+      "La chaîne est forcément récurrente nulle"
+    ],
+    correct: 0,
+    expl: "Sur un espace fini, une chaîne irréductible est automatiquement récurrente positive. La mesure stationnaire est alors unique. De plus si la chaîne est apériodique, le théorème ergodique assure P(Xₙ=j) → π(j) pour TOUTE loi initiale. Sur un espace fini, la convergence est même géométrique."
+  },
+  {
+    q: "Soit (Mₙ) une martingale par rapport à la filtration (𝒻ₙ). Quelle propriété est vraie ?",
+    opts: [
+      "E[Mₙ] = n · E[M₀] pour tout n",
+      "E[Mₙ] = E[M₀] pour tout n",
+      "Mₙ converge toujours vers une limite finie",
+      "Var(Mₙ) = 0 pour tout n"
+    ],
+    correct: 1,
+    expl: "Par définition d'une martingale, E[Mₙ₊₁|𝒻ₙ] = Mₙ. En prenant l'espérance : E[Mₙ₊₁] = E[Mₙ]. Par récurrence, E[Mₙ] = E[M₀] pour tout n. Une martingale ne converge pas forcément (ex: marche aléatoire simple), et la variance n'est pas nulle."
+  },
+  {
+    q: "La borne de Cramér-Rao donne une borne inférieure sur :",
+    opts: [
+      "Le biais d'un estimateur",
+      "La variance de tout estimateur sans biais",
+      "L'erreur quadratique moyenne de tout estimateur",
+      "La puissance d'un test statistique"
+    ],
+    correct: 1,
+    expl: "La borne de Cramér-Rao stipule que pour tout estimateur sans biais T_n de θ : Var(T_n) ≥ 1/(n·I(θ)) où I(θ) est l'information de Fisher. Un estimateur qui atteint cette borne est dit efficace. Elle ne s'applique qu'aux estimateurs sans biais."
+  },
+  {
+    q: "Le lemme de Neyman-Pearson caractérise :",
+    opts: [
+      "Le test le plus puissant de niveau α pour H₀ simple contre H₁ simple",
+      "Le test minimax pour une famille exponentielle",
+      "L'estimateur du maximum de vraisemblance",
+      "La taille optimale d'un échantillon"
+    ],
+    correct: 0,
+    expl: "Le lemme de Neyman-Pearson dit : pour tester H₀:θ=θ₀ contre H₁:θ=θ₁ (hypothèses simples), le test le plus puissant de niveau α est le test du rapport de vraisemblance. On rejette H₀ si L(θ₁;x)/L(θ₀;x) > k, où k est choisi pour que P(rejeter H₀|H₀)=α."
+  },
+  {
+    q: "Pour un processus de Poisson N(t) d'intensité λ sur ℝ₊, quelle est la loi de N(t) ?",
+    opts: [
+      "Exponentielle de paramètre λt",
+      "Poisson de paramètre λt",
+      "Normale de moyenne λt",
+      "Binomiale B(t, λ)"
+    ],
+    correct: 1,
+    expl: "Pour un processus de Poisson d'intensité λ, N(t) suit une loi de Poisson P(λt). Les accroissements N(t)-N(s) sont indépendants et de loi P(λ(t-s)) pour s<t. Les temps inter-événements suivent une loi exponentielle Exp(λ)."
+  },
+  {
+    q: "Quel est l'outil principal pour démontrer le TCL via les fonctions caractéristiques ?",
+    opts: [
+      "Le théorème de Lévy-Cramér (continuité de la convergence en loi)",
+      "Le théorème de Borel-Cantelli",
+      "Le théorème d'arrêt de Doob",
+      "La décomposition de Doob-Meyer"
+    ],
+    correct: 0,
+    expl: "La preuve standard du TCL via les fonctions caractéristiques : (1) montrer que φ_{X̄ₙ norm.}(t) → e^{-t²/2} (la FC de N(0,1)), en développant log φ(t/√n) à l'ordre 2 ; (2) conclure par le théorème de Lévy-Cramér : convergence des FC ⟹ convergence en loi. C'est un développement incontournable à l'agrégation."
+  },
+  {
+    q: "Dans la simulation d'une v.a. X de loi F par inversion, on utilise :",
+    opts: [
+      "X = F(U) où U ~ U[0,1]",
+      "X = F⁻¹(U) où U ~ U[0,1]",
+      "X = exp(-U) où U ~ U[0,1]",
+      "X = F(N) où N ~ N(0,1)"
+    ],
+    correct: 1,
+    expl: "La méthode d'inversion : si U ~ U[0,1] et F est une fonction de répartition continue strictement croissante, alors X = F⁻¹(U) a pour loi F. En Scilab : pour simuler Exp(λ), on utilise X = -log(rand())/λ car F_Exp⁻¹(u) = -log(1-u)/λ ≈ -log(u)/λ."
+  },
+  {
+    q: "Quelle affirmation sur l'épreuve de modélisation option A est correcte ?",
+    opts: [
+      "Le candidat présente le texte intégralement en le résumant",
+      "On dispose de 2h de préparation puis 30 min devant le jury",
+      "On dispose de 4h de préparation avec un ordi, puis 40 min d'exposé + questions",
+      "Il faut obligatoirement programmer un algorithme en Scilab"
+    ],
+    correct: 2,
+    expl: "Format exact de l'oral modélisation : 4h de préparation avec une bibliothèque et un ordinateur (Scilab), choix entre 2 textes, puis exposé construit de 40 min devant le jury + entretien d'environ 20 min. La simulation est très valorisée mais pas obligatoire. Ce qui est attendu : partir du problème concret, présenter le modèle mathématique, les résultats clés, illustrer par simulation si pertinent."
+  }
+];
+
+let answers = new Array(questions.length).fill(null);
+let correct = 0;
+
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  questions.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'quiz-card';
+    card.innerHTML = `
+      <div class="quiz-question">Q${i+1}. ${q.q}</div>
+      <div class="quiz-options">
+        ${q.opts.map((opt, j) => `
+          <button class="quiz-option" onclick="answer(${i}, ${j})" id="opt-${i}-${j}">${opt}</button>
+        `).join('')}
+      </div>
+      <div class="quiz-expl" id="expl-${i}">${q.expl}</div>
+    `;
+    container.appendChild(card);
+  });
+  updateScore();
+}
+
+function answer(qi, oi) {
+  if (answers[qi] !== null) return;
+  answers[qi] = oi;
+  const isCorrect = (oi === questions[qi].correct);
+  if (isCorrect) correct++;
+
+  questions[qi].opts.forEach((_, j) => {
+    const btn = document.getElementById(`opt-${qi}-${j}`);
+    btn.disabled = true;
+    if (j === questions[qi].correct) {
+      btn.classList.add(j === oi ? 'correct' : 'revealed');
+    } else if (j === oi) {
+      btn.classList.add('wrong');
+    }
+  });
+
+  document.getElementById(`expl-${qi}`).classList.add('show');
+  updateScore();
+}
+
+function updateScore() {
+  const answered = answers.filter(a => a !== null).length;
+  const display = document.getElementById('score-display');
+  if (answered > 0) {
+    display.style.display = 'block';
+    document.getElementById('score-num').textContent = `${correct}/${answered}`;
+  }
+}
+
+function resetQuiz() {
+  answers = new Array(questions.length).fill(null);
+  correct = 0;
+  document.getElementById('score-display').style.display = 'none';
+  renderQuiz();
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

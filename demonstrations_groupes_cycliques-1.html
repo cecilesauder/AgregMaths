@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Démonstrations clés — Groupes cycliques</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+  :root {
+    --bg: #14161d; --surface: #1e212c; --surface2: #262a38; --border: #383e52;
+    --accent: #f0c375; --accent2: #8fcbe8; --accent3: #b592e8;
+    --green: #6fd19c; --red: #f08787; --text: #eef1f7; --text-dim: #9aa5bd;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Source Sans 3', sans-serif; padding: 1.5rem; line-height: 1.6; }
+  .wrap { max-width: 950px; margin: 0 auto; }
+
+  .page-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent); text-align: center; margin-bottom: 0.2rem; }
+  .page-sub { text-align: center; color: var(--text-dim); font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+  .progress-bar-wrap { background: var(--surface2); border-radius: 999px; height: 10px; margin-bottom: 0.4rem; overflow: hidden; border: 1px solid var(--border); }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent3), var(--accent2), var(--green)); width: 0%; transition: width 0.4s; }
+  .progress-label { text-align: center; font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; margin-bottom: 2rem; }
+
+  .nav { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; position: sticky; top: 0; background: var(--bg); padding: 0.8rem 0; z-index: 50; }
+  .nav a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; border: 1px solid var(--border); padding: 0.35rem 0.9rem; border-radius: 999px; background: var(--surface); }
+  .nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .demo-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 1.6rem 1.8rem; margin-bottom: 2rem; position: relative; overflow: hidden;
+  }
+  .demo-card.memo { border-color: var(--green); }
+  .demo-card::before {
+    content: ""; position: absolute; top:0; left:0; right:0; height: 5px;
+    background: linear-gradient(90deg, var(--accent3), var(--accent2), var(--accent));
+  }
+
+  .demo-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+  .demo-num { font-family: 'JetBrains Mono', monospace; color: var(--text-dim); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .demo-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--accent); margin-top: 0.2rem; }
+
+  .memo-check {
+    display: flex; align-items: center; gap: 0.5rem; cursor: pointer; user-select: none;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 999px;
+    padding: 0.4rem 0.9rem; font-size: 0.78rem; font-family: 'JetBrains Mono', monospace;
+    color: var(--text-dim); white-space: nowrap;
+  }
+  .memo-check.checked { background: var(--green); color: #0d1a12; border-color: var(--green); }
+
+  .enonce-box {
+    background: #0b0d12; border: 1px solid var(--border); border-left: 4px solid var(--accent2);
+    border-radius: 0 10px 10px 0; padding: 1rem 1.4rem; margin-bottom: 1.2rem;
+  }
+  .enonce-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 0.4rem; }
+  .enonce-box p { font-size: 1rem; }
+
+  .idee-box {
+    background: linear-gradient(135deg, #2e2617 0%, #1e212c 100%);
+    border: 1px solid var(--accent); border-radius: 10px;
+    padding: 0.9rem 1.3rem; margin-bottom: 1.2rem;
+  }
+  .idee-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 0.4rem; }
+  .idee-box p { font-size: 0.95rem; }
+
+  .demo-steps { counter-reset: step; }
+  .step-item {
+    counter-increment: step;
+    position: relative;
+    padding: 0.7rem 1rem 0.7rem 3rem;
+    margin-bottom: 0.6rem;
+    background: var(--surface2);
+    border-radius: 10px;
+    font-size: 0.94rem;
+  }
+  .step-item::before {
+    content: counter(step);
+    position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%);
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent3); color: #14161d;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.85rem;
+  }
+  .step-item.astuce {
+    border: 1px solid var(--accent);
+  }
+  .step-item.astuce::before { background: var(--accent); }
+
+  .step-tag {
+    display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+    color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em;
+    background: rgba(240,195,117,0.12); padding: 0.1rem 0.5rem; border-radius: 999px;
+    margin-bottom: 0.3rem;
+  }
+
+  .qed { text-align: right; font-size: 1.2rem; color: var(--accent2); margin-top: 0.5rem; }
+
+  .applications-box {
+    background: #16211a; border: 1px solid var(--green); border-radius: 10px;
+    padding: 1rem 1.3rem; margin-top: 1.2rem;
+  }
+  .applications-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 0.5rem; }
+  .applications-box ul { padding-left: 1.2rem; }
+  .applications-box li { font-size: 0.92rem; margin-bottom: 0.3rem; }
+
+  mark { background: rgba(240, 195, 117, 0.25); color: var(--accent); padding: 0.05em 0.3em; border-radius: 4px; font-weight: 600; }
+
+  .reset-btn {
+    display: block; margin: 1rem auto 2rem; background: none; border: 1px solid var(--red);
+    color: var(--red); padding: 0.5rem 1.4rem; border-radius: 8px; cursor: pointer;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="page-title">Démonstrations clés</div>
+  <div class="page-sub">Groupes cycliques — comprises une fois, elles débloquent toutes les applications</div>
+
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">0 / 0 démonstrations mémorisées</div>
+
+  <div class="nav">
+    <a href="#d1">1. Lagrange</a>
+    <a href="#d2">2. Ordre de kg</a>
+    <a href="#d3">3. Critère générateur</a>
+    <a href="#d4">4. Unicité sous-groupe</a>
+  </div>
+
+  <!-- ===== DEMO 1 : LAGRANGE ===== -->
+  <div class="demo-card" id="d1" data-id="d1">
+    <div class="demo-header">
+      <div>
+        <span class="demo-num">Démonstration 01 · la fondation</span>
+        <div class="demo-title">Théorème de Lagrange</div>
+      </div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisée</div>
+    </div>
+
+    <div class="enonce-box">
+      <span class="enonce-label">Énoncé</span>
+      <p>Soit $G$ un groupe fini et $H$ un sous-groupe de $G$. Alors <mark>$|H|$ divise $|G|$</mark>.</p>
+    </div>
+
+    <div class="idee-box">
+      <span class="idee-label">💡 Idée clé</span>
+      <p>On découpe $G$ en "tranches" (les classes à gauche de $H$) qui ont <b>toutes exactement la taille de $H$</b> et qui ne se recoupent jamais. Comme un gâteau coupé en parts égales : le nombre total de parts × la taille d'une part = la taille du gâteau.</p>
+    </div>
+
+    <div class="demo-steps">
+      <div class="step-item">
+        On définit, pour $g \in G$, la <b>classe à gauche</b> $gH = \{gh : h \in H\}$.
+      </div>
+      <div class="step-item astuce">
+        <span class="step-tag">Astuce</span>
+        Deux classes $gH$ et $g'H$ sont soit <b>identiques</b>, soit <b>disjointes</b> (jamais partiellement superposées). En effet si $x \in gH \cap g'H$, alors $x=gh_1=g'h_2$, donc $g' = gh_1h_2^{-1} \in gH$, ce qui force $g'H = gH$.
+      </div>
+      <div class="step-item">
+        Chaque classe $gH$ a exactement $|H|$ éléments (la bijection $h \mapsto gh$ envoie $H$ sur $gH$ sans répétition).
+      </div>
+      <div class="step-item">
+        Les classes à gauche forment donc une <b>partition de $G$</b> en morceaux disjoints, tous de taille $|H|$.
+      </div>
+      <div class="step-item">
+        Si $k$ est le nombre de classes distinctes : $|G| = k \times |H|$. Donc $|H|$ divise $|G|$.
+      </div>
+    </div>
+    <div class="qed">∎</div>
+
+    <div class="applications-box">
+      <span class="applications-label">✓ Ce que ça débloque</span>
+      <ul>
+        <li>L'ordre de tout <b>élément</b> divise $|G|$ (cas particulier avec $H = \langle g \rangle$)</li>
+        <li>Un groupe de cardinal premier est <b>automatiquement cyclique</b></li>
+        <li>Base de la démonstration du petit théorème de Fermat</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== DEMO 2 : ORDRE DE kg ===== -->
+  <div class="demo-card" id="d2" data-id="d2">
+    <div class="demo-header">
+      <div>
+        <span class="demo-num">Démonstration 02 · la formule que tu utilises déjà</span>
+        <div class="demo-title">Ordre de $k \cdot g$ dans un groupe cyclique</div>
+      </div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisée</div>
+    </div>
+
+    <div class="enonce-box">
+      <span class="enonce-label">Énoncé</span>
+      <p>Soit $G = \langle g \rangle$ un groupe cyclique d'ordre $n$. Alors pour tout $k$ : $$\text{ordre}(kg) = \dfrac{n}{\text{pgcd}(k,n)}$$</p>
+    </div>
+
+    <div class="idee-box">
+      <span class="idee-label">💡 Idée clé</span>
+      <p>Ordre de $kg$ = plus petit $m$ tel que $mkg = 0$, c'est-à-dire tel que $n$ divise $mk$. On cherche donc le plus petit $m$ qui rend $mk$ "multiple de $n$" — c'est une pure question de <mark>divisibilité</mark>, pas de groupe.</p>
+    </div>
+
+    <div class="demo-steps">
+      <div class="step-item">
+        Posons $d = \text{pgcd}(k,n)$, et écrivons $k = d k'$, $n = d n'$ avec $\text{pgcd}(k', n') = 1$.
+      </div>
+      <div class="step-item">
+        $mkg = 0 \iff n \mid mk \iff dn' \mid mdk' \iff n' \mid mk'$.
+      </div>
+      <div class="step-item astuce">
+        <span class="step-tag">Astuce</span>
+        Comme $\text{pgcd}(k', n')=1$, le lemme de Gauss donne : $n' \mid mk' \iff n' \mid m$.
+      </div>
+      <div class="step-item">
+        Le plus petit $m>0$ tel que $n' \mid m$ est $m = n'$. Donc ordre($kg$) $= n' = n/d = n/\text{pgcd}(k,n)$.
+      </div>
+    </div>
+    <div class="qed">∎</div>
+
+    <div class="applications-box">
+      <span class="applications-label">✓ Ce que ça débloque</span>
+      <ul>
+        <li>Tous les calculs d'ordre dans $\mathbb{Z}/n\mathbb{Z}$ (exercices 1, 3, 4 de la fiche précédente)</li>
+        <li>Le critère de générateur (démonstration suivante)</li>
+        <li>Comprendre pourquoi $\varphi(n)$ compte les générateurs</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== DEMO 3 : CRITERE GENERATEUR ===== -->
+  <div class="demo-card" id="d3" data-id="d3">
+    <div class="demo-header">
+      <div>
+        <span class="demo-num">Démonstration 03 · exercice 5 de la fiche précédente</span>
+        <div class="demo-title">Critère : $kg$ génère $G$ ⟺ pgcd(k,n)=1</div>
+      </div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisée</div>
+    </div>
+
+    <div class="enonce-box">
+      <span class="enonce-label">Énoncé</span>
+      <p>Soit $G = \langle g \rangle$ cyclique d'ordre $n$. Alors $kg$ engendre $G$ tout entier $\iff \text{pgcd}(k,n)=1$.</p>
+    </div>
+
+    <div class="idee-box">
+      <span class="idee-label">💡 Idée clé</span>
+      <p>Deux façons de voir la même chose : soit on <mark>utilise directement la Démo 2</mark> (le plus rapide), soit on redémontre à la main avec Bézout (utile si le jury demande "sans utiliser la formule").</p>
+    </div>
+
+    <div class="demo-steps">
+      <div class="step-item">
+        <b>Méthode rapide (via Démo 2)</b> : $kg$ génère $G$ $\iff$ ordre($kg$) $=n$ $\iff$ $n/\text{pgcd}(k,n) = n$ $\iff$ $\text{pgcd}(k,n)=1$.
+      </div>
+      <div class="step-item astuce">
+        <span class="step-tag">Méthode à la main (avec Bézout) — sens ⟸</span>
+        Si $\text{pgcd}(k,n)=1$, Bézout donne $u,v$ avec $uk+vn=1$. Alors $u(kg) = ukg = (1-vn)g = g - vng = g$ (car $ng=0$). Donc $g \in \langle kg \rangle$, donc $\langle kg \rangle = G$.
+      </div>
+      <div class="step-item">
+        <b>Sens ⟹</b> : si $\langle kg \rangle = G$, alors ordre($kg$)$=n$, et par la Démo 2 ceci force $\text{pgcd}(k,n)=1$.
+      </div>
+    </div>
+    <div class="qed">∎</div>
+
+    <div class="applications-box">
+      <span class="applications-label">✓ Ce que ça débloque</span>
+      <ul>
+        <li>Trouver TOUS les générateurs d'un $\mathbb{Z}/n\mathbb{Z}$ rapidement (exercice 2)</li>
+        <li>Comprendre pourquoi $\varphi(n)$ = nombre de générateurs</li>
+        <li>Un grand classique de leçon d'oral : "groupes cycliques, exemples et applications"</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== DEMO 4 : UNICITE SOUS-GROUPE ===== -->
+  <div class="demo-card" id="d4" data-id="d4">
+    <div class="demo-header">
+      <div>
+        <span class="demo-num">Démonstration 04 · exercice 6, niveau oral</span>
+        <div class="demo-title">Unicité du sous-groupe d'ordre $d$ dans $\mathbb{Z}/n\mathbb{Z}$</div>
+      </div>
+      <div class="memo-check" onclick="toggleMemo(this)">☐ Mémorisée</div>
+    </div>
+
+    <div class="enonce-box">
+      <span class="enonce-label">Énoncé</span>
+      <p>Soit $d$ un diviseur de $n$. Il existe un <b>unique</b> sous-groupe de $\mathbb{Z}/n\mathbb{Z}$ d'ordre $d$ : c'est $\langle n/d \rangle$.</p>
+    </div>
+
+    <div class="idee-box">
+      <span class="idee-label">💡 Idée clé</span>
+      <p>On montre d'abord qu'un sous-groupe candidat existe (facile), puis que <mark>n'importe quel sous-groupe de cet ordre lui est forcément égal</mark> — c'est ce deuxième point, l'unicité, qui est le cœur de la démonstration.</p>
+    </div>
+
+    <div class="demo-steps">
+      <div class="step-item">
+        <b>Existence.</b> $\langle n/d \rangle$ a pour ordre $n/\text{pgcd}(n/d,n) = n/(n/d) = d$ (car $n/d$ divise $n$). C'est bien un sous-groupe d'ordre $d$.
+      </div>
+      <div class="step-item">
+        <b>Unicité — mise en place.</b> Soit $H$ un sous-groupe quelconque d'ordre $d$. Par Lagrange (Démo 1), tout élément $x \in H$ a un ordre qui divise $d$.
+      </div>
+      <div class="step-item astuce">
+        <span class="step-tag">Astuce clé</span>
+        Ordre de $x$ divise $d$ $\Rightarrow$ $dx = 0$ dans $\mathbb{Z}/n\mathbb{Z}$ $\Rightarrow$ $n$ divise $dx$ $\Rightarrow$ $(n/d)$ divise $x$ (car $n/d$ et $d$ jouent des rôles symétriques ici). Donc <b>tout élément de $H$ est un multiple de $n/d$</b>.
+      </div>
+      <div class="step-item">
+        On a donc $H \subset \langle n/d \rangle$. Or les deux ensembles ont le même cardinal $d$ (par hypothèse sur $H$, et par l'étape 1 pour $\langle n/d\rangle$).
+      </div>
+      <div class="step-item">
+        Une inclusion entre deux ensembles finis de même cardinal est une égalité : $H = \langle n/d \rangle$.
+      </div>
+    </div>
+    <div class="qed">∎</div>
+
+    <div class="applications-box">
+      <span class="applications-label">✓ Ce que ça débloque</span>
+      <ul>
+        <li>Classification complète des sous-groupes de $\mathbb{Z}/n\mathbb{Z}$ : il y en a exactement un par diviseur de $n$</li>
+        <li>Argument réutilisable pour tout groupe cyclique (pas seulement $\mathbb{Z}/n\mathbb{Z}$)</li>
+        <li>Prépare le terrain pour le théorème chinois et la structure des groupes abéliens finis</li>
+      </ul>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetProgress()">↺ Réinitialiser</button>
+
+</div>
+
+<script>
+const STORAGE_KEY = 'agreg_demos_groupes';
+
+function loadProgress() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+}
+function saveProgress(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+function applyStoredProgress() {
+  const data = loadProgress();
+  document.querySelectorAll('.demo-card').forEach(card => {
+    const id = card.dataset.id;
+    if (data[id]) {
+      card.classList.add('memo');
+      const chk = card.querySelector('.memo-check');
+      chk.classList.add('checked');
+      chk.textContent = '✓ Mémorisée';
+    }
+  });
+  updateProgressBar();
+}
+
+function toggleMemo(el) {
+  const card = el.closest('.demo-card');
+  const id = card.dataset.id;
+  const data = loadProgress();
+  data[id] = !data[id];
+  saveProgress(data);
+  card.classList.toggle('memo', data[id]);
+  el.classList.toggle('checked', data[id]);
+  el.textContent = data[id] ? '✓ Mémorisée' : '☐ Mémorisée';
+  updateProgressBar();
+}
+
+function updateProgressBar() {
+  const total = document.querySelectorAll('.demo-card').length;
+  const done = document.querySelectorAll('.demo-card.memo').length;
+  const pct = total ? Math.round((done/total)*100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${done} / ${total} démonstrations mémorisées (${pct}%)`;
+}
+
+function resetProgress() {
+  if (confirm("Réinitialiser la progression de mémorisation ?")) {
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('.memo').forEach(el => el.classList.remove('memo'));
+    document.querySelectorAll('.checked').forEach(el => { el.classList.remove('checked'); el.textContent = '☐ Mémorisée'; });
+    updateProgressBar();
+  }
+}
+
+applyStoredProgress();
+
+document.addEventListener("DOMContentLoaded", function() {
+  renderMathInElement(document.body, {
+    delimiters: [{left: "$$", right: "$$", display: true}, {left: "$", right: "$", display: false}]
+  });
+});
+if (document.readyState !== 'loading') {
+  renderMathInElement(document.body, {
+    delimiters: [{left: "$$", right: "$$", display: true}, {left: "$", right: "$", display: false}]
+  });
+}
+</script>
+</body>
+</html>

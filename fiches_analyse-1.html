@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiches murales — Analyse · Agrégation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161923;
+    --border: #2a3347;
+    --accent: #e8b86d;
+    --accent2: #7eb8d4;
+    --accent3: #9b72cf;
+    --green: #5dba8a;
+    --red: #e07070;
+    --text: #d4dbe8;
+    --text-dim: #6b7a94;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    padding: 2rem;
+  }
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--accent2);
+    text-align: center;
+    margin-bottom: 0.3rem;
+  }
+  .page-sub {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+  }
+  .nav {
+    display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+  }
+  .nav a {
+    color: var(--text-dim); text-decoration: none; font-size: 0.82rem;
+    border: 1px solid var(--border); padding: 0.4rem 1rem; border-radius: 999px;
+  }
+  .nav a:hover { color: var(--accent2); border-color: var(--accent2); }
+
+  .fiche-wall {
+    max-width: 1100px;
+    margin: 0 auto 4rem;
+  }
+  .fiche-card {
+    background: linear-gradient(160deg, #161923 0%, #1a1f2e 100%);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .fiche-card::before {
+    content: "";
+    position: absolute; top:0; left:0; right:0; height: 6px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent3), var(--accent));
+  }
+  .fiche-num {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .fiche-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem;
+    color: var(--accent2);
+    margin: 0.3rem 0 1.2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.8rem;
+  }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+  .block {
+    background: #10131b;
+    border-left: 4px solid var(--accent3);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .block.thm { border-left-color: var(--accent); }
+  .block.warn { border-left-color: var(--red); }
+  .block.ex { border-left-color: var(--green); }
+  .block.tool { border-left-color: var(--accent2); }
+
+  .block-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent3);
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .block.thm .block-label { color: var(--accent); }
+  .block.warn .block-label { color: var(--red); }
+  .block.ex .block-label { color: var(--green); }
+  .block.tool .block-label { color: var(--accent2); }
+
+  .block p { font-size: 0.98rem; line-height: 1.6; }
+  .block ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+  .block li { font-size: 0.94rem; margin-bottom: 0.3rem; line-height: 1.5; }
+
+  .formula {
+    font-family: 'JetBrains Mono', monospace;
+    background: #06070a;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    color: var(--accent2);
+    margin: 0.6rem 0;
+    text-align: center;
+  }
+
+  .hierarchy {
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    flex-wrap: wrap; margin: 1rem 0;
+  }
+  .hierarchy .node {
+    background: var(--surface); border: 1px solid var(--accent3);
+    padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.9rem;
+    font-family: 'JetBrains Mono', monospace; color: var(--text);
+  }
+  .hierarchy .arrow { color: var(--accent); font-size: 1.2rem; }
+
+  .tag-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    padding: 0.25rem 0.7rem; border-radius: 999px;
+    background: #1a2e3d; color: var(--accent2); border: 1px solid #2a4457;
+  }
+
+  .print-note {
+    max-width: 1100px; margin: 0 auto 2rem; text-align:center;
+    color: var(--text-dim); font-size: 0.85rem; font-style: italic;
+  }
+
+  @media print {
+    body { background: white; color: black; }
+    .nav, .print-note { display: none; }
+    .fiche-card { border: 1px solid #ccc; background: white; }
+    .fiche-title { color: #1F4E79; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">Fiches murales — Analyse</div>
+<div class="page-sub">Programme écrit de l'agrégation externe · à afficher, customiser, s'approprier</div>
+
+<div class="nav">
+  <a href="#f1">1. Topologie & espaces métriques</a>
+  <a href="#f2">2. Suites & séries de fonctions</a>
+  <a href="#f3">3. Intégration de Lebesgue</a>
+  <a href="#f4">4. Espaces de Hilbert & L²</a>
+  <a href="#f5">5. Séries entières & fonctions holomorphes</a>
+  <a href="#f6">6. Séries de Fourier</a>
+</div>
+
+<div class="print-note">💡 Même logique que les fiches d'algèbre : blocs colorés = définition (violet), théorème (doré), exemple (vert), piège (rouge), outil pratique (bleu).</div>
+
+<!-- FICHE 1 : TOPOLOGIE -->
+<div class="fiche-wall" id="f1">
+<div class="fiche-card">
+  <span class="fiche-num">Analyse · Fiche 01</span>
+  <div class="fiche-title">Topologie & espaces métriques</div>
+  <div class="tag-row">
+    <span class="tag">compacité</span><span class="tag">connexité</span><span class="tag">complétude</span><span class="tag">point fixe</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="block">
+        <span class="block-label">Espace métrique complet</span>
+        <p>(E,d) est complet si toute suite de Cauchy converge dans E. R^n est complet, Q ne l'est pas. C([a,b]) muni de la norme sup est complet.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Théorème du point fixe de Banach</span>
+        <p>Si f : E → E est k-lipschitzienne avec k&lt;1 sur un espace complet, alors f admet un unique point fixe, et la suite x_{n+1}=f(x_n) converge vers ce point fixe pour tout point de départ.</p>
+      </div>
+      <div class="block tool">
+        <span class="block-label">Application classique</span>
+        <p>Théorème de Cauchy-Lipschitz pour les équations différentielles : existence et unicité locale via le point fixe de Banach sur un espace de fonctions.</p>
+      </div>
+    </div>
+    <div>
+      <div class="block">
+        <span class="block-label">Compacité</span>
+        <p>K compact ⟺ de tout recouvrement ouvert on peut extraire un sous-recouvrement fini ⟺ (en dimension finie, Bolzano-Weierstrass) toute suite admet une sous-suite convergente dans K.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Théorème de Heine-Borel</span>
+        <p>Dans R^n : K compact ⟺ K fermé borné. ⚠ Faux en dimension infinie (la boule unité fermée n'est jamais compacte).</p>
+      </div>
+      <div class="block ex">
+        <span class="block-label">Connexité</span>
+        <p>E connexe : pas de partition en deux ouverts non vides disjoints. Connexe par arcs ⟹ connexe (réciproque fausse en général). L'image d'un connexe par une application continue est connexe (→ TVI).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block warn">
+    <span class="block-label">Pièges classiques</span>
+    <p>Une fonction continue sur un compact est uniformément continue (Heine) — utile pour intervertir limites. Ne pas confondre fermé borné (dim finie) et compact (dim infinie) : en dimension infinie il faut la compacité au sens des recouvrements, ou un critère spécifique (Ascoli).</p>
+  </div>
+</div>
+</div>
+
+<!-- FICHE 2 : SUITES ET SERIES DE FONCTIONS -->
+<div class="fiche-wall" id="f2">
+<div class="fiche-card">
+  <span class="fiche-num">Analyse · Fiche 02</span>
+  <div class="fiche-title">Suites & séries de fonctions</div>
+  <div class="tag-row">
+    <span class="tag">convergence uniforme</span><span class="tag">normale</span><span class="tag">interversion limite</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="block">
+        <span class="block-label">Convergence simple vs uniforme</span>
+        <p>f_n → f simplement : ∀x, f_n(x)→f(x). f_n → f uniformément : sup_x |f_n(x)-f(x)| → 0. La convergence uniforme préserve la continuité, PAS la convergence simple.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Théorème d'interversion limite/intégrale</span>
+        <p>Si f_n → f uniformément sur [a,b] et f_n continues, alors ∫f_n → ∫f. Ne marche pas seulement avec convergence simple (contre-exemple : bosses glissantes).</p>
+      </div>
+      <div class="block tool">
+        <span class="block-label">Convergence normale (séries)</span>
+        <p>Σf_n converge normalement si Σ‖f_n‖_∞ &lt; ∞. Normale ⟹ uniforme ⟹ simple. C'est le critère le plus facile à vérifier en pratique (critère de Weierstrass).</p>
+      </div>
+    </div>
+    <div>
+      <div class="block thm">
+        <span class="block-label">Dérivation terme à terme</span>
+        <p>Si f_n → f simplement, f_n' → g uniformément, et f_n' continues, alors f est dérivable et f' = g. Attention : il faut la convergence uniforme sur les DÉRIVÉES, pas sur les f_n.</p>
+      </div>
+      <div class="block ex">
+        <span class="block-label">Contre-exemple classique à connaître</span>
+        <p>f_n(x) = x^n sur [0,1] : converge simplement vers une fonction discontinue en 1 (0 puis 1), donc pas uniformément. Base pour illustrer pourquoi la convergence uniforme est nécessaire.</p>
+      </div>
+      <div class="block warn">
+        <span class="block-label">Théorème de Dini</span>
+        <p>Si f_n → f simplement, f_n et f continues, la suite est monotone en n, et le domaine est compact, alors la convergence est automatiquement uniforme. Utile pour éviter de calculer sup directement.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FICHE 3 : INTEGRATION DE LEBESGUE -->
+<div class="fiche-wall" id="f3">
+<div class="fiche-card">
+  <span class="fiche-num">Analyse · Fiche 03</span>
+  <div class="fiche-title">Intégration de Lebesgue</div>
+  <div class="tag-row">
+    <span class="tag">tribu</span><span class="tag">mesure</span><span class="tag">convergence dominée</span><span class="tag">Fubini</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="block">
+        <span class="block-label">Fonction mesurable, mesure</span>
+        <p>(Ω,𝒜,μ) espace mesuré. f mesurable : préimage de tout borélien ∈ 𝒜. L'intégrale de Lebesgue étend celle de Riemann et gère bien les limites de fonctions.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Théorème de convergence monotone (Beppo-Levi)</span>
+        <p>Si (f_n) suite croissante de fonctions positives mesurables, alors ∫lim f_n = lim ∫f_n. Pas besoin d'hypothèse de domination ici — la croissance suffit.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Théorème de convergence dominée (Lebesgue)</span>
+        <p>Si f_n → f p.p., et |f_n| ≤ g pour une fonction g intégrable (indépendante de n), alors f est intégrable et ∫f_n → ∫f. LE théorème le plus utilisé pour intervertir limite et intégrale.</p>
+      </div>
+    </div>
+    <div>
+      <div class="block tool">
+        <span class="block-label">Lemme de Fatou</span>
+        <p>Pour (f_n) positives mesurables : ∫ liminf f_n ≤ liminf ∫f_n. Utile quand on n'a pas de domination mais qu'on veut une inégalité.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Théorème de Fubini-Tonelli</span>
+        <p>Fubini (fonctions intégrables) ou Tonelli (fonctions positives) : ∫∫f(x,y)dxdy = ∫(∫f(x,y)dx)dy = ∫(∫f(x,y)dy)dx. Toujours vérifier l'intégrabilité (Fubini) avant d'intervertir !</p>
+      </div>
+      <div class="block ex">
+        <span class="block-label">Espaces L^p</span>
+        <p>L^p(μ) = fonctions telles que ∫|f|^p dμ &lt; ∞, muni de ‖f‖_p = (∫|f|^p)^{1/p}. Inégalité de Hölder : ‖fg‖_1 ≤ ‖f‖_p‖g‖_q avec 1/p+1/q=1.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block warn">
+    <span class="block-label">Réflexe à avoir</span>
+    <p>Avant d'intervertir limite et intégrale : chercher d'abord une domination (convergence dominée). Si la suite est monotone et positive, Beppo-Levi suffit et est plus simple à justifier.</p>
+  </div>
+</div>
+</div>
+
+<!-- FICHE 4 : ESPACES DE HILBERT -->
+<div class="fiche-wall" id="f4">
+<div class="fiche-card">
+  <span class="fiche-num">Analyse · Fiche 04</span>
+  <div class="fiche-title">Espaces de Hilbert & L²</div>
+  <div class="tag-row">
+    <span class="tag">projection orthogonale</span><span class="tag">base hilbertienne</span><span class="tag">Riesz</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="block">
+        <span class="block-label">Définition</span>
+        <p>Espace de Hilbert : espace vectoriel muni d'un produit scalaire, complet pour la norme associée. L²(μ) est l'exemple central pour l'agrégation.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Théorème de projection sur un convexe fermé</span>
+        <p>Si C convexe fermé non vide dans un Hilbert H, tout x∈H a un unique projeté p_C(x) sur C, caractérisé par : ⟨x-p_C(x), c-p_C(x)⟩ ≤ 0 pour tout c∈C.</p>
+      </div>
+      <div class="block tool">
+        <span class="block-label">Cas d'un sous-espace fermé F</span>
+        <p>La projection sur F est linéaire, et H = F ⊕ F⊥ (somme directe orthogonale topologique). Généralise ce qu'on connaît en dimension finie.</p>
+      </div>
+    </div>
+    <div>
+      <div class="block thm">
+        <span class="block-label">Théorème de représentation de Riesz</span>
+        <p>Toute forme linéaire continue φ sur H s'écrit φ(x)=⟨a,x⟩ pour un unique a∈H. Identifie H et son dual topologique H'.</p>
+      </div>
+      <div class="block ex">
+        <span class="block-label">Base hilbertienne</span>
+        <p>Famille orthonormée (e_n) totale (son espace vectoriel engendré est dense). Alors tout x se décompose : x = Σ⟨x,e_n⟩e_n, avec égalité de Parseval : ‖x‖² = Σ|⟨x,e_n⟩|².</p>
+      </div>
+      <div class="block warn">
+        <span class="block-label">Différence Hilbert / Banach</span>
+        <p>Un espace de Banach n'a pas forcément de produit scalaire (juste une norme). L'existence d'une projection orthogonale unique sur un convexe fermé est spécifique aux Hilbert.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FICHE 5 : SERIES ENTIERES ET FONCTIONS HOLOMORPHES -->
+<div class="fiche-wall" id="f5">
+<div class="fiche-card">
+  <span class="fiche-num">Analyse · Fiche 05</span>
+  <div class="fiche-title">Séries entières & fonctions holomorphes</div>
+  <div class="tag-row">
+    <span class="tag">rayon de convergence</span><span class="tag">Cauchy-Riemann</span><span class="tag">résidus</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="block">
+        <span class="block-label">Rayon de convergence</span>
+        <p>R = 1/limsup|a_n|^{1/n} (Hadamard). La série Σa_nz^n converge absolument si |z|&lt;R, diverge si |z|&gt;R. Sur le cercle |z|=R : cas par cas.</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Fonction holomorphe = analytique (sur C)</span>
+        <p>f holomorphe sur un ouvert de C ⟺ f développable en série entière au voisinage de chaque point. Différence radicale avec R : dérivable une fois sur C ⟹ indéfiniment dérivable.</p>
+      </div>
+      <div class="block tool">
+        <span class="block-label">Équations de Cauchy-Riemann</span>
+        <p>f=P+iQ holomorphe ⟺ ∂P/∂x=∂Q/∂y et ∂P/∂y=-∂Q/∂x. Condition nécessaire et suffisante (avec régularité C¹) pour l'holomorphie.</p>
+      </div>
+    </div>
+    <div>
+      <div class="block thm">
+        <span class="block-label">Formule intégrale de Cauchy</span>
+        <p>Si f holomorphe sur un ouvert contenant le disque fermé de centre a et rayon r : f(a) = (1/2iπ)∮ f(z)/(z-a) dz sur le cercle de rayon r. Base de toute la théorie.</p>
+      </div>
+      <div class="block ex">
+        <span class="block-label">Théorème des résidus</span>
+        <p>∮_γ f(z)dz = 2iπ Σ Res(f,a_k) pour les pôles a_k à l'intérieur de γ. Très utilisé pour calculer des intégrales réelles difficiles (via un contour astucieux).</p>
+      </div>
+      <div class="block warn">
+        <span class="block-label">Principe des zéros isolés / prolongement analytique</span>
+        <p>Si f holomorphe s'annule sur un ensemble avec point d'accumulation dans le domaine, f≡0. Conséquence : le prolongement analytique, quand il existe, est unique.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FICHE 6 : SERIES DE FOURIER -->
+<div class="fiche-wall" id="f6">
+<div class="fiche-card">
+  <span class="fiche-num">Analyse · Fiche 06</span>
+  <div class="fiche-title">Séries de Fourier</div>
+  <div class="tag-row">
+    <span class="tag">coefficients de Fourier</span><span class="tag">Parseval</span><span class="tag">Dirichlet</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="block">
+        <span class="block-label">Coefficients de Fourier</span>
+        <p>Pour f 2π-périodique intégrable : c_n(f) = (1/2π)∫₀^{2π} f(t)e^{-int}dt. Série de Fourier : Σc_n(f)e^{int}. Version réelle avec a_n, b_n (cos, sin).</p>
+      </div>
+      <div class="block thm">
+        <span class="block-label">Théorème de Dirichlet (convergence ponctuelle)</span>
+        <p>Si f C¹ par morceaux, la série de Fourier converge en tout point vers (f(x⁺)+f(x⁻))/2 — la demi-somme des limites à droite et à gauche.</p>
+      </div>
+    </div>
+    <div>
+      <div class="block thm">
+        <span class="block-label">Égalité de Parseval</span>
+        <p>Si f ∈ L²([0,2π]) : (1/2π)∫|f|² = Σ|c_n(f)|². Les (e^{int}/√(2π))_n forment une base hilbertienne de L²([0,2π]) — lien direct avec la fiche Hilbert.</p>
+      </div>
+      <div class="block ex">
+        <span class="block-label">Convergence uniforme</span>
+        <p>Si f continue, 2π-périodique et C¹ par morceaux, alors la série de Fourier converge normalement (donc uniformément) vers f. Condition plus forte que Dirichlet simple.</p>
+      </div>
+      <div class="block warn">
+        <span class="block-label">Piège : régularité insuffisante</span>
+        <p>Sans hypothèse de régularité (juste f continue), la série de Fourier peut diverger en certains points (contre-exemple de Fejér/Du Bois-Reymond). Toujours vérifier les hypothèses de régularité avant de conclure à la convergence.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
