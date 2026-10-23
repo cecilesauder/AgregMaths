@@ -17,7 +17,7 @@ Les treize fichiers ci-dessous suivent les titres communs puis le programme spé
 
 | Programme | Guide |
 |---|---|
-| Titre 1 — Algèbre linéaire | [Guide et checklist](05-programme-2027/titre-01.md) |
+| Titre 1 — Algèbre linéaire | [Guide et checklist](05-programme-2027/titre-01.md) · [Exercices types corrigés](05-programme-2027/exercices-titre-01.md) |
 | Titre 2 — Groupes | [Guide et checklist](05-programme-2027/titre-02.md) |
 | Titre 3 — Anneaux, corps et polynômes | [Guide et checklist](05-programme-2027/titre-03.md) |
 | Titre 4 — Formes bilinéaires et quadratiques | [Guide et checklist](05-programme-2027/titre-04.md) |
@@ -99,7 +99,8 @@ Les guides relient maintenant le dépôt aux **12 titres communs et au programme
 
 ### 2. Fiabiliser les supports et le code
 
-- [ ] Parcourir toutes les corrections d’exercices et contrôler les calculs à la main; vérifier aussi que l’énoncé, la correction et le résultat affiché concordent.
+- [x] Contrôler à la main et faire relire indépendamment les six corrigés du recueil du titre 1.
+- [ ] Étendre ce contrôle aux autres corrections du dépôt et vérifier la concordance entre énoncé, correction et résultat affiché lorsqu’il s’agit d’un support interactif.
 - [ ] Tester chaque interaction HTML (réinitialisation, saisies limites, cas dégénérés, affichage mobile) et garder les avertissements de portée pour les visualisations schématiques.
 - [ ] Exécuter le code R et Scilab de l’option A sur des cas de test reproductibles; vérifier les sorties, les graines aléatoires, les cas limites et les hypothèses des algorithmes.
 - [ ] Pour les méthodes statistiques et de modélisation, noter les données, hypothèses, diagnostics, limites d’interprétation et critères de sélection; prévenir les fuites d’information entre apprentissage et validation.
@@ -107,7 +108,8 @@ Les guides relient maintenant le dépôt aux **12 titres communs et au programme
 
 ### 3. Construire une pratique systématique
 
-- [ ] Pour chacun des 12 titres communs et l’option A, établir une banque d’exercices classés par notion et difficulté, avec au moins quelques problèmes transversaux.
+- [x] Produire une première série de six exercices types corrigés pour le titre 1, à raison d’un exercice par sous-partie officielle ([recueil](05-programme-2027/exercices-titre-01.md)).
+- [ ] Étendre la banque aux 11 autres titres communs et à l’option A, classer les exercices par notion et difficulté, et ajouter des problèmes transversaux.
 - [ ] Tenir un carnet d’erreurs : notion, hypothèse oubliée, raison de l’erreur, correction, exercice de contrôle et date de reprise.
 - [ ] Organiser des révisions espacées des définitions, hypothèses, preuves fondamentales, méthodes de calcul et exemples standards; alterner rappel sans notes et résolution d’exercices.
 - [ ] Travailler sur les sujets et rapports officiels disponibles et noter pour chaque sujet les thèmes mobilisés, les méthodes, les erreurs et les points à retravailler.

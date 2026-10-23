@@ -104,6 +104,10 @@ Pour une matrice réelle ou complexe \(A\), l’exponentielle matricielle est d�
 
 **À savoir faire.** Calculer polynôme caractéristique et noyaux propres, vérifier un annulateur, utiliser Cayley–Hamilton pour réduire des puissances, déterminer si la matrice est diagonalisable ou seulement trigonalizable en contrôlant le corps, trouver indices de nilpotence, décrire des sous-espaces caractéristiques, appliquer Dunford sous ses hypothèses, et calculer une exponentielle dans les cas diagonalisable, nilpotent ou après décomposition adaptée.
 
+## Exercices types corrigés
+
+Un recueil de six exercices corrigés, un par sous-partie officielle, accompagne ce guide : [exercices types corrigés du titre 1](exercices-titre-01.md). Ils couvrent les principaux gestes de calcul et de justification, sans remplacer les exercices du cours ni les annales.
+
 ## Checklist de révision
 
 Cocher une case seulement après avoir pu effectuer la tâche sans suivre une solution modèle.
