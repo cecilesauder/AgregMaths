@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11131a">
+  <meta name="description" content="Titre 9 — Calcul différentiel — ressource de révision Agrégation Maths 2027.">
+  <title>Titre 9 — Calcul différentiel · AGREG 27</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/site.css">
+  <script defer src="../assets/site.js"></script>
+</head>
+<body data-base="../" data-progress-total="0">
+  <a class="skip-link" href="#main">Passer au contenu</a>
+  <header class="topbar"><div class="site-shell topbar-inner">
+    <a class="brand" href="../index.html" aria-label="Retour à l’accueil AGREG 27"><span class="brand-mark" aria-hidden="true">∑</span><span class="brand-name">AGREG · 27<small>Atelier de révision</small></span></a>
+    <nav class="topnav" aria-label="Navigation principale"><a href="../index.html#programme">Catalogue</a><a href="../exercices-titre-01.html">Exercices T1</a><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Activer le thème clair">☼</button></nav>
+  </div></header>
+  <main id="main" class="site-shell"><div class="breadcrumb"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="index.html">Guides</a><span aria-hidden="true">/</span><span>Titre 9 — Calcul différentiel</span></div>
+<div class="guide-top"><a href="index.html">← Tous les guides</a><a href="../index.html#programme">← Catalogue de révision</a></div>
+<article class="guide-container markdown-body"><h1>Titre 9 — Calcul différentiel</h1>
+<blockquote>
+<p><strong>Statut : guide de révision, à travailler, ne remplace pas un cours.</strong></p>
+<p>Le programme officiel intitule le titre <strong>« 9 Calcul différentiel »</strong>. Il comprend les unités <strong>9.1 Fonctions différentiables</strong>, <strong>9.2 Équations différentielles</strong> et <strong>9.3 Géométrie différentielle</strong>. Ainsi, « EDO et géométrie différentielle » décrit bien deux parties du titre, mais ne figure pas dans son intitulé officiel. Les lettres et sous-items reproduits ci-dessous suivent le PDF de la session 2027 <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027">1</a>.</p>
+</blockquote>
+<p>Ce guide rappelle les définitions, les résultats à savoir énoncer avec leurs hypothèses et quelques usages typiques. Il ne constitue ni un cours complet ni un recueil de preuves. Les rappels sont ciblés : il faut vérifier les formulations et conventions enseignées dans son cours, refaire les démonstrations exigibles et s’entraîner sur des exercices de niveaux variés.</p>
+<h2>9.1 Fonctions différentiables</h2>
+<h3>(a) Applications différentiables sur un ouvert de Rⁿ. Différentielle (application linéaire tangente). Dérivée selon un vecteur.</h3>
+<p>Soient U un ouvert de Rⁿ, f: U → Rᵐ et a ∈ U. La fonction f est <strong>différentiable</strong> en a s’il existe une application linéaire L: Rⁿ → Rᵐ telle que</p>
+<p><code>f(a+h) = f(a) + L(h) + o(‖h‖)</code> lorsque h → 0.</p>
+<p>Cette application L, unique, est la <strong>différentielle</strong> <code>df(a)</code> (ou <code>D f(a)</code>), appelée aussi application linéaire tangente. Il s’agit d’une approximation linéaire de f au premier ordre, et non de la fonction elle-même. Pour un vecteur v, la dérivée selon v est <code>D_v f(a) = df(a)(v)</code>; elle représente la variation au premier ordre dans la direction v. Une dérivée directionnelle existant pour chaque direction ne suffit pas, à elle seule, à garantir la différentiabilité.</p>
+<p><strong>Usage / exemple.</strong> Pour <code>f(x,y)=x²y</code>, <code>df(a,b)(h,k)=2ab h+a² k</code>. Cette formule permet d’approximer <code>f(a+h,b+k)</code> et de calculer la dérivée dans toute direction sans confondre direction et coordonnée.</p>
+<h3>(b) Dérivées partielles. Matrice jacobienne, vecteur gradient. Composition. Théorème des accroissements finis. Applications de classe C¹.</h3>
+<p>Les <strong>dérivées partielles</strong> mesurent les variations dans les directions coordonnées. Si les dérivées partielles premières existent et sont continues dans un voisinage de a, alors f est différentiable en a. La matrice de <code>df(a)</code> dans les bases canoniques est la <strong>matrice jacobienne</strong> <code>J_f(a)</code>. Pour une fonction scalaire f: Rⁿ → R, le <strong>gradient</strong> <code>∇f(a)</code> est le vecteur des dérivées partielles et <code>df(a)(h)=∇f(a)·h</code>. Une fonction est de classe <strong>C¹</strong> sur U si ses dérivées partielles premières existent et sont continues sur U.</p>
+<p><strong>Règle de chaîne.</strong> Si f: U → V et g: V → Rᵖ sont différentiables, avec V ouvert et f(U) ⊂ V, alors <code>d(g∘f)(a)=dg(f(a))∘df(a)</code>; en matrices, <code>J_(g∘f)(a)=J_g(f(a))J_f(a)</code>.</p>
+<p><strong>Accroissements finis.</strong> Sur un segment <code>[x,y]</code> inclus dans U, si f est C¹, alors
+<code>f(y)-f(x)=∫₀¹ df(x+t(y-x))(y-x) dt</code>.
+En particulier, si <code>‖df(z)‖≤M</code> sur le segment, <code>‖f(y)-f(x)‖≤M‖y-x‖</code>. Pour une fonction réelle d’une variable, le théorème classique donne aussi un point intermédiaire où le taux d’accroissement est égal à la dérivée.</p>
+<p><strong>Usage / exemple.</strong> Pour <code>F(x,y)=(x²+y,xy)</code>, construire <code>J_F</code> permet de linéariser F et de calculer la jacobienne d’une composition; une borne de <code>‖J_F‖</code> sur un convexe donne une estimation lipschitzienne sur ce convexe.</p>
+<h3>(c) Applications de classe Cᵏ. Dérivées partielles d’ordre k. Interversion de l’ordre des dérivations. Hessienne. Taylor-Young et Taylor avec reste intégral (Taylor-Laplace).</h3>
+<p>Une application est <strong>Cᵏ</strong> si toutes ses dérivées partielles jusqu’à l’ordre k existent et sont continues. Si les dérivées mixtes concernées sont continues dans un voisinage, le théorème de Schwarz permet d’en intervertir l’ordre. Pour f scalaire, la <strong>hessienne</strong> <code>H_f(a)</code> est la matrice des dérivées secondes; sous ces hypothèses, elle est symétrique.</p>
+<p>Pour f de classe Cᵏ au voisinage de a, Taylor-Young s’écrit
+<code>f(a+h)= Σ_(j=0)^k (1/j!) dʲf(a)[h,…,h] + o(‖h‖ᵏ)</code>
+À l’ordre 2, le terme quadratique vaut (\tfrac12 h^{\mathsf T}H_f(a)h). Si (f\in C^{k+1}) sur un voisinage du segment ([a,a+h]), la formule de Taylor avec reste intégral est
+[
+f(a+h)=\sum_{j=0}^{k}\frac1{j!}d^jf(a)[h,\ldots,h]+\frac1{k!}\int_0^1(1-t)^k d^{k+1}f(a+th)[h,\ldots,h] \,dt.
+]
+Une borne de (|d^{k+1}f(x)|_{\mathrm{op}}) sur ce segment donne une majoration explicite du reste. C’est la formule de Taylor-Laplace nommée par le programme <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027">1</a>.</p>
+<p><strong>Usage / exemple.</strong> Pour <code>f(x,y)=eˣ cos y</code> près de (0,0), les dérivées premières et secondes fournissent le développement quadratique <code>1+x+(x²-y²)/2+o(x²+y²)</code>, utile pour comparer f à 1 près de l’origine.</p>
+<h3>(d) Étude locale des applications à valeurs dans R. Développements limités. Recherche des extrema locaux.</h3>
+<p>Pour (f:U\subset\mathbb R^d\to\mathbb R) de classe (C^n) au voisinage de (a), un <strong>développement limité</strong> d’ordre (n) s’écrit (f(a+h)=\sum_{j=0}^n\frac1{j!}d^jf(a)[h,\ldots,h]+o(|h|^n)) lorsque (h\to0). Par exemple, pour (f(x,y)=e^x\cos y), le développement d’ordre 2 à l’origine est (1+x+(x^2-y^2)/2+o(|(x,y)|^2)). Pour une fonction différentiable ayant un extremum local en un point intérieur (a), le <strong>théorème de Fermat</strong> donne (df(a)=0), donc (\nabla f(a)=0).</p>
+<p>Si (f) est (C^2), en un point critique un minimum local impose une hessienne positive semi-définie et un maximum local une hessienne négative semi-définie. Une hessienne définie positive (respectivement négative) en un point critique garantit un minimum (respectivement maximum) local strict. Une hessienne indéfinie en un point critique indique un point selle. Si elle est dégénérée, le test d’ordre 2 ne conclut généralement pas : il faut examiner les termes suivants, le reste ou directement les variations.</p>
+<p><strong>Usage / exemple.</strong> Pour <code>f(x,y)=x²+3y²</code>, l’origine est un minimum strict puisque le gradient y est nul et la hessienne <code>diag(2,6)</code> est définie positive. En revanche, <code>x²-y²</code> a une hessienne indéfinie à l’origine.</p>
+<h3>(e) Fonctions convexes de plusieurs variables. Caractérisation pour les fonctions C¹ et C² sur un ouvert convexe de Rⁿ.</h3>
+<p>Sur un ensemble convexe C, f est <strong>convexe</strong> si, pour tous x,y ∈ C et tout <code>t∈[0,1]</code>,
+<code>f((1-t)x+ty) ≤ (1-t)f(x)+tf(y)</code>.
+Pour une fonction C¹ sur un ouvert convexe, la convexité équivaut à
+<code>f(y) ≥ f(x)+∇f(x)·(y-x)</code> pour tous x,y de l’ouvert. Pour une fonction C² sur cet ouvert, elle équivaut à la positivité semi-définie de <code>H_f(x)</code> en tout point. Ces critères supposent bien la convexité du domaine; ils ne se transposent pas tels quels à un domaine arbitraire non convexe.</p>
+<p><strong>Usage / exemple.</strong> La hessienne de <code>f(x,y)=x²+xy+y²</code> est définie positive, donc f est convexe sur R². L’inégalité de support donne une borne inférieure affine en tout point d’appui.</p>
+<h3>(f) Difféomorphismes. Théorème d’inversion locale. Théorème des fonctions implicites.</h3>
+<p>Un <strong>difféomorphisme</strong> de classe Cᵏ est une bijection entre ouverts dont l’application et l’inverse sont Cᵏ. Le <strong>théorème d’inversion locale</strong> affirme que si f: U → Rⁿ est Cᵏ (<code>k≥1</code>) et si <code>df(a)</code> est inversible, alors il existe des voisinages de a et f(a) entre lesquels f est un difféomorphisme Cᵏ. La dérivée de l’inverse en f(a) est <code>[df(a)]⁻¹</code>. La condition porte sur la différentielle au point; elle n’affirme pas que f est globalement injective.</p>
+<p>Pour le <strong>théorème des fonctions implicites</strong>, soit <code>F: U×V → Rᵖ</code> de classe Cᵏ et <code>F(a,b)=0</code>, avec <code>D_yF(a,b)</code> inversible (donc <code>dim V=p</code>). Alors, localement près de (a,b), les solutions de <code>F(x,y)=0</code> sont exactement le graphe d’une unique fonction <code>y=φ(x)</code> de classe Cᵏ. Sa différentielle vérifie <code>Dφ(x)=-[D_yF(x,φ(x))]⁻¹D_xF(x,φ(x))</code> lorsque les matrices restent inversibles.</p>
+<p><strong>Usage / exemple.</strong> Comme <code>∂(x²+y²-1)/∂y=2y</code> est non nul près de (0,1), le cercle s’y exprime localement sous la forme <code>y=√(1-x²)</code>. Ce résultat est local, pas une représentation unique du cercle entier par un seul graphe.</p>
+<h2>9.2 Équations différentielles</h2>
+<h3>(a) Équations <code>X′=f(t,X)</code> sur <code>I×Ω</code>. Cauchy-Lipschitz. Solutions maximales. Grönwall. Théorème de sortie de tout compact (« des bouts »).</h3>
+<p>Ici I est un intervalle ouvert de R, Ω un ouvert de Rⁿ, et f: <code>I×Ω→Rⁿ</code>. Une solution est une fonction dérivable X définie sur un intervalle, à valeurs dans Ω, qui vérifie l’équation. Sous les hypothèses usuelles du théorème de <strong>Cauchy-Lipschitz</strong> — notamment continuité de f et caractère localement lipschitzien en X, localement uniformément dans t — pour toute donnée initiale <code>(t₀,X₀)∈I×Ω</code>, il existe une solution locale et elle est unique. Une solution est <strong>maximale</strong> si elle ne se prolonge pas comme solution dans le domaine de l’équation; son intervalle maximal dépend de la donnée et du domaine.</p>
+<p>Le <strong>lemme de Grönwall</strong> contrôle les écarts : si <code>u(t)≤A+L∫_(t₀)^t u(s)ds</code> avec A,L≥0 et u continue positive, alors <code>u(t)≤A e^{L(t-t₀)}</code> pour t≥t₀. Les versions adaptées au sens du temps s’utilisent de même. Le <strong>théorème de sortie de tout compact</strong> (théorème des bouts) dit qu’une solution maximale qui atteint une extrémité finie de son intervalle ne peut rester dans un compact de <code>I×Ω</code> lorsque le temps tend vers cette extrémité; autrement elle se prolongerait.</p>
+<p><strong>Prudence sur la dépendance.</strong> Le PDF ne nomme pas la « dépendance » comme sous-item autonome. Grönwall sert souvent à établir des estimations de dépendance par rapport aux données initiales ou à des paramètres sous des hypothèses adaptées; à réviser avec le cours, mais sans présenter ce point comme une rubrique distincte explicitement énumérée dans le document officiel.</p>
+<p><strong>Usage / exemple.</strong> Pour <code>x′=x</code>, <code>x(0)=x₀</code>, la solution <code>x(t)=x₀eᵗ</code> est unique et globale. Pour <code>x′=x²</code>, <code>x(0)=1</code>, <code>x(t)=1/(1-t)</code> est maximale sur <code>(-∞,1)</code> : elle ne peut rester bornée à l’approche de 1, conformément au critère de continuation.</p>
+<h3>(b) Équations autonomes. Portrait de phase, comportement qualitatif. Stabilité des équilibres (théorème de linéarisation).</h3>
+<p>Une équation <strong>autonome</strong> s’écrit <code>X′=f(X)</code>, sans dépendance explicite en t. Un <strong>point d’équilibre</strong> <code>X*</code> vérifie <code>f(X*)=0</code>. Le <strong>portrait de phase</strong> représente les trajectoires dans l’espace des états et aide à décrire leur comportement qualitatif sans nécessairement résoudre l’équation. Un équilibre est stable au sens de Lyapunov si les solutions initialement assez proches restent proches pour tous les temps futurs; il est asymptotiquement stable s’il est stable et si les solutions assez proches convergent vers lui.</p>
+<p>Pour f C¹ près de X<em>, le système linéarisé est <code>Y′=Df(X*)Y</code>. Le théorème de linéarisation (cas hyperbolique) permet de déduire le comportement local lorsque Df(X</em>) n’a aucune valeur propre de partie réelle nulle : si toutes ont une partie réelle strictement négative, l’équilibre est localement asymptotiquement stable; s’il y en a une de partie réelle positive, l’équilibre est instable. Le cas avec des valeurs propres de partie réelle nulle n’est pas décidé par ce critère linéaire seul.</p>
+<p><strong>Usage / exemple.</strong> Pour <code>x′=-x</code>, l’équilibre 0 est asymptotiquement stable; les trajectoires <code>x(t)=x₀e⁻ᵗ</code> convergent vers 0. Pour <code>x′=x</code>, il est instable.</p>
+<h3>(c) Systèmes différentiels linéaires. Variation des constantes (formule de Duhamel). Coefficients constants. Équations linéaires d’ordre supérieur à 1.</h3>
+<p>Supposons (A) et (b) continues sur l’intervalle considéré. Pour <code>X′(t)=A(t)X(t)+b(t)</code>, soit Φ(t) une matrice fondamentale inversible du système homogène <code>X′=A(t)X</code>. La <strong>variation des constantes</strong> donne
+<code>X(t)=Φ(t)[c+∫_(t₀)^t Φ(s)⁻¹b(s)ds]</code>,
+avec la constante c fixée par la donnée initiale. En posant le propagateur <code>U(t,s)=Φ(t)Φ(s)⁻¹</code>, on obtient la <strong>formule de Duhamel</strong> :
+<code>X(t)=U(t,t₀)X(t₀)+∫_(t₀)^t U(t,s)b(s)ds</code>.</p>
+<p>Si A est constante, <code>U(t,s)=e^{(t-s)A}</code> et la solution homogène s’exprime à l’aide de l’exponentielle matricielle. Une équation linéaire scalaire d’ordre supérieur à 1 se réécrit en système du premier ordre en prenant comme inconnues la fonction et ses dérivées successives; la méthode des systèmes s’applique alors.</p>
+<p><strong>Usage / exemple.</strong> Pour <code>x′=ax+g(t)</code>, on obtient <code>x(t)=e^{a(t-t₀)}x(t₀)+∫_(t₀)^t e^{a(t-s)}g(s)ds</code>, formule utile pour une force extérieure g ou pour calculer l’effet d’un terme source.</p>
+<h2>9.3 Géométrie différentielle</h2>
+<h3>(a) Sous-variétés de Rⁿ. Graphe local, paramétrisation locale, équation locale. Espace tangent, gradient. Surfaces de R³ et plan tangent.</h3>
+<p>Une <strong>sous-variété</strong> de dimension (k) de (\mathbb R^n) est localement décrite, après choix de coordonnées, comme le graphe d’une fonction (C^1) de (k) variables, par une paramétrisation régulière (\phi:W\subset\mathbb R^k\to\mathbb R^n) de rang (k), ou comme l’ensemble (F^{-1}(0)) d’une application (F:\mathbb R^n\to\mathbb R^{n-k}) dont la différentielle est de rang (n-k). Le théorème des fonctions implicites relie ces descriptions locales. Le programme cite explicitement graphe local, paramétrisation locale et équation locale.</p>
+<p>L’<strong>espace tangent</strong> en un point paramétré (p=\phi(u)) est l’image de (d\phi(u)). Si la sous-variété est définie par une équation régulière (F=0), alors (T_pM=\ker dF(p)). Pour une hypersurface (F=0), le gradient (\nabla F(p)) est normal au tangent lorsqu’il est non nul. Sur une surface de (\mathbb R^3), le <strong>plan tangent</strong> en (p) est (p+T_pM) ; pour situer la surface par rapport à ce plan, on compare une représentation graphique locale à l’équation du plan.</p>
+<p><strong>Usage / exemple.</strong> La sphère unité est définie par <code>F(x,y,z)=x²+y²+z²-1=0</code>. Au point <code>p=(0,0,1)</code>, le gradient <code>(0,0,2)</code> est normal et le plan tangent a pour équation <code>z=1</code>. Dans le graphe local <code>z=√(1-x²-y²)</code>, on a <code>z≤1</code>, avec égalité seulement en <code>(x,y)=(0,0)</code> : la sphère est donc localement sous son plan tangent.</p>
+<h3>(b) Courbes planes définies par une représentation paramétrique. Abscisse curviligne et longueur d’un arc C¹.</h3>
+<p>Une courbe paramétrée plane est donnée par <code>γ(t)=(x(t),y(t))</code>. Son étude consiste notamment à déterminer son image, ses variations, les points singuliers (<code>γ′(t)=0</code>), les tangentes quand elles sont définies et d’éventuelles auto-intersections. Si γ est C¹ sur <code>[a,b]</code>, la <strong>longueur</strong> de l’arc paramétré est
+<code>L=∫ₐᵇ ‖γ′(t)‖dt</code>.
+L’<strong>abscisse curviligne</strong> depuis a est <code>s(t)=∫ₐᵗ ‖γ′(u)‖du</code>; lorsque la courbe est régulière (<code>γ′≠0</code>), s croît strictement et peut servir de paramètre, avec une vitesse unitaire pour la représentation reparamétrée. Si des portions sont parcourues plusieurs fois, la longueur paramétrée compte chaque parcours.</p>
+<p><strong>Usage / exemple.</strong> Pour le cercle <code>γ(t)=(R cos t,R sin t)</code>, avec <code>R&gt;0</code>, <code>‖γ′(t)‖=R</code>; un tour de <code>0</code> à <code>2π</code> a longueur <code>2πR</code>, et <code>s(t)=Rt</code>.</p>
+<h3>(c) Extrema liés, multiplicateurs de Lagrange.</h3>
+<p>On cherche un extremum de f sous une contrainte <code>g(x)=c</code>. Si f et g sont différentiables, si x₀ est un extremum local contraint et si <code>∇g(x₀)≠0</code>, alors il existe λ tel que
+<code>∇f(x₀)=λ∇g(x₀)</code> et <code>g(x₀)=c</code>.
+Pour plusieurs contraintes <code>g_i(x)=c_i</code>, la version régulière demande l’indépendance des gradients des contraintes; le gradient de f appartient alors à leur espace engendré. Ces équations donnent des candidats, pas à elles seules la nature de l’extremum : il faut comparer les valeurs, vérifier les contraintes et, selon le problème, examiner les cas singuliers ou le bord.</p>
+<p><strong>Usage / exemple.</strong> Pour optimiser <code>f(x,y)=xy</code> sur le cercle unité <code>x²+y²=1</code>, les équations de Lagrange donnent <code>y=2λx</code>, <code>x=2λy</code>. Elles conduisent aux quatre candidats <code>(1/√2,1/√2)</code>, <code>(-1/√2,-1/√2)</code>, <code>(1/√2,-1/√2)</code> et <code>(-1/√2,1/√2)</code>. Les deux premiers donnent <code>f=1/2</code> (maximum global), les deux derniers <code>f=-1/2</code> (minimum global).</p>
+<h2>Checklist de révision</h2>
+<p>Cocher les items après avoir réalisé l’action indiquée, et non après simple lecture.</p>
+<ul>
+<li>[ ] <strong>9.1(a), définitions et calculs :</strong> écrire la définition <code>f(a+h)=f(a)+Lh+o(‖h‖)</code>, déterminer une différentielle et calculer une dérivée selon un vecteur.</li>
+<li>[ ] <strong>9.1(b), méthodes :</strong> construire jacobienne et gradient; appliquer la règle de chaîne dans le bon ordre; utiliser une borne des dérivées sur un segment pour obtenir une estimation des accroissements.</li>
+<li>[ ] <strong>9.1(c), énoncés et calculs :</strong> énoncer les hypothèses d’interversion des dérivées; calculer une hessienne; appliquer Taylor-Young et estimer un reste intégral.</li>
+<li>[ ] <strong>9.1(d), étude locale :</strong> trouver les points critiques, utiliser Fermat et le test de hessienne, et reconnaître explicitement les cas où ce test ne conclut pas.</li>
+<li>[ ] <strong>9.1(e), convexité :</strong> vérifier le domaine convexe; établir ou utiliser le critère de support C¹ ou le critère de hessienne C² sur un exemple.</li>
+<li>[ ] <strong>9.1(f), preuves/méthodes :</strong> vérifier l’inversibilité de la différentielle ou du bloc pertinent; formuler la conclusion locale de l’inversion ou des fonctions implicites; calculer la dérivée de la fonction implicite.</li>
+<li>[ ] <strong>9.2(a), existence et contrôle :</strong> vérifier continuité et lipschitzianité locale en l’état; identifier solution maximale; utiliser Grönwall pour une estimation et le théorème des bouts pour discuter le prolongement.</li>
+<li>[ ] <strong>9.2(b), qualitatif :</strong> trouver équilibres et valeurs propres du système linéarisé; tracer ou décrire un portrait de phase simple; préciser quand la linéarisation est inconclusive.</li>
+<li>[ ] <strong>9.2(c), résolutions :</strong> résoudre un système linéaire avec variation des constantes/Duhamel; calculer un exponentiel matriciel dans un cas accessible; transformer une EDO d’ordre supérieur en système.</li>
+<li>[ ] <strong>9.3(a), géométrie :</strong> passer d’une équation régulière à un tangent, un normal et un plan tangent; calculer un exemple de surface de R³ par une méthode locale.</li>
+<li>[ ] <strong>9.3(b), courbes :</strong> étudier une représentation paramétrique, repérer les points singuliers et calculer abscisse curviligne et longueur d’un arc C¹.</li>
+<li>[ ] <strong>9.3(c), extrema liés :</strong> mettre en place les équations de Lagrange sous hypothèses régulières; comparer les candidats et traiter séparément les cas singuliers/bords.</li>
+<li>[ ] <strong>Exemples et exercices :</strong> refaire sans notes au moins un exemple de chaque sous-item (9.1a–f, 9.2a–c, 9.3a–c), puis traiter des exercices où il faut choisir la méthode plutôt que l’appliquer mécaniquement.</li>
+<li>[ ] <strong>Preuves et rédaction :</strong> savoir justifier les hypothèses avant d’invoquer chaque théorème, préciser les conclusions locales/globales, et rédiger une démonstration ou une justification complète sur des résultats sélectionnés avec le cours.</li>
+</ul>
+<h2>Lacunes à combler et exigences de maîtrise</h2>
+<p>Cette fiche donne des repères, pas des démonstrations complètes et ne garantit pas l’exhaustivité au-delà des intitulés et sous-items explicitement relevés dans le PDF officiel. En particulier, le PDF ne liste pas expressément une sous-partie autonome « dépendance des solutions » : les estimations de dépendance peuvent être abordées dans le cours à partir de Grönwall, mais leur niveau et leurs formulations doivent être vérifiés dans les ressources du concours et de la préparation. Les conventions précises des théorèmes (régularité minimale, intervalles de temps, formes du reste, version du théorème de linéarisation) doivent également être reprises du cours.</p>
+<p>Il reste indispensable de compléter ce support par <strong>un cours</strong>, des <strong>exercices corrigés et non corrigés</strong>, des <strong>preuves travaillées</strong> et des <strong>annales</strong>. Il faut notamment s’exercer à vérifier les hypothèses avant l’application d’un résultat, à distinguer conclusion locale et globale, et à analyser les cas dégénérés que les critères simples ne tranchent pas.</p>
+<h3>Source officielle</h3></article></main>
+  <footer class="site-footer"><div class="site-shell site-footer-inner"><span>AGREG · 27 — Atelier de révision</span><span>Les supports ne remplacent pas le programme officiel.</span></div></footer>
+</body>
+</html>

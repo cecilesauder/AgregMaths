@@ -2,6 +2,8 @@
 
 Ce dépôt rassemble des guides de repérage du programme, des fiches de révision, exercices corrigés, outils interactifs et ressources de préparation à l’option A. **Le programme ministériel fait foi** : les fiches et guides de ce dépôt sont des supports de travail, pas un cours complet ni une certification d’exhaustivité.
 
+> **[Ouvrir le site de révision interactif](https://cecilesauder.github.io/AgregMaths/)** — catalogue des fiches, guides du programme 2027 et exercices progressifs du titre 1.
+
 ## Programme officiel et épreuves
 
 - [Programme officiel 2027 — concours externe spécial de mathématiques (PDF)](https://www.devenirenseignant.gouv.fr/media/20323/download)
@@ -17,7 +19,7 @@ Les treize fichiers ci-dessous suivent les titres communs puis le programme spé
 
 | Programme | Guide |
 |---|---|
-| Titre 1 — Algèbre linéaire | [Guide et checklist](05-programme-2027/titre-01.md) · [Exercices types corrigés](05-programme-2027/exercices-titre-01.md) |
+| Titre 1 — Algèbre linéaire | [Guide et checklist](05-programme-2027/titre-01.md) · [Exercices types corrigés — source](05-programme-2027/exercices-titre-01.md) · [Version interactive](exercices-titre-01.html) |
 | Titre 2 — Groupes | [Guide et checklist](05-programme-2027/titre-02.md) |
 | Titre 3 — Anneaux, corps et polynômes | [Guide et checklist](05-programme-2027/titre-03.md) |
 | Titre 4 — Formes bilinéaires et quadratiques | [Guide et checklist](05-programme-2027/titre-04.md) |
@@ -129,3 +131,17 @@ Une notion peut être considérée comme travaillée lorsque l’on sait, sans f
 ## Maintenance du dépôt
 
 Relier chaque nouveau fichier à un titre et une sous-partie du programme officiel; indiquer s’il s’agit d’un cours, d’un aide-mémoire, d’exercices, de code ou d’une visualisation. Après toute modification mathématique, vérifier les hypothèses, les liens internes, la syntaxe des fichiers et les exemples associés. Ce README n’indexe que les ressources de préparation et n’inclut aucune information personnelle.
+
+
+## Site interactif et génération
+
+Le portail statique est à la racine du dépôt (`index.html`). Il catalogue les 24 fiches HTML d’origine sans les aplatir, les 13 guides de programme et le recueil interactif du titre 1. La progression de révision est mémorisée localement dans le navigateur; aucun compte n’est requis. Les formules des pages générées sont composées par KaTeX.
+
+Après modification des guides Markdown ou des entrées du catalogue, régénérer les pages dérivées avec Python 3 :
+
+```sh
+python3 -m pip install -r requirements-site.txt
+python3 scripts/build_site.py
+```
+
+La publication GitHub Pages utilise la branche `main` et sa racine; les fichiers HTML pédagogiques existants restent les sources de leurs fiches, et le dossier scientifique retiré n’est pas réintroduit par le générateur.

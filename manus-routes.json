@@ -1,0 +1,168 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "title": "Accueil — AGREG 27"
+    },
+    {
+      "path": "/exercices-titre-01.html",
+      "title": "Exercices corrigés — Titre 1"
+    },
+    {
+      "path": "/guides/",
+      "title": "Guides du programme 2027"
+    },
+    {
+      "path": "/guides/titre-01.html",
+      "title": "Titre 1 — Algèbre linéaire"
+    },
+    {
+      "path": "/guides/titre-02.html",
+      "title": "Titre 2 — Groupes"
+    },
+    {
+      "path": "/guides/titre-03.html",
+      "title": "Titre 3 — Anneaux, corps et polynômes"
+    },
+    {
+      "path": "/guides/titre-04.html",
+      "title": "Titre 4 — Formes bilinéaires et quadratiques"
+    },
+    {
+      "path": "/guides/titre-05.html",
+      "title": "Titre 5 — Géométries affine et euclidienne"
+    },
+    {
+      "path": "/guides/titre-06.html",
+      "title": "Titre 6 — Analyse à une variable réelle"
+    },
+    {
+      "path": "/guides/titre-07.html",
+      "title": "Titre 7 — Analyse à une variable complexe"
+    },
+    {
+      "path": "/guides/titre-08.html",
+      "title": "Titre 8 — Topologie, espaces normés et Hilbert"
+    },
+    {
+      "path": "/guides/titre-09.html",
+      "title": "Titre 9 — Calcul différentiel"
+    },
+    {
+      "path": "/guides/titre-10.html",
+      "title": "Titre 10 — Calcul intégral, mesure et Fourier"
+    },
+    {
+      "path": "/guides/titre-11.html",
+      "title": "Titre 11 — Probabilités et statistiques"
+    },
+    {
+      "path": "/guides/titre-12.html",
+      "title": "Titre 12 — Méthodes numériques"
+    },
+    {
+      "path": "/guides/titre-A.html",
+      "title": "Programme spécifique — Option A"
+    },
+    {
+      "path": "/guides/fiches-a5.html",
+      "title": "Fiches transversales A5"
+    },
+    {
+      "path": "/01-algebre/groupes/boite_outils_actions_groupe.html",
+      "title": "Actions de groupes"
+    },
+    {
+      "path": "/01-algebre/groupes/boite_outils_morphismes-1.html",
+      "title": "Morphismes de groupes"
+    },
+    {
+      "path": "/01-algebre/groupes/boite_outils_quotients-1.html",
+      "title": "Quotients de groupes"
+    },
+    {
+      "path": "/01-algebre/groupes/demonstrations_groupes_cycliques-1.html",
+      "title": "Démonstrations sur les groupes cycliques"
+    },
+    {
+      "path": "/01-algebre/groupes/groupes_cycliques_interactif-2.html",
+      "title": "Groupes cycliques — fiche interactive"
+    },
+    {
+      "path": "/01-algebre/groupes/tour_de_crochet_groupes-1.html",
+      "title": "Groupes cycliques — visualisation au crochet"
+    },
+    {
+      "path": "/01-algebre/anneaux-corps-polynomes/boite_outils_anneaux.html",
+      "title": "Anneaux et corps"
+    },
+    {
+      "path": "/01-algebre/anneaux-corps-polynomes/boite_outils_anneaux_principaux.html",
+      "title": "Anneaux principaux et extensions"
+    },
+    {
+      "path": "/01-algebre/anneaux-corps-polynomes/boite_outils_polynomes.html",
+      "title": "Polynômes"
+    },
+    {
+      "path": "/01-algebre/reduction/boite_outils_reduction.html",
+      "title": "Réduction des endomorphismes"
+    },
+    {
+      "path": "/01-algebre/reduction/boite_outils_jordan.html",
+      "title": "Réduction de Jordan"
+    },
+    {
+      "path": "/01-algebre/formes-bilineaires/boite_outils_formes_bilineaires.html",
+      "title": "Formes bilinéaires et quadratiques"
+    },
+    {
+      "path": "/01-algebre/fiches-synthese/fiches_algebre-1.html",
+      "title": "Fiches murales d’algèbre"
+    },
+    {
+      "path": "/02-analyse/topologie/boite_outils_topologie.html",
+      "title": "Topologie et espaces métriques"
+    },
+    {
+      "path": "/02-analyse/topologie/topologie_au_crochet.html",
+      "title": "La topologie au crochet"
+    },
+    {
+      "path": "/02-analyse/suites-series/boite_outils_suites_fonctions.html",
+      "title": "Suites et séries de fonctions"
+    },
+    {
+      "path": "/02-analyse/mesure-integration/boite_outils_lebesgue.html",
+      "title": "Mesure et intégration de Lebesgue"
+    },
+    {
+      "path": "/02-analyse/mesure-integration/lebesgue_illustre.html",
+      "title": "Convergence dominée — visualisation"
+    },
+    {
+      "path": "/02-analyse/hilbert/boite_outils_hilbert.html",
+      "title": "Espaces de Hilbert"
+    },
+    {
+      "path": "/02-analyse/fourier/boite_outils_fourier.html",
+      "title": "Séries de Fourier"
+    },
+    {
+      "path": "/02-analyse/analyse-complexe/boite_outils_holomorphes.html",
+      "title": "Analyse holomorphe"
+    },
+    {
+      "path": "/02-analyse/fiches-synthese/fiches_analyse-1.html",
+      "title": "Fiches murales d’analyse"
+    },
+    {
+      "path": "/03-option-A/preparation/agregation_option_A-3.html",
+      "title": "Préparation option A"
+    },
+    {
+      "path": "/03-option-A/preparation/Agr%C3%A9gation%20Math%C3%A9matiques%20-%20Option%20A%20Assistant%20%283%29.html",
+      "title": "Assistant option A — cartes et code R"
+    }
+  ]
+}

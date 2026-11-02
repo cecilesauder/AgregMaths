@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11131a">
+  <meta name="description" content="Titre 10 — Calcul intégral, mesure et Fourier — ressource de révision Agrégation Maths 2027.">
+  <title>Titre 10 — Calcul intégral, mesure et Fourier · AGREG 27</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/site.css">
+  <script defer src="../assets/site.js"></script>
+</head>
+<body data-base="../" data-progress-total="0">
+  <a class="skip-link" href="#main">Passer au contenu</a>
+  <header class="topbar"><div class="site-shell topbar-inner">
+    <a class="brand" href="../index.html" aria-label="Retour à l’accueil AGREG 27"><span class="brand-mark" aria-hidden="true">∑</span><span class="brand-name">AGREG · 27<small>Atelier de révision</small></span></a>
+    <nav class="topnav" aria-label="Navigation principale"><a href="../index.html#programme">Catalogue</a><a href="../exercices-titre-01.html">Exercices T1</a><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Activer le thème clair">☼</button></nav>
+  </div></header>
+  <main id="main" class="site-shell"><div class="breadcrumb"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="index.html">Guides</a><span aria-hidden="true">/</span><span>Titre 10 — Calcul intégral, mesure et Fourier</span></div>
+<div class="guide-top"><a href="index.html">← Tous les guides</a><a href="../index.html#programme">← Catalogue de révision</a></div>
+<article class="guide-container markdown-body"><h1>10 — Calcul intégral : mesure, intégration et analyse de Fourier</h1>
+<blockquote>
+<p><strong>Statut : guide de révision, à travailler, ne remplace pas un cours.</strong></p>
+<p>Ce document suit l’unité officielle <strong>10 « Calcul intégral »</strong> du programme de l’agrégation externe spéciale de mathématiques, session 2027. Le programme place sous ce titre la théorie de la mesure (10.1), l’intégration (10.2) et l’analyse de Fourier (10.3). Le titre « Mesure, intégration et analyse de Fourier » est une description commode du contenu, mais n’est pas l’intitulé officiel de l’unité. Les formulations officielles et chacun de leurs sous-items sont repris ci-dessous. <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027">1</a></p>
+</blockquote>
+<p>Le guide donne des définitions, des théorèmes usuels et des exemples de travail associés à chaque sous-partie. Les constructions de la mesure de Lebesgue et de la mesure produit sont admises dans le texte officiel. Pour les autres résultats, le programme nomme les notions et théorèmes sans fixer toujours leurs formulations exactes ni toutes leurs hypothèses. Les hypothèses indiquées ci-dessous sont des cadres classiques de révision, pas une prétention à reproduire une formulation unique du jury ou du cours.</p>
+<h2>10.1 Notions de théorie de la mesure</h2>
+<p><strong>Intitulé officiel :</strong> définition des espaces mesurables, tribu produit, cas particulier des tribus boréliennes ; définition d’une mesure positive, cas particuliers de la mesure de comptage, de la mesure de Lebesgue (construction admise) et des mesures de probabilité ; définition d’une mesure produit (construction admise) ; définition des fonctions mesurables, approximation par des fonctions étagées. <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027">1</a></p>
+<h3>Espaces mesurables, tribus produit et boréliennes</h3>
+<p>Une <strong>tribu</strong> (ou σ-algèbre)  sur un ensemble X est une famille 𝒜 de parties de X telle que X∈𝒜, qu’elle soit stable par complémentaire et par réunion dénombrable. Elle est donc aussi stable par intersection dénombrable et différence dénombrable. Un <strong>espace mesurable</strong> est un couple (X,𝒜). Les éléments de 𝒜 sont les ensembles mesurables.</p>
+<p>Pour deux espaces mesurables (X,𝒜) et (Y,ℬ), la <strong>tribu produit</strong> 𝒜⊗ℬ est la plus petite tribu sur X×Y qui contient tous les rectangles A×B, avec A∈𝒜 et B∈ℬ. Pour des familles dénombrables d’espaces, la définition se généralise par les cylindres mesurables.</p>
+<p>Sur un espace topologique X, la <strong>tribu borélienne</strong> ℬ(X) est engendrée par les ouverts. Sur ℝ, elle est aussi engendrée par les intervalles ouverts, ou par les demi-droites (-∞,a]. Pour ℝ^d muni de sa topologie usuelle, ℬ(ℝ^d)=ℬ(ℝ)^{⊗d}. Une application borélienne est mesurable pour les tribus boréliennes considérées.</p>
+<p><strong>Exemple / usage.</strong> Le rectangle [0,1]×(2,3) est mesurable dans la tribu produit borélienne de ℝ². Pour établir la mesurabilité d’une application à valeurs dans ℝ^d, on peut vérifier que les images réciproques des ouverts sont mesurables; dans les espaces euclidiens, il suffit souvent de traiter une base dénombrable d’ouverts.</p>
+<h3>Mesures positives et exemples fondamentaux</h3>
+<p>Une <strong>mesure positive</strong> sur (X,𝒜) est une application μ:𝒜→[0,+∞] telle que μ(∅)=0 et que, pour toute suite d’ensembles mesurables deux à deux disjoints (A_n),</p>
+<p>μ(⋃<em>{n≥1}A_n)=Σ</em>{n≥1}μ(A_n).</p>
+<p>Il ne faut pas confondre cette σ-additivité avec l’additivité finie. Une mesure est <strong>finie</strong> si μ(X)&lt;∞, et <strong>σ-finie</strong> si X est réunion dénombrable d’ensembles de mesure finie.</p>
+<ul>
+<li>La <strong>mesure de comptage</strong> sur X attribue à A son cardinal si A est fini, et +∞ sinon. L’intégrale par rapport à la mesure de comptage est une somme.</li>
+<li>La <strong>mesure de Lebesgue</strong> sur ℝ^d est la mesure de volume usuelle, invariante par translation et qui attribue à un pavé ∏_j[a_j,b_j] le volume ∏_j(b_j-a_j). Sa construction est admise par le programme. Il faut distinguer la tribu borélienne de la tribu de Lebesgue, complétée par les sous-ensembles des ensembles boréliens de mesure nulle.</li>
+<li>Une <strong>mesure de probabilité</strong> est une mesure P telle que P(X)=1. Elle modélise notamment une distribution de masse totale un.</li>
+</ul>
+<p><strong>Exemple / usage.</strong> Sur ℕ muni de la mesure de comptage, une fonction positive f a pour intégrale Σ_{n≥0}f(n). Sur un intervalle [a,b], avec a&lt;b, muni de la probabilité uniforme, la probabilité d’un sous-intervalle est sa longueur divisée par b-a.</p>
+<h3>Mesure produit</h3>
+<p>Si μ et ν sont σ-finies, la <strong>mesure produit</strong> μ⊗ν existe sur la tribu produit et, pour des ensembles mesurables A et B de mesures finies, elle satisfait</p>
+<p>(μ⊗ν)(A×B)=μ(A)ν(B).</p>
+<p>Dans ce cadre, la mesure est déterminée de manière unique par ses valeurs sur les rectangles de mesures finies. Pour ces rectangles, (μ⊗ν)(A×B)=μ(A)ν(B). Si l’une des mesures est infinie, ne pas écrire sans précaution le produit étendu 0×∞ ; lorsque μ(A)=0, la σ-finitude permet de décomposer B en morceaux de mesure finie et donne (μ⊗ν)(A×B)=0. Les questions de complétion peuvent dépendre des conventions retenues : la complétion d’une mesure produit n’est pas automatiquement la même chose que la tribu produit non complétée.</p>
+<p><strong>Exemple / usage.</strong> La mesure de Lebesgue sur ℝ² est le produit des mesures de Lebesgue sur chaque coordonnée. On peut alors calculer l’aire d’un rectangle comme produit des longueurs et intégrer une fonction indicatrice de rectangle.</p>
+<h3>Fonctions mesurables et fonctions étagées</h3>
+<p>Une application f:(X,𝒜)→(Y,ℬ) est <strong>mesurable</strong> si f^{-1}(B)∈𝒜 pour tout B∈ℬ. Pour une fonction réelle, il suffit par exemple que {f&gt;a}∈𝒜 pour tout a∈ℝ. Une fonction <strong>étagée</strong> mesurable est une fonction mesurable à nombre fini de valeurs, que l’on écrit sous la forme φ=Σ_{k=1}^N c_k 1_{A_k} pour des ensembles mesurables A_k.</p>
+<p>Toute fonction mesurable positive est limite croissante d’une suite de fonctions étagées positives (au sens usuel, avec valeurs éventuellement non négatives). Cette approximation sert à définir l’intégrale des fonctions positives et à démontrer ses propriétés fondamentales.</p>
+<p><strong>Exemple / usage.</strong> Pour f(x)=x sur [0,1], les fonctions étagées qui arrondissent x vers le bas aux multiples de 2^{-n} croissent vers f. Elles donnent des sommes de Riemann simples et motivent la définition de l’intégrale.</p>
+<h2>10.2 Intégration</h2>
+<h3>10.2(a) Intégrale des fonctions mesurables positives, théorème de convergence monotone. Lemme de Fatou. Fonctions intégrables, théorème de convergence dominée.</h3>
+<p>Pour une fonction mesurable étagée positive φ=Σ c_k1_{A_k} à valeurs finies, on pose ∫φ dμ=Σc_kμ(A_k). Pour une fonction mesurable f:X→[0,+∞], on définit</p>
+<p>∫f dμ=sup{∫φ dμ : 0≤φ≤f, φ étagée mesurable}.</p>
+<p>Cette définition étend les sommes et les aires usuelles. Une fonction mesurable réelle ou complexe est <strong>intégrable</strong> si ∫|f|dμ&lt;∞. Une fonction intégrable est finie presque partout et son intégrale est bien définie; deux fonctions égales presque partout ont la même intégrale.</p>
+<p><strong>Convergence monotone (Beppo Levi).</strong> Si 0≤f_n≤f_{n+1} sont mesurables et f_n(x)→f(x), alors</p>
+<p>∫f_n dμ → ∫f dμ,</p>
+<p>les deux membres pouvant valoir +∞. La positivité et la croissance sont essentielles.</p>
+<p><strong>Lemme de Fatou.</strong> Pour toute suite de fonctions mesurables positives f_n,</p>
+<p>∫liminf_{n→∞} f_n dμ ≤ liminf_{n→∞}∫f_n dμ.</p>
+<p>Il donne une inégalité dans le sens indiqué, pas en général une convergence des intégrales.</p>
+<p><strong>Convergence dominée (Lebesgue).</strong> Si f_n→f presque partout, si les fonctions sont mesurables, et s’il existe une fonction intégrable g≥0 telle que |f_n|≤g presque partout pour tout n, alors f est intégrable et ∫|f_n-f|dμ→0; en particulier ∫f_n dμ→∫f dμ. Le majorant doit être intégrable sur l’espace considéré.</p>
+<p><strong>Exemple / usage.</strong> Pour f_n(x)=x^n sur [0,1] muni de Lebesgue, f_n→0 presque partout et |f_n|≤1; la convergence dominée donne ∫<em>0^1x^n dx→0, conformément à 1/(n+1)→0. À l’inverse, sur ℝ, les fonctions indicatrices 1</em>{[n,n+1]} convergent vers zéro presque partout et leurs intégrales valent toutes 1 : il n’y a pas de majorant intégrable commun de la forme requise.</p>
+<h3>10.2(b) Fonctions intégrables à valeurs dans un espace vectoriel de dimension finie. Continuité, dérivabilité des intégrales à paramètres.</h3>
+<p>Soit E un espace vectoriel réel ou complexe de dimension finie. Une fonction mesurable f:X→E est intégrable si ∫∥f(x)∥dμ(x)&lt;∞. Son intégrale se définit coordonnée par coordonnée dans une base; elle ne dépend pas du choix de la base et vérifie notamment ∥∫f dμ∥≤∫∥f∥dμ.</p>
+<p>Pour les intégrales à paramètres, le schéma central consiste à écrire F(t)=∫_X f(t,x)dμ(x) puis à vérifier les hypothèses permettant d’intervertir limite (ou dérivée) et intégrale. Un cadre suffisant de continuité est le suivant : f est mesurable sur le produit (I×X, 𝓑(I)⊗𝒜), continue en t pour presque tout x, et, au voisinage de chaque paramètre, |f(t,x)|≤g(x) avec g∈L¹(μ). Pour la dérivabilité près de t₀, supposons f(t₀,·) intégrable ; pour presque tout x, t↦f(t,x) est dérivable sur un voisinage de t₀, la dérivée partielle est mesurable sur le produit et |∂ₜf(t,x)|≤g(x) pour une même g∈L¹(μ) et tout t de ce voisinage. La mesurabilité de f garantit que f(t,·) est mesurable pour chaque t. Alors F(t)=∫f(t,x)dμ(x) est définie près de t₀, dérivable en t₀ et F′(t₀)=∫∂ₜf(t₀,x)dμ(x).</p>
+<p><strong>Exemple / usage.</strong> Pour F(t)=∫_0^1 e^{tx}dx, sur tout intervalle borné de paramètres, l’intégrande et sa dérivée en t sont dominées par des constantes intégrables. On peut donc dériver sous le signe intégral : F&rsquo;(t)=∫_0^1xe^{tx}dx. Cette méthode est fréquente pour établir des identités ou des estimations dépendant d’un paramètre.</p>
+<h3>10.2(c) Espaces (L^p), où (1≤p≤∞). Complétude. Inégalité de Hölder.</h3>
+<p>Pour 1≤p&lt;∞, L^p(X,μ) est l’espace des fonctions mesurables modulo l’égalité presque partout telles que ∫|f|^p dμ&lt;∞, muni de ∥f∥<em>p=(∫|f|^p dμ)^{1/p}. L^∞ regroupe les classes de fonctions essentiellement bornées, avec la norme essentielle ∥f∥</em>∞=ess sup |f|. Le théorème de complétude affirme que L^p est un espace de Banach pour tout 1≤p≤∞.</p>
+<p><strong>Inégalité de Hölder.</strong> Si 1≤p,q≤∞ sont conjugués, c’est-à-dire 1/p+1/q=1 avec la convention 1/∞=0, si f∈L^p et g∈L^q, alors fg∈L^1 et ∥fg∥_1≤∥f∥_p∥g∥_q. Pour p=q=2, c’est Cauchy–Schwarz.</p>
+<p><strong>Exemple / usage.</strong> Si f,g∈L²(ℝ^d), alors fg∈L¹ et |∫fg|≤∥f∥₂∥g∥₂. Cela justifie de nombreux produits scalaires et estimations d’intégrales.</p>
+<h3>10.2(d) Théorème de Fubini. Changement de variables dans une intégrale multiple. Cas des coordonnées polaires, cas des coordonnées sphériques.</h3>
+<p><strong>Fubini.</strong> Si f:X×Y→ℂ est intégrable pour μ⊗ν, en particulier si ∫_{X×Y}|f|d(μ⊗ν)&lt;∞, alors les intégrales itérées existent presque partout, sont intégrables, et</p>
+<p>∫_{X×Y}f(x,y)d(μ⊗ν)=∫_X(∫_Y f(x,y)dν(y))dμ(x)=∫_Y(∫_X f(x,y)dμ(x))dν(y).</p>
+<p>Pour une fonction positive mesurable, le théorème de Tonelli permet aussi d’échanger les intégrales, éventuellement infinies. Ne pas utiliser Fubini pour une fonction signée ou complexe sans établir l’intégrabilité absolue, ou sans une autre hypothèse suffisante.</p>
+<p><strong>Changement de variables.</strong> Si Φ:U→V est un difféomorphisme entre ouverts de ℝ^d et si f est intégrable (ou positive mesurable), alors</p>
+<p>∫_V f(y)dy = ∫_U f(Φ(u)) |det DΦ(u)|du.</p>
+<p>Le facteur |det DΦ| est le jacobien. En dimension deux, les coordonnées polaires (r,θ)↦(r cosθ,r sinθ) donnent dxdy=r drdθ. En dimension trois, les coordonnées sphériques usuelles (r,θ,φ), avec θ∈[0,π] l’angle polaire et φ∈[0,2π) l’azimut, donnent dxdydz=r² sinθ drdθdφ. Les coordonnées sont dégénérées en certains points ou axes; ces ensembles négligeables et le choix des domaines doivent être traités proprement.</p>
+<p><strong>Exemple / usage.</strong> Pour une fonction radiale f(x)=h(|x|) sur ℝ², ∫_{ℝ²}f(x)dx=2π∫_0^∞h(r)r dr dès que l’intégrale est bien définie. Le facteur r ne peut pas être omis. En dimension trois, l’intégrale radiale devient 4π∫_0^∞h(r)r²dr.</p>
+<h3>10.2(e) Convolution. Régularisation et approximation par convolution.</h3>
+<p>Sur ℝ^d, pour des fonctions intégrables, la convolution est définie presque partout par</p>
+<p>(f*g)(x)=∫_{ℝ^d} f(x-y)g(y)dy.</p>
+<p>Sous les hypothèses usuelles f,g∈L¹, f<em>g∈L¹ et ∥f</em>g∥₁≤∥f∥₁∥g∥₁. Si une fonction est assez régulière et l’autre intégrable, la convolution peut hériter de la régularité; les conditions exactes dépendent du résultat visé.</p>
+<p>Une <strong>approximation de l’identité</strong> (ou noyau régularisant) peut être définie à partir de ρ∈L¹(ℝᵈ), de masse ∫ρ=1, par ρ_ε(x)=ε^{-d}ρ(x/ε), ε&gt;0. Pour f∈Lᵖ(ℝᵈ), 1≤p&lt;∞, on a ρ_ε*f→f dans Lᵖ lorsque ε→0. Si ρ∈C^∞_c, la convolution régularise, sous les hypothèses requises, une fonction localement intégrable et sert à l’approcher par des fonctions lisses. Pour p=∞, une convergence en norme uniforme n’est pas vraie en général sans hypothèses additionnelles.</p>
+<p><strong>Exemple / usage.</strong> Convoler une fonction indicatrice d’intervalle par une petite bosse lisse de masse un produit une version lissée de la fonction, dont les transitions s’effectuent sur une petite zone près des bords. Cela permet d’approcher les fonctions intégrables par des fonctions lisses dans les normes usuelles L^p, p&lt;∞.</p>
+<h2>10.3 Analyse de Fourier</h2>
+<h3>10.3(a) Séries de Fourier des fonctions localement intégrables périodiques d’une variable réelle. Lemme de Riemann–Lebesgue. Produit de convolution de fonctions périodiques. Théorèmes de Dirichlet, de Fejér et de Parseval.</h3>
+<p>On adopte ici la période 2π. Une fonction f∈L¹_{loc}(ℝ) 2π-périodique est intégrable sur une période. Ses coefficients de Fourier sont</p>
+<p>$$ĉ(n)=\frac1{2π}∫_{-π}^{π}f(x)e^{-inx}dx,\qquad n∈ℤ,$$</p>
+<p>et sa série formelle est Σ_{n∈ℤ}ĉ(n)e^{inx}. Ces définitions s’étendent à une autre période par changement d’échelle. Une fonction localement intégrable périodique n’est pas nécessairement continue, ni égale partout à la somme de sa série.</p>
+<p><strong>Lemme de Riemann–Lebesgue.</strong> Pour f∈L¹([−π,π]), ĉ(n)→0 quand |n|→∞. Il exprime la disparition des oscillations moyennes à haute fréquence, mais ne garantit pas à lui seul la convergence ponctuelle de la série de Fourier.</p>
+<p>Le <strong>produit de convolution périodique</strong> dépend de la normalisation. Ici,</p>
+<p>$$(f*<em>{𝕋}g)(x)=\frac1{2π}∫</em>{-π}^{π}f(x-y)g(y)dy.$$</p>
+<p>Pour f,g∈L¹(𝕋), la convolution est définie presque partout et $\widehat{f*_{𝕋}g}(n)=ĉ_f(n)ĉ_g(n)$. Sans le facteur 1/(2π) dans la définition, un facteur 2π apparaît dans cette identité.</p>
+<p><strong>Dirichlet.</strong> Une forme classique : si f est périodique et régulière par morceaux (par exemple C¹ par morceaux avec nombre fini de morceaux sur une période), alors les sommes partielles symétriques de sa série de Fourier convergent en tout point x vers (f(x^-)+f(x^+))/2. En particulier, en un point de continuité, la limite vaut f(x). Les hypothèses précises varient selon les formulations classiques; la seule intégrabilité locale ne suffit pas à conclure ainsi.</p>
+<p><strong>Fejér.</strong> Les moyennes de Cesàro des sommes partielles, appelées sommes de Fejér, s’écrivent comme une convolution avec le noyau positif de Fejér, de masse normalisée un. Pour f∈L¹(𝕋), elles convergent vers f dans L¹; en tout point où f est continue, elles convergent vers f(x). C’est une méthode de sommation plus stable que la convergence terme à terme.</p>
+<p><strong>Parseval.</strong> Pour f∈L²(𝕋), les exponentielles normalisées forment une base hilbertienne et</p>
+<p>$$\frac1{2π}∫<em>{-π}^{π}|f(x)|²dx=Σ</em>{n∈ℤ}|ĉ(n)|².$$</p>
+<p>Cette identité relie l’énergie de la fonction à celle de ses coefficients. La formule de Parseval pour le produit scalaire s’obtient par polarisation.</p>
+<p><strong>Exemple / usage.</strong> Pour f(x)=x sur (-π,π), prolongée 2π-périodiquement, les coefficients se calculent par intégration par parties et la série converge, aux points de saut du prolongement, vers la moyenne des limites latérales. Parseval permet ensuite de transformer une somme de carrés de coefficients en intégrale, ce qui fournit notamment des sommes numériques.</p>
+<h3>10.3(b) Transformation de Fourier sur les espaces (L^1(\mathbb R^d)) et (L^2(\mathbb R^d)). Cas de l’espace de Schwartz des fonctions à décroissance rapide ainsi que toutes leurs dérivées. Théorème de Plancherel. Lien avec la convolution. Règles de calculs. Formule d’inversion. Cas de la fonction gaussienne.</h3>
+<p>Pour fixer les constantes, on adopte la convention</p>
+<p>$$\widehat f(ξ)=∫_{ℝ^d}f(x)e^{-ix·ξ}dx,\qquad f∈L¹(ℝ^d).$$</p>
+<p>Alors $\widehat f$ est bornée et continue, et $\widehat f(ξ)→0$ quand |ξ|→∞ (Riemann–Lebesgue). L’espace de <strong>Schwartz</strong> 𝒮(ℝ^d) est constitué des fonctions C^∞ telles que sup_x|x^α∂^βf(x)|&lt;∞ pour tous multi-indices α,β. Autrement dit, la fonction et toutes ses dérivées décroissent plus vite que toute puissance. La transformée de Fourier envoie 𝒮 sur 𝒮.</p>
+<p><strong>Plancherel.</strong> La transformée de Fourier se prolonge de manière unique par densité en un opérateur sur L²(ℝ^d); avec la convention ci-dessus,</p>
+<p>$$∥\widehat f∥₂=(2π)^{d/2}∥f∥₂,\qquad ∫|\widehat f(ξ)|²dξ=(2π)^d∫|f(x)|²dx.$$</p>
+<p>La version unitaire $(2π)^{-d/2}\widehat f$ est unitaire sur L². Dans ce cadre, une fonction de L² n’a pas nécessairement de transformée définie par une intégrale absolument convergente; la définition passe par le prolongement.</p>
+<p><strong>Convolution et calcul.</strong> Pour f,g∈L¹(ℝ^d), f<em>g∈L¹ et $\widehat{f</em>g}=\widehat f\,\widehat g$. Pour les fonctions de Schwartz, les identités usuelles sont</p>
+<ul>
+<li>translation : $\widehat{f(\cdot-a)}(ξ)=e^{-ia·ξ}\widehat f(ξ)$ ;</li>
+<li>modulation : $\widehat{e^{ib·(\cdot)}f}(ξ)=\widehat f(ξ-b)$ ;</li>
+<li>dérivation : $\widehat{∂_j f}(ξ)=iξ_j\widehat f(ξ)$ ;</li>
+<li>multiplication par une coordonnée : $\widehat{x_j f}(ξ)=i∂_{ξ_j}\widehat f(ξ)$.</li>
+</ul>
+<p>Ces règles s’étendent hors de 𝒮 sous des hypothèses adaptées; vérifier l’intégrabilité ou le sens faible avant de les appliquer. Avec cette normalisation, $\widehat{fg}=(2π)^{-d}(\widehat f*\widehat g)$ lorsque les hypothèses de convolution et d’inversion requises sont satisfaites.</p>
+<p><strong>Inversion.</strong> Si f∈𝒮(ℝ^d), alors</p>
+<p>$$f(x)=(2π)^{-d}∫_{ℝ^d}\widehat f(ξ)e^{ix·ξ}dξ.$$</p>
+<p>Il existe aussi des théorèmes d’inversion sous des hypothèses plus larges, par exemple $f,\widehat f∈L¹$, avec égalité presque partout et aux points de continuité appropriés. Énoncer les hypothèses d’inversion utilisées : la formule n’est pas automatiquement une intégrale convergente pour toute fonction f∈L¹.</p>
+<p><strong>Gaussienne.</strong> Pour f(x)=e^{-|x|²/2} dans ℝ^d,</p>
+<p>$$\widehat f(ξ)=(2π)^{d/2}e^{-|ξ|²/2}.$$</p>
+<p>Plus généralement, e^{-a|x|²}, a&gt;0, a pour transformée (π/a)^{d/2}e^{-|ξ|²/(4a)} sous cette convention. La gaussienne est donc stable par transformation de Fourier à un facteur et un changement d’échelle près.</p>
+<p><strong>Exemple / usage.</strong> Les règles de dérivation et de multiplication convertissent une équation différentielle à coefficients constants en une relation algébrique en fréquence, utile pour résoudre des équations ou étudier des opérateurs. La transformée gaussienne permet de vérifier les constantes de la convention et intervient dans les noyaux de chaleur.</p>
+<h2>Checklist de révision</h2>
+<p>Cocher un item lorsque vous pouvez le réaliser sans vous contenter de reconnaître la formule. Pour chaque résultat, entraînez-vous à énoncer les hypothèses, à identifier les objets mesurables et à préciser si la conclusion vaut partout ou presque partout.</p>
+<h3>Notions et formulations</h3>
+<ul>
+<li>[ ] Définir une tribu, un espace mesurable, une tribu produit et la tribu borélienne; distinguer tribu borélienne et tribu de Lebesgue complétée.</li>
+<li>[ ] Énoncer la définition σ-additive d’une mesure positive; décrire comptage, Lebesgue, probabilité et mesure produit, en reconnaissant les hypothèses de σ-finitude nécessaires aux énoncés usuels.</li>
+<li>[ ] Vérifier la mesurabilité par image réciproque et construire/majorer une fonction par des fonctions étagées.</li>
+<li>[ ] Définir l’intégrale positive à partir des fonctions étagées et distinguer convergence monotone, Fatou et convergence dominée par leurs hypothèses et le sens de leurs conclusions.</li>
+<li>[ ] Définir l’intégrabilité d’une fonction à valeurs dans un espace de dimension finie et expliquer l’intégration coordonnée par coordonnée.</li>
+<li>[ ] Énoncer des critères suffisants de continuité et de dérivation sous l’intégrale à paramètre en indiquant le majorant intégrable local.</li>
+<li>[ ] Définir les espaces L^p, y compris L^∞ modulo l’égalité presque partout; énoncer leur complétude et Hölder avec exposants conjugués.</li>
+<li>[ ] Énoncer les versions appropriées de Tonelli et Fubini et le théorème de changement de variables avec son jacobien.</li>
+<li>[ ] Retrouver et utiliser les jacobiens polaire r et sphérique r²sinθ.</li>
+<li>[ ] Définir la convolution sur ℝ^d et l’approximation de l’identité; préciser le cadre de convergence L^p.</li>
+<li>[ ] Définir les coefficients d’une série de Fourier et le produit de convolution périodique; suivre clairement les constantes dues au choix de période et de normalisation.</li>
+<li>[ ] Énoncer Riemann–Lebesgue, Dirichlet, Fejér et Parseval avec les hypothèses et les types de convergence pertinents.</li>
+<li>[ ] Définir la transformée de Fourier sur L¹, l’espace de Schwartz et son prolongement L²; énoncer Plancherel, l’inversion et le lien convolution-produit.</li>
+</ul>
+<h3>Preuves, méthodes et calculs</h3>
+<ul>
+<li>[ ] Reconstituer l’idée de l’approximation d’une fonction mesurable positive par des fonctions étagées et son rôle dans la définition de l’intégrale.</li>
+<li>[ ] Savoir démontrer ou utiliser la monotonie de l’intégrale, Fatou et la convergence dominée; pour une limite d’intégrales, justifier convergence presque partout et domination intégrable.</li>
+<li>[ ] Appliquer Hölder ou Cauchy–Schwarz pour prouver l’intégrabilité d’un produit et obtenir une estimation explicite.</li>
+<li>[ ] Réécrire une intégrale double en intégrales itérées après avoir vérifié positivité ou intégrabilité absolue.</li>
+<li>[ ] Calculer un changement de variables en identifiant domaine, jacobien et éventuelles multiplicités ou ensembles dégénérés.</li>
+<li>[ ] Justifier la dérivation sous le signe intégral sur un voisinage du paramètre, et pas seulement en un point.</li>
+<li>[ ] Établir les estimations de convolution et reconnaître quand une approximation par convolution converge en L^p.</li>
+<li>[ ] Calculer les coefficients de Fourier d’exemples élémentaires, déterminer la limite de Dirichlet aux points de continuité et de saut, et appliquer Parseval.</li>
+<li>[ ] Vérifier les constantes de convolution, dérivation, translation et inversion de Fourier avec la convention annoncée.</li>
+<li>[ ] Utiliser Plancherel pour transformer une norme L² ou un produit scalaire et calculer la transformée d’une gaussienne.</li>
+</ul>
+<h3>Exemples et exercices à refaire</h3>
+<ul>
+<li>[ ] Calculer une intégrale-somme sur un ensemble dénombrable avec la mesure de comptage; calculer la mesure d’un rectangle produit.</li>
+<li>[ ] Tester les théorèmes de convergence sur x^n dans [0,1] et sur une suite de translatées d’indicatrices dans ℝ.</li>
+<li>[ ] Évaluer une intégrale à paramètre simple et justifier continuité et dérivabilité par domination.</li>
+<li>[ ] Calculer l’intégrale d’une fonction radiale sur ℝ² ou ℝ³, en contrôlant le facteur radial.</li>
+<li>[ ] Lisser une fonction en la convolant avec un noyau de masse un et expliquer le mode de convergence visé.</li>
+<li>[ ] Étudier la série de Fourier de x sur (-π,π) périodisée et retrouver sa convergence aux sauts.</li>
+<li>[ ] Calculer une transformée de Fourier de fonction de Schwartz en utilisant une règle de calcul, puis vérifier l’inversion ou Plancherel dans un exemple gaussien.</li>
+<li>[ ] Faire des exercices et annales où les hypothèses ne sont pas satisfaites afin d’apprendre à repérer un théorème qu’on ne peut pas appliquer.</li>
+</ul>
+<h2>Lacunes à combler et exigences de maîtrise</h2>
+<p>Le programme officiel est un <strong>programme de notions</strong> : pour 10.1, il précise explicitement que les constructions de Lebesgue et de mesure produit sont admises, mais n’énumère pas leurs étapes de construction. Il ne donne pas, pour chaque théorème de convergence, une liste de variantes équivalentes ni les démonstrations attendues. Il faut donc compléter avec le cours pour connaître les formulations retenues et le niveau de preuve exigible.</p>
+<p>Pour 10.2(b), le document officiel nomme l’intégration vectorielle en dimension finie et la continuité/dérivabilité des intégrales à paramètres, sans préciser dans son texte les hypothèses techniques. Les hypothèses données dans ce guide sont des conditions suffisantes classiques. Elles ne couvrent pas toutes les versions possibles; vérifiez la formulation enseignée. Pour 10.2(d), le texte officiel nomme Fubini, le changement de variables et les cas polaire et sphérique, sans détailler les théorèmes ou conventions de paramétrage. Pour 10.2(e), il nomme convolution, régularisation et approximation par convolution, sans préciser un noyau ni un mode de convergence : ceux-ci doivent être maîtrisés selon le cadre demandé.</p>
+<p>Pour 10.3(a), le texte officiel énumère Riemann–Lebesgue, convolution périodique et les théorèmes de Dirichlet, Fejér et Parseval, mais ne spécifie ni période, ni normalisation des coefficients, ni hypothèses complètes de chaque théorème. Le guide fixe une convention de période et donne des formulations classiques; ajustez les constantes si le cours retient une autre convention. Pour 10.3(b), le programme donne les espaces L¹ et L², Schwartz, Plancherel, convolution, calcul, inversion et gaussienne, sans détailler chaque règle ou toutes les hypothèses d’inversion. Le calcul présent choisit une convention explicite; les formules et facteurs 2π changent avec la convention.</p>
+<p>La maîtrise à viser est de pouvoir <strong>formuler exactement les hypothèses</strong>, distinguer égalité ponctuelle et presque partout, justifier les échanges limite/intégrale et somme/intégrale, suivre les normalisations, et choisir un théorème qui s’applique réellement. Ce guide n’est pas une preuve complète de tous les résultats et ne prétend pas dépasser les points qu’il explicite. Il doit être complété par un cours, des exercices variés et les annales du concours.</p>
+<h2>Source officielle</h2>
+<p>Le programme normatif consulté est le PDF officiel de l’agrégation externe spéciale de mathématiques, session 2027, unité 10, « Calcul intégral » : <a href="https://www.devenirenseignant.gouv.fr/media/20323/download">document officiel</a>. <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027">1</a></p></article></main>
+  <footer class="site-footer"><div class="site-shell site-footer-inner"><span>AGREG · 27 — Atelier de révision</span><span>Les supports ne remplacent pas le programme officiel.</span></div></footer>
+</body>
+</html>

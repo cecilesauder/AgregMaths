@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11131a">
+  <meta name="description" content="Un espace interactif pour réviser le programme de l’Agrégation de mathématiques, session 2027.">
+  <title>Révisions Agrégation Maths 2027</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/site.css">
+  <script defer src="assets/site.js"></script>
+</head>
+<body data-base="./" data-progress-total="0">
+  <a class="skip-link" href="#main">Passer au contenu</a>
+  <header class="topbar">
+    <div class="site-shell topbar-inner">
+      <a class="brand" href="index.html" aria-label="Accueil — Révisions Agrégation Maths 2027">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18 12 4l8 14M7.2 12.5h9.6M6.8 18h10.4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-name">AGREG · 27<small>Atelier de révision</small></span>
+      </a>
+      <nav class="topnav" aria-label="Navigation principale">
+        <a href="#programme">Programme</a>
+        <a href="#ressources">Fiches</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Activer le thème clair">☼</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="site-shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <span class="eyebrow">Agrégation de mathématiques · session 2027</span>
+        <h1 id="hero-title">Comprendre.<br>Enchaîner.<br><em>Réussir.</em></h1>
+        <p>Un atelier pour travailler le programme par notions, résoudre des exercices, puis revenir aux fiches interactives déjà préparées. Avance à ton rythme, sans compte ni suivi externe.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="exercices-titre-01.html">Commencer par le titre 1 <span aria-hidden="true">→</span></a>
+          <a class="button" href="#ressources">Explorer les fiches</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="math-orbit">
+          <span class="orbit-node node-a">ker f</span>
+          <span class="orbit-node node-b">Im f</span>
+          <span class="orbit-node node-c">dim E</span>
+          <span class="orbit-node node-d">rg f</span>
+          <div class="orbit-center"><strong>f</strong><span>E&nbsp;→&nbsp;F<br>théorème du rang</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Contenu du site">
+      <div class="stat"><strong data-stat-guides>13</strong><span>guides du programme</span></div>
+      <div class="stat"><strong data-stat-resources>24</strong><span>fiches HTML interactives</span></div>
+      <div class="stat"><strong>6</strong><span>exercices corrigés au titre 1</span></div>
+      <div class="stat"><strong data-stat-done>0</strong><span>ressources marquées travaillées</span></div>
+    </section>
+
+    <section class="section" id="programme" aria-labelledby="programme-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">Ton parcours</span>
+          <h2 id="programme-title">Avancer par notions</h2>
+          <p>Les guides suivent les titres du programme 2027; les fiches HTML ouvrent les cours, exercices et visualisations déjà présents dans le dépôt.</p>
+        </div>
+        <div class="progress-panel" aria-label="Progression enregistrée sur cet appareil">
+          <span><span>Progression locale</span><strong data-progress-count>0 / 0 ressources</strong></span>
+          <div class="progress-track" role="progressbar" aria-label="Progression des ressources travaillées"><div class="progress-fill"></div></div>
+        </div>
+      </div>
+      <div class="filters" role="group" aria-label="Filtrer les ressources">
+        <button class="filter-chip" type="button" data-filter="all" aria-pressed="true">Tout</button>
+        <button class="filter-chip" type="button" data-filter="programme" aria-pressed="false">Programme 2027</button>
+        <button class="filter-chip" type="button" data-filter="exercices" aria-pressed="false">Exercices</button>
+        <button class="filter-chip" type="button" data-filter="algebre" aria-pressed="false">Algèbre</button>
+        <button class="filter-chip" type="button" data-filter="analyse" aria-pressed="false">Analyse</button>
+        <button class="filter-chip" type="button" data-filter="option" aria-pressed="false">Option A</button>
+        <button class="filter-chip" type="button" data-filter="transversal" aria-pressed="false">Transversal</button>
+      </div>
+      <div class="search-row">
+        <label class="search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <input id="catalog-search" class="search-input" type="search" autocomplete="off" placeholder="Chercher : réduction, Fourier, estimation…" aria-label="Rechercher une fiche ou un thème">
+        </label>
+        <span class="result-count" id="result-count" aria-live="polite">Chargement…</span>
+      </div>
+      <div class="resource-grid" id="resource-grid" aria-live="polite" aria-busy="true">
+        <div class="empty-state">Le catalogue se prépare…</div>
+      </div>
+    </section>
+
+    <section class="section" id="ressources" aria-labelledby="resources-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">Méthode de travail</span>
+          <h2 id="resources-title">Une boucle, pas une lecture passive</h2>
+          <p>Chaque séance peut alterner rappel actif, résolution, correction et retour ciblé à une fiche.</p>
+        </div>
+      </div>
+      <div class="pathway">
+        <article class="path-card">
+          <span class="path-label">01 · Tenter</span>
+          <h3>Énoncé d’abord</h3>
+          <p>Pour le titre 1, les indices et les étapes de correction se dévoilent quand tu le décides. Les validations restent enregistrées uniquement dans le navigateur.</p>
+          <a class="button button-small" href="exercices-titre-01.html">Ouvrir les exercices →</a>
+        </article>
+        <article class="path-card">
+          <span class="path-label">02 · Revenir</span>
+          <h3>Une fiche pour une question</h3>
+          <p>Utilise les filtres et la recherche pour retrouver vite la ressource liée à un résultat, une méthode ou une difficulté précise.</p>
+          <a class="button button-small" href="#programme">Parcourir le catalogue →</a>
+        </article>
+      </div>
+    </section>
+
+    <aside class="warning-box">
+      Les fiches sont des supports de travail, pas une certification d’exhaustivité. Le programme et les notices officiels font foi; vérifie les hypothèses et refais les calculs avant de mémoriser un résultat.
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer-inner">
+      <span>AGREG · 27 — Atelier de révision</span>
+      <span>Progression conservée localement dans ce navigateur.</span>
+    </div>
+  </footer>
+</body>
+</html>

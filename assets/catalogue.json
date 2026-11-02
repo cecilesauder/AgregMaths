@@ -1,0 +1,540 @@
+{
+  "title": "Révisions Agrégation Maths 2027",
+  "resources": [
+    {
+      "id": "exercise-titre-01",
+      "title": "Six exercices types corrigés — Titre 1",
+      "description": "Une série progressive qui couvre les six sous-parties du titre 1, avec indices, corrections détaillées et vérifications rapides.",
+      "url": "exercices-titre-01.html",
+      "track": "exercices",
+      "kind": "exercise",
+      "group": "Entraînement",
+      "tags": [
+        "algèbre linéaire",
+        "rang",
+        "dualité",
+        "déterminant",
+        "Gauss",
+        "réduction"
+      ]
+    },
+    {
+      "id": "guide-titre-01",
+      "title": "Titre 1 — Algèbre linéaire",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-01.html",
+      "track": "programme",
+      "kind": "guide",
+      "tags": [
+        "Titre 1 — Algèbre linéaire",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-titre-02",
+      "title": "Titre 2 — Groupes",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-02.html",
+      "track": "programme",
+      "kind": "guide",
+      "tags": [
+        "Titre 2 — Groupes",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-titre-03",
+      "title": "Titre 3 — Anneaux, corps et polynômes",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-03.html",
+      "track": "programme",
+      "kind": "guide",
+      "tags": [
+        "Titre 3 — Anneaux, corps et polynômes",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-titre-04",
+      "title": "Titre 4 — Formes bilinéaires et quadratiques",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-04.html",
+      "track": "programme",
+      "kind": "guide",
+      "tags": [
+        "Titre 4 — Formes bilinéaires et quadratiques",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-titre-05",
+      "title": "Titre 5 — Géométries affine et euclidienne",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-05.html",
+      "track": "programme",
+      "kind": "guide",
+      "tags": [
+        "Titre 5 — Géométries affine et euclidienne",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-titre-06",
+      "title": "Titre 6 — Analyse à une variable réelle",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-06.html",
+      "track": "programme",
+      "kind": "guide",
+      "tags": [
+        "Titre 6 — Analyse à une variable réelle",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-titre-07",
+      "title": "Titre 7 — Analyse à une variable complexe",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-07.html",
+      "track": "programme",
+      "kind": "guide",
+      "tags": [
+        "Titre 7 — Analyse à une variable complexe",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-titre-08",
+      "title": "Titre 8 — Topologie, espaces normés et Hilbert",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-08.html",
+      "track": "programme",
+      "kind": "guide",
+      "tags": [
+        "Titre 8 — Topologie, espaces normés et Hilbert",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-titre-09",
+      "title": "Titre 9 — Calcul différentiel",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-09.html",
+      "track": "programme",
+      "kind": "guide",
+      "tags": [
+        "Titre 9 — Calcul différentiel",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-titre-10",
+      "title": "Titre 10 — Calcul intégral, mesure et Fourier",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-10.html",
+      "track": "programme",
+      "kind": "guide",
+      "tags": [
+        "Titre 10 — Calcul intégral, mesure et Fourier",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-titre-11",
+      "title": "Titre 11 — Probabilités et statistiques",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-11.html",
+      "track": "programme",
+      "kind": "guide",
+      "tags": [
+        "Titre 11 — Probabilités et statistiques",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-titre-12",
+      "title": "Titre 12 — Méthodes numériques",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-12.html",
+      "track": "programme",
+      "kind": "guide",
+      "tags": [
+        "Titre 12 — Méthodes numériques",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-titre-A",
+      "title": "Programme spécifique — Option A",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/titre-A.html",
+      "track": "option",
+      "kind": "guide",
+      "tags": [
+        "Programme spécifique — Option A",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "guide-fiches-a5",
+      "title": "Fiches transversales A5",
+      "description": "Carte de notions, résultats, hypothèses et points de vigilance à travailler pour ce titre.",
+      "url": "guides/fiches-a5.html",
+      "track": "transversal",
+      "kind": "guide",
+      "tags": [
+        "Fiches transversales A5",
+        "guide",
+        "checklist"
+      ]
+    },
+    {
+      "id": "resource-actions-de-groupes",
+      "title": "Actions de groupes",
+      "description": "Orbites, stabilisateurs, orbite-stabilisateur, équation aux classes, conjugaison et centre; les hypothèses de finitude et une preuve sur les groupes d’ordre premier au carré sont explicitées.",
+      "url": "01-algebre/groupes/boite_outils_actions_groupe.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — groupes",
+      "tags": [
+        "Algèbre — groupes",
+        "algebre",
+        "Actions de groupes"
+      ]
+    },
+    {
+      "id": "resource-morphismes-de-groupes",
+      "title": "Morphismes de groupes",
+      "description": "Noyau, image, injectivité et premier théorème d’isomorphisme; la notation additive est annoncée comme convention.",
+      "url": "01-algebre/groupes/boite_outils_morphismes-1.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — groupes",
+      "tags": [
+        "Algèbre — groupes",
+        "algebre",
+        "Morphismes de groupes"
+      ]
+    },
+    {
+      "id": "resource-quotients-de-groupes",
+      "title": "Quotients de groupes",
+      "description": "Sous-groupes distingués, quotients et exercices; les formules de cardinal sont distinguées du cas général par indice.",
+      "url": "01-algebre/groupes/boite_outils_quotients-1.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — groupes",
+      "tags": [
+        "Algèbre — groupes",
+        "algebre",
+        "Quotients de groupes"
+      ]
+    },
+    {
+      "id": "resource-d-monstrations-sur-les-groupes-cycliques",
+      "title": "Démonstrations sur les groupes cycliques",
+      "description": "Lagrange, ordre de kg, générateurs et unicité du sous-groupe d’ordre donné; convention additive, hypothèses et arguments de divisibilité précisés.",
+      "url": "01-algebre/groupes/demonstrations_groupes_cycliques-1.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — groupes",
+      "tags": [
+        "Algèbre — groupes",
+        "algebre",
+        "Démonstrations sur les groupes cycliques"
+      ]
+    },
+    {
+      "id": "resource-groupes-cycliques-fiche-interactive",
+      "title": "Groupes cycliques — fiche interactive",
+      "description": "Notions et exercices corrigés; l’énoncé contradictoire de l’exercice 6 a été rectifié. Ressource ciblée, non exhaustive.",
+      "url": "01-algebre/groupes/groupes_cycliques_interactif-2.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — groupes",
+      "tags": [
+        "Algèbre — groupes",
+        "algebre",
+        "Groupes cycliques — fiche interactive"
+      ]
+    },
+    {
+      "id": "resource-groupes-cycliques-visualisation-au-crochet",
+      "title": "Groupes cycliques — visualisation au crochet",
+      "description": "Orbites et classes dans \\mathbb Z/n\\mathbb Z; les entrées hors domaine sont désormais rejetées. Illustration limitée aux groupes cycliques finis.",
+      "url": "01-algebre/groupes/tour_de_crochet_groupes-1.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — groupes",
+      "tags": [
+        "Algèbre — groupes",
+        "algebre",
+        "Groupes cycliques — visualisation au crochet"
+      ]
+    },
+    {
+      "id": "resource-anneaux-et-corps",
+      "title": "Anneaux et corps",
+      "description": "Idéaux, morphismes, quotients et corps; conventions d’anneaux commutatifs unitaires affichées et répétitions de texte supprimées.",
+      "url": "01-algebre/anneaux-corps-polynomes/boite_outils_anneaux.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — anneaux, corps et polynômes",
+      "tags": [
+        "Algèbre — anneaux, corps et polynômes",
+        "algebre",
+        "Anneaux et corps"
+      ]
+    },
+    {
+      "id": "resource-anneaux-principaux-et-extensions",
+      "title": "Anneaux principaux et extensions",
+      "description": "Idéaux principaux, extensions finies et polynôme minimal; cas nul de K[X] et formule des degrés explicités.",
+      "url": "01-algebre/anneaux-corps-polynomes/boite_outils_anneaux_principaux.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — anneaux, corps et polynômes",
+      "tags": [
+        "Algèbre — anneaux, corps et polynômes",
+        "algebre",
+        "Anneaux principaux et extensions"
+      ]
+    },
+    {
+      "id": "resource-polyn-mes",
+      "title": "Polynômes",
+      "description": "Division, racines, multiplicités, irréductibilité et Viète; hypothèses de caractéristique et critère d’Eisenstein précisés.",
+      "url": "01-algebre/anneaux-corps-polynomes/boite_outils_polynomes.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — anneaux, corps et polynômes",
+      "tags": [
+        "Algèbre — anneaux, corps et polynômes",
+        "algebre",
+        "Polynômes"
+      ]
+    },
+    {
+      "id": "resource-r-duction-des-endomorphismes",
+      "title": "Réduction des endomorphismes",
+      "description": "Polynômes caractéristiques et minimaux, Cayley–Hamilton, diagonalisation, trigonalisation et nilpotence; cadre de dimension finie et précautions sur la caractéristique affichés.",
+      "url": "01-algebre/reduction/boite_outils_reduction.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — réduction, formes et fiches de synthèse",
+      "tags": [
+        "Algèbre — réduction, formes et fiches de synthèse",
+        "algebre",
+        "Réduction des endomorphismes"
+      ]
+    },
+    {
+      "id": "resource-r-duction-de-jordan",
+      "title": "Réduction de Jordan",
+      "description": "Blocs, calcul de puissances et formule des rangs; conventions des blocs et dénombrement des tailles précisées.",
+      "url": "01-algebre/reduction/boite_outils_jordan.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — réduction, formes et fiches de synthèse",
+      "tags": [
+        "Algèbre — réduction, formes et fiches de synthèse",
+        "algebre",
+        "Réduction de Jordan"
+      ]
+    },
+    {
+      "id": "resource-formes-bilin-aires-et-quadratiques",
+      "title": "Formes bilinéaires et quadratiques",
+      "description": "Polarisation, réduction, Sylvester, Cauchy–Schwarz, Gram–Schmidt et théorème spectral; les réserves sur corps et produit scalaire ont été ajoutées.",
+      "url": "01-algebre/formes-bilineaires/boite_outils_formes_bilineaires.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — réduction, formes et fiches de synthèse",
+      "tags": [
+        "Algèbre — réduction, formes et fiches de synthèse",
+        "algebre",
+        "Formes bilinéaires et quadratiques"
+      ]
+    },
+    {
+      "id": "resource-fiches-murales-d-alg-bre",
+      "title": "Fiches murales d’algèbre",
+      "description": "Six résumés visuels, à utiliser comme aide-mémoire sélectif.",
+      "url": "01-algebre/fiches-synthese/fiches_algebre-1.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — réduction, formes et fiches de synthèse",
+      "tags": [
+        "Algèbre — réduction, formes et fiches de synthèse",
+        "algebre",
+        "Fiches murales d’algèbre"
+      ]
+    },
+    {
+      "id": "resource-topologie-et-espaces-m-triques",
+      "title": "Topologie et espaces métriques",
+      "description": "Complétude, point fixe de Banach, compacité, Heine–Borel, Heine et connexité; les domaines d’application importants sont explicités.",
+      "url": "02-analyse/topologie/boite_outils_topologie.html",
+      "track": "analyse",
+      "kind": "html",
+      "group": "Analyse — topologie et suites de fonctions",
+      "tags": [
+        "Analyse — topologie et suites de fonctions",
+        "analyse",
+        "Topologie et espaces métriques"
+      ]
+    },
+    {
+      "id": "resource-la-topologie-au-crochet",
+      "title": "La topologie au crochet",
+      "description": "Visualisation introductive. Les formes SVG, tests de bord et boutons sont schématiques : l’animation de recouvrement ne démontre pas la compacité.",
+      "url": "02-analyse/topologie/topologie_au_crochet.html",
+      "track": "analyse",
+      "kind": "html",
+      "group": "Analyse — topologie et suites de fonctions",
+      "tags": [
+        "Analyse — topologie et suites de fonctions",
+        "analyse",
+        "La topologie au crochet"
+      ]
+    },
+    {
+      "id": "resource-suites-et-s-ries-de-fonctions",
+      "title": "Suites et séries de fonctions",
+      "description": "Convergences, interversion limite-intégrale, dérivation terme à terme et Dini; convergence uniforme présentée comme un critère suffisant, non comme l’unique voie.",
+      "url": "02-analyse/suites-series/boite_outils_suites_fonctions.html",
+      "track": "analyse",
+      "kind": "html",
+      "group": "Analyse — topologie et suites de fonctions",
+      "tags": [
+        "Analyse — topologie et suites de fonctions",
+        "analyse",
+        "Suites et séries de fonctions"
+      ]
+    },
+    {
+      "id": "resource-mesure-et-int-gration-de-lebesgue",
+      "title": "Mesure et intégration de Lebesgue",
+      "description": "Convergences monotone et dominée, Fatou, Tonelli–Fubini et intégration à paramètres; exemples et hypothèses principales revus.",
+      "url": "02-analyse/mesure-integration/boite_outils_lebesgue.html",
+      "track": "analyse",
+      "kind": "html",
+      "group": "Analyse — mesure, Hilbert, Fourier et fonctions holomorphes",
+      "tags": [
+        "Analyse — mesure, Hilbert, Fourier et fonctions holomorphes",
+        "analyse",
+        "Mesure et intégration de Lebesgue"
+      ]
+    },
+    {
+      "id": "resource-convergence-domin-e-visualisation",
+      "title": "Convergence dominée — visualisation",
+      "description": "Illustration interactive des fonctions dominées et des pics; définition au point 0, dominateur commun et représentation des fonctions rectifiés. Complément visuel, pas un cours de mesure.",
+      "url": "02-analyse/mesure-integration/lebesgue_illustre.html",
+      "track": "analyse",
+      "kind": "html",
+      "group": "Analyse — mesure, Hilbert, Fourier et fonctions holomorphes",
+      "tags": [
+        "Analyse — mesure, Hilbert, Fourier et fonctions holomorphes",
+        "analyse",
+        "Convergence dominée — visualisation"
+      ]
+    },
+    {
+      "id": "resource-espaces-de-hilbert",
+      "title": "Espaces de Hilbert",
+      "description": "Projections, Riesz, bases hilbertiennes et Parseval; convention complexe, totalité et convergence des développements explicitées.",
+      "url": "02-analyse/hilbert/boite_outils_hilbert.html",
+      "track": "analyse",
+      "kind": "html",
+      "group": "Analyse — mesure, Hilbert, Fourier et fonctions holomorphes",
+      "tags": [
+        "Analyse — mesure, Hilbert, Fourier et fonctions holomorphes",
+        "analyse",
+        "Espaces de Hilbert"
+      ]
+    },
+    {
+      "id": "resource-s-ries-de-fourier",
+      "title": "Séries de Fourier",
+      "description": "Coefficients, Dirichlet, Parseval et exercices; convention du terme constant harmonisée et distinction Fejér/Du Bois-Reymond rétablie.",
+      "url": "02-analyse/fourier/boite_outils_fourier.html",
+      "track": "analyse",
+      "kind": "html",
+      "group": "Analyse — mesure, Hilbert, Fourier et fonctions holomorphes",
+      "tags": [
+        "Analyse — mesure, Hilbert, Fourier et fonctions holomorphes",
+        "analyse",
+        "Séries de Fourier"
+      ]
+    },
+    {
+      "id": "resource-analyse-holomorphe",
+      "title": "Analyse holomorphe",
+      "description": "Séries entières, Cauchy–Riemann, Cauchy, résidus et zéros isolés; orientation, domaines et hypothèses principales ajoutés.",
+      "url": "02-analyse/analyse-complexe/boite_outils_holomorphes.html",
+      "track": "analyse",
+      "kind": "html",
+      "group": "Analyse — mesure, Hilbert, Fourier et fonctions holomorphes",
+      "tags": [
+        "Analyse — mesure, Hilbert, Fourier et fonctions holomorphes",
+        "analyse",
+        "Analyse holomorphe"
+      ]
+    },
+    {
+      "id": "resource-fiches-murales-d-analyse",
+      "title": "Fiches murales d’analyse",
+      "description": "Résumés sélectifs de topologie, séries de fonctions, intégration, Hilbert, analyse complexe et Fourier; formules et hypothèses sensibles précisées.",
+      "url": "02-analyse/fiches-synthese/fiches_analyse-1.html",
+      "track": "analyse",
+      "kind": "html",
+      "group": "Analyse — mesure, Hilbert, Fourier et fonctions holomorphes",
+      "tags": [
+        "Analyse — mesure, Hilbert, Fourier et fonctions holomorphes",
+        "analyse",
+        "Fiches murales d’analyse"
+      ]
+    },
+    {
+      "id": "resource-pr-paration-option-a",
+      "title": "Préparation option A",
+      "description": "Planning, rappels, quiz et code Scilab pour probabilités et statistiques. À utiliser avec le guide option A et à tester sur les logiciels prévus.",
+      "url": "03-option-A/preparation/agregation_option_A-3.html",
+      "track": "option",
+      "kind": "html",
+      "group": "Option A — probabilités, statistiques et préparation",
+      "tags": [
+        "Option A — probabilités, statistiques et préparation",
+        "option",
+        "Préparation option A"
+      ]
+    },
+    {
+      "id": "resource-assistant-option-a-cartes-et-code-r",
+      "title": "Assistant option A — cartes et code R",
+      "description": "Cartes de révision, simulation et modélisation; plusieurs hypothèses statistiques et cas de code ont été précisés, mais les scripts doivent encore être exécutés et relus.",
+      "url": "03-option-A/preparation/Agr%C3%A9gation%20Math%C3%A9matiques%20-%20Option%20A%20Assistant%20%283%29.html",
+      "track": "option",
+      "kind": "html",
+      "group": "Option A — probabilités, statistiques et préparation",
+      "tags": [
+        "Option A — probabilités, statistiques et préparation",
+        "option",
+        "Assistant option A — cartes et code R"
+      ]
+    }
+  ]
+}

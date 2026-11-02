@@ -231,7 +231,7 @@ Par définition, (ker f)° est l’ensemble des formes linéaires de E* qui s’
 
 φ=p(1,3,0,1)+r(0,1,1,1)=p(1,2,−1,0)+(p+r)(0,1,1,1),
 
-les quadruplets étant les coordonnées dans la base (e¹,e²,e³,e⁴). Il en résulte (ker f)°=Vect{e¹+2e²−e³, e²+e³+e⁴}=Im(f*). Sa dimension vaut 2, égale à dim(E)−dim(ker(f))=4−2.
+les quadruplets étant les coordonnées dans la base (e¹,e²,e³,e⁴). Il en résulte \((\ker f)^\circ=\operatorname{Vect}\{e^1+2e^2-e^3, e^2+e^3+e^4\}=\operatorname{Im}(f^*)\). Sa dimension vaut \(2=\dim(E)-\dim(\ker(f))=4-2\).
 
 #### 4. Orthogonalité
 
@@ -346,7 +346,7 @@ Il y a trois pivots dans la matrice des coefficients : rg A = rg(A|b) = 3. Le sy
 **Cas α = 2.** La deuxième équation réduite devient 0 = 3 − β.
 
 - Si β ≠ 3, cette égalité est impossible. La matrice des coefficients a rang 2 : ses deux premières lignes initiales sont indépendantes, et sa troisième ligne est leur somme lorsque α = 2. La contradiction ajoute un pivot dans la matrice augmentée : rg A = 2 et rg(A|b) = 3. Le système n’a aucune solution.
-- Si β = 3, la deuxième ligne est nulle. Les équations restantes donnent y + z = 1 et x + y + z = 1, donc x = 0. En posant y = t, z = 1 − t, où t ∈ ℝ, l’ensemble des solutions est {(0, t, 1 − t) : t ∈ ℝ}. On a rg A = rg(A|b) = 2 : il y a une infinité de solutions avec un paramètre libre.
+- Si \(\beta=3\), la deuxième ligne est nulle. Les équations restantes donnent \(y+z=1\) et \(x+y+z=1\), donc \(x=0\). En posant \(y=t\), \(z=1-t\), où \(t\in\mathbb{R}\), l’ensemble des solutions est \(\{(0,t,1-t):t\in\mathbb{R}\}\). On a \(\operatorname{rg}A=\operatorname{rg}(A|b)=2\) : il y a une infinité de solutions avec un paramètre libre.
 
 Récapitulatif :
 
@@ -464,16 +464,16 @@ Alors A=S+N. La matrice S est diagonale, donc diagonalisable ; N²=0, donc N est
 
 #### 5. Exponentielle matricielle
 
-L’exponentielle est définie par la série convergente e^(tA)=Σₖ₌₀∞ tᵏAᵏ/k!. Les matrices S et N commutent, donc e^(tA)=e^(tS)e^(tN). Or
+L’exponentielle est définie par la série convergente e^{tA}=Σₖ₌₀∞ tᵏAᵏ/k!. Les matrices S et N commutent, donc e^{tA}=e^{tS}e^{tN}. Or
 
-    e^(tS)=diag(e^(2t), e^(2t), e^(−t)),
-    e^(tN)=I+tN=[[1,t,0],[0,1,0],[0,0,1]],
+    e^{tS}=diag(e^{2t}, e^{2t}, e^{−t}),
+    e^{tN}=I+tN=[[1,t,0],[0,1,0],[0,0,1]],
 
 car N²=0, donc la série exponentielle de tN s’arrête au terme linéaire. Par multiplication, pour tout t réel,
 
-    e^(tA) = [[e^(2t), t·e^(2t), 0],
-              [0,      e^(2t),    0],
-              [0,      0,         e^(−t)]].
+    e^{tA} = [[e^{2t}, t·e^{2t}, 0],
+              [0,      e^{2t},    0],
+              [0,      0,         e^{−t}]].
 
 En particulier,
 
@@ -483,7 +483,7 @@ En particulier,
 
 - Le déterminant triangulaire donne χ_A=(X−2)²(X+1), et son développement restitue la relation calculée directement : A³−3A²+4I₃=0.
 - La formule de réduction restitue A pour p(X)=X et, pour p(X)=X², le produit indépendant A²=[[4,4,0],[0,4,0],[0,0,1]].
-- La formule de l’exponentielle donne e^(0A)=I₃ ; sa dérivée entrée par entrée vérifie d(e^(tA))/dt=Ae^(tA), notamment le terme hors diagonale dont la dérivée est (1+2t)e^(2t).
+- La formule de l’exponentielle donne e^{0A}=I₃ ; sa dérivée entrée par entrée vérifie d(e^{tA})/dt=Ae^{tA}, notamment le terme hors diagonale dont la dérivée est (1+2t)e^{2t}.
 
 ## Référence du programme
 

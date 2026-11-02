@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11131a">
+  <meta name="description" content="Programme spécifique — Option A — ressource de révision Agrégation Maths 2027.">
+  <title>Programme spécifique — Option A · AGREG 27</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/site.css">
+  <script defer src="../assets/site.js"></script>
+</head>
+<body data-base="../" data-progress-total="0">
+  <a class="skip-link" href="#main">Passer au contenu</a>
+  <header class="topbar"><div class="site-shell topbar-inner">
+    <a class="brand" href="../index.html" aria-label="Retour à l’accueil AGREG 27"><span class="brand-mark" aria-hidden="true">∑</span><span class="brand-name">AGREG · 27<small>Atelier de révision</small></span></a>
+    <nav class="topnav" aria-label="Navigation principale"><a href="../index.html#programme">Catalogue</a><a href="../exercices-titre-01.html">Exercices T1</a><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Activer le thème clair">☼</button></nav>
+  </div></header>
+  <main id="main" class="site-shell"><div class="breadcrumb"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="index.html">Guides</a><span aria-hidden="true">/</span><span>Programme spécifique — Option A</span></div>
+<div class="guide-top"><a href="index.html">← Tous les guides</a><a href="../index.html#programme">← Catalogue de révision</a></div>
+<article class="guide-container markdown-body"><h1>Concours externe spécial de mathématiques — session 2027</h1>
+<h2>Programme spécifique — Option A : probabilités et statistiques</h2>
+<blockquote>
+<p><strong>Statut : guide de révision, à travailler, ne remplace pas un cours.</strong></p>
+<p>Ce document suit les huit sous-parties (a) à (h) du « Programme spécifique de l’option A » du texte officiel. Le programme précise un périmètre et des notions, mais ne fixe pas partout les conventions, variantes de théorèmes, niveau de détail des preuves, ni les algorithmes de simulation à privilégier. Les rappels ci-dessous donnent des repères et des énoncés centraux sous des hypothèses explicitement indiquées ; ils ne prétendent ni remplacer les démonstrations de cours ni constituer une exhaustivité au-delà des points que le texte officiel permet de vérifier. <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027, programme spécifique de l’option A et titre 11">1</a></p>
+</blockquote>
+<p>L’option A s’ajoute au programme commun des titres 1 à 12. Ainsi, les notions de probabilité du titre 11 — espaces probabilisés, variables aléatoires, lois, indépendance, espérance, variance, convergences, lois des grands nombres, théorème central limite et premières notions statistiques — restent des prérequis et ne sont pas remplacées par ce guide. <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027, programme spécifique de l’option A et titre 11">1</a></p>
+<h2>(a) Utilisation de lois usuelles et simulation</h2>
+<p><strong>Intitulé officiel :</strong> « Utilisation de lois usuelles (voir titre 11, ainsi que loi multinomiale, hypergéométrique, Gamma, du χ²) pour modéliser certains phénomènes aléatoires. Exemples : temps d’attente ou durée de vie, erreurs de mesure, sondages… Méthodes de simulation de variables aléatoires. » <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027, programme spécifique de l’option A et titre 11">1</a></p>
+<h3>Notions à savoir</h3>
+<p>Le renvoi au titre 11 demande de maîtriser les lois qui y sont nommées, notamment Bernoulli, binomiale, géométrique, Poisson, uniforme, exponentielle et gaussienne, avec leurs paramètres, supports, fonctions de masse ou densités, fonctions de répartition, espérances et variances. Le complément énumère explicitement les lois multinomiale, hypergéométrique, Gamma et du χ².</p>
+<p>Pour un vecteur de comptages multinomial de paramètres n et (p₁,…,p_k), où p_i≥0 et Σ_i p_i=1, les composantes comptent les occurrences des catégories dans n essais indépendants. Pour des entiers m_i≥0 de somme n, P(N₁=m₁,…,N_k=m_k)=n!/(m₁!⋯m_k!)∏_i p_i^{m_i} ; E[N_i]=np_i, Var(N_i)=np_i(1-p_i) et Cov(N_i,N_j)=−np_ip_j pour i≠j. Dans cette formule, on adopte la convention 0^0=1 ; si p_i=0 et m_i&gt;0, la probabilité de cette configuration est nulle. La loi hypergéométrique correspond à un tirage uniforme sans remise dans une population finie. La loi Gamma de forme α&gt;0 et taux λ&gt;0 a pour densité f(x)=λ^α x^{α−1}e^{−λx}/Γ(α) sur x&gt;0 ; les conventions forme-échelle existent, donc vérifier la paramétrisation. La loi du χ² à r degrés de liberté est la loi de la somme des carrés de r variables gaussiennes standard indépendantes ; c’est un cas particulier de loi Gamma. Pour un échantillon normal de taille n, (n−1)S²/σ² suit un χ² à n−1 degrés de liberté, ce qui fournit notamment un pivot pour l’inférence sur la variance.</p>
+<p>Exemple multinomial : pour n=3 et p=(1/2,1/3,1/6), la probabilité d’obtenir une occurrence de chaque catégorie vaut 3!×(1/2)(1/3)(1/6)=1/6.</p>
+<p>Pour un tirage sans remise de taille n, avec 0≤n≤N, dans une population de taille N contenant K succès (0≤K≤N), la variable hypergéométrique X a pour support max(0,n−(N−K))≤k≤min(n,K) et P(X=k)=C(K,k)C(N−K,n−k)/C(N,n), où C désigne le coefficient binomial.</p>
+<p>Savoir choisir un modèle suppose d’expliciter le mécanisme : avec ou sans remise, nombre fixé d’essais, événements rares, erreur additive, temps d’attente, etc. La simulation doit respecter ce mécanisme. On pourra construire des variables à partir d’un générateur uniforme, utiliser l’inversion de la fonction de répartition lorsqu’elle est accessible, ou simuler selon une construction connue (par exemple somme d’exponentielles pour certaines Gamma de paramètre entier). Il faut distinguer une réalisation simulée de la loi théorique et examiner l’erreur d’échantillonnage.</p>
+<h3>Repères et usage</h3>
+<p>Pour (X\sim\mathrm{Hypergéométrique}(N,K,n)), (\mathbb E[X]=nK/N) et, lorsque (N&gt;1), (\operatorname{Var}(X)=n(K/N)(1-K/N)(N-n)/(N-1)). Ce facteur de correction rend compte du tirage sans remise. <strong>Usage :</strong> estimer le nombre de produits défectueux dans un échantillon prélevé sans remise dans un lot fini. Une binomiale peut parfois l’approcher si la population est grande relativement à l’échantillon, mais ce n’est pas le même modèle.</p>
+<p>Pour (X\sim\mathrm{Gamma}(\alpha,\lambda)) dans la convention taux, (\mathbb E[X]=\alpha/\lambda) et (\operatorname{Var}(X)=\alpha/\lambda^2). Si (E_i) sont indépendantes de loi exponentielle de taux (\lambda), leur somme pour (i=1,\ldots,m) suit une Gamma de forme (m) et taux (\lambda). <strong>Usage :</strong> modéliser un temps cumulé d’attente pour plusieurs événements Poisson.</p>
+<h3>Checklist de travail</h3>
+<ul>
+<li>[ ] Je sais reconnaître les hypothèses d’une loi multinomiale ou hypergéométrique et écrire leurs probabilités.</li>
+<li>[ ] Je sais préciser les paramétrisations des lois Gamma et χ², et retrouver moments et liens usuels.</li>
+<li>[ ] Je peux expliquer le choix d’une loi pour un temps d’attente, une durée de vie, une erreur de mesure ou un sondage.</li>
+<li>[ ] Je sais proposer, exécuter et contrôler une simulation, puis comparer histogramme ou fréquences aux valeurs théoriques.</li>
+<li>[ ] Je sais résoudre un exercice où le choix entre tirage avec et sans remise change la loi.</li>
+</ul>
+<h2>(b) Chaînes de Markov à espace d’états fini ou dénombrable</h2>
+<p><strong>Intitulé officiel :</strong> « Chaînes de Markov à espace d’états fini ou dénombrable. Propriétés de Markov faible et forte. Classification des états, transience, récurrence positive ou nulle. Communication entre états et irréductibilité. Mesure stationnaire (existence et unicité). Théorèmes de convergence : loi des grands nombres, apériodicité et convergence en loi. Exemple de la marche aléatoire simple. » <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027, programme spécifique de l’option A et titre 11">1</a></p>
+<h3>Notions à savoir</h3>
+<p>Une chaîne de Markov à temps discret ((X_n)<em>{n\geq0}) sur un ensemble fini ou dénombrable (E) satisfait, pour tout (n), la propriété de Markov : conditionnellement au présent, le futur ne dépend pas du passé. Dans le cas homogène, (P(X</em>{n+1}=j\mid X_n=i)=p_{ij}) ne dépend pas de (n). La matrice (P=(p_{ij})) est stochastique : ses coefficients sont positifs ou nuls et chaque ligne somme à 1.</p>
+<p>La propriété faible est la propriété de Markov au temps déterministe. La propriété forte l’étend à un temps d’arrêt (T) : sous les hypothèses usuelles de chaîne de Markov et pour (T&lt;\infty) presque sûrement, conditionnellement à (X_T), la chaîne après (T) évolue comme une chaîne redémarrant de (X_T). Il faut savoir identifier la filtration et justifier que le temps considéré est bien un temps d’arrêt.</p>
+<p>Un état (i) mène à (j) s’il existe (n\geq0) tel que (P^n(i,j)&gt;0). Deux états communiquent si chacun mène à l’autre ; les classes de communication partitionnent l’espace. La chaîne est irréductible si tous les états communiquent. Un état est récurrent si, en partant de lui, le retour a lieu avec probabilité 1, transient sinon. Un état récurrent est positif si son temps moyen de retour est fini, nul si ce temps moyen est infini. La périodicité d’un état est le PGCD des temps positifs possibles de retour ; l’état est apériodique si ce PGCD vaut 1.</p>
+<p>Une probabilité (\pi) sur (E) est stationnaire si (\pi P=\pi). Pour une chaîne irréductible finie, il existe une unique probabilité stationnaire ; ses états sont récurrents positifs. Pour une chaîne irréductible dénombrable, une probabilité stationnaire existe si et seulement si la chaîne est récurrente positive, et elle est alors unique. Ces résultats ne s’appliquent pas tels quels à une chaîne réductible : plusieurs classes fermées peuvent conduire à plusieurs probabilités stationnaires.</p>
+<h3>Théorèmes de convergence : formulations utiles</h3>
+<p>Pour une chaîne irréductible positive récurrente, la fréquence asymptotique de visite d’un état (j) est (\pi_j) presque sûrement, sous la loi des grands nombres ergodique. Une formulation pour les fonctions est que, si (f) est intégrable sous (\pi), alors (n^{-1}\sum_{k=0}^{n-1}f(X_k)\to\sum_j\pi_jf(j)) presque sûrement, pour une chaîne irréductible positive récurrente et tout état initial (avec les formulations usuelles sur l’intégrabilité).</p>
+<p>Pour la convergence en loi vers (\pi), l’irréductibilité, la récurrence positive et l’apériodicité sont des hypothèses centrales : sur un espace dénombrable, elles donnent (P^n(i,\cdot)\to\pi) en variation totale pour chaque état initial (i). Sans apériodicité, la loi peut osciller avec le temps même si une mesure stationnaire existe. Pour le cas fini, attention à distinguer convergence des distributions de convergence presque sûre des trajectoires.</p>
+<h3>Marche aléatoire simple : exemple</h3>
+<p>Sur (\mathbb Z), posons (X_{n+1}=X_n+1) avec probabilité (p) et (X_{n+1}=X_n-1) avec probabilité (q=1-p), les incréments étant indépendants. C’est une chaîne homogène irréductible. En dimension un, elle est récurrente lorsque (p=q=1/2), mais récurrente nulle, sans probabilité stationnaire sur (\mathbb Z) ; si (p\ne q), elle est transiente. Cet exemple permet de calculer les transitions, d’étudier les retours et de voir qu’irréductibilité n’implique pas récurrence positive.</p>
+<h3>Checklist de travail</h3>
+<ul>
+<li>[ ] Je sais écrire la matrice de transition et calculer une transition en plusieurs pas par (P^n).</li>
+<li>[ ] Je distingue propriété de Markov faible et forte, et je justifie l’usage d’un temps d’arrêt.</li>
+<li>[ ] Je sais déterminer classes de communication, irréductibilité, périodes et classes fermées.</li>
+<li>[ ] Je sais distinguer transience, récurrence positive et récurrence nulle, et relier récurrence positive à une probabilité stationnaire.</li>
+<li>[ ] Je peux résoudre (\pi P=\pi) avec (\sum_i\pi_i=1), puis vérifier les hypothèses de convergence avant d’invoquer un théorème.</li>
+<li>[ ] Je sais étudier une marche aléatoire simple et expliquer l’effet de l’apériodicité.</li>
+<li>[ ] Je sais simuler une chaîne et comparer fréquences observées et loi stationnaire, en signalant les limites numériques.</li>
+</ul>
+<h2>(c) Construction du processus de Poisson sur (\mathbb R_+)</h2>
+<p><strong>Intitulé officiel :</strong> « Construction du processus de Poisson sur (\mathbb R_+) à partir de variables exponentielles. Indépendance, stationnarité et loi des accroissements. » <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027, programme spécifique de l’option A et titre 11">1</a></p>
+<h3>Notions à savoir</h3>
+<p>Soient ((E_n)_{n\geq1}) des variables indépendantes de loi exponentielle de taux (\lambda&gt;0). Posons (T_0=0), (T_n=E_1+\cdots+E_n), puis (N_t=\max{n:T_n\leq t}). Les (T_n) sont les instants d’arrivée et (N_t) compte les arrivées jusqu’au temps (t). Comme les temps d’attente sont strictement positifs et que leur somme diverge presque sûrement, le nombre d’arrivées sur tout intervalle borné est presque sûrement fini.</p>
+<p>Le processus ainsi construit est un processus de Poisson de taux (\lambda). Ses accroissements sur des intervalles disjoints sont indépendants ; la loi d’un accroissement ne dépend que de la longueur de l’intervalle (stationnarité des accroissements) ; pour (0\leq s&lt;t), (N_t-N_s\sim\mathrm{Poisson}(\lambda(t-s))). En particulier, (N_t\sim\mathrm{Poisson}(\lambda t)). La construction fournit également la propriété sans mémoire du temps d’attente exponentiel.</p>
+<h3>Exemple ou usage</h3>
+<p>Si des appels arrivent selon un taux moyen de (\lambda=3) par heure dans le modèle, le nombre d’appels sur une demi-heure suit une loi de Poisson de paramètre (1.5). La construction par exponentielles permet de simuler les instants d’arrivée, puis de compter ceux inférieurs à la durée étudiée. Le modèle suppose notamment un taux constant et des accroissements indépendants ; ces hypothèses doivent être discutées avant d’interpréter les simulations.</p>
+<h3>Checklist de travail</h3>
+<ul>
+<li>[ ] Je sais construire les temps d’arrivée comme sommes d’exponentielles indépendantes et construire (N_t).</li>
+<li>[ ] Je sais établir ou utiliser la loi de (N_t) et d’un accroissement sur un intervalle.</li>
+<li>[ ] Je sais expliquer indépendance des accroissements et stationnarité des accroissements sans les confondre.</li>
+<li>[ ] Je peux simuler les arrivées et vérifier numériquement la moyenne et la variance d’un comptage.</li>
+<li>[ ] Je sais identifier quand l’hypothèse de taux constant rend le modèle inadapté.</li>
+</ul>
+<h2>(d) Espérance conditionnelle, martingales et temps d’arrêt</h2>
+<p><strong>Intitulé officiel :</strong> « Espérance conditionnelle, définition des (sur/sous-)martingales à temps discrets, temps d’arrêt. Exemples d’utilisation des théorèmes d’arrêt et de convergence presque sûre et (L^2). » <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027, programme spécifique de l’option A et titre 11">1</a></p>
+<h3>Notions à savoir</h3>
+<p>Pour une variable intégrable (X) et une tribu (\mathcal G), l’espérance conditionnelle (\mathbb E[X\mid\mathcal G]) est, à égalité presque sûre près, une variable (\mathcal G)-mesurable telle que (\mathbb E[1_A\mathbb E(X\mid\mathcal G)]=\mathbb E[1_AX]) pour tout (A\in\mathcal G). Elle vérifie notamment la propriété de tour lorsque (\mathcal H\subseteq\mathcal G) : (\mathbb E[\mathbb E(X\mid\mathcal G)\mid\mathcal H]=\mathbb E(X\mid\mathcal H)).</p>
+<p>Par rapport à une filtration (𝓕_n), un processus adapté et intégrable (M_n) est une <strong>martingale</strong> si E[M_{n+1}|𝓕_n]=M_n, une <strong>surmartingale</strong> si E[M_{n+1}|𝓕_n]≤M_n, et une <strong>sous-martingale</strong> si E[M_{n+1}|𝓕_n]≥M_n. Un temps aléatoire T à valeurs dans ℕ∪{∞} est un temps d’arrêt si {T≤n}∈𝓕_n pour tout n : la décision de s’arrêter à la date n dépend seulement de l’information disponible jusqu’à cette date.</p>
+<h3>Arrêt et convergence : précautions d’hypothèses</h3>
+<p>Un énoncé élémentaire du théorème d’arrêt est le suivant : si ((M_n)) est une martingale, (T) un temps d’arrêt borné, alors (\mathbb E[M_T]=\mathbb E[M_0]). Pour un temps d’arrêt non borné, l’égalité n’est pas automatique : des hypothèses supplémentaires (par exemple uniform integrability dans une formulation adaptée, ou conditions de domination) sont nécessaires. L’arrêt presque sûr seul ne suffit pas.</p>
+<p>Un résultat classique de convergence est que toute martingale bornée dans (L^2), c’est-à-dire (\sup_n\mathbb E[M_n^2]&lt;\infty), converge presque sûrement et dans (L^2). Pour une martingale générale, les conditions de convergence doivent être précisées ; ne pas conclure à une convergence (L^2) à partir de la seule convergence presque sûre.</p>
+<h3>Exemple ou usage</h3>
+<p>Pour une marche aléatoire simple centrée (S_n=\xi_1+\cdots+\xi_n) avec incréments indépendants d’espérance nulle, ((S_n)) est une martingale pour la filtration naturelle. L’analyse de (S_{T\wedge n}) pour un temps de sortie borné permet d’appliquer une identité d’espérance à temps fini. Pour un temps de sortie non borné, il faut d’abord justifier le passage à la limite et l’intégrabilité requise : c’est un piège classique.</p>
+<h3>Checklist de travail</h3>
+<ul>
+<li>[ ] Je sais définir une espérance conditionnelle et appliquer linéarité, propriété de tour et interprétation par conditionnement.</li>
+<li>[ ] Je sais vérifier adaptation, intégrabilité et égalité/inégalité conditionnelle pour classer une martingale, surmartingale ou sous-martingale.</li>
+<li>[ ] Je sais vérifier la propriété de temps d’arrêt à l’aide de ({T\leq n}).</li>
+<li>[ ] Je peux appliquer un théorème d’arrêt avec ses hypothèses explicites et repérer pourquoi un arrêt non borné exige davantage.</li>
+<li>[ ] Je sais utiliser une condition de bornitude dans (L^2) pour conclure à la convergence p.s. et (L^2).</li>
+<li>[ ] Je sais construire un exemple probabiliste où martingale et arrêt ont une interprétation concrète.</li>
+</ul>
+<h2>(e) Échantillons et estimation statistique</h2>
+<p><strong>Intitulé officiel :</strong> « Échantillons, moments empiriques, loi et fonction de répartition empiriques. Applications des théorèmes de convergences à l’estimation (lois des grands nombres, théorème central limite, utilisation du lemme de Slutsky). Définition et construction d’intervalles de confiance. Estimation paramétrique. Estimation par maximum de vraisemblance : définition et exemples. » <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027, programme spécifique de l’option A et titre 11">1</a></p>
+<h3>Notions à savoir</h3>
+<p>Un échantillon i.i.d. (X_1,\ldots,X_n) de loi (F_\theta) est une famille de variables indépendantes de même loi, paramétrée par (\theta). Le moment empirique d’ordre (r) est (n^{-1}\sum_iX_i^r) lorsque défini. La mesure empirique est (n^{-1}\sum_i\delta_{X_i}) et la fonction de répartition empirique (F_n(x)=n^{-1}\sum_i1_{{X_i\leq x}}). Il faut distinguer la loi de chaque observation, la distribution empirique aléatoire et sa fonction de répartition.</p>
+<p>Si (X_i) sont i.i.d. intégrables, la loi forte donne (\bar X_n\to\mathbb E[X_1]) presque sûrement. Si elles sont i.i.d. de moyenne (\mu) et variance finie (\sigma^2), le TCL donne (\sqrt n(\bar X_n-\mu)/\sigma\Rightarrow\mathcal N(0,1)). Le lemme de Slutsky permet notamment de remplacer (\sigma) par un estimateur convergeant en probabilité vers (\sigma&gt;0) pour obtenir la même limite normalisée.</p>
+<p>Un intervalle de confiance de niveau nominal (1-\alpha) est une procédure aléatoire ([L(X),U(X)]) telle que la probabilité de contenir le paramètre soit (1-\alpha), ou au moins ce niveau, selon la procédure considérée. Le paramètre est fixe dans l’approche fréquentiste ; l’intervalle change avec l’échantillon. La construction utilise une loi pivotale exacte ou une approximation asymptotique dont les hypothèses doivent être annoncées.</p>
+<p>En estimation paramétrique, un estimateur est une statistique construite pour estimer (\theta). Le maximum de vraisemblance maximise, pour les observations fixées, la vraisemblance (L(\theta;x)=\prod_{i=1}^nf_\theta(x_i)) dans le cas de densités, ou le produit des probabilités dans le cas discret. Il faut respecter l’espace des paramètres, traiter les maxima aux bornes éventuelles et distinguer la vraisemblance d’une densité de probabilité en (\theta).</p>
+<h3>Exemple ou usage</h3>
+<p>Pour X_i i.i.d. Bernoulli de paramètre p, sous l’espace de paramètres [0,1], la vraisemblance est L(p)=p^{ΣX_i}(1-p)^{n-ΣX_i} et un maximum est atteint en p̂=X̄<em>n, y compris aux cas limites où toutes les observations valent 0 ou 1. La loi forte donne p̂→p presque sûrement. Si n=25 observations gaussiennes i.i.d. ont une moyenne observée de 12 et un écart-type σ=5 connu, l’intervalle exact à 95 % pour μ est [12−z</em>{0.975}·5/√25, 12+z_{0.975}·5/√25], où z_{0.975} est le quantile 0,975 de la loi normale standard et vaut environ 1,96 ; les bornes sont donc approximativement [10,04;13,96]. L’exactitude repose ici sur la normalité et la variance connue ; avec σ estimé ou une proportion, il faut employer le pivot approprié ou annoncer l’approximation asymptotique et ses conditions.</p>
+<h3>Checklist de travail</h3>
+<ul>
+<li>[ ] Je sais construire les moments empiriques, la mesure empirique et la fonction de répartition empirique.</li>
+<li>[ ] Je sais identifier les hypothèses i.i.d. et moments requises pour une loi des grands nombres ou un TCL.</li>
+<li>[ ] Je sais justifier un passage par Slutsky et expliciter l’estimateur convergent substitué.</li>
+<li>[ ] Je sais interpréter correctement le niveau et la couverture d’un intervalle de confiance.</li>
+<li>[ ] Je sais construire un intervalle à partir d’un pivot ou d’une approximation, en préciser la validité et les limites.</li>
+<li>[ ] Je sais écrire une vraisemblance, maximiser (y compris aux bornes) et interpréter un estimateur du maximum de vraisemblance.</li>
+<li>[ ] Je peux traiter un exemple paramétrique et vérifier biais, consistance ou incertitude quand l’exercice le demande.</li>
+</ul>
+<h2>(f) Vecteurs gaussiens</h2>
+<p><strong>Intitulé officiel :</strong> « Vecteurs gaussiens : définition, simulation, théorème de Cochran. Théorème central limite dans (\mathbb R_n). » <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027, programme spécifique de l’option A et titre 11">1</a></p>
+<h3>Notions à savoir</h3>
+<p>Un vecteur aléatoire (X\in\mathbb R^d) est gaussien si toute combinaison linéaire (u^TX) est une variable gaussienne réelle (éventuellement dégénérée). Sa loi est déterminée par son vecteur moyenne (m) et sa matrice de covariance (\Sigma), qui est symétrique positive semi-définie. On peut le simuler en écrivant (X=m+AZ), où (Z) a des coordonnées gaussiennes standard indépendantes et (AA^T=\Sigma), par exemple via une factorisation adaptée ; si (\Sigma) est singulière, une factorisation de rang réduit est possible.</p>
+<p>Pour un vecteur gaussien, des composantes non corrélées sont indépendantes. La transformation affine (BX+b) demeure gaussienne, avec moyenne (Bm+b) et covariance (B\Sigma B^T). Le TCL dans (\mathbb R^d) : si (X_i) sont des vecteurs i.i.d. de moyenne (m) et de covariance finie (\Sigma), alors (\sqrt n(\bar X_n-m)) converge en loi vers une loi gaussienne centrée de covariance (\Sigma) (dégénérée si nécessaire).</p>
+<p>Le théorème de Cochran concerne des formes quadratiques orthogonales d’un vecteur gaussien standard : pour une décomposition orthogonale en projecteurs symétriques idempotents, les formes quadratiques correspondantes sont indépendantes et suivent des lois du χ² avec degrés de liberté égaux aux rangs des projecteurs. Dans le modèle classique de régression gaussienne, il explique notamment la séparation de sommes de carrés résiduelles et expliquées. Les hypothèses précises de la version utilisée doivent être formulées : normalité, projecteurs orthogonaux et dimensions/rangs.</p>
+<h3>Exemple ou usage</h3>
+<p>Pour simuler un vecteur normal de moyenne (m) et covariance (\Sigma), calculer une factorisation (\Sigma=AA^T), générer (Z\sim\mathcal N(0,I_d)), puis former (m+AZ). On peut vérifier sur un grand nombre de réalisations que la moyenne et la covariance empiriques approchent leurs valeurs cibles. Cette vérification ne prouve pas la loi et doit tenir compte de l’erreur Monte-Carlo.</p>
+<h3>Checklist de travail</h3>
+<ul>
+<li>[ ] Je sais reconnaître une loi gaussienne vectorielle par ses combinaisons linéaires et identifier moyenne/covariance.</li>
+<li>[ ] Je sais transformer une gaussienne et utiliser le critère d’indépendance par non-corrélation dans ce contexte.</li>
+<li>[ ] Je sais simuler un vecteur gaussien, y compris lorsque la covariance est seulement semi-définie positive.</li>
+<li>[ ] Je sais énoncer le TCL vectoriel avec hypothèses de moments et covariance.</li>
+<li>[ ] Je sais énoncer la structure du théorème de Cochran et vérifier orthogonalité, rangs et degrés de liberté dans un exemple.</li>
+<li>[ ] Je sais relier Cochran à la décomposition des sommes de carrés en régression gaussienne.</li>
+</ul>
+<h2>(g) Modèle linéaire gaussien</h2>
+<p><strong>Intitulé officiel :</strong> « Modèle linéaire gaussien : calculs par moindres carrés, régression linéaire, exemples d’utilisation. » <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027, programme spécifique de l’option A et titre 11">1</a></p>
+<h3>Notions à savoir</h3>
+<p>Le modèle linéaire s’écrit (Y=X\beta+\varepsilon), où (Y\in\mathbb R^n), la matrice de plan (X\in\mathbb R^{n\times p}) est connue, (\beta\in\mathbb R^p), et, dans le modèle linéaire gaussien classique, (\varepsilon\sim\mathcal N(0,\sigma^2I_n)). Les moindres carrés minimisent (|Y-Xb|^2). Si (X) est de rang colonne plein, l’estimateur est (\hat\beta=(X^TX)^{-1}X^TY). En rang déficient, l’estimateur des coefficients peut ne pas être unique ; les valeurs ajustées par projection sur l’image de (X) restent définies.</p>
+<p>Le projecteur orthogonal sur l’espace des colonnes est (H=X(X^TX)^{-1}X^T) sous l’hypothèse de rang plein. Les ajustements sont (\hat Y=HY), les résidus (e=(I-H)Y). Dans le modèle classique, (\hat\beta) est gaussien de moyenne (\beta) et covariance (\sigma^2(X^TX)^{-1}). Les propriétés statistiques usuelles dépendent des hypothèses sur moyenne nulle, variance, indépendance ou structure de covariance et normalité ; les moindres carrés ne justifient pas à eux seuls un modèle causal.</p>
+<p>La régression linéaire simple avec constante utilise une droite ajustée aux couples ((x_i,y_i)) par minimisation de la somme des carrés verticaux. Le choix du modèle, l’examen des résidus et l’incertitude des paramètres font partie de l’analyse, en plus du calcul numérique.</p>
+<h3>Exemple ou usage</h3>
+<p>On mesure une réponse (Y_i) en fonction d’une variable explicative (x_i), puis on ajuste (Y_i=\beta_0+\beta_1x_i+\varepsilon_i). La pente est estimée par moindres carrés et interprétée dans le cadre du modèle. Un graphique des résidus peut mettre en évidence courbure, variance non constante ou valeurs atypiques qui rendent le modèle gaussien homoscédastique discutable.</p>
+<h3>Checklist de travail</h3>
+<ul>
+<li>[ ] Je sais formuler le modèle linéaire gaussien et séparer hypothèses algébriques et probabilistes.</li>
+<li>[ ] Je sais obtenir l’équation normale et calculer l’estimateur si (X) est de rang plein.</li>
+<li>[ ] Je sais interpréter projection, valeurs ajustées, résidus et sommes de carrés.</li>
+<li>[ ] Je sais traiter le cas de rang déficient sans inverser une matrice non inversible.</li>
+<li>[ ] Je sais calculer ou interpréter la loi et la covariance de (\hat\beta) sous les hypothèses gaussiennes.</li>
+<li>[ ] Je sais conduire une régression simple, examiner les résidus et discuter la pertinence du modèle.</li>
+</ul>
+<h2>(h) Tests paramétriques et tests d’ajustement</h2>
+<p><strong>Intitulé officiel :</strong> « Tests paramétriques. Tests d’ajustement (tests du χ², tests de Kolmogorov-Smirnov). Exemples d’utilisation. » <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027, programme spécifique de l’option A et titre 11">1</a></p>
+<h3>Notions à savoir</h3>
+<p>Un test statistique oppose une hypothèse nulle (H_0) à une alternative (H_1) au moyen d’une statistique de test et d’une région de rejet. Le niveau (\alpha) borne sous (H_0) la probabilité de rejeter à tort ; la puissance est la probabilité de rejeter sous une alternative donnée. La p-valeur est, sous (H_0), une mesure de l’extrémalité de la statistique observée dans le sens de l’alternative. Elle n’est pas la probabilité que (H_0) soit vraie. Il faut définir le sens du test, la statistique, sa loi sous (H_0) et les conditions de validité avant de conclure.</p>
+<p>Les tests paramétriques portent sur des hypothèses relatives à un ou plusieurs paramètres d’une famille de lois (par exemple une moyenne ou une proportion). Selon le contexte, un pivot exact ou une approximation asymptotique fournit la loi sous l’hypothèse nulle. Le choix unilatéral ou bilatéral doit être fixé avant d’examiner les données.</p>
+<p>Pour un test d’ajustement du χ² sur (k) classes, la statistique de Pearson est (Q=\sum_{i=1}^k (O_i-E_i)^2/E_i), où (O_i) sont les effectifs observés et (E_i) les effectifs attendus sous (H_0). Son approximation par une loi du χ² nécessite notamment un échantillon adapté et des effectifs attendus suffisants ; le nombre de degrés de liberté est réduit par les contraintes et, le cas échéant, par l’estimation de paramètres. Les règles pratiques de regroupement ou seuils numériques dépendent de la convention de cours retenue : ne pas les appliquer sans vérifier leurs conditions.</p>
+<p>Le test de Kolmogorov-Smirnov à un échantillon compare (F_n) à une fonction de répartition théorique continue (F_0) spécifiée par (H_0), via (D_n=\sup_x|F_n(x)-F_0(x)|). La loi nulle classique suppose une distribution continue entièrement spécifiée ; si des paramètres sont estimés sur les mêmes données, les seuils usuels ne sont généralement plus valides tels quels. Les variantes à deux échantillons et les adaptations doivent être distinguées si elles sont rencontrées.</p>
+<h3>Exemple ou usage</h3>
+<p>Exemple de test d’ajustement du χ² : sous H₀, trois catégories ont chacune une probabilité 1/3 ; pour 60 observations et des effectifs (25,20,15), les effectifs attendus valent (20,20,20) et Q=5²/20+0²/20+(−5)²/20=2,5. Aucun paramètre n’étant estimé, le nombre de degrés de liberté est 2 ; au seuil 5 %, le seuil critique est environ 5,99. On ne rejette donc pas H₀, sans pour autant démontrer qu’elle est vraie. Pour un test de Kolmogorov-Smirnov, on compare la fonction de répartition empirique à une loi continue entièrement spécifiée et l’on utilise le seuil correspondant, sans réestimer les paramètres sur les mêmes données.</p>
+<h3>Checklist de travail</h3>
+<ul>
+<li>[ ] Je sais écrire (H_0), (H_1), choisir le sens du test et distinguer erreur de première espèce, puissance et p-valeur.</li>
+<li>[ ] Je sais définir la statistique de test et obtenir sa loi sous (H_0) avec les hypothèses requises.</li>
+<li>[ ] Je sais distinguer test paramétrique et test d’ajustement.</li>
+<li>[ ] Je sais calculer une statistique du χ², les effectifs attendus et les degrés de liberté, et vérifier l’approximation.</li>
+<li>[ ] Je sais définir la statistique KS et expliquer la condition de loi continue spécifiée pour les seuils usuels.</li>
+<li>[ ] Je sais interpréter une décision sans affirmer que l’acceptation prouve (H_0).</li>
+<li>[ ] Je peux mettre en œuvre un exemple et rapporter statistique, seuil ou p-valeur, niveau et limites.</li>
+</ul>
+<h2>Checklist transversale de préparation</h2>
+<ul>
+<li>[ ] Je peux passer d’un énoncé de modélisation à une loi ou un processus en explicitant les hypothèses et les paramètres.</li>
+<li>[ ] Je peux justifier un résultat par les bonnes hypothèses, notamment indépendance, intégrabilité, moments finis, irréductibilité et apériodicité.</li>
+<li>[ ] Je sais simuler les objets concernés et documenter l’algorithme, les paramètres, la graine utilisée si pertinente et les limites numériques.</li>
+<li>[ ] Je sais confronter théorie, calcul et simulation sans traiter un résultat numérique comme une preuve.</li>
+<li>[ ] Je peux exposer une méthode lisible, vérifier les calculs et interpréter les résultats dans le modèle.</li>
+<li>[ ] J’ai fait des exercices de preuve, de calcul, de simulation, d’estimation, de régression et de tests, et je les ai corrigés activement.</li>
+<li>[ ] J’ai travaillé des sujets et annales de modélisation, en m’entraînant à expliquer les choix de modèle et à illustrer informatiquement les résultats.</li>
+</ul>
+<h2>Lacunes à combler et niveau de maîtrise attendu</h2>
+<p>Ce guide sert de carte de révision et de rappel de résultats centraux. Le PDF officiel nomme les thèmes et plusieurs propriétés, mais ne détaille pas toutes les versions des théorèmes, conventions paramétriques, algorithmes de génération aléatoire, conditions pratiques de validité des tests, ni le degré de démonstration attendu pour chaque résultat. Les énoncés résumés ici ne doivent donc pas être pris comme une liste exhaustive de preuves à connaître. Pour chaque résultat travaillé, compléter les hypothèses exactes et la preuve dans le cours de référence ; refaire des exercices où une hypothèse est supprimée ou modifiée ; vérifier les détails sur les paramètres et les degrés de liberté selon le cours suivi.</p>
+<p><strong>Ce support doit être complété par des cours, des exercices corrigés et des annales.</strong> Il faut notamment s’entraîner à faire des calculs à la main, construire les justifications, programmer des simulations contrôlées et présenter l’interprétation et les limites d’un modèle. L’épreuve de modélisation officielle porte aussi sur le programme commun des titres 1 à 12 et prévoit une illustration informatique ; ce guide optionnel ne couvre pas à lui seul ces exigences transversales. <a href="https://www.devenirenseignant.gouv.fr/media/20323/download" title="Programme officiel de l’agrégation externe spéciale de mathématiques, session 2027, programme spécifique de l’option A et titre 11">1</a></p>
+<h2>Référence officielle</h2></article></main>
+  <footer class="site-footer"><div class="site-shell site-footer-inner"><span>AGREG · 27 — Atelier de révision</span><span>Les supports ne remplacent pas le programme officiel.</span></div></footer>
+</body>
+</html>
