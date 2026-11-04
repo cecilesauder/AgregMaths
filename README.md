@@ -2,7 +2,7 @@
 
 Ce dépôt rassemble des guides de repérage du programme, des fiches de révision, exercices corrigés, outils interactifs et ressources de préparation à l’option A. **Le programme ministériel fait foi** : les fiches et guides de ce dépôt sont des supports de travail, pas un cours complet ni une certification d’exhaustivité.
 
-> **[Ouvrir le site de révision interactif](https://cecilesauder.github.io/AgregMaths/)** — catalogue des fiches, guides du programme 2027 et exercices progressifs du titre 1.
+> **Site de révision interactif :** publication GitHub Pages activée depuis `main`, à la racine du dépôt. L’URL publique est visible dans les paramètres Pages du dépôt.
 
 ## Programme officiel et épreuves
 
@@ -85,6 +85,18 @@ Ces supports ciblés complètent les guides précédents. Ils n’ont pas tous l
 
 - [Contenu des fiches A5](04-fiches-transversales/contenu_fiches_A5_agregation-1.md) — Seize fiches courtes d’algèbre et d’analyse; énoncés condensés et pièges récurrents ont été revus. Vérifier le cours avant de recopier une formule isolée.
 
+## Annales et rapports du jury
+
+- [Index filtrable des annales et rapports](annales.html) — sessions du concours docteur 2017–2026, avec la correspondance explicitée avec l’agrégation externe spéciale de mathématiques; sujets et rapports du jury disponibles, liens WikiPrépa 2019–2026, sujet zéro et corrigé.
+- Les PDF restent hébergés par [l’archive du jury](https://agreg.org/index.php?id=archives), le [ministère](https://www.devenirenseignant.gouv.fr/rapports-des-jurys-des-concours-de-l-agregation-de-la-session-2026-1811) ou [WikiPrépa](https://wikiprepa.fr/concours/annales/agregation/externe-speciale/maths). L’archive distingue « Concours docteur » et « Concours standard »; l’index du dépôt sépare ces catégories et ne copie pas les documents.
+- État vérifié le 4 novembre 2026 : sujets 2017–2026 et rapports 2017–2025 répertoriés; le ministère annonce que le rapport 2026 de mathématiques du concours externe spécial sera publié prochainement. Le sujet zéro et son corrigé sont proposés séparément des sessions. Les fiches annuelles WikiPrépa ne constituent pas des corrigés officiels.
+
+## Jeu de révision structuré
+
+La banque `assets/game-bank.json` couvre les **93 sous-parties** décrites dans les guides des 12 titres communs et de l’option A : **372 activités**, avec quatre gestes par sous-partie — rappel actif, application, preuve et diagnostic d’erreur. Elle a fait l’objet d’une relecture indépendante par titre; les corrections ciblées relevées ont été intégrées, puis les titres concernés ont été relus à nouveau. Cette vérification porte sur la cohérence avec les guides du dépôt : ce n’est ni une certification formelle de toutes les preuves ni une garantie que chaque variante d’exercice possible est représentée. Le jeu propose des réponses modèles, une auto-évaluation et des rappels espacés enregistrés uniquement dans le navigateur; aucune preuve libre n’est notée automatiquement.
+
+Après toute modification de la banque, vérifier sa structure et ses codes de programme avec `python3 scripts/validate_game_bank.py`.
+
 ## Cahier des charges — ce qu’il reste à faire
 
 Les guides relient maintenant le dépôt aux **12 titres communs et au programme de l’option A**. L’audit de couverture des 13 guides a été effectué à partir du programme officiel; une relecture indépendante a identifié des lacunes et énoncés prioritaires, puis des corrections ciblées ont été intégrées. Cela ne certifie pas toutes les preuves, tous les exercices, les ressources historiques ni les scripts. Utiliser la checklist de chaque guide et ne cocher un point qu’après l’avoir réellement travaillé.
@@ -111,7 +123,8 @@ Les guides relient maintenant le dépôt aux **12 titres communs et au programme
 ### 3. Construire une pratique systématique
 
 - [x] Produire une première série de six exercices types corrigés pour le titre 1, à raison d’un exercice par sous-partie officielle ([recueil](05-programme-2027/exercices-titre-01.md)).
-- [ ] Étendre la banque aux 11 autres titres communs et à l’option A, classer les exercices par notion et difficulté, et ajouter des problèmes transversaux.
+- [x] Ajouter un jeu interactif structuré pour les sous-parties des 12 titres communs et de l’option A, avec rappel, application, preuve et diagnostic d’erreur; les cartes proposent une auto-évaluation et une reprise espacée, pas une correction automatique des preuves libres.
+- [ ] Étendre la pratique avec des exercices complets et des problèmes transversaux classés par notion et difficulté; relire les réponses modèles au fil du travail avec les cours et les sources.
 - [ ] Tenir un carnet d’erreurs : notion, hypothèse oubliée, raison de l’erreur, correction, exercice de contrôle et date de reprise.
 - [ ] Organiser des révisions espacées des définitions, hypothèses, preuves fondamentales, méthodes de calcul et exemples standards; alterner rappel sans notes et résolution d’exercices.
 - [ ] Travailler sur les sujets et rapports officiels disponibles et noter pour chaque sujet les thèmes mobilisés, les méthodes, les erreurs et les points à retravailler.
@@ -135,7 +148,9 @@ Relier chaque nouveau fichier à un titre et une sous-partie du programme offici
 
 ## Site interactif et génération
 
-Le portail statique est à la racine du dépôt (`index.html`). Il catalogue les 24 fiches HTML d’origine sans les aplatir, les 13 guides de programme et le recueil interactif du titre 1. La progression de révision est mémorisée localement dans le navigateur; aucun compte n’est requis. Les formules des pages générées sont composées par KaTeX.
+Le portail statique est à la racine du dépôt (`index.html`). Il catalogue les 24 fiches HTML d’origine sans les aplatir, les 13 guides de programme et les exercices interactifs du titre 1. Le jeu complet est accessible dans [`jeu.html`](jeu.html) : `assets/game-ui.js` gère l’interface, `assets/game-engine.js` sélectionne les cartes et mémorise les rappels espacés, et `assets/game-bank.json` porte les activités structurées par sous-partie et par geste. La progression reste dans le stockage local du navigateur; aucun compte ni envoi de données n’est utilisé. Les formules sont composées par KaTeX.
+
+La page [`annales.html`](annales.html) est un index filtrable des sujets et rapports disponibles, alimenté par [`assets/annales.json`](assets/annales.json). Elle attribue les sources et garde les PDF sur les sites du jury, du ministère ou de WikiPrépa.
 
 Après modification des guides Markdown ou des entrées du catalogue, régénérer les pages dérivées avec Python 3 :
 
@@ -144,4 +159,4 @@ python3 -m pip install -r requirements-site.txt
 python3 scripts/build_site.py
 ```
 
-La publication GitHub Pages utilise la branche `main` et sa racine; les fichiers HTML pédagogiques existants restent les sources de leurs fiches, et le dossier scientifique retiré n’est pas réintroduit par le générateur.
+Le générateur reconstruit aussi `annales.html` à partir de `assets/annales.json`; la banque de jeu est un JSON statique contrôlé et versionné séparément. La publication GitHub Pages utilise la branche `main` et sa racine; les fichiers HTML pédagogiques existants restent les sources de leurs fiches, et le dossier scientifique retiré n’est pas réintroduit par le générateur.

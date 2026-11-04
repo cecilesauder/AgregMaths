@@ -76,7 +76,7 @@
     if (text != null) el.textContent = text;
     return el;
   };
-  const badgeName = { programme: 'Programme 2027', exercices: 'Entraînement', algebre: 'Algèbre', analyse: 'Analyse', option: 'Option A', transversal: 'Transversal' };
+  const badgeName = { programme: 'Programme 2027', exercices: 'Entraînement', outils: 'Jeu et annales', algebre: 'Algèbre', analyse: 'Analyse', option: 'Option A', transversal: 'Transversal' };
 
   const buildCard = item => {
     const card = make('article', 'resource-card');

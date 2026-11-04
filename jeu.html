@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11131a">
+  <meta name="description" content="Jeu de révision interactif aligné sur les 12 titres communs et l’option A du programme de l’Agrégation de mathématiques 2027.">
+  <title>Jeu de révision — programme 2027 · AGREG 27</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./assets/site.css">
+  <link rel="stylesheet" href="./assets/tools.css">
+  <script defer src="./assets/site.js"></script>
+  <script defer src="./assets/game-engine.js"></script>
+  <script defer src="./assets/game-ui.js"></script>
+</head>
+<body data-base="./" data-progress-total="0">
+  <a class="skip-link" href="#main">Passer au contenu</a>
+  <header class="topbar"><div class="site-shell topbar-inner">
+    <a class="brand" href="./index.html" aria-label="Retour à l’accueil AGREG 27"><span class="brand-mark" aria-hidden="true">∑</span><span class="brand-name">AGREG · 27<small>Atelier de révision</small></span></a>
+    <nav class="topnav" aria-label="Navigation principale"><a href="./index.html#programme">Catalogue</a><a href="./jeu.html" aria-current="page">Jeu</a><a href="./annales.html">Annales</a><a href="./exercices-titre-01.html">Exercices T1</a><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Activer le thème clair">☼</button></nav>
+  </div></header>
+  <main id="main" class="site-shell">
+    <div class="breadcrumb"><a href="./index.html">Accueil</a><span aria-hidden="true">/</span><span>Jeu de révision</span></div>
+    <section class="page-heading"><span class="eyebrow">12 titres communs · option A</span><h1>Un geste juste, une notion mieux ancrée.</h1><p>Choisis un titre et un geste, tente la réponse sans tes notes, puis compare avec le modèle. Les preuves libres s’auto-évaluent : le jeu ne prétend pas les corriger automatiquement.</p></section>
+    <div class="notice"><strong>Une pratique courte, pas un chronomètre.</strong> Les questions suivent les sous-parties des guides 2027. Marque « Je maîtrise » ou « À revoir » pour organiser les reprises espacées. La progression reste dans le stockage local de ce navigateur.</div>
+
+    <section class="game-summary" aria-label="Résumé de progression">
+      <div class="game-summary-card"><strong id="game-total">—</strong><span>activités dans ce filtre</span></div>
+      <div class="game-summary-card"><strong id="game-mastered">—</strong><span>espacées à 3 jours ou plus</span></div>
+      <div class="game-summary-card"><strong id="game-due">—</strong><span>nouvelles ou à reprendre</span></div>
+    </section>
+    <div class="game-toolbar" aria-label="Choisir une séance">
+      <label for="game-title-filter">Titre du programme
+        <select class="game-select" id="game-title-filter"><option value="all">Tous les titres</option></select>
+      </label>
+      <label for="game-gesture-filter">Geste de travail
+        <select class="game-select" id="game-gesture-filter">
+          <option value="random">Au hasard, selon les cartes dues</option>
+          <option value="recall">Rappel actif — définir, énoncer</option>
+          <option value="apply">Application — calculer, choisir</option>
+          <option value="proof">Preuve — justifier, organiser</option>
+          <option value="diagnose">Diagnostic — repérer, corriger</option>
+        </select>
+      </label>
+      <label for="game-search">Filtrer par notion
+        <input class="game-search" id="game-search" type="search" autocomplete="off" placeholder="Ex. noyau, Fourier, martingale…">
+      </label>
+      <button class="button button-primary" id="game-next" type="button">Nouvelle question <span aria-hidden="true">→</span></button>
+    </div>
+
+    <div class="game-layout">
+      <aside class="game-sidebar" aria-labelledby="gestures-title">
+        <h2 id="gestures-title">Les quatre gestes</h2>
+        <p>Chaque sous-partie donne plusieurs façons de vérifier ce que tu sais faire.</p>
+        <ul class="gesture-list">
+          <li><span><strong>Rappeler</strong><br>formulation et hypothèses</span><span aria-hidden="true">01</span></li>
+          <li><span><strong>Appliquer</strong><br>calcul ou choix de méthode</span><span aria-hidden="true">02</span></li>
+          <li><span><strong>Démontrer</strong><br>justification ou plan</span><span aria-hidden="true">03</span></li>
+          <li><span><strong>Diagnostiquer</strong><br>erreur et correction</span><span aria-hidden="true">04</span></li>
+        </ul>
+        <div class="game-feedback"><p><strong>Série de réponses maîtrisées :</strong> <span id="game-streak">0</span></p><p>Une mauvaise réponse n’enlève pas de points : elle remet simplement la carte dans le circuit de révision.</p></div>
+      </aside>
+
+      <section class="game-stage" id="game-stage" aria-labelledby="game-section-title" aria-live="polite">
+        <p class="game-status" id="game-status" role="status">Chargement de la banque de questions…</p>
+        <div class="game-empty" id="game-empty" hidden>Aucune question ne correspond à ce filtre. Essaie un autre titre, geste ou mot-clé.</div>
+        <div id="game-active" hidden>
+          <div class="game-stage-top"><span class="game-label" id="game-gesture-label"></span><span class="game-notion" id="game-code"></span></div>
+          <p class="game-notion" id="game-title-label"></p>
+          <h2 id="game-section-title"></h2>
+          <div class="game-notion" id="game-notions"></div>
+          <div class="game-prompt" id="game-prompt"></div>
+          <div class="game-actions">
+            <button class="button" id="game-reveal" type="button" aria-controls="game-answer">Afficher la réponse modèle</button>
+          </div>
+          <div class="game-answer" id="game-answer" hidden>
+            <h3>Réponse à comparer</h3>
+            <div id="game-answer-text"></div>
+            <p id="game-explanation"></p>
+          </div>
+          <div class="game-actions game-rate-actions">
+            <button class="button" id="game-review" type="button" disabled>À revoir</button>
+            <button class="button button-primary" id="game-master" type="button" disabled>Je maîtrise</button>
+          </div>
+          <p class="game-status" id="game-card-status" role="status"></p>
+        </div>
+      </section>
+    </div>
+
+    <div class="notice"><strong>Repère de couverture.</strong> La banque suit les sous-parties du programme telles qu’elles apparaissent dans les guides du dépôt. Elle est conçue pour orienter la révision; elle ne remplace ni le cours, ni la vérification des hypothèses, ni des exercices complets et des sujets en temps réel.</div>
+    <div class="hero-actions"><a class="button" href="./index.html">← Retour au portail</a><a class="button" href="./annales.html">Travailler sur les annales →</a><a class="button" href="./guides/index.html">Ouvrir les guides du programme</a></div>
+  </main>
+  <footer class="site-footer"><div class="site-shell site-footer-inner"><span>AGREG · 27 — Jeu de révision</span><span>État du jeu stocké uniquement sur cet appareil.</span></div></footer>
+</body>
+</html>

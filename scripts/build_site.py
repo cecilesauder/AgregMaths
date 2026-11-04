@@ -15,6 +15,7 @@ from urllib.parse import quote, unquote, urlsplit
 
 import bleach
 import markdown
+from build_annales import build_annales_page
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "guides"
@@ -385,7 +386,7 @@ def shell(title: str, content: str, base: str = "../", progress_total: int = 0, 
   <a class="skip-link" href="#main">Passer au contenu</a>
   <header class="topbar"><div class="site-shell topbar-inner">
     <a class="brand" href="{base}index.html" aria-label="Retour à l’accueil AGREG 27"><span class="brand-mark" aria-hidden="true">∑</span><span class="brand-name">AGREG · 27<small>Atelier de révision</small></span></a>
-    <nav class="topnav" aria-label="Navigation principale"><a href="{base}index.html#programme">Catalogue</a><a href="{base}exercices-titre-01.html">Exercices T1</a><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Activer le thème clair">☼</button></nav>
+    <nav class="topnav" aria-label="Navigation principale"><a href="{base}index.html#programme">Catalogue</a><a href="{base}jeu.html">Jeu</a><a href="{base}annales.html">Annales</a><a href="{base}exercices-titre-01.html">Exercices T1</a><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Activer le thème clair">☼</button></nav>
   </div></header>
   <main id="main" class="site-shell">{content}</main>
   <footer class="site-footer"><div class="site-shell site-footer-inner"><span>AGREG · 27 — Atelier de révision</span><span>Les supports ne remplacent pas le programme officiel.</span></div></footer>
@@ -565,7 +566,19 @@ def build_catalogue(guide_entries: list[dict]) -> list[dict]:
         "url": "exercices-titre-01.html", "track": "exercices", "kind": "exercise",
         "group": "Entraînement", "tags": ["algèbre linéaire", "rang", "dualité", "déterminant", "Gauss", "réduction"],
     }
-    all_items = [exercise, *guide_entries, *resources]
+    game = {
+        "id": "resource-game", "title": "Jeu de révision — programme complet",
+        "description": "Rappel actif, application, preuve et diagnostic d’erreur pour les sous-parties des 12 titres communs et de l’option A.",
+        "url": "jeu.html", "track": "outils", "kind": "tool", "group": "Jeu de révision",
+        "tags": ["jeu", "rappel actif", "preuves", "programme 2027", "option A"],
+    }
+    annales = {
+        "id": "resource-annales", "title": "Annales et rapports — concours docteur",
+        "description": "Index sourcé des sujets 2017–2026 et rapports disponibles 2017–2025 du concours externe spécial de mathématiques.",
+        "url": "annales.html", "track": "outils", "kind": "tool", "group": "Annales et rapports",
+        "tags": ["annales", "sujets", "rapports du jury", "concours docteur", "externe spécial"],
+    }
+    all_items = [game, annales, exercise, *guide_entries, *resources]
     data = {"title": "Révisions Agrégation Maths 2027", "resources": all_items}
     (ROOT / "assets/catalogue.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     html_count = len([x for x in resources if x["kind"] == "html"])
@@ -577,6 +590,8 @@ def build_catalogue(guide_entries: list[dict]) -> list[dict]:
 def build_routes(items: list[dict]) -> None:
     routes = [
         {"path": "/", "title": "Accueil — AGREG 27"},
+        {"path": "/jeu.html", "title": "Jeu de révision — programme 2027"},
+        {"path": "/annales.html", "title": "Annales et rapports — concours externe spécial"},
         {"path": "/exercices-titre-01.html", "title": "Exercices corrigés — Titre 1"},
         {"path": "/guides/", "title": "Guides du programme 2027"},
     ]
@@ -593,9 +608,10 @@ def build_routes(items: list[dict]) -> None:
 def main() -> None:
     guide_entries = build_guides([])
     build_exercise_page()
+    build_annales_page(ROOT, shell, katex_head)
     items = build_catalogue(guide_entries)
     build_routes(items)
-    print(f"Generated {len(guide_entries)} guide pages, one interactive exercise page and {len(items)} catalogue entries.")
+    print(f"Generated {len(guide_entries)} guide pages, exercise and annales pages, and {len(items)} catalogue entries.")
     print(f"HTML resources indexed: {len([item for item in items if item['kind'] == 'html'])}.")
 
 

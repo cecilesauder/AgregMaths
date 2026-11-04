@@ -2,6 +2,38 @@
   "title": "Révisions Agrégation Maths 2027",
   "resources": [
     {
+      "id": "resource-game",
+      "title": "Jeu de révision — programme complet",
+      "description": "Rappel actif, application, preuve et diagnostic d’erreur pour les sous-parties des 12 titres communs et de l’option A.",
+      "url": "jeu.html",
+      "track": "outils",
+      "kind": "tool",
+      "group": "Jeu de révision",
+      "tags": [
+        "jeu",
+        "rappel actif",
+        "preuves",
+        "programme 2027",
+        "option A"
+      ]
+    },
+    {
+      "id": "resource-annales",
+      "title": "Annales et rapports — concours docteur",
+      "description": "Index sourcé des sujets 2017–2026 et rapports disponibles 2017–2025 du concours externe spécial de mathématiques.",
+      "url": "annales.html",
+      "track": "outils",
+      "kind": "tool",
+      "group": "Annales et rapports",
+      "tags": [
+        "annales",
+        "sujets",
+        "rapports du jury",
+        "concours docteur",
+        "externe spécial"
+      ]
+    },
+    {
       "id": "exercise-titre-01",
       "title": "Six exercices types corrigés — Titre 1",
       "description": "Une série progressive qui couvre les six sous-parties du titre 1, avec indices, corrections détaillées et vérifications rapides.",

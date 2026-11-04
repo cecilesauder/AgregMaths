@@ -115,6 +115,7 @@ button { color: inherit; }
 .card-tag.analyse { color: var(--blue); }
 .card-tag.option { color: var(--green); }
 .card-tag.exercices { color: var(--red); }
+.card-tag.outils { color: var(--gold); }
 .done-indicator { color: var(--green); font-size: .72rem; font-weight: 800; }
 .resource-card h3 { margin: 0 0 .45rem; font: 700 1.12rem/1.28 var(--font-display); }
 .resource-card p { flex: 1; margin: 0 0 1rem; color: var(--muted); font-size: .84rem; line-height: 1.55; }
