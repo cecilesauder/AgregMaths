@@ -93,9 +93,9 @@ Ces supports ciblés complètent les guides précédents. Ils n’ont pas tous l
 
 ## Annales et rapports du jury
 
-- [Index filtrable des annales et rapports](annales.html) — sessions du concours docteur 2017–2026, avec la correspondance explicitée avec l’agrégation externe spéciale de mathématiques; sujets et rapports du jury disponibles, liens WikiPrépa 2019–2026, sujet zéro et corrigé.
+- [Index filtrable des annales et rapports](annales.html) — sessions du concours docteur 2017–2026, avec la correspondance explicitée avec l’agrégation externe spéciale de mathématiques; sujets 2017–2026 et rapports publiés 2017–2025, liens WikiPrépa 2019–2026, sujet zéro et corrigé.
 - Les PDF restent hébergés par [l’archive du jury](https://agreg.org/index.php?id=archives), le [ministère](https://www.devenirenseignant.gouv.fr/rapports-des-jurys-des-concours-de-l-agregation-de-la-session-2026-1811) ou [WikiPrépa](https://wikiprepa.fr/concours/annales/agregation/externe-speciale/maths). L’archive distingue « Concours docteur » et « Concours standard »; l’index du dépôt sépare ces catégories et ne copie pas les documents.
-- État vérifié le 4 novembre 2026 : sujets 2017–2026 et rapports 2017–2025 répertoriés; le rapport 2026 de mathématiques du concours externe spécial était alors annoncé comme à venir. Le sujet zéro et son corrigé sont proposés séparément des sessions. Les fiches annuelles WikiPrépa ne constituent pas des corrigés officiels.
+- État vérifié le 6 novembre 2026 : sujets 2017–2026 et rapports publiés 2017–2025 répertoriés; le ministère annonce toujours le rapport 2026 de mathématiques du concours externe spécial comme à venir. Le sujet zéro et son corrigé sont proposés séparément des sessions. Les fiches annuelles WikiPrépa ne constituent pas des corrigés officiels.
 - Le jeu contient actuellement **194 cartes d’annales** issues des sessions 2022–2026, avec repère de question, page PDF et lien vers le sujet officiel. L’index conserve les liens d’archives des autres années; les énoncés complets restent hébergés par leurs éditeurs.
 
 ## Jeu de révision structuré

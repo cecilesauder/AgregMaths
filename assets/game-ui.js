@@ -409,7 +409,7 @@
         : `Sujet du concours docteur · source : ${subject.source || 'archive du jury'}.`;
   }
 
-  let examDataLastChecked = '4 novembre 2026';
+  let examDataLastChecked = '6 novembre 2026';
 
   function updateExamTimer() {
     const run = readExamRun();
@@ -459,9 +459,18 @@
     byId('exam-finish').hidden = true;
   }
 
+  function formatExamCheckDate(value) {
+    if (typeof value !== 'string' || !value) return examDataLastChecked;
+    const date = new Date(/^\d{4}-\d{2}-\d{2}$/.test(value) ? `${value}T12:00:00Z` : value);
+    if (Number.isNaN(date.getTime())) return value;
+    return new Intl.DateTimeFormat('fr-FR', {
+      day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'
+    }).format(date);
+  }
+
   function populateExamSelector(data) {
     examSessions = Array.isArray(data.sessions) ? data.sessions.slice().sort((a, b) => b.year - a.year) : [];
-    examDataLastChecked = data.lastChecked || examDataLastChecked;
+    examDataLastChecked = formatExamCheckDate(data.lastChecked);
     const select = byId('exam-year-select');
     select.replaceChildren();
     for (const session of examSessions) select.add(new Option(String(session.year), String(session.year)));
