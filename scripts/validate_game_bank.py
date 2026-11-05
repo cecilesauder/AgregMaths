@@ -14,7 +14,7 @@ EXPECTED_SECTIONS = {
     "t03": ["(a)", "(b)", "(c)", "(d)", "(e)", "(f)"],
     "t04": ["(a)", "(b)", "(c)", "(d)", "(e)"],
     "t05": ["(a)", "(b)", "(c)", "(d)", "(e)"],
-    "t06": ["6.1", "6.2", "6.3(a)", "6.3(b)", "6.4", "6.5(a)", "6.5(b)"],
+    "t06": ["6.1", "6.2", "6.3(a)", "6.3(b)", "6.4", "6.5(a)", "6.5(b)", "6.6", "6.7"],
     "t07": ["7.1(a)", "7.1(b)", "7.2(a)", "7.2(b)", "7.2(c)", "7.2(d)", "7.2(e)"],
     "t08": ["8.1(a)", "8.1(b)", "8.1(c)", "8.1(d)", "8.1(e)", "8.2(a)", "8.2(b)", "8.2(c)", "8.2(d)", "8.3(a)", "8.3(b)", "8.3(c)"],
     "t09": ["9.1(a)", "9.1(b)", "9.1(c)", "9.1(d)", "9.1(e)", "9.1(f)", "9.2(a)", "9.2(b)", "9.2(c)", "9.3(a)", "9.3(b)", "9.3(c)"],
@@ -43,6 +43,15 @@ def validate() -> dict[str, int]:
 
     section_count = 0
     activity_count = 0
+    knowledge_count = 0
+    annale_count = 0
+    needs_review_count = 0
+    card_ids: set[str] = set()
+    known_codes = {
+        f"{title_id}/{section_id}"
+        for title_id, section_ids in EXPECTED_SECTIONS.items()
+        for section_id in section_ids
+    }
     for title in titles:
         title_id = title["id"]
         require_text(title.get("title"), title_id)
@@ -71,10 +80,72 @@ def validate() -> dict[str, int]:
             for activity in activities:
                 for field in ("prompt", "modelAnswer", "explanation"):
                     require_text(activity.get(field), f"{title_id}/{section_id}/{activity['gesture']}/{field}")
+                card_id = str(activity.get("id") or f"{title_id}/{section_id}/{activity['gesture']}")
+                if card_id in card_ids:
+                    raise ValueError(f"Identifiant de carte dupliqué: {card_id}")
+                card_ids.add(card_id)
+                needs_review_count += bool(activity.get("needsReview"))
+
+            knowledge_cards = section.get("knowledgeCards") or section.get("courseCards") or section.get("knowledge") or []
+            if not isinstance(knowledge_cards, list) or not knowledge_cards:
+                raise ValueError(f"{title_id}/{section_id}: aucune fiche de cours reliée")
+            for index, card in enumerate(knowledge_cards, start=1):
+                card_id = str(card.get("id") or f"{title_id}/{section_id}/cours-{index}")
+                if card_id in card_ids:
+                    raise ValueError(f"Identifiant de carte dupliqué: {card_id}")
+                card_ids.add(card_id)
+                require_text(card.get("prompt"), f"{card_id}/prompt")
+                answer = card.get("modelAnswer") or card.get("answer") or card.get("solution")
+                require_text(answer, f"{card_id}/answer")
+                if card.get("needsReview"):
+                    require_text(card.get("reviewNote"), f"{card_id}/reviewNote")
+                    needs_review_count += 1
+                knowledge_count += 1
+
+            annale_cards = section.get("annaleCards") or section.get("annales") or []
+            if not isinstance(annale_cards, list):
+                raise ValueError(f"{title_id}/{section_id}: annaleCards doit être une liste")
+            for index, card in enumerate(annale_cards, start=1):
+                card_id = str(card.get("id") or f"{title_id}/{section_id}/annale-{index}")
+                if card_id in card_ids:
+                    raise ValueError(f"Identifiant de carte dupliqué: {card_id}")
+                card_ids.add(card_id)
+                require_text(card.get("prompt"), f"{card_id}/prompt")
+                require_text(card.get("modelAnswer") or card.get("answer"), f"{card_id}/answer")
+                provenance = card.get("provenance")
+                if not isinstance(provenance, dict):
+                    raise ValueError(f"{card_id}: provenance absente")
+                if not isinstance(provenance.get("session"), int):
+                    raise ValueError(f"{card_id}: année de session absente")
+                require_text(provenance.get("question"), f"{card_id}/question")
+                require_text(provenance.get("page"), f"{card_id}/page")
+                if not str(provenance.get("subjectUrl", "")).startswith("https://"):
+                    raise ValueError(f"{card_id}: lien officiel du sujet invalide")
+                codes = provenance.get("programCodes")
+                if not isinstance(codes, list) or not codes or codes[0] != f"{title_id}/{section_id}":
+                    raise ValueError(f"{card_id}: code principal différent de sa section")
+                for code in codes + (provenance.get("relatedProgramCodes") or []):
+                    if code not in known_codes:
+                        raise ValueError(f"{card_id}: code de programme inconnu: {code}")
+                if provenance.get("mappingConfidence") not in {"direct", "probable"}:
+                    raise ValueError(f"{card_id}: confiance de rattachement invalide")
+                if provenance.get("mappingConfidence") == "probable":
+                    require_text(card.get("reviewNote"), f"{card_id}/reviewNote")
+                    needs_review_count += 1
+                annale_count += 1
+
             section_count += 1
             activity_count += len(activities)
 
-    return {"titles": len(titles), "subsections": section_count, "activities": activity_count}
+    return {
+        "titles": len(titles),
+        "subsections": section_count,
+        "activities": activity_count,
+        "knowledgeCards": knowledge_count,
+        "annaleCards": annale_count,
+        "needsReview": needs_review_count,
+        "cardsTotal": activity_count + knowledge_count + annale_count,
+    }
 
 
 if __name__ == "__main__":

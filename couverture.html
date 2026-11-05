@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11131a">
+  <meta name="description" content="Matrice de couverture du programme officiel 2027 par fiches de cours, exercices originaux et questions d’annales.">
+  <title>Couverture du programme — Agrégation Maths 2027 · AGREG 27</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./assets/site.css">
+  <link rel="stylesheet" href="./assets/tools.css">
+  <script defer src="./assets/site.js"></script>
+  <script defer src="./assets/coverage-ui.js"></script>
+</head>
+<body data-base="./">
+  <a class="skip-link" href="#main">Passer au contenu</a>
+  <header class="topbar"><div class="site-shell topbar-inner">
+    <a class="brand" href="./index.html" aria-label="Retour à l’accueil AGREG 27"><span class="brand-mark" aria-hidden="true">∑</span><span class="brand-name">AGREG · 27<small>Atelier de révision</small></span></a>
+    <nav class="topnav" aria-label="Navigation principale"><a href="./index.html#programme">Catalogue</a><a href="./jeu.html">Séance du jour</a><a href="./annales.html">Annales</a><a href="./couverture.html" aria-current="page">Couverture</a><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Activer le thème clair">☼</button></nav>
+  </div></header>
+
+  <main id="main" class="site-shell">
+    <div class="breadcrumb"><a href="./index.html">Accueil</a><span aria-hidden="true">/</span><span>Couverture du programme</span></div>
+    <section class="page-heading"><span class="eyebrow">Programme officiel · session 2027</span><h1>Une carte claire de ce qui est entraîné.</h1><p>Chaque sous-partie indique combien de fiches de cours, d’exercices originaux et de questions d’annales lui sont reliées. Les rattachements d’annales « probables » et les fiches à vérifier restent signalés; la matrice mesure la présence de cartes, pas l’exhaustivité de chaque preuve ou variante.</p></section>
+
+    <section class="coverage-stats stats" aria-label="Contenu de la banque" aria-live="polite">
+      <div class="stat"><strong id="coverage-total-sections">—</strong><span>sous-parties officielles</span></div>
+      <div class="stat"><strong id="coverage-total-course">—</strong><span>fiches de cours</span></div>
+      <div class="stat"><strong id="coverage-total-exercises">—</strong><span>exercices originaux</span></div>
+      <div class="stat"><strong id="coverage-total-annales">—</strong><span>cartes issues d’annales</span></div>
+      <div class="stat"><strong id="coverage-with-annales">—</strong><span>sous-parties avec au moins une annale liée</span></div>
+      <div class="stat"><strong id="coverage-review">—</strong><span>cartes signalées à vérifier</span></div>
+    </section>
+
+    <aside class="coverage-notice" id="coverage-notice">Chargement de la matrice…</aside>
+    <section class="coverage-controls" aria-label="Filtres de couverture">
+      <label for="coverage-search">Rechercher une notion, un code ou un titre<input id="coverage-search" type="search" autocomplete="off" placeholder="Ex. 6.7, convexité, Fourier…"></label>
+      <label for="coverage-title-filter">Titre du programme<select id="coverage-title-filter"><option value="all">Tous les titres</option></select></label>
+      <label for="coverage-status-filter">Afficher<select id="coverage-status-filter"><option value="all">Toutes les sous-parties</option><option value="no-annales">Sans annale reliée</option><option value="review">Avec une carte à vérifier</option></select></label>
+      <p id="coverage-result-count" role="status" aria-live="polite">Chargement…</p>
+    </section>
+    <div id="coverage-error" class="game-empty" role="alert" hidden>La matrice de couverture n’a pas pu être chargée. Recharge la page ou ouvre directement la <a href="assets/coverage.json">banque structurée</a>.</div>
+    <div id="coverage-results" class="coverage-results" aria-live="polite" aria-busy="true"><p class="game-empty">Préparation des sous-parties…</p></div>
+
+    <div class="hero-actions coverage-backlinks"><a class="button button-primary" href="./jeu.html#daily-session">Démarrer la séance du jour →</a><a class="button" href="./guides/index.html">Ouvrir les guides →</a><a class="button" href="./annales.html">Parcourir les annales →</a></div>
+  </main>
+  <footer class="site-footer"><div class="site-shell site-footer-inner"><span>AGREG · 27 — Couverture du programme</span><span>Sources liées à la banque de révision; progression conservée uniquement dans ton navigateur.</span></div></footer>
+</body>
+</html>

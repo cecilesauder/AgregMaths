@@ -34,6 +34,22 @@
       ]
     },
     {
+      "id": "resource-coverage",
+      "title": "Couverture du programme par sous-partie",
+      "description": "Repère les fiches de cours, exercices originaux et questions d’annales reliés à chaque sous-partie officielle, ainsi que les cartes à vérifier.",
+      "url": "couverture.html",
+      "track": "outils",
+      "kind": "tool",
+      "group": "Couverture du programme",
+      "tags": [
+        "couverture",
+        "programme 2027",
+        "fiches de cours",
+        "exercices",
+        "annales"
+      ]
+    },
+    {
       "id": "exercise-titre-01",
       "title": "Six exercices types corrigés — Titre 1",
       "description": "Une série progressive qui couvre les six sous-parties du titre 1, avec indices, corrections détaillées et vérifications rapides.",

@@ -1,8 +1,14 @@
 # Ressources de révision — Agrégation externe spéciale de mathématiques, session 2027
 
-Ce dépôt rassemble des guides de repérage du programme, des fiches de révision, exercices corrigés, outils interactifs et ressources de préparation à l’option A. **Le programme ministériel fait foi** : les fiches et guides de ce dépôt sont des supports de travail, pas un cours complet ni une certification d’exhaustivité.
+Ce dépôt propose un point d’entrée quotidien pour préparer l’agrégation externe spéciale de mathématiques, session 2027. Le parcours relie les notions à mémoriser, les exercices de consolidation et des questions d’annales, tout en donnant accès aux guides et aux sujets officiels complets. **Le programme ministériel fait foi** : la banque de cartes structure la révision, mais ne certifie ni la maîtrise ni l’exhaustivité de chaque démonstration.
 
-> **Site de révision interactif :** publication GitHub Pages activée depuis `main`, à la racine du dépôt. L’URL publique est visible dans les paramètres Pages du dépôt.
+> **Site de révision :** publié par GitHub Pages depuis `main`, à la racine du dépôt. L’adresse est visible dans les paramètres Pages du dépôt.
+
+## Démarrer par la séance du jour
+
+Ouvre la page d’accueil publiée par GitHub Pages puis choisis **Démarrer ma séance équilibrée**. Tu peux aussi cibler directement la mémorisation des fiches, les exercices ou les annales, ou ouvrir un sujet complet avec un chronomètre local indicatif de six heures. Essaie de répondre sans ouvrir le modèle, révèle-le ensuite, puis autoévalue ta réponse : les cartes dues sont prioritaires et les prochaines reprises sont espacées automatiquement.
+
+La progression et le carnet d’erreurs sont enregistrés dans le stockage local de ce navigateur, sur cet appareil. Il n’y a ni compte ni synchronisation entre appareils.
 
 ## Programme officiel et épreuves
 
@@ -15,7 +21,7 @@ Le programme commun comporte **12 titres**. Le programme spécifique de modélis
 
 ## Guides de couverture du programme 2027
 
-Les treize fichiers ci-dessous suivent les titres communs puis le programme spécifique de l’option A. Chacun propose des notions, résultats à connaître, pièges ou réserves de périmètre et une checklist. Ils servent de **carte de couverture et d’outil d’auto-évaluation** : ils ne remplacent ni les démonstrations du cours, ni un entraînement suivi sur exercices et sujets.
+Les treize fichiers ci-dessous suivent les titres communs puis le programme spécifique de l’option A. Chacun propose des notions, résultats à connaître, pièges ou réserves de périmètre et une checklist. La banque et sa [matrice de couverture](couverture.html) relient ces guides aux 95 sous-parties recensées pour le programme 2027. Les cartes permettent de travailler définitions, hypothèses, méthodes et rappels; les guides restent disponibles pour consulter les énoncés complets.
 
 | Programme | Guide |
 |---|---|
@@ -33,7 +39,7 @@ Les treize fichiers ci-dessous suivent les titres communs puis le programme spé
 | Titre 12 — Méthodes numériques | [Guide et checklist](05-programme-2027/titre-12.md) |
 | Programme spécifique — Option A, probabilités et statistiques | [Guide et checklist](05-programme-2027/titre-A.md) |
 
-Les titres officiels et leurs sous-parties ont été comparés au PDF ministériel. Là où celui-ci ne détaille pas une liste d’exercices, la profondeur attendue ou une variante de théorème, les guides signalent cette limite au lieu de présenter un choix pédagogique comme une exigence textuelle du programme. Une première relecture indépendante des 13 guides a ensuite conduit à des corrections ciblées; une validation après corrections et le contrôle avec les cours suivis restent nécessaires.
+Les titres officiels et leurs sous-parties ont été comparés au PDF ministériel. Le guide du titre 6 a été complété pour inclure les §§ 6.6 (suites et séries de fonctions) et 6.7 (convexité), présents dans le programme officiel. Là où celui-ci ne détaille pas une liste d’exercices, la profondeur attendue ou une variante de théorème, les guides signalent cette limite au lieu de présenter un choix pédagogique comme une exigence textuelle du programme. Les cartes restent à confronter aux cours et aux documents de référence.
 
 ## Ressources pédagogiques existantes
 
@@ -89,25 +95,29 @@ Ces supports ciblés complètent les guides précédents. Ils n’ont pas tous l
 
 - [Index filtrable des annales et rapports](annales.html) — sessions du concours docteur 2017–2026, avec la correspondance explicitée avec l’agrégation externe spéciale de mathématiques; sujets et rapports du jury disponibles, liens WikiPrépa 2019–2026, sujet zéro et corrigé.
 - Les PDF restent hébergés par [l’archive du jury](https://agreg.org/index.php?id=archives), le [ministère](https://www.devenirenseignant.gouv.fr/rapports-des-jurys-des-concours-de-l-agregation-de-la-session-2026-1811) ou [WikiPrépa](https://wikiprepa.fr/concours/annales/agregation/externe-speciale/maths). L’archive distingue « Concours docteur » et « Concours standard »; l’index du dépôt sépare ces catégories et ne copie pas les documents.
-- État vérifié le 4 novembre 2026 : sujets 2017–2026 et rapports 2017–2025 répertoriés; le ministère annonce que le rapport 2026 de mathématiques du concours externe spécial sera publié prochainement. Le sujet zéro et son corrigé sont proposés séparément des sessions. Les fiches annuelles WikiPrépa ne constituent pas des corrigés officiels.
+- État vérifié le 4 novembre 2026 : sujets 2017–2026 et rapports 2017–2025 répertoriés; le rapport 2026 de mathématiques du concours externe spécial était alors annoncé comme à venir. Le sujet zéro et son corrigé sont proposés séparément des sessions. Les fiches annuelles WikiPrépa ne constituent pas des corrigés officiels.
+- Le jeu contient actuellement **194 cartes d’annales** issues des sessions 2022–2026, avec repère de question, page PDF et lien vers le sujet officiel. L’index conserve les liens d’archives des autres années; les énoncés complets restent hébergés par leurs éditeurs.
 
 ## Jeu de révision structuré
 
-La banque `assets/game-bank.json` couvre les **93 sous-parties** décrites dans les guides des 12 titres communs et de l’option A : **372 activités**, avec quatre gestes par sous-partie — rappel actif, application, preuve et diagnostic d’erreur. Elle a fait l’objet d’une relecture indépendante par titre; les corrections ciblées relevées ont été intégrées, puis les titres concernés ont été relus à nouveau. Cette vérification porte sur la cohérence avec les guides du dépôt : ce n’est ni une certification formelle de toutes les preuves ni une garantie que chaque variante d’exercice possible est représentée. Le jeu propose des réponses modèles, une auto-évaluation et des rappels espacés enregistrés uniquement dans le navigateur; aucune preuve libre n’est notée automatiquement.
+La banque `assets/game-bank.json` relie les **95 sous-parties** des 12 titres communs et de l’option A à **315 fiches de cours**, **380 exercices originaux** et **194 cartes d’annales** des sessions 2022–2026, soit **889 cartes**. Les fiches de cours et exercices sont présents pour chacune des 95 sous-parties; les quatre gestes des exercices sont le rappel actif, l’application, la preuve et le diagnostic d’erreur. La séance équilibrée privilégie les cartes dues, et des modes séparés permettent de mémoriser, pratiquer ou travailler les annales.
+
+**68 cartes sont explicitement signalées « à vérifier »** : 14 fiches de cours et 54 rattachements d’annales jugés probables. La [matrice de couverture](couverture.html) permet de les filtrer. Les réponses modèles soutiennent l’auto-évaluation, mais aucune preuve libre n’est notée automatiquement; une carte d’annale résume le travail demandé et renvoie au PDF, elle ne remplace pas la résolution d’un sujet complet en temps limité.
 
 Après toute modification de la banque, vérifier sa structure et ses codes de programme avec `python3 scripts/validate_game_bank.py`.
 
 ## Cahier des charges — ce qu’il reste à faire
 
-Les guides relient maintenant le dépôt aux **12 titres communs et au programme de l’option A**. L’audit de couverture des 13 guides a été effectué à partir du programme officiel; une relecture indépendante a identifié des lacunes et énoncés prioritaires, puis des corrections ciblées ont été intégrées. Cela ne certifie pas toutes les preuves, tous les exercices, les ressources historiques ni les scripts. Utiliser la checklist de chaque guide et ne cocher un point qu’après l’avoir réellement travaillé.
+Le point d’entrée quotidien relie les **12 titres communs et l’option A** aux fiches de cours, aux exercices originaux et aux cartes issues des annales. L’audit repère 95 sous-parties, mais la présence d’une carte n’est pas une preuve que chaque notion est maîtrisée ou que toutes les variantes d’exercice sont couvertes. Les sujets officiels restent accessibles pour l’entraînement complet, et les cartes signalées doivent encore être vérifiées.
 
 ### 1. Valider la couverture et les énoncés
 
-**État au 24 octobre 2026 : première passe d’audit et corrections prioritaires effectuées; la validation finale après correction et l’entraînement restent à faire.**
+**État au 5 novembre 2026 : les 95 sous-parties sont reliées à la banque; les pages de guide ont été contrôlées à 390 px et les formules KaTeX n’affichent pas d’erreur. La validation mathématique complète des cartes reste à faire.**
 
-- [x] Comparer les 12 titres communs et le programme spécifique de l’option A au PDF officiel, et relever les écarts de couverture ou de formulation.
+- [x] Comparer les 12 titres communs et le programme spécifique de l’option A au PDF officiel, et relever les écarts de couverture ou de formulation, y compris les §§ 6.6 et 6.7 du titre 6.
 - [x] Faire une première relecture indépendante des guides et intégrer les corrections prioritaires repérées : définitions et hypothèses, exemples de groupes et de géométrie, résultats d’analyse et de mesure, méthode de la puissance, conventions de martingales et exemples de statistique.
-- [ ] Relire les 13 guides **après correction**, vérifier chaque formule et confronter les formulations aux cours et documents de référence utilisés pour la préparation.
+- [x] Vérifier le rendu KaTeX et l’absence de débordement horizontal à 390 px sur les 13 guides de programme et les fiches A5.
+- [ ] Relire les énoncés mathématiques des 13 guides **après correction** et confronter les formulations aux cours et documents de référence utilisés pour la préparation.
 - [ ] Compléter les exemples, contre-exemples, preuves et exercices corrigés notion par notion; les ajouts de cette passe sont ciblés et ne signifient pas que chaque notion possède déjà un exercice validé.
 - [ ] Garder les ressources historiques comme compléments ciblés; ne pas les étiqueter « complètes » sur la seule base de leur présence dans une rubrique.
 
@@ -123,11 +133,11 @@ Les guides relient maintenant le dépôt aux **12 titres communs et au programme
 ### 3. Construire une pratique systématique
 
 - [x] Produire une première série de six exercices types corrigés pour le titre 1, à raison d’un exercice par sous-partie officielle ([recueil](05-programme-2027/exercices-titre-01.md)).
-- [x] Ajouter un jeu interactif structuré pour les sous-parties des 12 titres communs et de l’option A, avec rappel, application, preuve et diagnostic d’erreur; les cartes proposent une auto-évaluation et une reprise espacée, pas une correction automatique des preuves libres.
-- [ ] Étendre la pratique avec des exercices complets et des problèmes transversaux classés par notion et difficulté; relire les réponses modèles au fil du travail avec les cours et les sources.
-- [ ] Tenir un carnet d’erreurs : notion, hypothèse oubliée, raison de l’erreur, correction, exercice de contrôle et date de reprise.
-- [ ] Organiser des révisions espacées des définitions, hypothèses, preuves fondamentales, méthodes de calcul et exemples standards; alterner rappel sans notes et résolution d’exercices.
-- [ ] Travailler sur les sujets et rapports officiels disponibles et noter pour chaque sujet les thèmes mobilisés, les méthodes, les erreurs et les points à retravailler.
+- [x] Relier les 95 sous-parties aux fiches de cours, exercices originaux et questions d’annales 2022–2026; proposer une séance équilibrée et des modes dédiés, l’auto-évaluation et les reprises espacées restant locales au navigateur.
+- [ ] Étendre les exercices complets et corrigés au-delà du titre 1; revoir les réponses modèles au fil de l’étude des cours et des sources.
+- [x] Ajouter un carnet d’erreurs local et des rappels espacés; il reste à l’utiliser régulièrement et à vérifier que les erreurs conduisent à une reprise utile.
+- [x] Ajouter les annales 2022–2026 à la banque quotidienne avec leur provenance; les autres sujets 2017–2026 restent accessibles dans l’index, et les sessions 2017–2018 ne sont pas transformées en cartes du jeu.
+- [ ] Résoudre des sujets complets en temps limité et noter les thèmes, méthodes, erreurs et points à retravailler; le jeu fournit le lien officiel et un chronomètre indicatif, mais le bilan et la correction restent à faire soi-même.
 
 ### 4. Préparer les épreuves
 
@@ -148,9 +158,9 @@ Relier chaque nouveau fichier à un titre et une sous-partie du programme offici
 
 ## Site interactif et génération
 
-Le portail statique est à la racine du dépôt (`index.html`). Il catalogue les 24 fiches HTML d’origine sans les aplatir, les 13 guides de programme et les exercices interactifs du titre 1. Le jeu complet est accessible dans [`jeu.html`](jeu.html) : `assets/game-ui.js` gère l’interface, `assets/game-engine.js` sélectionne les cartes et mémorise les rappels espacés, et `assets/game-bank.json` porte les activités structurées par sous-partie et par geste. La progression reste dans le stockage local du navigateur; aucun compte ni envoi de données n’est utilisé. Les formules sont composées par KaTeX.
+Le portail statique est à la racine du dépôt (`index.html`). Il catalogue les ressources HTML d’origine, les 13 guides de programme, le recueil interactif du titre 1, le jeu quotidien et la matrice de couverture. Dans [`jeu.html`](jeu.html), `assets/game-ui.js` gère l’interface, `assets/game-engine.js` sélectionne les cartes et planifie les rappels, et `assets/game-bank.json` contient les activités structurées par sous-partie et par geste. La progression reste dans le stockage local du navigateur; aucun compte ni envoi de données n’est utilisé. Les formules des guides et des cartes sont composées par KaTeX.
 
-La page [`annales.html`](annales.html) est un index filtrable des sujets et rapports disponibles, alimenté par [`assets/annales.json`](assets/annales.json). Elle attribue les sources et garde les PDF sur les sites du jury, du ministère ou de WikiPrépa.
+La page [`annales.html`](annales.html) est un index filtrable des sujets et rapports disponibles, alimenté par [`assets/annales.json`](assets/annales.json). Elle attribue les sources et garde les PDF sur les sites du jury, du ministère ou de WikiPrépa. La page [`couverture.html`](couverture.html) montre les ressources reliées à chacune des 95 sous-parties.
 
 Après modification des guides Markdown ou des entrées du catalogue, régénérer les pages dérivées avec Python 3 :
 
@@ -159,4 +169,4 @@ python3 -m pip install -r requirements-site.txt
 python3 scripts/build_site.py
 ```
 
-Le générateur reconstruit aussi `annales.html` à partir de `assets/annales.json`; la banque de jeu est un JSON statique contrôlé et versionné séparément. La publication GitHub Pages utilise la branche `main` et sa racine; les fichiers HTML pédagogiques existants restent les sources de leurs fiches, et le dossier scientifique retiré n’est pas réintroduit par le générateur.
+Le générateur reconstruit aussi `annales.html` à partir de `assets/annales.json`; la banque de jeu est un JSON statique contrôlé et versionné séparément. La publication GitHub Pages utilise la branche `main` et sa racine. Le dépôt public est limité aux ressources pédagogiques; `research/`, les notes de cartographie internes, les PDF téléchargés et tout dossier hors révision sont exclus.

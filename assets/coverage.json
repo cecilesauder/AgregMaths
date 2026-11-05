@@ -1,0 +1,3480 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-11-04",
+  "programSource": {
+    "title": "Programme officiel de l’agrégation externe spéciale de mathématiques — session 2027",
+    "url": "https://www.devenirenseignant.gouv.fr/media/20323/download"
+  },
+  "notice": "Cette matrice dénombre la présence de cartes par sous-partie officielle. Elle ne certifie pas que toutes les variantes, preuves ou formulations exigibles sont représentées. Les cartes signalées comme à vérifier restent visibles dans le jeu.",
+  "totals": {
+    "titles": 13,
+    "officialSubsections": 95,
+    "subsectionsWithCourseCards": 95,
+    "subsectionsWithOriginalExercises": 95,
+    "subsectionsWithAnnales": 63,
+    "courseCards": 315,
+    "originalExercises": 380,
+    "annaleQuestionCards": 194,
+    "courseCardsNeedingReview": 14,
+    "originalExercisesNeedingReview": 0,
+    "annaleCardsNeedingReview": 54
+  },
+  "titles": [
+    {
+      "id": "t01",
+      "title": "Titre 1 — Algèbre linéaire",
+      "sourceGuide": "05-programme-2027/titre-01.md",
+      "officialSubsections": 6,
+      "sections": [
+        {
+          "code": "t01/1.1(a)",
+          "sectionId": "1.1(a)",
+          "label": "1.1 (a) Espaces vectoriels, applications linéaires, constructions, familles et bases",
+          "notionCount": 5,
+          "notionNames": [
+            "Espaces vectoriels, applications linéaires, espaces L(E,F), endomorphismes et groupe GL(E).",
+            "Produit d’espaces vectoriels; sous-espaces, noyau et image; injectivité et noyau nul.",
+            "Quotients, projection canonique et théorème d’isomorphisme E/ker(f) ≃ Im(f).",
+            "Sommes de sous-espaces, somme directe et supplémentaires.",
+            "Familles libres, génératrices et bases."
+          ],
+          "counts": {
+            "courseCards": 5,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 16,
+            "annaleCardsLinked": 17,
+            "annaleSessions": [
+              2022,
+              2023,
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t01/1.1(b)",
+          "sectionId": "1.1(b)",
+          "label": "1.1 (b) Sous-espaces stables, valeurs propres et lemme des noyaux",
+          "notionCount": 4,
+          "notionNames": [
+            "Stabilité d’un sous-espace par un endomorphisme.",
+            "Valeurs propres, vecteurs propres et sous-espaces propres, définis sur le corps de base.",
+            "Évaluation des polynômes en un endomorphisme.",
+            "Lemme des noyaux pour des polynômes premiers entre eux et décomposition associée."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 5,
+            "annaleCardsLinked": 7,
+            "annaleSessions": [
+              2022,
+              2023,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t01/1.2(a)",
+          "sectionId": "1.2(a)",
+          "label": "1.2 (a) Dimension, rang, dualité et orthogonalité",
+          "notionCount": 4,
+          "notionNames": [
+            "Dimension finie, bases, isomorphisme avec Kⁿ et existence de supplémentaires.",
+            "Rang d’une application et d’une famille; théorème du rang.",
+            "Espace dual, base duale, transposée et bidualité en dimension finie.",
+            "Rang d’un système d’équations; annihilateur et orthogonalité définie par une forme."
+          ],
+          "counts": {
+            "courseCards": 5,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 3,
+            "annaleCardsLinked": 15,
+            "annaleSessions": [
+              2022,
+              2023,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t01/1.2(b)",
+          "sectionId": "1.2(b)",
+          "label": "1.2 (b) Applications multilinéaires, déterminant, orientation et groupe spécial linéaire",
+          "notionCount": 4,
+          "notionNames": [
+            "Multilinéarité séparée en chaque variable et alternance.",
+            "Déterminant d’une famille ordonnée et d’un endomorphisme; critère de base et d’inversibilité sur un corps.",
+            "Groupe spécial linéaire SL(E), défini par det=1.",
+            "Orientation d’un espace réel de dimension finie non nulle et signe du déterminant."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 2,
+            "annaleCardsLinked": 3,
+            "annaleSessions": [
+              2023,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 2
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t01/1.2(c)",
+          "sectionId": "1.2(c)",
+          "label": "1.2 (c) Matrices sur un anneau ou un corps, pivot de Gauss et applications",
+          "notionCount": 4,
+          "notionNames": [
+            "Matrices sur anneau commutatif ou corps; déterminant, inversibilité et opérations élémentaires sur lignes et colonnes.",
+            "Matrice d’une application linéaire, changement de base et similarité pour un endomorphisme.",
+            "Rang sur un corps et formes échelonnées; méthode du pivot de Gauss.",
+            "Applications aux systèmes, à l’inversion, au rang, au déterminant et aux équations de sous-espaces."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 10,
+            "annaleCardsLinked": 33,
+            "annaleSessions": [
+              2022,
+              2023,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 8
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t01/1.2(d)",
+          "sectionId": "1.2(d)",
+          "label": "1.2 (d) Polynômes, Cayley–Hamilton, réduction des endomorphismes et exponentielle",
+          "notionCount": 4,
+          "notionNames": [
+            "Polynôme caractéristique selon la convention χᵤ(X)=det(XI−u), polynômes annulateurs et minimal, Cayley–Hamilton.",
+            "Diagonalisation et trigonalisation; contrôle du scindage sur le corps de base.",
+            "Nilpotence, sous-espaces caractéristiques et décomposition de Dunford sous l’hypothèse de scindage indiquée.",
+            "Exponentielle de matrices réelles ou complexes, cas commutant et nilpotent, lien avec les systèmes différentiels linéaires."
+          ],
+          "counts": {
+            "courseCards": 6,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 10,
+            "annaleCardsLinked": 33,
+            "annaleSessions": [
+              2022,
+              2023,
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 1,
+            "originalExercises": 0,
+            "annalesLinked": 6
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "t02",
+      "title": "Titre 2 — Groupes",
+      "sourceGuide": "05-programme-2027/titre-02.md",
+      "officialSubsections": 4,
+      "sections": [
+        {
+          "code": "t02/(a)",
+          "sectionId": "(a)",
+          "label": "(a) Groupes, actions et géométrie des isométries",
+          "notionCount": 4,
+          "notionNames": [
+            "Groupes, morphismes (noyau et image), sous-groupes, sous-groupe engendré, produit direct et ordre d’un élément; théorème de Lagrange pour les groupes finis.",
+            "Sous-groupes normaux et quotients; premier théorème d’isomorphisme.",
+            "Actions de groupes, stabilisateurs, orbites, espace quotient et théorème orbite-stabilisateur; formule des classes et classes de conjugaison (centre, centralisateur).",
+            "Groupes d’isométries de polygones et polyèdres réguliers en dimensions deux et trois; groupe diédral, rotations, réflexions, actions sur sommets/arêtes/faces, fidélité et identification par les relations et stabilisateurs."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 15,
+            "annaleCardsLinked": 19,
+            "annaleSessions": [
+              2022,
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 8
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t02/(b)",
+          "sectionId": "(b)",
+          "label": "(b) Groupes cycliques, groupes abéliens finis et racines de l’unité",
+          "notionCount": 3,
+          "notionNames": [
+            "Groupes cycliques; groupes cycliques finis et générateurs dans ℤ/nℤ; ordre de g^k calculé par le pgcd.",
+            "Groupes abéliens finis et théorème de structure en produits de groupes cycliques, avec décompositions en facteurs de puissances premières ou en facteurs invariants.",
+            "Groupe μ_n des racines complexes n-ièmes de l’unité; racines primitives, ordre et indicatrice d’Euler."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 9,
+            "annaleSessions": [
+              2023,
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 5
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t02/(c)",
+          "sectionId": "(c)",
+          "label": "(c) Permutations, signature, groupe alterné et déterminants",
+          "notionCount": 3,
+          "notionNames": [
+            "Groupe des permutations d’un ensemble fini; transpositions; décomposition en transpositions et en cycles à supports disjoints; ordre d’une permutation.",
+            "Signature comme morphisme, groupe alterné comme noyau et cardinalité |A_n|=n!/2 pour n≥2.",
+            "Déterminant des matrices de permutation et formule de Leibniz; effet des permutations de lignes sur le signe du déterminant."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 6,
+            "annaleCardsLinked": 8,
+            "annaleSessions": [
+              2022,
+              2024
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 4
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t02/(d)",
+          "sectionId": "(d)",
+          "label": "(d) Groupes classiques d’automorphismes d’un espace vectoriel de dimension finie",
+          "notionCount": 4,
+          "notionNames": [
+            "Définitions de GL(E) et SL(E), groupes d’automorphismes linéaires et sous-groupe de déterminant 1; caractérisation SL(E)=ker(det).",
+            "Définitions de O(E) et SO(E) sur un espace euclidien réel; équations matricielles orthogonales et déterminant 1.",
+            "Définitions de U(E) et SU(E) sur un espace hermitien complexe; équations unitaires et déterminant 1.",
+            "Hypothèses de corps, dimension finie, forme préservée, base orthonormée; distinction entre transformations linéaires fixant l’origine et isométries affines."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "t03",
+      "title": "Titre 3 — Anneaux, corps et polynômes",
+      "sourceGuide": "05-programme-2027/titre-03.md",
+      "officialSubsections": 6,
+      "sections": [
+        {
+          "code": "t03/(a)",
+          "sectionId": "(a)",
+          "label": "(a) Anneaux, morphismes, sous-anneaux, idéaux et quotients",
+          "notionCount": 5,
+          "notionNames": [
+            "Anneaux unitaires, morphismes d’anneaux, noyau et image, sous-anneaux; conventions sur la commutativité et la préservation de 1.",
+            "Anneau $\\mathbb Z$, unités, sous-anneaux et morphismes; produits d’anneaux et projections.",
+            "Idéaux d’un anneau commutatif, anneaux quotients et premier théorème d’isomorphisme; idéaux premiers et maximaux, critères par quotient.",
+            "Théorème chinois pour des idéaux deux à deux comaximaux.",
+            "Algèbre associative sur un anneau commutatif, avec ou sans unité selon convention."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 2,
+            "annaleSessions": [
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t03/(b)",
+          "sectionId": "(b)",
+          "label": "(b) Polynômes univariés et multivariés",
+          "notionCount": 5,
+          "notionNames": [
+            "Anneaux de polynômes univariés et multivariés sur un anneau commutatif; racines et multiplicité, définition par divisibilité et lien avec les dérivées.",
+            "Polynômes scindés et relations de Viète entre coefficients et fonctions symétriques élémentaires des racines.",
+            "Sommes de Newton reliant sommes de puissances et coefficients.",
+            "Dérivée formelle, formule de Taylor en caractéristique nulle et précaution sur les divisions par les factorielles.",
+            "Polynômes homogènes, décomposition unique en composantes homogènes et polynômes symétriques; fonctions symétriques élémentaires."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 9,
+            "annaleCardsLinked": 25,
+            "annaleSessions": [
+              2022,
+              2023,
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 14
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t03/(c)",
+          "sectionId": "(c)",
+          "label": "(c) Corps, caractéristique et extensions",
+          "notionCount": 6,
+          "notionNames": [
+            "Corps et sous-corps; caractéristique, morphisme de Frobenius, injectivité et cas où il est un automorphisme.",
+            "Extensions et degré; corps des fractions d’un anneau intègre; $\\mathbb Q=\\operatorname{Frac}(\\mathbb Z)$ et inclusions $\\mathbb Q\\subset\\mathbb R\\subset\\mathbb C$.",
+            "Éléments algébriques et transcendants, extensions algébriques et lien entre finitude du degré et algébricité.",
+            "Théorème de d’Alembert-Gauss et corps algébriquement clos.",
+            "Corps de rupture et corps de décomposition.",
+            "Corps finis de cardinal $p^n$ et groupe multiplicatif cyclique."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 4,
+            "annaleSessions": [
+              2022,
+              2023,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 2
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t03/(d)",
+          "sectionId": "(d)",
+          "label": "(d) Divisibilité, factorisation, anneaux euclidiens et polynômes irréductibles",
+          "notionCount": 6,
+          "notionNames": [
+            "Divisibilité dans un anneau commutatif intègre; unités, associés, irréductibles, éléments premiers et éléments premiers entre eux.",
+            "Anneaux factoriels, existence et unicité de factorisation; PGCD et PPCM.",
+            "Anneaux principaux et identité de Bézout.",
+            "Anneaux euclidiens, division euclidienne et algorithme d’Euclide; cas de $\\mathbb Z$ et de $K[X]$.",
+            "Lemme de Gauss et factorialité de $A[X]$ lorsque $A$ est factoriel.",
+            "Polynômes irréductibles, dépendance au corps de base, polynômes cyclotomiques et critère d’Eisenstein."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 3,
+            "annaleCardsLinked": 8,
+            "annaleSessions": [
+              2022,
+              2023,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 2
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t03/(e)",
+          "sectionId": "(e)",
+          "label": "(e) Congruences, nombres premiers et anneaux $\\mathbb Z/n\\mathbb Z$",
+          "notionCount": 5,
+          "notionNames": [
+            "Congruences dans $\\mathbb Z$ et anneau quotient $\\mathbb Z/n\\mathbb Z$.",
+            "Nombres premiers, décomposition unique en facteurs premiers et divisibilité.",
+            "Éléments inversibles de $\\mathbb Z/n\\mathbb Z$ et critère de coprimalité; critère pour que le quotient soit un corps.",
+            "Fonction indicatrice d’Euler, formules pour les puissances premières et multiplicativité pour des entiers premiers entre eux.",
+            "Théorèmes d’Euler et de Fermat; résolution des congruences linéaires."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 2,
+            "annaleSessions": [
+              2023,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 2
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t03/(f)",
+          "sectionId": "(f)",
+          "label": "(f) Fractions rationnelles et éléments simples",
+          "notionCount": 4,
+          "notionNames": [
+            "Corps des fractions rationnelles $K(X)$ d’une indéterminée sur un corps; égalité des fractions et réduction par le PGCD.",
+            "Division euclidienne séparant partie polynomiale et fraction propre.",
+            "Décomposition en éléments simples selon les facteurs irréductibles et leurs puissances; unicité et degrés des numérateurs.",
+            "Différence des factorisations sur $\\mathbb R$ et $\\mathbb C$, pôles réels et facteurs quadratiques irréductibles réels."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 1,
+            "annaleSessions": [
+              2024
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "t04",
+      "title": "Titre 4 — Formes bilinéaires et quadratiques",
+      "sourceGuide": "05-programme-2027/titre-04.md",
+      "officialSubsections": 5,
+      "sections": [
+        {
+          "code": "t04/(a)",
+          "sectionId": "(a)",
+          "label": "(a) Formes bilinéaires, alternées et symétriques ; formes quadratiques et forme polaire ; orthogonalité, non-dégénérescence, adjoint, matrices, changement de base et rang",
+          "notionCount": 5,
+          "notionNames": [
+            "Bilinéalité ; formes symétriques et alternées, rôle de la caractéristique 2.",
+            "Formes quadratiques et polaires ; reconstruction hors caractéristique 2, vigilance en caractéristique 2.",
+            "Orthogonalité ; radical, non-dégénérescence et application associée vers le dual.",
+            "Adjoint relativement à une forme non dégénérée ; expression matricielle réelle.",
+            "Matrice de Gram, rang et congruence par changement de base, à distinguer de la similitude d’un endomorphisme."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 4,
+            "annaleCardsLinked": 14,
+            "annaleSessions": [
+              2023,
+              2025
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 10
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t04/(b)",
+          "sectionId": "(b)",
+          "label": "(b) Orthogonalité, sous-espaces isotropes, somme de carrés, inertie de Sylvester, classification sur R ou C, orthogonalisation",
+          "notionCount": 6,
+          "notionNames": [
+            "Orthogonal d’un sous-espace ; formule de dimension sous non-dégénérescence ; critère pour E=F somme directe F_perp.",
+            "Vecteur isotrope et sous-espace totalement isotrope ; distinction avec l’orthogonalité seule.",
+            "Diagonalisation en caractéristique différente de 2 ; réduction réelle en carrés positifs, négatifs et nuls.",
+            "Rang, signature et inertie de Sylvester ; classification réelle par équivalence linéaire.",
+            "Classification complexe par le rang, sans distinction de signes.",
+            "Gram–Schmidt, non-annulation des pivots et adaptation en présence d’un pivot isotrope."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 2,
+            "annaleSessions": [
+              2025
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t04/(c)",
+          "sectionId": "(c)",
+          "label": "(c) Espaces euclidiens et hermitiens, dual, supplémentaire orthogonal, Cauchy–Schwarz, norme et bases orthonormales",
+          "notionCount": 5,
+          "notionNames": [
+            "Espace euclidien : produit scalaire réel bilinéaire symétrique défini positif ; espace hermitien : forme sesquilinéaire hermitienne définie positive et convention de linéarité.",
+            "Identification avec le dual induite par le produit scalaire ; conjugaison complexe selon la convention.",
+            "Orthogonal, supplémentaire orthogonal et projection orthogonale en dimension finie.",
+            "Norme issue du produit scalaire ; inégalité de Cauchy–Schwarz et cas d’égalité.",
+            "Bases orthonormales, coordonnées, projections et Gram–Schmidt."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 3,
+            "annaleCardsLinked": 7,
+            "annaleSessions": [
+              2022,
+              2023
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 2
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t04/(d)",
+          "sectionId": "(d)",
+          "label": "(d) Groupes orthogonal et spécial orthogonal; réflexions; endomorphismes symétriques et normaux; diagonalisation réelle; valeurs singulières; réduction simultanée; polaire réelle; classifications de O(2,R) et O(3,R); produits mixte et vectoriel",
+          "notionCount": 8,
+          "notionNames": [
+            "Groupes O(E) et SO(E) ; transformations orthogonales et déterminant.",
+            "Réflexions orthogonales, formule, déterminant et produit fini de réflexions.",
+            "Endomorphismes symétriques et normaux ; théorème spectral réel pour les symétriques.",
+            "Décomposition en valeurs singulières, y compris pour matrices rectangulaires ; valeurs propres de la transposée de A fois A.",
+            "Réduction simultanée de deux formes réelles lorsque l’une est définie positive.",
+            "Décomposition polaire réelle d’une matrice inversible et unicité.",
+            "Classifications de O(2,R) et O(3,R) par déterminant et valeurs propres.",
+            "Produit mixte et vectoriel en dimension trois orientée ; interprétation géométrique et rôle de l’orientation."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 3,
+            "annaleCardsLinked": 10,
+            "annaleSessions": [
+              2022,
+              2023
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 5
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t04/(e)",
+          "sectionId": "(e)",
+          "label": "(e) Groupes unitaire et spécial unitaire; diagonalisation des endomorphismes normaux; décomposition polaire dans GL(n,C)",
+          "notionCount": 4,
+          "notionNames": [
+            "Groupes unitaires U(E) et spéciaux unitaires SU(E) ; relations matricielles U étoile U=I et condition de déterminant.",
+            "Adjoint hermitien ; endomorphismes normaux et hermitiens.",
+            "Théorème spectral complexe pour les endomorphismes normaux ; diagonalisation orthonormale et réalité des valeurs propres hermitiennes.",
+            "Décomposition polaire complexe d’une matrice inversible, facteurs unitaire et hermitien défini positif, unicité."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 3,
+            "annaleCardsLinked": 6,
+            "annaleSessions": [
+              2022,
+              2024
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "t05",
+      "title": "Titre 5 — Géométries affine et euclidienne",
+      "sourceGuide": "05-programme-2027/titre-05.md",
+      "officialSubsections": 5,
+      "sections": [
+        {
+          "code": "t05/(a)",
+          "sectionId": "(a)",
+          "label": "Espace affine et espace vectoriel associé. Application affine et application linéaire associée. Sous-espaces affines, barycentres. Repères affines, équations d’un sous-espace affine. Groupe affine, notion de propriété affine. Groupe des homothéties-translations, affinités. Parties convexes, enveloppe convexe d’une partie d’un espace affine réel, points extrémaux.",
+          "notionCount": 13,
+          "notionNames": [
+            "Espaces de dimension finie sur un corps commutatif \\(K\\) ; cadre réel pour la convexité.",
+            "Espace affine de direction \\(E\\) : action libre et transitive de \\(E\\), différence de points, relation de Chasles ; absence de somme intrinsèque de points.",
+            "Application affine, préservation des combinaisons affines de somme des coefficients égale à 1, application linéaire associée.",
+            "Écriture \\(f(x)=Lx+b\\) dans des repères ; bijectivité si et seulement si \\(L\\) est inversible ; composition et inversion.",
+            "Sous-espace affine \\(P+V\\), direction et dimension ; descriptions paramétriques et équations \\(Mx=c\\), compatibilité et rang.",
+            "Barycentre de points pondérés lorsque la somme des coefficients est non nulle dans \\(K\\) ; indépendance de l’origine.",
+            "Repère affine : origine et base de la direction ; unicité des coordonnées.",
+            "Groupe affine ; invariants affines : alignement, parallélisme, rapports sur une droite et barycentres ; longueurs et angles non invariants en général.",
+            "Groupe des homothéties-translations en dimension positive : \\(x\\mapsto\\lambda x+b\\), \\(\\lambda\\ne0\\) ; translation si \\(\\lambda=1\\), centre \\(b/(1-\\lambda)\\) sinon.",
+            "Affinité d’axe de direction \\(U\\) et de direction transverse \\(V\\), avec \\(E=U\\oplus V\\) : \\(u+v\\mapsto u+kv\\) ; bijective si \\(k\\ne0\\).",
+            "Partie convexe réelle, segments, combinaisons convexes finies à coefficients non négatifs de somme 1.",
+            "Enveloppe convexe comme plus petit convexe contenant une partie ; points extrémaux.",
+            "Barycentre à poids égaux positifs et centre de gravité d’un simplexe réel ; distinction entre combinaisons affines et convexes."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 3,
+            "annaleSessions": [
+              2024
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t05/(b)",
+          "sectionId": "(b)",
+          "label": "Isométries d’un espace affine euclidien. Groupe des isométries d’un espace affine euclidien. Déplacements, antidéplacements. Similitudes directes et indirectes du plan. Classification des isométries en dimension deux et trois.",
+          "notionCount": 11,
+          "notionNames": [
+            "Espace affine euclidien réel de dimension finie, produit scalaire sur la direction et distance.",
+            "Isométrie affine \\(x\\mapsto Qx+b\\) en repère orthonormé ; orthogonalité \\(Q^{\\mathsf T}Q=I\\).",
+            "Groupe des isométries : composition et inverse.",
+            "Déplacements et antidéplacements selon \\(\\det Q=+1\\) ou \\(-1\\) ; préservation ou renversement de l’orientation.",
+            "Similitudes du plan de rapport \\(r>0\\) ; formes complexes directes \\(az+b\\) et indirectes \\(a\\overline z+b\\), \\(a\\ne0\\), rapport \\(|a|\\).",
+            "Classification plane : translations, identité comprise, rotations, réflexions axiales et réflexions-glissées.",
+            "Classification des déplacements en dimension trois : translations, rotations axiales et vissages, avec translation axiale éventuellement nulle.",
+            "Antidéplacements en dimension trois : réflexions de plan, réflexions-glissées, rotations impropres à point fixe et symétries centrales pour \\(Q=-I\\).",
+            "Détermination des sous-espaces propres et résolution de \\((I-Q)x=b\\) ; changement d’origine en un point fixe.",
+            "Composantes de translation selon les directions invariantes ; centres, axes, plans fixes et cas sans point fixe.",
+            "Contrôle des cas limites et des conventions de classification tridimensionnelle par les formes canoniques."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 1,
+            "annaleSessions": [
+              2024
+            ]
+          },
+          "needsReview": {
+            "course": 1,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t05/(c)",
+          "sectionId": "(c)",
+          "label": "Angles en dimension deux : angles de vecteurs, angles de droites, théorème de l’angle inscrit, cocyclicité.",
+          "notionCount": 9,
+          "notionNames": [
+            "Plan euclidien orienté ; angle orienté de deux vecteurs non nuls modulo \\(2\\pi\\).",
+            "Directions de droites modulo \\(\\pi\\) ; distinction entre angle orienté de droites modulo \\(\\pi\\) et angle non orienté représenté dans \\([0,\\pi/2]\\).",
+            "Annonce des conventions d’angle ; une rotation ajoute son angle aux directions des vecteurs et conserve leur angle relatif.",
+            "Théorème de l’angle inscrit : points distincts sur un cercle, arc intercepté ne contenant pas le sommet et moitié de l’angle au centre associé.",
+            "Angles inscrits interceptant le même arc ; angles supplémentaires lorsque les sommets sont sur les arcs complémentaires.",
+            "Cocyclicité de quatre points distincts ; critère par angles orientés sous-tendant une même corde modulo \\(\\pi\\).",
+            "Réciproque avec non-alignement et angles définis ; distinction des configurations dégénérées.",
+            "Angles opposés supplémentaires d’un quadrilatère convexe inscrit ; réciproque dans une configuration non dégénérée.",
+            "Utilisation des égalités d’angles pour prouver une cocyclicité, puis transférer des relations angulaires."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 1,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t05/(d)",
+          "sectionId": "(d)",
+          "label": "Groupe des isométries laissant stable une partie du plan ou de l’espace. Polygones réguliers. Relations métriques dans le triangle. Utilisation des nombres complexes en géométrie plane.",
+          "notionCount": 11,
+          "notionNames": [
+            "Stabilisateur d’une partie \\(S\\) du plan ou de l’espace : isométries vérifiant \\(g(S)=S\\), et non seulement une inclusion.",
+            "Structure de groupe du stabilisateur ; contrôle de l’image de la partie entière.",
+            "Polygone régulier plan à \\(n\\ge3\\) sommets : \\(n\\) rotations et \\(n\\) réflexions ; groupe diédral d’ordre \\(2n\\).",
+            "Composition de rotations et réflexions ; axes de symétrie des polygones réguliers.",
+            "En dimension trois, détermination du stabilisateur propre à la partie étudiée ; absence de transposition automatique de la formule plane.",
+            "Triangle euclidien non dégénéré, côtés positifs opposés aux angles ; loi des cosinus et loi des sinus.",
+            "Théorème de Pythagore pour un triangle rectangle ; relations de médiane et de projection avec notations et hypothèses explicites.",
+            "Choix d’une relation métrique selon les données ; liste de formules du guide non exhaustive.",
+            "Plan complexe muni d’un repère orthonormé direct : affixes des points et différences d’affixes des vecteurs.",
+            "Modules et distances, arguments et angles orientés ; conjugaison.",
+            "Similitudes et isométries en écriture complexe ; rotations, alignement, parallélisme et cocyclicité par traduction algébrique puis interprétation géométrique."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 2,
+            "annaleSessions": [
+              2024,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t05/(e)",
+          "sectionId": "(e)",
+          "label": "Application des formes quadratiques à l’étude des coniques propres du plan affine euclidien (foyer, excentricité) et des quadriques de l’espace affine euclidien de dimension trois.",
+          "notionCount": 15,
+          "notionNames": [
+            "Forme quadratique réelle \\(q(x)=x^{\\mathsf T}Ax\\), avec \\(A\\) symétrique ; coefficient matriciel égal à la moitié du coefficient d’un terme croisé.",
+            "Équation du second degré \\(x^{\\mathsf T}Ax+2\\ell^{\\mathsf T}x+c=0\\).",
+            "Diagonalisation orthogonale réelle ; changement orthonormé d’axes puis translations pour réduire les termes linéaires.",
+            "Signes, rang et terme constant après réduction ; lieux non dégénérés, dégénérés ou vides.",
+            "Coniques propres usuelles du plan euclidien : ellipse, parabole et hyperbole ; distinction des coniques dégénérées et conventions à vérifier dans le cours.",
+            "Définition foyer-directrice \\(MF=e\\,d(M,\\Delta)\\), foyer hors de la directrice ; ellipse pour \\(0<e<1\\), parabole pour \\(e=1\\), hyperbole pour \\(e>1\\).",
+            "Cercle : cas particulier d’ellipse traité séparément de la représentation foyer-directrice avec \\(e>0\\).",
+            "Ellipse \\(x^2/a^2+y^2/b^2=1\\), \\(a>b>0\\) : foyers \\((\\pm\\sqrt{a^2-b^2},0)\\), excentricité \\(\\sqrt{a^2-b^2}/a\\).",
+            "Hyperbole \\(x^2/a^2-y^2/b^2=1\\), \\(a,b>0\\) : foyers \\((\\pm\\sqrt{a^2+b^2},0)\\), excentricité \\(\\sqrt{a^2+b^2}/a\\).",
+            "Parabole \\(y^2=4px\\), \\(p>0\\) : foyer \\((p,0)\\), directrice \\(x=-p\\), excentricité 1.",
+            "Quadriques exclusivement dans l’espace affine euclidien de dimension trois ; équations polynomiales de degré au plus deux et réduction orthonormée.",
+            "Formes usuelles : ellipsoïdes, hyperboloïdes à une ou deux nappes, cônes, paraboloïdes et cylindres ; cas dégénérés et sans point réel.",
+            "Avec paramètres positifs : somme de trois carrés pondérés égale à 1 pour un ellipsoïde ; deux signes positifs et un négatif avec second membre 1 ou -1 pour les deux types d’hyperboloïdes.",
+            "Paraboloïde elliptique \\(z=x^2/a^2+y^2/b^2\\), \\(a,b>0\\) ; étude de sections planes par restriction de l’équation.",
+            "Liste de formes non exhaustive dans le guide ; classification à justifier sur l’équation réduite plutôt que sur une terminologie mémorisée."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 2,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "t06",
+      "title": "Titre 6 — Analyse à une variable réelle",
+      "sourceGuide": "05-programme-2027/titre-06.md",
+      "officialSubsections": 9,
+      "sections": [
+        {
+          "code": "t06/6.1",
+          "sectionId": "6.1",
+          "label": "Nombres réels",
+          "notionCount": 10,
+          "notionNames": [
+            "Corps ordonné ℝ, valeur absolue, propriété de la borne supérieure et complétude de l’ordre.",
+            "Topologie de ℝ : boules, ouverts, fermés, adhérence, intérieur, frontière, points isolés et caractérisations séquentielles.",
+            "Sous-groupes additifs de ℝ : classification en sous-groupes denses ou aℤ.",
+            "Suites : convergence, unicité de la limite, valeurs d’adhérence et suites extraites ; critère bornitude et unicité de la valeur d’adhérence.",
+            "Suites récurrentes : intervalle stable, points fixes, monotonie, bornitude et passage à la limite.",
+            "Limites inférieure et supérieure, y compris valeurs infinies ; caractérisation de la convergence.",
+            "Suites de Cauchy et complétude de ℝ.",
+            "Bolzano-Weierstrass et compacité séquentielle.",
+            "Parties compactes de ℝ : fermé et borné ; extrema et continuité uniforme des fonctions continues sur un compact.",
+            "Parties connexes de ℝ : caractérisation par les intervalles."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 11,
+            "annaleCardsLinked": 14,
+            "annaleSessions": [
+              2022,
+              2023,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 5
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t06/6.2",
+          "sectionId": "6.2",
+          "label": "Séries numériques",
+          "notionCount": 8,
+          "notionNames": [
+            "Convergence d’une série par convergence de ses sommes partielles ; condition nécessaire uₙ→0.",
+            "Séries géométriques et de Riemann, y compris le seuil des séries alternées de Riemann.",
+            "Séries à termes positifs, comparaisons directes et par équivalent, sommation des comparaisons.",
+            "Comparaison série-intégrale pour une fonction positive décroissante.",
+            "Restes de séries positives et géométriques ; hypothèses d’indexation et de décroissance.",
+            "Convergence absolue, convergence simple et réorganisation des termes.",
+            "Produit de Cauchy et hypothèse de convergence absolue.",
+            "Séries alternées : critère de convergence et contrôle du reste."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 5,
+            "annaleCardsLinked": 11,
+            "annaleSessions": [
+              2022,
+              2023,
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 3
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t06/6.3(a)",
+          "sectionId": "6.3(a)",
+          "label": "Continuité",
+          "notionCount": 5,
+          "notionNames": [
+            "Limites et continuité en un point, limites unilatérales, infinies et aux bords du domaine.",
+            "Théorème des valeurs intermédiaires : existence, sans garantie d’unicité.",
+            "Image d’un segment par une fonction continue : bornes atteintes et image segment.",
+            "Fonctions monotones : limites unilatérales, discontinuités par sauts, au plus dénombrables.",
+            "Continuité de la fonction réciproque d’une fonction continue strictement monotone sur un intervalle."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 3,
+            "annaleCardsLinked": 15,
+            "annaleSessions": [
+              2022,
+              2023,
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 4
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t06/6.3(b)",
+          "sectionId": "6.3(b)",
+          "label": "Dérivabilité",
+          "notionCount": 8,
+          "notionNames": [
+            "Dérivée en un point par quotient différentiel, tangente et différentielle ; dérivabilité implique continuité, réciproque fausse.",
+            "Dérivée d’une composée et dérivée d’une fonction réciproque avec hypothèses.",
+            "Théorèmes de Rolle et des accroissements finis (TAF), estimations associées.",
+            "Étude des variations par le signe de la dérivée.",
+            "Dérivées d’ordre supérieur, classes Cᵏ et Cᵏ par morceaux.",
+            "Formule de Leibniz.",
+            "Formules de Taylor-Young, Taylor-Lagrange et Taylor avec reste intégral (Taylor-Laplace).",
+            "Développements limités et asymptotiques, équivalents et prudence dans les différences."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 7,
+            "annaleCardsLinked": 20,
+            "annaleSessions": [
+              2022,
+              2023,
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 3
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t06/6.4",
+          "sectionId": "6.4",
+          "label": "Fonctions usuelles",
+          "notionCount": 6,
+          "notionNames": [
+            "Polynômes et fonctions rationnelles : évaluation, factorisation, dérivées, zéros, pôles, domaine et limites.",
+            "Logarithmes : domaine, croissance, dérivée, inverse de exp et identités logarithmiques avec conditions de positivité.",
+            "Exponentielles : domaine, positivité, croissance, dérivée, relation fonctionnelle et réciprocité avec ln.",
+            "Fonctions puissances : domaine selon l’exposant et la convention; définition exp(α ln x) pour x>0 et dérivée sur x>0.",
+            "Fonctions circulaires et hyperboliques : domaines, périodes et parités, identités fondamentales, restrictions pour l’inversion.",
+            "Fonctions circulaires et hyperboliques réciproques : branches, domaines et images, dérivées de arctan, arsinh et arcosh."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 6,
+            "annaleSessions": [
+              2022,
+              2023,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 2
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t06/6.5(a)",
+          "sectionId": "6.5(a)",
+          "label": "Intégrale sur un segment des fonctions continues par morceaux",
+          "notionCount": 7,
+          "notionNames": [
+            "Intégrabilité de Riemann des fonctions continues par morceaux; linéarité, additivité, positivité, monotonie, orientation et inégalité de contrôle par une borne.",
+            "Sommes de Riemann sur un segment et convergence vers l’intégrale pour f continue.",
+            "Primitives et théorème fondamental du calcul intégral.",
+            "Méthodes usuelles de calcul : dérivée composée, symétries, éléments simples, contrôle du domaine et des singularités.",
+            "Changement de variable et adaptation des bornes.",
+            "Intégration par parties.",
+            "Inégalité de Cauchy-Schwarz pour les intégrales."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 3,
+            "annaleCardsLinked": 10,
+            "annaleSessions": [
+              2022,
+              2023,
+              2024,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 3
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t06/6.5(b)",
+          "sectionId": "6.5(b)",
+          "label": "Intégrales généralisées",
+          "notionCount": 5,
+          "notionNames": [
+            "Définition par limite d’une intégrale avec borne infinie ou intégrande non borné; séparation des singularités intérieures et étude de chaque extrémité.",
+            "Seuils de convergence de ∫₀¹x^(−α)dx et ∫₁∞x^(−α)dx.",
+            "Convergence absolue et convergence de l’intégrale signée.",
+            "Comparaisons et équivalents près d’une borne impropre avec hypothèses de signe.",
+            "Intégrales semi-convergentes; exemple de ∫₁∞sin(x)/x dx et critère de Dirichlet."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 2,
+            "annaleCardsLinked": 13,
+            "annaleSessions": [
+              2022,
+              2023,
+              2024
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 4
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t06/6.6",
+          "sectionId": "6.6",
+          "label": "Suites et séries de fonctions",
+          "notionCount": 6,
+          "notionNames": [
+            "convergence simple",
+            "convergence uniforme",
+            "convergence normale",
+            "limite uniforme",
+            "séries de fonctions",
+            "approximation de Weierstrass"
+          ],
+          "counts": {
+            "courseCards": 5,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 1,
+            "annaleSessions": [
+              2025
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t06/6.7",
+          "sectionId": "6.7",
+          "label": "Convexité",
+          "notionCount": 5,
+          "notionNames": [
+            "fonction convexe",
+            "pentes de sécantes",
+            "critères différentiels",
+            "inégalité de Jensen",
+            "inégalité de la tangente"
+          ],
+          "counts": {
+            "courseCards": 6,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 3,
+            "annaleCardsLinked": 11,
+            "annaleSessions": [
+              2022,
+              2025
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "t07",
+      "title": "Titre 7 — Analyse à une variable complexe",
+      "sourceGuide": "05-programme-2027/titre-07.md",
+      "officialSubsections": 7,
+      "sections": [
+        {
+          "code": "t07/7.1(a)",
+          "sectionId": "7.1(a)",
+          "label": "Rayon de convergence. Propriétés de la somme d’une série entière sur son disque de convergence : continuité, dérivabilité par rapport à la variable complexe, primitives.",
+          "notionCount": 9,
+          "notionNames": [
+            "Série entière centrée en \\(z_0\\) : \\(\\sum_{n\\geq0}a_n(z-z_0)^n\\).",
+            "Rayon de convergence et formule de Cauchy-Hadamard : \\(R=1/\\limsup |a_n|^{1/n}\\), avec \\(1/0=+\\infty\\) et \\(1/(+\\infty)=0\\).",
+            "Critère de d’Alembert pour déterminer le rayon lorsque la limite des rapports pertinents existe.",
+            "Convergence absolue pour \\(|z-z_0|<R\\), divergence pour \\(|z-z_0|>R\\), étude séparée du cercle frontière.",
+            "Convergence uniforme sur tout compact du disque ouvert de convergence.",
+            "Continuité et holomorphie de la somme dans le disque ouvert.",
+            "Dérivation terme à terme et conservation du rayon de convergence.",
+            "Primitives obtenues par intégration terme à terme, constante arbitraire et conservation du rayon.",
+            "Série géométrique, séries à coefficients polynomiaux et exemples de convergence à la frontière."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 6,
+            "annaleCardsLinked": 11,
+            "annaleSessions": [
+              2022,
+              2024,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 4
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t07/7.1(b)",
+          "sectionId": "7.1(b)",
+          "label": "Exponentielle complexe ; propriétés. Extension des fonctions circulaires au domaine complexe. Développement en série entière des fonctions usuelles.",
+          "notionCount": 9,
+          "notionNames": [
+            "Exponentielle complexe définie par \\(e^z=\\sum_{n\\geq0}z^n/n!\\), de rayon infini.",
+            "Holomorphie sur \\(\\mathbb C\\), dérivée \\((e^z)'=e^z\\), relation \\(e^{z+w}=e^ze^w\\) et absence de zéros.",
+            "Formule d’Euler \\(e^{x+iy}=e^x(\\cos y+i\\sin y)\\) et paramétrage du cercle unité par \\(e^{iy}\\).",
+            "Équations exponentielles complexes et périodicité de période \\(2\\pi i\\) de l’exponentielle.",
+            "Définitions complexes de \\(\\cos z\\) et \\(\\sin z\\) à partir de l’exponentielle ; fonctions entières et identités usuelles.",
+            "Développements de \\(e^z\\), \\(\\sin z\\) et \\(\\cos z\\), tous de rayon infini.",
+            "Développement géométrique de \\(1/(1-z)\\) sur \\(|z|<1\\).",
+            "Développement de \\(\\log(1+z)\\) sur \\(|z|<1\\), pour la détermination holomorphe nulle en \\(0\\).",
+            "Utilisation des séries usuelles pour calculer valeurs, dérivées et comportements locaux ; absence de liste exhaustive imposée ici."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 8,
+            "annaleSessions": [
+              2022,
+              2023,
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 5
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t07/7.2(a)",
+          "sectionId": "7.2(a)",
+          "label": "Fonctions holomorphes. Conditions de Cauchy-Riemann. Intégrale d’une fonction continue le long d’un chemin C¹ par morceaux. Primitives d’une fonction holomorphe. Déterminations du logarithme. Théorème d’holomorphie sous le signe intégrale.",
+          "notionCount": 11,
+          "notionNames": [
+            "Holomorphie sur un ouvert : existence de la dérivée complexe en chaque point ; distinction avec continuité et dérivabilité réelle.",
+            "Conditions de Cauchy-Riemann \\(u_x=v_y\\), \\(u_y=-v_x\\), nécessaires à la dérivabilité complexe et suffisantes sur un ouvert lorsque \\(u,v\\) sont de classe \\(C^1\\).",
+            "Chemin continu \\(C^1\\) par morceaux, paramétrage, orientation et intégration par somme sur les morceaux.",
+            "Intégrale curviligne \\(\\int_\\gamma f(z)\\,dz=\\int_a^b f(\\gamma(t))\\gamma'(t)\\,dt\\) pour \\(f\\) continue.",
+            "Primitive holomorphe \\(F\\) telle que \\(F'=f\\), formule aux extrémités et nullité des intégrales sur les chemins fermés.",
+            "Existence de primitives pour les fonctions holomorphes sur un domaine simplement connexe ; obstruction possible sur un domaine quelconque.",
+            "Détermination holomorphe du logarithme sur un domaine ne contenant pas \\(0\\), définie par \\(e^{L(z)}=z\\).",
+            "Logarithme multivalué avant choix de branche ; détermination principale sur \\(\\mathbb C\\setminus(-\\infty,0]\\), avec argument dans \\((-\\pi,\\pi)\\).",
+            "Absence de logarithme holomorphe global et de primitive de \\(1/z\\) sur \\(\\mathbb C\\setminus\\{0\\}\\).",
+            "Holomorphie sous le signe intégrale : holomorphie du noyau en paramètre complexe, régularité et dominations intégrables locales.",
+            "Dérivation sous le signe intégrale avec hypothèses précisées pour le cadre d’intégration choisi."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 1,
+            "annaleSessions": [
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t07/7.2(b)",
+          "sectionId": "7.2(b)",
+          "label": "Indice d’un chemin fermé C¹ par morceaux par rapport à un point.",
+          "notionCount": 6,
+          "notionNames": [
+            "Indice \\(\\operatorname{Ind}(\\gamma,a)=(2\\pi i)^{-1}\\int_\\gamma dz/(z-a)\\) pour un chemin fermé \\(C^1\\) par morceaux et \\(a\\) hors de son image.",
+            "Valeur entière et interprétation en nombre de tours algébriques.",
+            "Effet de l’orientation, des tours répétés et de la composition de chemins fermés.",
+            "Constance de l’indice sur chaque composante connexe du complémentaire de l’image.",
+            "Indice d’un cercle : points intérieurs et extérieurs, sens direct et sens inverse.",
+            "Rôle de l’indice dans les formules de Cauchy et le théorème des résidus."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t07/7.2(c)",
+          "sectionId": "7.2(c)",
+          "label": "Formules de Cauchy. Analyticité d’une fonction holomorphe. Principe des zéros isolés. Principe du prolongement analytique. Principe du maximum.",
+          "notionCount": 10,
+          "notionNames": [
+            "Formules de Cauchy pour les valeurs et les dérivées : fonction holomorphe sur un voisinage du disque fermé, cercle orienté positivement et point intérieur.",
+            "Estimations de Cauchy : \\(|f^{(n)}(a)|\\leq n!M/r^n\\) sur un cercle de centre \\(a\\), de rayon \\(r\\), avec \\(M\\) majorant du module au bord.",
+            "Analyticité locale de toute fonction holomorphe et développement en série entière autour de chaque point.",
+            "Domaine de validité du développement local et limitation possible du rayon par les singularités.",
+            "Principe des zéros isolés sur un domaine connexe pour une fonction non identiquement nulle.",
+            "Principe du prolongement analytique : égalité sur un ensemble ayant une accumulation intérieure, puis égalité sur le domaine connexe.",
+            "Nécessité de la connexité et de l’accumulation à l’intérieur du domaine.",
+            "Principe du maximum : maximum local intérieur du module seulement pour une fonction constante sur un domaine connexe.",
+            "Maximum au bord pour une fonction holomorphe sur un domaine borné et continue sur son adhérence ; cas constant.",
+            "Détermination d’une fonction par ses valeurs et estimation du module dans un disque."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 3,
+            "annaleSessions": [
+              2022,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t07/7.2(d)",
+          "sectionId": "7.2(d)",
+          "label": "Singularités isolées. Séries de Laurent. Fonctions méromorphes. Théorème des résidus.",
+          "notionCount": 10,
+          "notionNames": [
+            "Singularité isolée en \\(a\\) : holomorphie sur un disque ponctué \\(0<|z-a|<r\\).",
+            "Développement de Laurent sur un anneau de validité précisé et partie principale formée des puissances négatives.",
+            "Singularité amovible : partie principale nulle ; pôle : partie principale finie non nulle ; singularité essentielle : infinité de coefficients négatifs non nuls.",
+            "Ordre d’un pôle et fonctions méromorphes, holomorphes sauf en des pôles isolés.",
+            "Résidu : coefficient de \\((z-a)^{-1}\\) dans la série de Laurent.",
+            "Calcul d’un résidu par coefficient, décomposition simple, limite pour un pôle simple ou formule de dérivation pour un pôle d’ordre supérieur.",
+            "Théorème des résidus : absence de pôle sur le contour, domaine d’holomorphie ou de méromorphie approprié, orientation et indices.",
+            "Contour simple positif : chaque pôle intérieur est compté une fois.",
+            "Contours non simples : somme pondérée par les indices sous les hypothèses usuelles, notamment un contour homologue à zéro dans l’ouvert.",
+            "Calcul d’intégrales autour de plusieurs pôles et distinction entre singularités amovibles, pôles et singularités essentielles."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 1,
+            "annaleSessions": [
+              2025
+            ]
+          },
+          "needsReview": {
+            "course": 1,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t07/7.2(e)",
+          "sectionId": "7.2(e)",
+          "label": "Suites et séries de fonctions holomorphes. Stabilité de l’holomorphie par convergence uniforme.",
+          "notionCount": 8,
+          "notionNames": [
+            "Suites et séries de fonctions holomorphes sur un même ouvert.",
+            "Distinction entre convergence simple, convergence uniforme sur l’ouvert et convergence uniforme sur tout compact.",
+            "Théorème de stabilité : une limite uniforme sur tout compact de fonctions holomorphes est holomorphe.",
+            "Application aux séries par leurs sommes partielles et aux séries entières vues comme séries de fonctions.",
+            "Estimations uniformes sur un compact et majorants sommables.",
+            "Passage à la limite dans les intégrales le long de chemins compacts \\(C^1\\) par morceaux.",
+            "Convergence locale uniforme des dérivées justifiée par les formules de Cauchy dans le cadre holomorphe.",
+            "Insuffisance de la convergence ponctuelle pour invoquer le théorème de stabilité ; absence de règle générale de dérivation des limites uniformes sans hypothèses ou preuve."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 1,
+            "annaleSessions": [
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "t08",
+      "title": "Titre 8 — Topologie, espaces normés et Hilbert",
+      "sourceGuide": "05-programme-2027/titre-08.md",
+      "officialSubsections": 12,
+      "sections": [
+        {
+          "code": "t08/8.1(a)",
+          "sectionId": "8.1(a)",
+          "label": "Topologie d’un espace métrique. Topologie induite. Produit fini d’espaces métriques",
+          "notionCount": 5,
+          "notionNames": [
+            "Distance : positivité, séparation, symétrie et inégalité triangulaire.",
+            "Boules ouvertes de rayon strictement positif; ouverts et fermés d’un espace métrique.",
+            "Topologie induite sur une partie : distance restreinte et ouverts relatifs.",
+            "Produit fini d’espaces métriques : distance maximum et distance somme, topologies identiques.",
+            "Sur \\(\\mathbb R^2\\), distances euclidienne, maximum et somme des valeurs absolues : même topologie."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 1,
+            "annaleSessions": [
+              2025
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t08/8.1(b)",
+          "sectionId": "8.1(b)",
+          "label": "Suites. Valeurs d’adhérence. Limites. Applications continues. Homéomorphismes",
+          "notionCount": 7,
+          "notionNames": [
+            "Convergence d’une suite dans un espace métrique et unicité de la limite.",
+            "Valeur d’adhérence d’une suite : limite d’une sous-suite.",
+            "Adhérence d’une partie : tout voisinage rencontre la partie; plus petit fermé la contenant.",
+            "Continuité entre espaces métriques : formulation epsilon-delta et caractérisation séquentielle.",
+            "Homéomorphisme : bijection continue dont l’inverse est continu; distinction avec une simple bijection continue.",
+            "Inclusion d’un sous-espace comme homéomorphisme sur son image; invariants topologiques, notamment la compacité.",
+            "Homéomorphisme entre \\(\\mathbb R\\) et \\(]0,1[\\); absence d’homéomorphisme entre \\([0,1]\\) et \\(]0,1[\\)."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 4,
+            "annaleCardsLinked": 14,
+            "annaleSessions": [
+              2022,
+              2023,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 5
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t08/8.1(c)",
+          "sectionId": "8.1(c)",
+          "label": "Compacité. Équivalence des définitions en termes de valeurs d’adhérence (Bolzano-Weierstrass) ou de recouvrements ouverts (Borel-Lebesgue). Connexité. Composantes connexes. Connexité par arcs",
+          "notionCount": 9,
+          "notionNames": [
+            "Compacité par recouvrements ouverts : propriété de Borel–Lebesgue.",
+            "Dans un espace métrique, équivalence avec la compacité séquentielle et avec l’existence d’une valeur d’adhérence pour toute suite : Bolzano–Weierstrass.",
+            "Compacité d’une partie pour sa topologie induite.",
+            "Heine–Borel : dans \\(\\mathbb R^n\\), une partie est compacte si et seulement si elle est fermée et bornée.",
+            "Connexité : absence de séparation en deux ouverts disjoints non vides.",
+            "Composantes connexes : parties connexes maximales, formant une partition.",
+            "Connexité par arcs : chemins continus définis sur \\([0,1]\\); elle implique la connexité, sans réciproque générale.",
+            "Intervalles de \\(\\mathbb R\\) connexes et connexes par arcs.",
+            "Image continue d’un compact; existence d’un minimum et d’un maximum pour une fonction réelle continue sur un compact non vide."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 3,
+            "annaleCardsLinked": 12,
+            "annaleSessions": [
+              2022,
+              2023,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 3
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t08/8.1(d)",
+          "sectionId": "8.1(d)",
+          "label": "Applications lipschitziennes, applications uniformément continues. Théorème de Heine",
+          "notionCount": 6,
+          "notionNames": [
+            "Application \\(K\\)-lipschitzienne entre espaces métriques, avec constante globale \\(K\\ge0\\).",
+            "Continuité uniforme : choix de \\(\\delta\\) indépendant des points du domaine.",
+            "Implications : lipschitzienne implique uniformément continue, qui implique continue.",
+            "Théorème de Heine : application continue d’un espace métrique compact vers un espace métrique, uniformément continue.",
+            "Distinction entre Heine et Heine–Borel.",
+            "Fonction carré : lipschitzienne sur \\([-M,M]\\) pour \\(M\\ge0\\) fini, non uniformément continue sur \\(\\mathbb R\\)."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 1,
+            "annaleSessions": [
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t08/8.1(e)",
+          "sectionId": "8.1(e)",
+          "label": "Espaces métriques complets. Théorème du point fixe pour les applications contractantes",
+          "notionCount": 6,
+          "notionNames": [
+            "Suite de Cauchy : contrôle des distances mutuelles à partir d’un rang.",
+            "Espace métrique complet : toute suite de Cauchy converge dans l’espace.",
+            "Contraction \\(T:X\\to X\\) de facteur \\(0\\le q<1\\).",
+            "Théorème du point fixe de Banach : espace complet non vide, application contractante et domaine invariant.",
+            "Existence et unicité du point fixe; convergence des itérations depuis tout point initial.",
+            "Reformulation d’une équation en \\(x=T(x)\\); contrôle géométrique des itérations."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t08/8.2(a)",
+          "sectionId": "8.2(a)",
+          "label": "Topologie d’un espace vectoriel normé. Normes équivalentes. Cas des espaces de dimension finie. Normes ∥·∥ₚ sur ℝⁿ et ℂⁿ. Espaces de Banach. Séries absolument convergentes dans un espace de Banach",
+          "notionCount": 9,
+          "notionNames": [
+            "Norme sur un espace vectoriel réel ou complexe : positivité, séparation, homogénéité et inégalité triangulaire.",
+            "Distance associée \\(d(x,y)=\\|x-y\\|\\) et topologie normée.",
+            "Équivalence de normes par deux constantes strictement positives; mêmes ouverts, convergences et continuités.",
+            "En dimension finie, toutes les normes sont équivalentes et tout espace normé est complet.",
+            "Normes \\(\\|x\\|_p=(\\sum_i|x_i|^p)^{1/p}\\), pour \\(1\\le p<\\infty\\), et \\(\\|x\\|_\\infty=\\max_i|x_i|\\) sur \\(\\mathbb R^n\\) et \\(\\mathbb C^n\\).",
+            "Comparaison des normes usuelles \\(\\|\\cdot\\|_1\\), \\(\\|\\cdot\\|_2\\) et \\(\\|\\cdot\\|_\\infty\\).",
+            "Espace de Banach : espace normé complet.",
+            "Séries vectorielles, sommes partielles et convergence absolue \\(\\sum_n\\|x_n\\|<\\infty\\).",
+            "Dans un Banach, convergence absolue implique convergence; la réciproque est fausse en général."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 3,
+            "annaleSessions": [
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t08/8.2(b)",
+          "sectionId": "8.2(b)",
+          "label": "Applications linéaires continues, norme d’une application linéaire continue",
+          "notionCount": 6,
+          "notionNames": [
+            "Applications linéaires entre espaces normés réels ou complexes.",
+            "Équivalence entre continuité, continuité en zéro, bornitude sur la boule unité et majoration \\(\\|u(x)\\|\\le C\\|x\\|\\).",
+            "Norme d’opérateur : supremum sur la boule unité fermée et meilleure constante de majoration.",
+            "Espace \\(\\mathcal L(E,F)\\) des applications linéaires continues.",
+            "Continuité des applications linéaires en dimension finie; calcul ou majoration de normes de matrices.",
+            "Utilisation de la majoration d’opérateur pour les limites et les séries."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t08/8.2(c)",
+          "sectionId": "8.2(c)",
+          "label": "Norme de la convergence uniforme. Espace des fonctions continues bornées sur un espace métrique, à valeurs dans un espace de Banach",
+          "notionCount": 7,
+          "notionNames": [
+            "Espace \\(C^b(X,F)\\) des fonctions continues bornées, avec \\(X\\) métrique et \\(F\\) Banach.",
+            "Norme uniforme \\(\\|f\\|_\\infty=\\sup_{x\\in X}\\|f(x)\\|_F\\).",
+            "Convergence pour la norme uniforme et convergence uniforme.",
+            "Complétude de \\(C^b(X,F)\\) lorsque \\(F\\) est complet.",
+            "Limite uniforme de fonctions continues : continuité de la limite.",
+            "Distinction entre convergence ponctuelle et uniforme; exemple \\(x^n\\) sur \\([0,1]\\).",
+            "Sur un compact, toute fonction continue à valeurs normées est bornée."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 5,
+            "annaleSessions": [
+              2022,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 3
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t08/8.2(d)",
+          "sectionId": "8.2(d)",
+          "label": "Étude de la compacité de parties d’un espace vectoriel normé : théorème de Riesz, théorème d’Ascoli",
+          "notionCount": 10,
+          "notionNames": [
+            "Théorème de Riesz : la boule unité fermée d’un espace normé est compacte si et seulement si l’espace est de dimension finie.",
+            "En dimension infinie, fermé et borné ne suffit pas pour être compact.",
+            "Distinction entre le théorème de Riesz sur la compacité et le théorème de représentation de Riesz.",
+            "Relative compacité : compacité de l’adhérence.",
+            "Arzelà–Ascoli, formulation métrique de travail : domaine métrique compact, codomaine métrique complet, topologie de la convergence uniforme.",
+            "Équicontinuité et relative compacité ponctuelle : conditions nécessaires et suffisantes de relative compacité uniforme.",
+            "Pour un codomaine \\(\\mathbb R\\) ou \\(\\mathbb C\\), bornitude ponctuelle équivalente à relative compacité ponctuelle.",
+            "Famille relativement compacte et fermée : compacité.",
+            "Bornitude uniforme et module de continuité commun comme critères pratiques; la seule bornitude ne suffit pas.",
+            "Dans un codomaine métrique non vectoriel, utiliser la distance uniforme plutôt que parler de norme; formulation d’Ascoli à confronter à celle du cours."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 2,
+            "annaleSessions": [
+              2022
+            ]
+          },
+          "needsReview": {
+            "course": 2,
+            "originalExercises": 0,
+            "annalesLinked": 2
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t08/8.3(a)",
+          "sectionId": "8.3(a)",
+          "label": "Espaces préhilbertiens",
+          "notionCount": 7,
+          "notionNames": [
+            "Produit scalaire réel bilinéaire symétrique; produit scalaire complexe sesquilinéaire hermitien.",
+            "Positivité et caractère défini du produit scalaire; convention de linéarité à préciser en complexe.",
+            "Norme induite \\(\\|x\\|=\\sqrt{\\langle x,x\\rangle}\\).",
+            "Inégalité de Cauchy–Schwarz.",
+            "Espace préhilbertien; espace de Hilbert lorsque la norme induite est complète.",
+            "Orthogonalité de vecteurs et de familles.",
+            "Produit scalaire euclidien sur \\(\\mathbb R^n\\); formule de Pythagore pour une somme finie de vecteurs orthogonaux."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 5,
+            "annaleCardsLinked": 7,
+            "annaleSessions": [
+              2022,
+              2025
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t08/8.3(b)",
+          "sectionId": "8.3(b)",
+          "label": "Projection sur un convexe fermé. Projection orthogonale sur un sous-espace vectoriel fermé",
+          "notionCount": 7,
+          "notionNames": [
+            "Dans un Hilbert, projection sur un convexe fermé non vide : existence et unicité du minimiseur de la distance.",
+            "Caractérisation variationnelle : \\(\\operatorname{Re}\\langle x-p,z-p\\rangle\\le0\\) pour tout \\(z\\) du convexe; partie réelle inutile en réel.",
+            "Projection sur un convexe fermé non expansive.",
+            "Projection orthogonale sur un sous-espace vectoriel fermé.",
+            "Décomposition unique \\(H=M\\oplus M^\\perp\\); orthogonalité du résidu.",
+            "Meilleure approximation en norme hilbertienne; sous-espaces de dimension finie fermés.",
+            "Importance des hypothèses de fermeture, convexité et non-vacuité."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 5,
+            "annaleSessions": [
+              2022,
+              2024,
+              2025
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t08/8.3(c)",
+          "sectionId": "8.3(c)",
+          "label": "Dual d’un espace de Hilbert, théorème de représentation de Riesz. Cas des espaces ℓ² et L². Bases hilbertiennes (dans le cas séparable). Exemples de bases de polynômes trigonométriques et de polynômes orthogonaux",
+          "notionCount": 14,
+          "notionNames": [
+            "Dual \\(H'\\) : formes linéaires continues sur un Hilbert réel ou complexe.",
+            "Représentation de Riesz : représentant unique et égalité des normes; ordre des arguments déterminé par la convention du produit scalaire.",
+            "Avec un produit scalaire complexe linéaire dans le premier argument, \\(\\varphi(x)=\\langle x,y\\rangle\\) et l’identification en \\(y\\) est antilinéaire.",
+            "Distinction avec le théorème de Riesz sur la compacité de la boule unité.",
+            "\\(\\ell^2\\) : suites de carré sommable, produit scalaire somme et complétude.",
+            "\\(L^2(\\Omega,\\mu)\\) : classes de fonctions mesurables de carré intégrable, identification presque partout, produit scalaire intégral et complétude.",
+            "Famille orthonormale totale : densité de son espace vectoriel engendré.",
+            "Dans un Hilbert séparable, existence d’une base hilbertienne finie ou dénombrable.",
+            "Développement en série hilbertienne convergeant en norme et identité de Parseval.",
+            "Base canonique de \\(\\ell^2\\).",
+            "Base trigonométrique \\((e^{int})_{n\\in\\mathbb Z}\\) dans \\(L^2([0,2\\pi],dt/(2\\pi))\\); normalisation \\(1/\\sqrt{2\\pi}\\) pour la mesure \\(dt\\).",
+            "Polynômes trigonométriques : combinaisons finies de fréquences entières sur le cercle.",
+            "Polynômes de Legendre normalisés : base hilbertienne de \\(L^2([-1,1],dt)\\).",
+            "Pour les exemples de bases, préciser domaine, mesure, normalisation et totalité; les choix du guide sont des cadres usuels, non des conventions imposées par l’intitulé officiel."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 8,
+            "annaleSessions": [
+              2022,
+              2025
+            ]
+          },
+          "needsReview": {
+            "course": 3,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "t09",
+      "title": "Titre 9 — Calcul différentiel",
+      "sourceGuide": "05-programme-2027/titre-09.md",
+      "officialSubsections": 12,
+      "sections": [
+        {
+          "code": "t09/9.1(a)",
+          "sectionId": "9.1(a)",
+          "label": "Applications différentiables sur un ouvert de Rⁿ. Différentielle (application linéaire tangente). Dérivée selon un vecteur.",
+          "notionCount": 5,
+          "notionNames": [
+            "Différentiabilité en un point intérieur d’un ouvert de \\(\\mathbb R^n\\), pour une application à valeurs dans \\(\\mathbb R^m\\).",
+            "Approximation linéaire : \\(f(a+h)=f(a)+df(a)h+o(\\|h\\|)\\).",
+            "Unicité et linéarité de la différentielle, appelée application linéaire tangente.",
+            "Dérivée selon un vecteur : limite du quotient directionnel et, sous différentiabilité, \\(D_vf(a)=df(a)v\\).",
+            "L’existence de toutes les dérivées directionnelles ne garantit pas la différentiabilité."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t09/9.1(b)",
+          "sectionId": "9.1(b)",
+          "label": "Dérivées partielles. Matrice jacobienne, vecteur gradient. Composition. Théorème des accroissements finis. Applications de classe C¹.",
+          "notionCount": 9,
+          "notionNames": [
+            "Dérivées partielles dans les directions coordonnées.",
+            "Continuité des dérivées partielles premières au voisinage d’un point : condition suffisante de différentiabilité.",
+            "Classe \\(C^1\\) sur un ouvert.",
+            "Matrice jacobienne : matrice de la différentielle dans les bases canoniques.",
+            "Gradient d’une fonction scalaire et identité \\(df(a)h=\\nabla f(a)\\cdot h\\).",
+            "Règle de chaîne, domaines ouverts compatibles et ordre du produit des jacobiennes.",
+            "Formule intégrale des accroissements sur un segment contenu dans le domaine.",
+            "Borne de la norme opérateur de la différentielle et estimation lipschitzienne sur un convexe.",
+            "Théorème scalaire des accroissements finis : continuité sur le segment et dérivabilité à l’intérieur."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 3,
+            "annaleCardsLinked": 6,
+            "annaleSessions": [
+              2023
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 5
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t09/9.1(c)",
+          "sectionId": "9.1(c)",
+          "label": "Applications de classe Cᵏ. Dérivées partielles d’ordre k. Interversion de l’ordre des dérivations. Hessienne. Taylor-Young et Taylor avec reste intégral (Taylor-Laplace).",
+          "notionCount": 8,
+          "notionNames": [
+            "Classe \\(C^k\\) et dérivées partielles jusqu’à l’ordre \\(k\\).",
+            "Différentielles d’ordre supérieur comme applications multilinéaires.",
+            "Théorème de Schwarz sous continuité des dérivées mixtes concernées dans un voisinage.",
+            "Hessienne d’une fonction scalaire et symétrie sous les hypothèses de Schwarz.",
+            "Taylor-Young pour une fonction \\(C^k\\) au voisinage du point, avec reste \\(o(\\|h\\|^k)\\).",
+            "Terme quadratique \\(\\tfrac12h^{\\mathsf T}H_f(a)h\\).",
+            "Taylor avec reste intégral, ou Taylor-Laplace, sous régularité \\(C^{k+1}\\) au voisinage du segment.",
+            "Majoration du reste par une borne de la norme opérateur de \\(d^{k+1}f\\)."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 2,
+            "annaleCardsLinked": 5,
+            "annaleSessions": [
+              2023
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 4
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t09/9.1(d)",
+          "sectionId": "9.1(d)",
+          "label": "Étude locale des applications à valeurs dans R. Développements limités. Recherche des extrema locaux.",
+          "notionCount": 7,
+          "notionNames": [
+            "Développements limités multivariables pour une fonction \\(C^n\\) au voisinage du point.",
+            "Extrema locaux, extrema stricts et points critiques.",
+            "Théorème de Fermat pour un extremum intérieur d’une fonction différentiable.",
+            "Conditions nécessaires de signe semi-défini de la hessienne en un extremum d’une fonction \\(C^2\\).",
+            "Hessienne définie positive ou négative en un point critique : extremum local strict.",
+            "Hessienne indéfinie en un point critique : point selle.",
+            "Hessienne dégénérée : nécessité d’étudier les termes supérieurs, le reste ou les variations."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 1,
+            "annaleSessions": [
+              2023
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t09/9.1(e)",
+          "sectionId": "9.1(e)",
+          "label": "Fonctions convexes de plusieurs variables. Caractérisation pour les fonctions C¹ et C² sur un ouvert convexe de Rⁿ.",
+          "notionCount": 6,
+          "notionNames": [
+            "Définition de la convexité sur un ensemble convexe par l’inégalité sur les segments.",
+            "Critère de support affine pour une fonction \\(C^1\\) sur un ouvert convexe.",
+            "Critère de hessienne positive semi-définie en tout point pour une fonction \\(C^2\\) sur un ouvert convexe.",
+            "Réduction aux restrictions à des segments.",
+            "Nécessité de vérifier la convexité du domaine.",
+            "Borne inférieure affine et minimum global d’une fonction convexe en un point critique."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t09/9.1(f)",
+          "sectionId": "9.1(f)",
+          "label": "Difféomorphismes. Théorème d’inversion locale. Théorème des fonctions implicites.",
+          "notionCount": 8,
+          "notionNames": [
+            "Difféomorphisme \\(C^k\\) : bijection entre ouverts dont l’application et l’inverse sont \\(C^k\\).",
+            "Inversion locale pour une application \\(C^k\\), \\(k\\ge1\\), à différentielle inversible au point considéré.",
+            "Différentielle de l’inverse : \\(d(f^{-1})(f(a))=[df(a)]^{-1}\\).",
+            "Distinction entre inversibilité locale et injectivité globale.",
+            "Fonctions implicites : \\(F(a,b)=0\\), régularité \\(C^k\\) et inversibilité du bloc \\(D_yF(a,b)\\).",
+            "Égalité entre le nombre de variables dépendantes et le nombre d’équations.",
+            "Représentation locale des solutions par un unique graphe \\(y=\\varphi(x)\\).",
+            "Formule \\(D\\varphi=-[D_yF]^{-1}D_xF\\) évaluée sur le graphe."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 2,
+            "annaleSessions": [
+              2023,
+              2024
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 2
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t09/9.2(a)",
+          "sectionId": "9.2(a)",
+          "label": "Équations X′=f(t,X) sur I×Ω. Cauchy-Lipschitz. Solutions maximales. Grönwall. Théorème de sortie de tout compact (« des bouts »).",
+          "notionCount": 9,
+          "notionNames": [
+            "Équation \\(X'=f(t,X)\\) sur \\(I\\times\\Omega\\), avec \\(I\\) intervalle ouvert et \\(\\Omega\\subset\\mathbb R^n\\) ouvert.",
+            "Solution dérivable à valeurs dans \\(\\Omega\\) et donnée initiale \\((t_0,X_0)\\).",
+            "Cauchy-Lipschitz : continuité de \\(f\\) et caractère localement lipschitzien en l’état, localement uniformément en temps.",
+            "Existence locale et unicité du problème de Cauchy.",
+            "Solution maximale, prolongement et dépendance de l’intervalle maximal au domaine.",
+            "Grönwall : \\(u(t)\\le A+L\\int_{t_0}^t u(s)ds\\) entraîne \\(u(t)\\le Ae^{L(t-t_0)}\\) pour \\(t\\ge t_0\\), avec \\(A,L\\ge0\\) et \\(u\\) continue non négative.",
+            "Estimations d’écarts entre solutions sous des hypothèses adaptées, sans sous-rubrique autonome de dépendance.",
+            "Théorème des bouts : à une extrémité finie, le graphe d’une solution maximale quitte tout compact de \\(I\\times\\Omega\\).",
+            "Différence entre maximalité et existence globale ; explosion ou approche du bord du domaine."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 8,
+            "annaleCardsLinked": 16,
+            "annaleSessions": [
+              2022,
+              2023
+            ]
+          },
+          "needsReview": {
+            "course": 1,
+            "originalExercises": 0,
+            "annalesLinked": 8
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t09/9.2(b)",
+          "sectionId": "9.2(b)",
+          "label": "Équations autonomes. Portrait de phase, comportement qualitatif. Stabilité des équilibres (théorème de linéarisation).",
+          "notionCount": 9,
+          "notionNames": [
+            "Équation autonome \\(X'=f(X)\\) et équilibre \\(f(X_*)=0\\).",
+            "Trajectoires dans l’espace des états, portrait de phase et comportement qualitatif.",
+            "Stabilité de Lyapunov pour les temps futurs.",
+            "Stabilité asymptotique : stabilité et convergence des solutions proches vers l’équilibre.",
+            "Système linéarisé \\(Y'=Df(X_*)Y\\), pour \\(f\\in C^1\\) près de l’équilibre.",
+            "Équilibre hyperbolique : aucune valeur propre de partie réelle nulle.",
+            "Parties réelles toutes strictement négatives : stabilité asymptotique locale.",
+            "Présence d’une valeur propre de partie réelle positive : instabilité, notamment dans le cas hyperbolique.",
+            "Valeurs propres de partie réelle nulle : le critère linéaire seul ne décide pas généralement."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 3,
+            "annaleSessions": [
+              2022,
+              2023
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t09/9.2(c)",
+          "sectionId": "9.2(c)",
+          "label": "Systèmes différentiels linéaires. Variation des constantes (formule de Duhamel). Coefficients constants. Équations linéaires d’ordre supérieur à 1.",
+          "notionCount": 7,
+          "notionNames": [
+            "Système linéaire \\(X'=A(t)X+b(t)\\), avec \\(A,b\\) continues sur l’intervalle.",
+            "Système homogène et matrice fondamentale inversible \\(\\Phi\\), vérifiant \\(\\Phi'=A\\Phi\\).",
+            "Variation des constantes et détermination de la constante par la donnée initiale.",
+            "Propagateur \\(U(t,s)=\\Phi(t)\\Phi(s)^{-1}\\).",
+            "Formule de Duhamel pour le problème non homogène.",
+            "Coefficients constants et exponentielle matricielle \\(e^{(t-s)A}\\).",
+            "Réduction d’une équation linéaire scalaire d’ordre supérieur à un système du premier ordre, après résolution par rapport à la dérivée la plus élevée."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t09/9.3(a)",
+          "sectionId": "9.3(a)",
+          "label": "Sous-variétés de Rⁿ. Graphe local, paramétrisation locale, équation locale. Espace tangent, gradient. Surfaces de R³ et plan tangent.",
+          "notionCount": 9,
+          "notionNames": [
+            "Sous-variété de dimension \\(k\\) de \\(\\mathbb R^n\\), au moins de classe \\(C^1\\).",
+            "Description par graphe local après choix de coordonnées.",
+            "Paramétrisation locale régulière de rang \\(k\\), servant de carte sur un morceau de la sous-variété.",
+            "Équation locale \\(F=0\\) avec différentielle de rang \\(n-k\\).",
+            "Lien entre les descriptions locales par le théorème des fonctions implicites.",
+            "Espace tangent : \\(T_pM=\\operatorname{Im}d\\phi(u)\\) ou \\(T_pM=\\ker dF(p)\\).",
+            "Gradient non nul comme vecteur normal à une hypersurface régulière.",
+            "Plan tangent affine \\(p+T_pM\\) à une surface de \\(\\mathbb R^3\\).",
+            "Position locale d’une surface par rapport à son plan tangent via une représentation graphique."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t09/9.3(b)",
+          "sectionId": "9.3(b)",
+          "label": "Courbes planes définies par une représentation paramétrique. Abscisse curviligne et longueur d’un arc C¹.",
+          "notionCount": 8,
+          "notionNames": [
+            "Courbe plane paramétrée \\(\\gamma(t)=(x(t),y(t))\\).",
+            "Étude de l’image, des variations, des tangentes et des auto-intersections.",
+            "Points singuliers de la paramétrisation : \\(\\gamma'(t)=0\\).",
+            "Courbe régulière : vitesse non nulle.",
+            "Longueur d’un arc \\(C^1\\) sur \\([a,b]\\) : \\(L=\\int_a^b\\|\\gamma'(t)\\|dt\\).",
+            "Abscisse curviligne orientée depuis le paramètre initial : \\(s(t)=\\int_a^t\\|\\gamma'(u)\\|du\\).",
+            "Pour une courbe régulière, croissance stricte de \\(s\\), reparamétrisation et vitesse unitaire.",
+            "La longueur paramétrée compte les parcours multiples."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t09/9.3(c)",
+          "sectionId": "9.3(c)",
+          "label": "Extrema liés, multiplicateurs de Lagrange.",
+          "notionCount": 9,
+          "notionNames": [
+            "Extremum local sous une ou plusieurs contraintes d’égalité.",
+            "Multiplicateur de Lagrange pour une contrainte régulière \\(g(x)=c\\).",
+            "Condition de régularité \\(\\nabla g(x_0)\\ne0\\).",
+            "Pour plusieurs contraintes, indépendance des gradients au point considéré.",
+            "Gradient de l’objectif appartenant à l’espace engendré par les gradients des contraintes.",
+            "Système de Lagrange et vérification des contraintes.",
+            "Les équations de Lagrange fournissent des candidats, pas leur nature.",
+            "Comparaison des valeurs ; existence d’extrema globaux sur un ensemble compact pour un objectif continu.",
+            "Traitement séparé des points singuliers et des éventuels bords."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "t10",
+      "title": "Titre 10 — Mesure, intégration et analyse de Fourier",
+      "sourceGuide": "05-programme-2027/titre-10.md",
+      "officialSubsections": 8,
+      "sections": [
+        {
+          "code": "t10/10.1",
+          "sectionId": "10.1",
+          "label": "Notions de théorie de la mesure",
+          "notionCount": 11,
+          "notionNames": [
+            "Tribu : stabilité par complémentaire et réunion dénombrable; espace mesurable.",
+            "Tribu produit engendrée par les rectangles mesurables; produits dénombrables définis par les cylindres.",
+            "Tribu borélienne engendrée par les ouverts; générateurs usuels sur \\(\\mathbb R\\); \\(\\mathcal B(\\mathbb R^d)=\\mathcal B(\\mathbb R)^{\\otimes d}\\).",
+            "Mesure positive à valeurs dans \\([0,+\\infty]\\), nullité de la mesure de l’ensemble vide et σ-additivité; mesures finies et σ-finies.",
+            "Mesure de comptage et intégrales-sommes; mesure de Lebesgue, volumes des pavés et invariance par translation; construction de Lebesgue admise.",
+            "Tribu borélienne et tribu de Lebesgue complétée : distinction et ensembles négligeables.",
+            "Mesure de probabilité de masse totale un; probabilité uniforme sur un intervalle.",
+            "Mesure produit : construction admise, existence et unicité dans le cadre σ-fini; valeurs sur les rectangles; précautions concernant une mesure nulle et une mesure infinie.",
+            "Distinction entre tribu produit et complétion de la mesure produit.",
+            "Fonctions mesurables, images réciproques et critères par demi-droites ou base dénombrable d’ouverts.",
+            "Fonctions étagées mesurables à nombre fini de valeurs; approximation croissante des fonctions mesurables positives, éventuellement infinies."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t10/10.2(a)",
+          "sectionId": "10.2(a)",
+          "label": "Intégrale des fonctions mesurables positives, théorème de convergence monotone. Lemme de Fatou. Fonctions intégrables, théorème de convergence dominée.",
+          "notionCount": 7,
+          "notionNames": [
+            "Intégrale d’une fonction étagée positive, écrite sur des ensembles mesurables disjoints; convention \\(0\\cdot\\infty=0\\) pour un coefficient nul.",
+            "Intégrale positive définie comme supremum des intégrales des minorantes étagées positives; valeur éventuellement infinie; monotonie.",
+            "Intégrabilité réelle ou complexe : \\(\\int|f|\\,d\\mu<\\infty\\); finitude presque partout; invariance de l’intégrale par modification sur un ensemble négligeable.",
+            "Convergence monotone : fonctions mesurables positives croissantes; égalité des limites d’intégrales, éventuellement infinies.",
+            "Lemme de Fatou pour une suite positive : \\(\\int\\liminf f_n\\le\\liminf\\int f_n\\).",
+            "Convergence dominée : convergence presque partout et majorant commun intégrable; convergence dans \\(L^1\\) et convergence des intégrales.",
+            "Limites sur \\([0,1]\\) et sur un espace de mesure infinie; nécessité de vérifier la domination intégrable."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 3,
+            "annaleCardsLinked": 6,
+            "annaleSessions": [
+              2022,
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 2
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t10/10.2(b)",
+          "sectionId": "10.2(b)",
+          "label": "Fonctions intégrables à valeurs dans un espace vectoriel de dimension finie. Continuité, dérivabilité des intégrales à paramètres.",
+          "notionCount": 7,
+          "notionNames": [
+            "Fonctions mesurables à valeurs dans un espace vectoriel réel ou complexe de dimension finie; intégrabilité de la norme.",
+            "Intégrale coordonnée par coordonnée; indépendance de la base et équivalence des normes en dimension finie.",
+            "Inégalité \\(\\|\\int f\\,d\\mu\\|\\le\\int\\|f\\|\\,d\\mu\\).",
+            "Intégrales à paramètres \\(F(t)=\\int_X f(t,x)\\,d\\mu(x)\\); mesurabilité sur le produit et des sections.",
+            "Continuité sous l’intégrale : continuité en paramètre presque partout et domination intégrable locale uniforme en paramètre.",
+            "Dérivation sous l’intégrale : intégrabilité à un paramètre de référence, dérivabilité presque partout sur un voisinage, mesurabilité de la dérivée et majorant intégrable commun sur ce voisinage.",
+            "Conditions suffisantes classiques, non exhaustives; nécessité de contrôler un voisinage et non un seul point."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 6,
+            "annaleSessions": [
+              2022,
+              2024
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 2
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t10/10.2(c)",
+          "sectionId": "10.2(c)",
+          "label": "Espaces L^p, où 1≤p≤∞. Complétude. Inégalité de Hölder.",
+          "notionCount": 6,
+          "notionNames": [
+            "Espaces \\(L^p(X,\\mu)\\), \\(1\\le p<\\infty\\), définis modulo l’égalité presque partout; norme \\((\\int|f|^p)^{1/p}\\).",
+            "Espace \\(L^\\infty\\) des classes essentiellement bornées; supremum essentiel et non supremum ponctuel.",
+            "Complétude : chaque \\(L^p\\), \\(1\\le p\\le\\infty\\), est un espace de Banach.",
+            "Inégalité de Hölder pour des exposants conjugués, y compris \\(1\\) et \\(\\infty\\), avec \\(1/\\infty=0\\).",
+            "Intégrabilité du produit et estimation de son intégrale; cas Cauchy–Schwarz pour \\(p=q=2\\).",
+            "Produit scalaire dans \\(L^2\\); conjugaison dans le cas complexe."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t10/10.2(d)",
+          "sectionId": "10.2(d)",
+          "label": "Théorème de Fubini. Changement de variables dans une intégrale multiple. Cas des coordonnées polaires, cas des coordonnées sphériques.",
+          "notionCount": 8,
+          "notionNames": [
+            "Mesures σ-finies et mesure produit; mesurabilité des intégrandes et des sections.",
+            "Tonelli pour les fonctions positives mesurables : échange des intégrales, avec valeur éventuellement infinie.",
+            "Fubini pour les fonctions réelles ou complexes absolument intégrables; intégrabilité des sections presque partout et égalité des intégrales itérées.",
+            "Changement de variables par un difféomorphisme entre ouverts de \\(\\mathbb R^d\\); fonction positive mesurable ou intégrable; facteur \\(|\\det D\\Phi|\\).",
+            "Coordonnées polaires : \\((r,\\theta)\\mapsto(r\\cos\\theta,r\\sin\\theta)\\), jacobien \\(r\\).",
+            "Coordonnées sphériques : angle polaire \\(\\theta\\), azimut \\(\\varphi\\), jacobien \\(r^2\\sin\\theta\\).",
+            "Choix des domaines, injectivité, coupures et ensembles dégénérés négligeables.",
+            "Intégrales radiales : facteurs \\(2\\pi r\\) en dimension deux et \\(4\\pi r^2\\) en dimension trois."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 3,
+            "annaleSessions": [
+              2024
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t10/10.2(e)",
+          "sectionId": "10.2(e)",
+          "label": "Convolution. Régularisation et approximation par convolution.",
+          "notionCount": 7,
+          "notionNames": [
+            "Convolution sur \\(\\mathbb R^d\\) : \\((f*g)(x)=\\int f(x-y)g(y)\\,dy\\).",
+            "Pour \\(f,g\\in L^1\\), existence presque partout, appartenance à \\(L^1\\) et estimation \\(\\|f*g\\|_1\\le\\|f\\|_1\\|g\\|_1\\).",
+            "Approximation de l’identité : \\(\\rho\\in L^1\\), \\(\\int\\rho=1\\), \\(\\rho_\\varepsilon(x)=\\varepsilon^{-d}\\rho(x/\\varepsilon)\\).",
+            "Convergence \\(\\rho_\\varepsilon*f\\to f\\) dans \\(L^p(\\mathbb R^d)\\) pour \\(1\\le p<\\infty\\).",
+            "Noyaux \\(C_c^\\infty\\), régularisation des fonctions localement intégrables et dérivation sur le noyau.",
+            "Approximation par des fonctions lisses; transitions près des discontinuités d’une indicatrice.",
+            "Absence de convergence générale en norme \\(L^\\infty\\); nécessité d’hypothèses supplémentaires pour une convergence uniforme."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t10/10.3(a)",
+          "sectionId": "10.3(a)",
+          "label": "Séries de Fourier des fonctions localement intégrables périodiques d’une variable réelle. Lemme de Riemann–Lebesgue. Produit de convolution de fonctions périodiques. Théorèmes de Dirichlet, de Fejér et de Parseval.",
+          "notionCount": 9,
+          "notionNames": [
+            "Fonctions \\(2\\pi\\)-périodiques localement intégrables; intégrabilité sur une période et adaptation à une autre période par changement d’échelle.",
+            "Coefficients \\(\\widehat f(n)=(2\\pi)^{-1}\\int_{-\\pi}^{\\pi}f(x)e^{-inx}\\,dx\\); série formelle et sommes partielles symétriques.",
+            "Riemann–Lebesgue : \\(\\widehat f(n)\\to0\\) pour \\(f\\in L^1\\); aucune conclusion générale de convergence ponctuelle de la série.",
+            "Convolution périodique normalisée par \\(1/(2\\pi)\\); existence presque partout pour deux fonctions \\(L^1\\); coefficients du produit de convolution.",
+            "Dirichlet dans le cadre \\(C^1\\) par morceaux avec un nombre fini de morceaux : limite égale à la moyenne des limites latérales.",
+            "Fejér : moyennes de Cesàro des sommes partielles, noyau positif de masse normalisée un; convergence dans \\(L^1\\) et aux points de continuité.",
+            "Parseval pour \\(L^2\\), base hilbertienne des exponentielles avec normalisation appropriée; identité d’énergie et formule du produit scalaire par polarisation.",
+            "Fonction \\(x\\) sur \\((-\\pi,\\pi)\\) périodisée : calcul des coefficients, convergence aux sauts et somme numérique via Parseval.",
+            "Distinction entre égalité presque partout, convergence ponctuelle et convergence en norme."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 2,
+            "annaleSessions": [
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t10/10.3(b)",
+          "sectionId": "10.3(b)",
+          "label": "Transformation de Fourier sur les espaces L^1(R^d) et L^2(R^d). Cas de l’espace de Schwartz des fonctions à décroissance rapide ainsi que toutes leurs dérivées. Théorème de Plancherel. Lien avec la convolution. Règles de calculs. Formule d’inversion. Cas de la fonction gaussienne.",
+          "notionCount": 10,
+          "notionNames": [
+            "Convention \\(\\widehat f(\\xi)=\\int_{\\mathbb R^d}f(x)e^{-ix\\cdot\\xi}\\,dx\\) sur \\(L^1\\); transformée bornée, continue et tendant vers zéro à l’infini.",
+            "Espace de Schwartz : fonctions \\(C^\\infty\\) telles que tous les \\(x^\\alpha\\partial^\\beta f\\) soient bornés; stabilité par Fourier.",
+            "Prolongement unique par densité sur \\(L^2\\), distinct d’une définition par intégrale absolument convergente.",
+            "Plancherel : \\(\\|\\widehat f\\|_2=(2\\pi)^{d/2}\\|f\\|_2\\); transformée normalisée unitaire et identité de produit scalaire.",
+            "Convolution pour deux fonctions \\(L^1\\) : \\(\\widehat{f*g}=\\widehat f\\,\\widehat g\\).",
+            "Sur Schwartz : translation, modulation, dérivation et multiplication par une coordonnée; extensions soumises à des hypothèses d’intégrabilité ou à un sens faible.",
+            "Produit : \\(\\widehat{fg}=(2\\pi)^{-d}(\\widehat f*\\widehat g)\\), notamment sur Schwartz.",
+            "Inversion sur Schwartz avec facteur \\((2\\pi)^{-d}\\); cadre élargi \\(f,\\widehat f\\in L^1\\), égalité presque partout et aux points de continuité.",
+            "Transformée de \\(e^{-|x|^2/2}\\) et de \\(e^{-a|x|^2}\\), \\(a>0\\); stabilité gaussienne à un facteur et une échelle près.",
+            "Vérification des constantes et conversion des dérivations en multiplication par les fréquences."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 6,
+            "annaleSessions": [
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "t11",
+      "title": "Titre 11 — Probabilités et statistiques",
+      "sourceGuide": "05-programme-2027/titre-11.md",
+      "officialSubsections": 8,
+      "sections": [
+        {
+          "code": "t11/11.1",
+          "sectionId": "11.1",
+          "label": "Définition d’un espace probabilisé",
+          "notionCount": 10,
+          "notionNames": [
+            "Espace probabilisé \\((\\Omega,\\mathcal A,\\mathbb P)\\) ; univers, tribu, événements, mesure de probabilité.",
+            "Stabilité d’une tribu par complémentaire et réunion dénombrable ; positivité, additivité dénombrable et normalisation de la probabilité.",
+            "Probabilité de l’ensemble vide, monotonie et additivité sur les événements disjoints.",
+            "Indépendance de deux événements ; indépendance deux à deux et indépendance mutuelle, à distinguer ; indépendance de deux tribus.",
+            "Événement \\(\\limsup A_n\\) : réalisation d’une infinité d’événements.",
+            "Premier lemme de Borel-Cantelli : somme des probabilités finie, sans indépendance.",
+            "Second lemme de Borel-Cantelli : événements mutuellement indépendants et somme des probabilités infinie.",
+            "Tribu queue et loi du 0-1 de Kolmogorov pour une suite indépendante ; vérification du caractère de queue.",
+            "Probabilité conditionnelle sachant un événement de probabilité strictement positive.",
+            "Formule des probabilités totales pour une partition dénombrable en événements de probabilités positives."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 6,
+            "annaleCardsLinked": 6,
+            "annaleSessions": [
+              2022,
+              2023,
+              2024,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t11/11.2(a)",
+          "sectionId": "11.2(a)",
+          "label": "Lois discrètes et absolument continues ; loi conjointe ; espérance et variance",
+          "notionCount": 18,
+          "notionNames": [
+            "Variable aléatoire réelle mesurable ; loi comme mesure image sur les boréliens.",
+            "Fonction de répartition : croissance, continuité à droite, limites 0 et 1 aux infinis.",
+            "Loi discrète sur un support fini ou dénombrable ; masses positives de somme 1.",
+            "Loi absolument continue par rapport à Lebesgue ; densité positive d’intégrale 1 ; relation avec la fonction de répartition ; absence de masses ponctuelles. Toute loi n’admet pas une densité.",
+            "Loi conjointe, masses conjointes ou densité jointe ; marginales par sommation ou intégration.",
+            "Indépendance par produit des lois marginales, factorisation des fonctions de répartition ou des masses ; factorisation des densités presque partout.",
+            "Covariance nulle et corrélation nulle ne suffisent pas à établir l’indépendance.",
+            "Espérance positive éventuellement infinie ; espérance signée ou complexe sous intégrabilité absolue.",
+            "Théorème de transfert pour fonctions positives ou absolument intégrables ; moments ordinaires et absolus, avec conventions et existence.",
+            "Variance d’une variable réelle de carré intégrable : \\(\\mathbb E[(X-\\mathbb EX)^2]=\\mathbb E[X^2]-(\\mathbb EX)^2\\).",
+            "Bernoulli de paramètre \\(p\\in[0,1]\\), support \\(\\{0,1\\}\\), moyenne \\(p\\), variance \\(p(1-p)\\).",
+            "Binomiale \\(\\mathcal B(n,p)\\), somme de \\(n\\) Bernoulli indépendantes de même paramètre ; moyenne \\(np\\), variance \\(np(1-p)\\).",
+            "Géométrique de paramètre \\(0<p\\le1\\) : rang du premier succès sur \\(\\{1,2,\\ldots\\}\\), masses \\(p(1-p)^{k-1}\\), moyenne \\(1/p\\), variance \\((1-p)/p^2\\). Convention alternative : nombre d’échecs sur \\(\\mathbb N\\).",
+            "Poisson de paramètre \\(\\lambda>0\\) sur \\(\\mathbb N\\), masses \\(e^{-\\lambda}\\lambda^k/k!\\), moyenne et variance \\(\\lambda\\).",
+            "Uniforme sur \\([a,b]\\), \\(a<b\\), densité \\(1/(b-a)\\) sur l’intervalle, moyenne \\((a+b)/2\\), variance \\((b-a)^2/12\\).",
+            "Exponentielle de taux \\(\\lambda>0\\), densité \\(\\lambda e^{-\\lambda x}\\) sur \\([0,\\infty[\\), moyenne \\(1/\\lambda\\), variance \\(1/\\lambda^2\\), probabilité de survie \\(e^{-\\lambda t}\\).",
+            "Gaussienne \\(\\mathcal N(\\mu,\\sigma^2)\\), \\(\\sigma>0\\), densité \\((2\\pi\\sigma^2)^{-1/2}e^{-(x-\\mu)^2/(2\\sigma^2)}\\), moyenne \\(\\mu\\), variance \\(\\sigma^2\\).",
+            "Reconnaissance des lois usuelles : support, paramétrage, masses ou densité, moments et hypothèses du modèle."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 8,
+            "annaleCardsLinked": 15,
+            "annaleSessions": [
+              2022,
+              2023,
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 2
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t11/11.2(b)",
+          "sectionId": "11.2(b)",
+          "label": "Fonction caractéristique et fonction génératrice",
+          "notionCount": 7,
+          "notionNames": [
+            "Fonction caractéristique \\(\\varphi_X(t)=\\mathbb E(e^{itX})\\), définie pour toute variable réelle et tout réel \\(t\\).",
+            "Unicité de la loi déterminée par sa fonction caractéristique.",
+            "Fonction génératrice d’une variable à valeurs dans \\(\\mathbb N=\\{0,1,\\ldots\\}\\) : \\(G_N(s)=\\sum_{k\\ge0}\\mathbb P(N=k)s^k\\), au moins pour \\(|s|\\le1\\), avec \\(s^0=1\\).",
+            "Identification des masses par les coefficients de la fonction génératrice.",
+            "Produit des fonctions caractéristiques ou génératrices pour une somme de variables indépendantes.",
+            "Récupération des moments par dérivation de la fonction génératrice en 1, sous les conditions de finitude nécessaires.",
+            "Somme de Poisson indépendantes : addition des paramètres."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 5,
+            "annaleCardsLinked": 14,
+            "annaleSessions": [
+              2023,
+              2024,
+              2025,
+              2026
+            ]
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 2
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t11/11.3(a)",
+          "sectionId": "11.3(a)",
+          "label": "Modes de convergence, inégalités et théorème de Lévy",
+          "notionCount": 10,
+          "notionNames": [
+            "Convergence en probabilité : probabilités d’écart tendant vers zéro pour chaque seuil strictement positif.",
+            "Convergence dans \\(L^p\\), \\(0<p<\\infty\\), par \\(\\mathbb E|X_n-X|^p\\to0\\), avec quantités définies ; norme pour \\(p\\ge1\\), mais pas pour \\(0<p<1\\).",
+            "Convergence dans \\(L^\\infty\\), si incluse : convergence du supremum essentiel des écarts vers zéro.",
+            "Convergence presque sûre sur un même espace probabilisé.",
+            "Convergence en loi, convergence faible des lois et convergence des fonctions de répartition aux points de continuité de la limite.",
+            "Implications : presque sûre vers probabilité vers loi ; \\(L^p\\) vers probabilité pour \\(p>0\\) fini ; réciproques fausses en général.",
+            "La convergence en loi ne requiert pas de réalisation commune ; distinction entre lois et trajectoires.",
+            "Inégalité de Markov pour une variable positive intégrable et un seuil positif ; bornes par moments absolus.",
+            "Inégalité de Bienaymé-Tchebychev sous variance finie.",
+            "Théorème de continuité de Lévy : limite ponctuelle des fonctions caractéristiques continue en 0, identification d’une loi limite et convergence en loi."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 1,
+            "annaleCardsLinked": 3,
+            "annaleSessions": [
+              2022,
+              2024
+            ]
+          },
+          "needsReview": {
+            "course": 1,
+            "originalExercises": 0,
+            "annalesLinked": 1
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": true
+          }
+        },
+        {
+          "code": "t11/11.3(b)",
+          "sectionId": "11.3(b)",
+          "label": "Lois des grands nombres et théorème central limite",
+          "notionCount": 8,
+          "notionNames": [
+            "Échantillon de variables indépendantes et de même loi ; moyenne empirique.",
+            "Loi faible des grands nombres pour des variables indépendantes de même loi intégrables : convergence en probabilité vers l’espérance ; preuve élémentaire par variance dans le cas de variance finie.",
+            "Loi forte des grands nombres pour des variables indépendantes de même loi intégrables : convergence presque sûre ; variance finie non nécessaire dans cette version.",
+            "Théorème central limite classique sous indépendance, identité de loi et variance finie strictement positive.",
+            "Centrage par \\(n\\mu\\), réduction par \\(\\sigma\\sqrt n\\) ; limite normale centrée réduite en loi.",
+            "Distinction entre stabilisation de la moyenne et fluctuations normalisées.",
+            "Approximation normale asymptotique, non égalité exacte à taille finie ; contrôle du modèle et de la taille d’échantillon.",
+            "Application aux Bernoulli ; TCL non dégénéré seulement pour \\(0<p<1\\)."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 1,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t11/11.4(a)",
+          "sectionId": "11.4(a)",
+          "label": "Statistiques descriptives univariées",
+          "notionCount": 8,
+          "notionNames": [
+            "Série observée d’une variable quantitative ; fréquences.",
+            "Indicateurs de position : moyenne, médiane, quantiles et mode pour les données discrètes.",
+            "Indicateurs de dispersion : étendue, écart interquartile, variance et écart-type.",
+            "Conventions de médiane et de quantiles à préciser ; diviseur \\(n\\) pour une variance descriptive ou \\(n-1\\) pour une estimation corrigée.",
+            "Diagrammes en bâtons pour valeurs discrètes ; histogrammes pour données regroupées ou continues ; boîtes à moustaches.",
+            "Choix des classes d’un histogramme et prise en compte de leurs largeurs.",
+            "Comparaison de séries, valeurs extrêmes et sensibilité des indicateurs.",
+            "Les graphiques décrivent les données observées sans établir à eux seuls une propriété de population."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t11/11.4(b)",
+          "sectionId": "11.4(b)",
+          "label": "Séries à deux variables, corrélation et régression",
+          "notionCount": 9,
+          "notionNames": [
+            "Série quantitative bivariée \\((x_i,y_i)\\) et nuage de points ; tendances et observations atypiques.",
+            "Covariance empirique et écarts-types empiriques, avec diviseurs cohérents.",
+            "Corrélation linéaire de Pearson, définie lorsque les deux dispersions sont non nulles ; valeur dans \\([-1,1]\\).",
+            "Force et sens d’une association linéaire ; corrélation nulle ne signifiant pas indépendance ; association ne signifiant pas causalité.",
+            "Régression des moindres carrés de \\(y\\) sur \\(x\\) : minimisation des carrés des résidus verticaux.",
+            "Si la variance empirique de \\(x\\) est positive, pente \\(b=\\operatorname{Cov}_{\\rm emp}(x,y)/\\operatorname{Var}_{\\rm emp}(x)\\) et intercept \\(a=\\bar y-b\\bar x\\).",
+            "Passage de la droite par le point moyen \\((\\bar x,\\bar y)\\).",
+            "Distinction entre régression de \\(y\\) sur \\(x\\) et de \\(x\\) sur \\(y\\) ; elles ne sont généralement pas inverses.",
+            "Interprétation limitée aux données et au modèle ; absence de conclusion causale sans hypothèses supplémentaires."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t11/11.4(c)",
+          "sectionId": "11.4(c)",
+          "label": "Estimation ponctuelle et intervalles de confiance",
+          "notionCount": 10,
+          "notionNames": [
+            "Modèle statistique dépendant d’un paramètre inconnu fixe ; hypothèses d’échantillonnage explicites.",
+            "Estimateur comme statistique, distinct de l’estimation obtenue après observation.",
+            "Qualité d’un estimateur : biais, variance, erreur quadratique moyenne et consistance ; conditions d’existence des moments.",
+            "Aucune méthode unique ni liste exhaustive de propriétés d’estimation imposée dans cette rubrique.",
+            "Intervalle de confiance comme procédure aléatoire de couverture du paramètre.",
+            "Niveau fréquentiste \\(1-\\alpha\\) : couverture exacte, au moins nominale ou approximative selon la procédure et les hypothèses.",
+            "Paramètre fixe, intervalle variable entre échantillons ; le niveau n’est pas une probabilité a posteriori d’appartenance à l’intervalle observé.",
+            "Distinction entre méthodes exactes et asymptotiques.",
+            "Intervalle bilatéral pour une moyenne gaussienne à variance connue, échantillon indépendant : quantile normal et largeur proportionnelle à \\(\\sigma/\\sqrt n\\).",
+            "Les formules d’intervalles ne sont pas universelles : modèle et variance connue doivent être vérifiés."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "t12",
+      "title": "Titre 12 — Méthodes numériques",
+      "sourceGuide": "05-programme-2027/titre-12.md",
+      "officialSubsections": 5,
+      "sections": [
+        {
+          "code": "t12/12.1",
+          "sectionId": "12.1",
+          "label": "Résolution de systèmes d’équations linéaires",
+          "notionCount": 13,
+          "notionNames": [
+            "Conditionnement d’une matrice inversible : \\(\\kappa(A)=\\|A\\|\\|A^{-1}\\|\\) dans une norme subordonnée ; sensibilité aux perturbations des données, distincte de la stabilité d’un algorithme.",
+            "Perturbation du seul second membre : pour \\(Ax=b\\), \\(b\\ne0\\), \\(\\|\\delta x\\|/\\|x\\|\\leq\\kappa(A)\\|\\delta b\\|/\\|b\\|\\).",
+            "Gershgorin-Hadamard : disques \\(D_i=\\{z:|z-a_{ii}|\\leq\\sum_{j\\ne i}|a_{ij}|\\}\\), localisation des valeurs propres et inversibilité sous dominance diagonale stricte par lignes.",
+            "Pivot de Gauss : élimination, pivots non nuls, permutations de lignes et pivotage partiel par module maximal dans la colonne active ; le pivotage seul ne prouve pas une stabilité générale.",
+            "Factorisation \\(PA=LU\\), substitutions avant et arrière ; sans pivotage, la non-nullité des mineurs principaux dominants est une condition suffisante usuelle.",
+            "Norme subordonnée \\(\\|A\\|=\\sup_{x\\ne0}\\|Ax\\|/\\|x\\|\\) et rayon spectral \\(\\rho(A)=\\max_{\\lambda\\in\\operatorname{Sp}(A)}|\\lambda|\\).",
+            "Jacobi et Gauss-Seidel avec la convention \\(A=D+L+U\\), où \\(L,U\\) sont strictement triangulaires : matrices d’itération \\(-D^{-1}(L+U)\\) et \\(-(D+L)^{-1}U\\).",
+            "Convergence d’une itération affine vers un point fixe pour toute initialisation : critère \\(\\rho(T)<1\\) ; condition suffisante \\(\\|T\\|<1\\).",
+            "Dominance diagonale stricte : convergence de Jacobi et Gauss-Seidel ; symétrie définie positive : condition suffisante pour Gauss-Seidel, non pour Jacobi en général.",
+            "SVD réelle ou complexe \\(A=U\\Sigma V^*\\) : matrices unitaires, valeurs singulières non négatives, rang égal au nombre de valeurs singulières positives et dilatations principales.",
+            "Pour une matrice carrée inversible, \\(\\kappa_2(A)=\\sigma_{\\max}/\\sigma_{\\min}\\) ; diagnostic de sensibilité par la SVD.",
+            "Laplacien discrétisé en dimension un : exemple de \\(-u''=f\\) sur \\((0,1)\\), conditions de Dirichlet homogènes, \\(n\\) points intérieurs et \\(h=1/(n+1)\\).",
+            "Différences finies centrées : \\(A_h=h^{-2}\\operatorname{tridiag}(-1,2,-1)\\), matrice symétrique définie positive ; valeurs propres \\(4h^{-2}\\sin^2(k\\pi/(2(n+1)))\\), \\(1\\leq k\\leq n\\). Le domaine, le signe et les conditions aux limites sont ici des conventions explicites d’exemple."
+          ],
+          "counts": {
+            "courseCards": 5,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t12/12.2",
+          "sectionId": "12.2",
+          "label": "Méthodes itératives de résolution approchée d’équations réelles et vectorielles",
+          "notionCount": 15,
+          "notionNames": [
+            "Résolution approchée de systèmes linéaires par Jacobi et Gauss-Seidel ; matrice d’itération, rayon spectral et contrôle de l’erreur.",
+            "Méthode de la puissance : \\(x_{k+1}=Ax_k/\\|Ax_k\\|\\) si \\(Ax_k\\ne0\\), recherche d’une direction propre dominante.",
+            "Hypothèses de la puissance : valeur propre réelle simple \\(\\lambda_1\\) strictement dominante en module et projection spectrale initiale non nulle, exprimée par \\(w_1^Tx_0\\ne0\\), avec \\(w_1^Tv_1=1\\).",
+            "Puissance : convergence des directions, alternance possible du signe si \\(\\lambda_1<0\\), absence de garantie en cas de modules dominants égaux ; quotient de Rayleigh pour la valeur propre et quotient de normes pour son module.",
+            "Optimisation convexe en dimension finie : définition de la convexité, minimiseur, forte convexité et unicité.",
+            "Gradient à pas constant \\(x_{k+1}=x_k-\\alpha\\nabla f(x_k)\\) : convergence linéaire sous forte convexité de constante \\(\\mu>0\\), gradient \\(L\\)-Lipschitz et \\(0<\\alpha<2/L\\) ; la convexité seule ne suffit pas.",
+            "Moindres carrés réels ou complexes : minimiser \\(\\|Ax-b\\|_2^2\\), équations normales \\(A^*Ax=A^*b\\), existence en dimension finie et unicité si et seulement si le rang colonne est plein.",
+            "Précautions numériques des moindres carrés : \\(\\kappa_2(A^*A)=\\kappa_2(A)^2\\) au rang colonne plein ; recours possible à QR ou à la SVD.",
+            "Dichotomie : fonction continue et changement strict de signe aux extrémités ; longueur après \\(n\\) subdivisions égale à \\((b_0-a_0)/2^n\\), erreur du milieu au plus la demi-longueur.",
+            "Picard réel ou vectoriel : application contractante de rapport \\(q<1\\) d’un fermé non vide complet dans lui-même ; existence, unicité et convergence du point fixe.",
+            "Borne a posteriori de Picard : \\(\\|x_k-x^*\\|\\leq q\\|x_k-x_{k-1}\\|/(1-q)\\), pour \\(k\\geq1\\).",
+            "Newton réel ou vectoriel : résoudre \\(J_F(x_k)s_k=-F(x_k)\\), puis poser \\(x_{k+1}=x_k+s_k\\) ; jacobien inversible à l’étape considérée.",
+            "Newton : convergence quadratique locale si \\(F\\) est \\(C^2\\) près d’une racine à jacobien inversible et si l’initialisation est suffisamment proche ; aucune convergence globale automatique.",
+            "Vitesse : ordre \\(p\\) défini par \\(e_{k+1}/e_k^p\\to C\\in(0,\\infty)\\), convergence linéaire avec facteur inférieur à 1, superlinéaire si \\(e_{k+1}/e_k\\to0\\).",
+            "Estimations a priori et a posteriori : distinguer erreur réelle, résidu, variation des itérés et borne justifiée."
+          ],
+          "counts": {
+            "courseCards": 5,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t12/12.3",
+          "sectionId": "12.3",
+          "label": "Intégration numérique",
+          "notionCount": 8,
+          "notionNames": [
+            "Rectangles composites : somme de valeurs pondérées par les largeurs ; préciser la variante à gauche, à droite ou au point milieu et le maillage.",
+            "Rectangles à gauche sur un maillage uniforme \\(h=(b-a)/N\\) : \\(Q_N=h\\sum_{j=0}^{N-1}f(a+jh)\\).",
+            "Sous \\(f\\in C^1([a,b])\\), erreur locale à gauche majorée par \\(h^2\\max|f'|/2\\) et erreur globale par \\((b-a)h\\max|f'|/2\\).",
+            "Point milieu composite : sous \\(f\\in C^2([a,b])\\), erreur globale majorée par \\((b-a)h^2\\max|f''|/24\\) ; cette borne ne vaut pas pour toutes les variantes des rectangles.",
+            "Monte-Carlo pour une intégrale multiple sur un domaine mesurable de volume fini strictement positif : tirages indépendants uniformes et estimateur \\(\\widehat I_N=|D|N^{-1}\\sum_j f(X_j)\\).",
+            "Intégrabilité et variance finie : estimateur sans biais, variance \\(|D|^2\\operatorname{Var}(f(X_1))/N\\) et racine de l’erreur quadratique moyenne \\(|D|\\sigma/\\sqrt N\\).",
+            "Vitesse probabiliste en \\(N^{-1/2}\\), distincte d’une borne déterministe pour chaque tirage ; rôle de l’indépendance.",
+            "Intégrales multiples comme espérances ; échantillonnage du domaine ou d’un domaine englobant de volume fini avec indicatrice."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t12/12.4",
+          "sectionId": "12.4",
+          "label": "Approximation de fonctions numériques",
+          "notionCount": 7,
+          "notionNames": [
+            "Interpolation de Lagrange en \\(n+1\\) nœuds deux à deux distincts ; polynôme interpolateur de degré au plus \\(n\\).",
+            "Bases \\(L_i(x)=\\prod_{j\\ne i}(x-x_j)/(x_i-x_j)\\), propriété \\(L_i(x_j)=\\delta_{ij}\\) et formule \\(P_n=\\sum_i f(x_i)L_i\\).",
+            "Existence et unicité de l’interpolateur ; restitution exacte des polynômes de degré au plus \\(n\\).",
+            "Reste : si \\(f\\in C^{n+1}([a,b])\\), avec nœuds et point d’évaluation dans l’intervalle, \\(f(x)-P_n(x)=f^{(n+1)}(\\xi_x)\\prod_i(x-x_i)/(n+1)!\\) hors des nœuds.",
+            "Erreur nulle aux nœuds ; majoration par le maximum de la dérivée d’ordre \\(n+1\\) et le produit des distances aux nœuds.",
+            "Interprétation des facteurs du reste ; le point \\(\\xi_x\\) dépend généralement de \\(x\\).",
+            "Limites de la formule du reste : aucune garantie automatique de bonne approximation uniforme lorsque le nombre ou la disposition des nœuds varie ; stabilité et choix des nœuds à étudier séparément."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "t12/12.5",
+          "sectionId": "12.5",
+          "label": "Équations différentielles ordinaires",
+          "notionCount": 11,
+          "notionNames": [
+            "Problème de Cauchy \\(y'=f(t,y)\\), \\(y(t_0)=y_0\\) ; discrétisation temporelle et approximation aux points de grille.",
+            "Euler explicite : \\(t_{n+1}=t_n+h\\), \\(y_{n+1}=y_n+hf(t_n,y_n)\\), évaluation du champ au début du pas.",
+            "Erreur locale non normalisée : écart d’un pas commencé depuis la solution exacte ; \\(O(h^2)\\) sous régularité suffisante.",
+            "Défaut local normalisé : erreur locale divisée par \\(h\\), donc \\(O(h)\\) pour Euler ; consistance lorsque ce défaut tend vers zéro.",
+            "Stabilité : contrôle de la propagation des perturbations des données ou du calcul sur l’intervalle étudié, distinct du seul examen des valeurs numériques.",
+            "Convergence sur un intervalle fixé : rapprochement des valeurs numériques et exactes aux points de grille ; Euler est d’ordre global 1 sous hypothèses usuelles de régularité et de stabilité.",
+            "Rôle d’une hypothèse de Lipschitz en la variable d’état et de la régularité de la solution dans le contrôle de stabilité et la preuve de convergence.",
+            "Équation test \\(y'=\\lambda y\\), \\(y(0)=1\\) : \\(y_n=(1+h\\lambda)^n\\), solution exacte \\(e^{\\lambda t_n}\\).",
+            "Stabilité absolue d’Euler sur l’équation test : \\(|1+h\\lambda|\\leq1\\) ; pour \\(\\lambda<0\\) réel et \\(h\\geq0\\), \\(0\\leq h|\\lambda|\\leq2\\).",
+            "Raideur : une restriction de pas peut rendre Euler explicite inefficace ou instable malgré la décroissance exacte.",
+            "Conventions à préciser : ordre local normalisé ou non, stabilité sur intervalle fini ou stabilité absolue ; aucun cadre unique n’est imposé par le guide."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "tA",
+      "title": "Option A — Probabilités et statistiques",
+      "sourceGuide": "05-programme-2027/titre-A.md",
+      "officialSubsections": 8,
+      "sections": [
+        {
+          "code": "tA/(a)",
+          "sectionId": "(a)",
+          "label": "Utilisation de lois usuelles et simulation",
+          "notionCount": 10,
+          "notionNames": [
+            "Lois de Bernoulli, binomiale, géométrique, de Poisson, uniforme, exponentielle et gaussienne : paramètres, supports, masses ou densités, fonctions de répartition, espérances et variances. Préciser notamment la convention de support de la loi géométrique.",
+            "Loi multinomiale : comptages dans \\(n\\) essais indépendants, probabilités \\(p_i\\geq0\\) de somme 1, formule de masse avec convention \\(0^0=1\\), espérances \\(np_i\\), variances \\(np_i(1-p_i)\\), covariances \\(-np_ip_j\\).",
+            "Loi hypergéométrique : tirage uniforme sans remise, population de taille \\(N\\), \\(K\\) succès et échantillon de taille \\(n\\), avec \\(0\\leq K,n\\leq N\\). Support et formule par coefficients binomiaux.",
+            "Moments hypergéométriques : pour \\(N\\geq1\\), espérance \\(nK/N\\) ; pour \\(N>1\\), variance \\(n(K/N)(1-K/N)(N-n)/(N-1)\\). Correction de population finie.",
+            "Loi Gamma de forme \\(\\alpha>0\\) et taux \\(\\lambda>0\\) : densité, espérance \\(\\alpha/\\lambda\\), variance \\(\\alpha/\\lambda^2\\). Distinguer taux et échelle.",
+            "Somme de \\(m\\) exponentielles indépendantes de taux \\(\\lambda\\) : loi Gamma de forme entière \\(m\\) et de taux \\(\\lambda\\).",
+            "Loi du \\(\\chi^2\\) à \\(r\\) degrés de liberté : somme des carrés de \\(r\\) normales standard indépendantes ; loi Gamma de forme \\(r/2\\) et taux \\(1/2\\).",
+            "Échantillon normal i.i.d. de taille \\(n\\geq2\\), variance \\(\\sigma^2>0\\) : pivot \\((n-1)S^2/\\sigma^2\\sim\\chi^2_{n-1}\\), avec \\(S^2=(n-1)^{-1}\\sum_i(X_i-\\bar X)^2\\).",
+            "Modélisation des temps d’attente, durées de vie, erreurs de mesure, événements rares et sondages : expliciter indépendance, nombre d’essais et tirage avec ou sans remise. Une approximation binomiale ne change pas le mécanisme sans remise.",
+            "Simulation à partir d’un générateur uniforme : inversion de la fonction de répartition, constructions par sommes ou transformations ; contrôle par fréquences, histogrammes et moments, avec erreur d’échantillonnage."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "tA/(b)",
+          "sectionId": "(b)",
+          "label": "Chaînes de Markov à espace d’états fini ou dénombrable",
+          "notionCount": 12,
+          "notionNames": [
+            "Chaîne de Markov à temps discret sur un espace fini ou dénombrable ; homogénéité, matrice stochastique \\(P\\), transitions en plusieurs pas données par \\(P^n\\).",
+            "Propriété de Markov faible aux temps déterministes ; propriété forte aux temps d’arrêt presque sûrement finis, relativement à une filtration précisée.",
+            "Accessibilité, communication, classes de communication, classes fermées et irréductibilité.",
+            "Transience et récurrence définies par la probabilité de retour ; récurrence positive ou nulle selon que le temps moyen de retour est fini ou infini.",
+            "Période d’un état : PGCD des temps positifs possibles de retour ; apériodicité.",
+            "Mesure stationnaire vérifiant \\(\\nu P=\\nu\\) ; une probabilité stationnaire doit en outre être normalisée.",
+            "Chaîne irréductible finie : récurrence positive et unique probabilité stationnaire. Chaîne irréductible dénombrable : existence d’une probabilité stationnaire si et seulement si récurrence positive, puis unicité.",
+            "Chaîne réductible : plusieurs classes fermées peuvent produire plusieurs probabilités stationnaires ; les conclusions d’unicité précédentes ne s’appliquent pas automatiquement.",
+            "Loi des grands nombres ergodique : sous irréductibilité et récurrence positive, fréquences de visite et moyennes de fonctions \\(f\\in L^1(\\pi)\\) convergent presque sûrement vers leurs moyennes stationnaires, depuis tout état initial.",
+            "Sous irréductibilité, récurrence positive et apériodicité, convergence de \\(P^n(i,\\cdot)\\) vers \\(\\pi\\) en variation totale. Distinguer convergence des lois et convergence des trajectoires.",
+            "Marche aléatoire simple sur \\(\\mathbb Z\\), avec \\(0<p<1\\) : irréductible et de période 2 ; récurrente nulle pour \\(p=1/2\\), transiente sinon. Pas de probabilité stationnaire dans le cas symétrique.",
+            "Simulation par les probabilités de transition ; comparaison des fréquences à la loi stationnaire avec limites numériques explicites."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "tA/(c)",
+          "sectionId": "(c)",
+          "label": "Construction du processus de Poisson sur \\(\\mathbb R_+\\)",
+          "notionCount": 8,
+          "notionNames": [
+            "Construction avec des attentes i.i.d. exponentielles de taux \\(\\lambda>0\\) : \\(T_0=0\\), \\(T_n=\\sum_{i=1}^nE_i\\), \\(N_t=\\max\\{n\\geq0:T_n\\leq t\\}\\).",
+            "Attentes strictement positives et divergence presque sûre de \\(T_n\\) : absence d’explosion, nombre fini d’arrivées sur tout intervalle borné.",
+            "Instants d’arrivée \\(T_n\\), de loi Gamma de forme \\(n\\) et taux \\(\\lambda\\), et comptage \\(N_t\\sim\\mathrm{Poisson}(\\lambda t)\\).",
+            "Accroissements indépendants sur des intervalles disjoints et stationnaires : \\(N_t-N_s\\sim\\mathrm{Poisson}(\\lambda(t-s))\\) pour \\(0\\leq s<t\\).",
+            "Propriété sans mémoire de la loi exponentielle ; distinction entre indépendance et stationnarité des accroissements.",
+            "Moyenne et variance d’un comptage sur une durée \\(h\\) : \\(\\lambda h\\).",
+            "Simulation des instants par sommes d’exponentielles et arrêt après dépassement de l’horizon ; contrôle empirique des comptages.",
+            "Modèle d’arrivées à taux constant : préciser l’unité de temps et discuter la pertinence du taux constant et de l’indépendance."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "tA/(d)",
+          "sectionId": "(d)",
+          "label": "Espérance conditionnelle, martingales et temps d’arrêt",
+          "notionCount": 9,
+          "notionNames": [
+            "Espérance conditionnelle d’une variable intégrable par rapport à une tribu : mesurabilité, identité d’intégration sur les événements de la tribu, unicité presque sûre.",
+            "Linéarité, conditionnement et propriété de tour pour des tribus emboîtées.",
+            "Filtration, adaptation et intégrabilité ; martingale, surmartingale et sous-martingale à temps discret, avec égalité ou inégalités conditionnelles.",
+            "Temps d’arrêt à valeurs dans \\(\\mathbb N\\cup\\{\\infty\\}\\) : \\(\\{T\\leq n\\}\\in\\mathcal F_n\\).",
+            "Théorème d’arrêt pour une martingale et un temps d’arrêt borné : \\(\\mathbb E[M_T]=\\mathbb E[M_0]\\).",
+            "Arrêt non borné : la finitude presque sûre ne suffit pas ; justifier intégrabilité et passage à la limite, par exemple par domination ou intégrabilité uniforme dans une formulation appropriée.",
+            "Martingale bornée dans \\(L^2\\) : convergence presque sûre et dans \\(L^2\\). La seule convergence presque sûre ne donne pas la convergence \\(L^2\\).",
+            "Marche aléatoire à incréments indépendants intégrables et centrés : martingale pour la filtration naturelle.",
+            "Processus arrêté \\(M_{T\\wedge n}\\), temps de sortie et application des identités d’espérance à horizon fini."
+          ],
+          "counts": {
+            "courseCards": 3,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "tA/(e)",
+          "sectionId": "(e)",
+          "label": "Échantillons et estimation statistique",
+          "notionCount": 11,
+          "notionNames": [
+            "Échantillon i.i.d. de loi paramétrée \\(F_\\theta\\) ; statistique et estimateur d’un paramètre fixe.",
+            "Moments empiriques \\(n^{-1}\\sum_iX_i^r\\), mesure empirique \\(n^{-1}\\sum_i\\delta_{X_i}\\), fonction de répartition empirique \\(F_n(x)=n^{-1}\\sum_i1_{\\{X_i\\leq x\\}}\\).",
+            "Distinguer loi d’une observation, mesure empirique aléatoire et fonction de répartition empirique.",
+            "Loi forte des grands nombres pour observations i.i.d. intégrables ; consistance de la moyenne empirique.",
+            "TCL pour observations i.i.d. de variance finie strictement positive : normalisation par \\(\\sigma/\\sqrt n\\).",
+            "Lemme de Slutsky : substitution d’un estimateur convergeant en probabilité vers \\(\\sigma>0\\) dans une normalisation asymptotique.",
+            "Intervalles de confiance fréquentistes : paramètre fixe, bornes aléatoires, couverture exacte ou au moins nominale ; couverture asymptotique à distinguer d’une garantie exacte.",
+            "Construction par pivot exact ou approximation asymptotique ; normalité et variance connue pour l’intervalle normal exact de moyenne.",
+            "Estimation paramétrique, biais, consistance et incertitude à vérifier selon le modèle.",
+            "Maximum de vraisemblance : produit de densités ou de masses pour les observations fixées, respect de l’espace des paramètres et examen des bornes ; la vraisemblance n’est pas une densité du paramètre.",
+            "Modèle Bernoulli avec \\(p\\in[0,1]\\) : maximum de vraisemblance \\(\\hat p=\\bar X_n\\), y compris pour les échantillons constants."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "tA/(f)",
+          "sectionId": "(f)",
+          "label": "Vecteurs gaussiens",
+          "notionCount": 9,
+          "notionNames": [
+            "Vecteur gaussien dans \\(\\mathbb R^d\\) : toute combinaison linéaire est gaussienne, éventuellement dégénérée.",
+            "Loi déterminée par la moyenne \\(m\\) et la covariance \\(\\Sigma\\), symétrique positive semi-définie ; covariance singulière admise.",
+            "Transformation affine : \\(BX+b\\) est gaussien de moyenne \\(Bm+b\\) et covariance \\(B\\Sigma B^T\\).",
+            "Pour un vecteur conjointement gaussien, non-corrélation des composantes implique indépendance ; des marginales gaussiennes seules ne suffisent pas.",
+            "Simulation \\(X=m+AZ\\), avec coordonnées de \\(Z\\) normales standard indépendantes et \\(AA^T=\\Sigma\\) ; factorisation de rang réduit si nécessaire.",
+            "Contrôle Monte-Carlo de la moyenne et de la covariance empiriques : diagnostic numérique, non preuve de la loi.",
+            "TCL vectoriel dans \\(\\mathbb R^d\\) : vecteurs i.i.d. de moyenne \\(m\\) et covariance finie \\(\\Sigma\\), limite de \\(\\sqrt n(\\bar X_n-m)\\) égale à \\(\\mathcal N_d(0,\\Sigma)\\), éventuellement dégénérée.",
+            "Théorème de Cochran : formes quadratiques associées à une décomposition orthogonale par projecteurs symétriques idempotents d’un vecteur normal standard ; indépendance et lois du \\(\\chi^2\\) de degrés égaux aux rangs.",
+            "Application de Cochran à la séparation des sommes de carrés expliquées et résiduelles en régression gaussienne ; vérifier normalité, orthogonalité et rangs."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "tA/(g)",
+          "sectionId": "(g)",
+          "label": "Modèle linéaire gaussien",
+          "notionCount": 10,
+          "notionNames": [
+            "Modèle \\(Y=X\\beta+\\varepsilon\\), matrice de plan connue \\(X\\in\\mathbb R^{n\\times p}\\), coefficients \\(\\beta\\in\\mathbb R^p\\), bruit classique \\(\\varepsilon\\sim\\mathcal N_n(0,\\sigma^2I_n)\\).",
+            "Moindres carrés : minimisation de \\(\\|Y-Xb\\|^2\\), équations normales \\(X^TX\\hat\\beta=X^TY\\).",
+            "Rang colonne plein : \\(\\hat\\beta=(X^TX)^{-1}X^TY\\). Rang déficient : coefficients éventuellement non uniques, mais valeurs ajustées uniques.",
+            "Projection orthogonale sur \\(\\operatorname{Im}(X)\\) ; au rang plein, \\(H=X(X^TX)^{-1}X^T\\), ajustements \\(\\hat Y=HY\\), résidus \\(e=(I-H)Y\\), orthogonalité \\(X^Te=0\\).",
+            "Sommes de carrés et décomposition orthogonale entre ajustements et résidus.",
+            "Au rang plein, sous le modèle gaussien classique, \\(\\hat\\beta\\sim\\mathcal N_p(\\beta,\\sigma^2(X^TX)^{-1})\\).",
+            "Séparer conditions algébriques et hypothèses probabilistes : moyenne nulle des erreurs, covariance, indépendance, normalité et homoscédasticité.",
+            "Régression linéaire simple avec constante : ajustement d’une droite par sommes des carrés verticaux, estimation et interprétation de la pente dans le modèle.",
+            "Analyse des résidus : courbure, variance non constante et valeurs atypiques ; pertinence du modèle et incertitude des coefficients.",
+            "Une association ajustée par moindres carrés ne justifie pas à elle seule une interprétation causale."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        },
+        {
+          "code": "tA/(h)",
+          "sectionId": "(h)",
+          "label": "Tests paramétriques et tests d’ajustement",
+          "notionCount": 11,
+          "notionNames": [
+            "Hypothèses \\(H_0\\) et \\(H_1\\), statistique, région de rejet ; test unilatéral ou bilatéral fixé avant examen des données.",
+            "Erreur de première espèce et niveau : probabilité de rejet sous \\(H_0\\) bornée par \\(\\alpha\\), uniformément sur les paramètres de \\(H_0\\) si nécessaire.",
+            "Puissance : probabilité de rejet sous une alternative donnée ; p-valeur comme mesure d’extrémalité sous \\(H_0\\), non probabilité que \\(H_0\\) soit vraie.",
+            "Tests paramétriques sur les paramètres d’une famille de lois : loi nulle obtenue par pivot exact ou approximation asymptotique avec hypothèses explicites.",
+            "Test d’ajustement du \\(\\chi^2\\) : effectifs observés \\(O_i\\), attendus \\(E_i\\), statistique de Pearson \\(Q=\\sum_i(O_i-E_i)^2/E_i\\).",
+            "Approximation du \\(\\chi^2\\) : échantillon adapté, probabilités de classes positives et effectifs attendus suffisants ; regroupements à justifier selon les conventions retenues.",
+            "Degrés de liberté : \\(k-1\\) pour \\(k\\) classes de probabilités entièrement spécifiées ; réduction supplémentaire liée aux paramètres estimés sous des conditions régulières appropriées, sans règle automatique universelle.",
+            "Kolmogorov-Smirnov à un échantillon : \\(D_n=\\sup_x|F_n(x)-F_0(x)|\\), observations i.i.d., loi nulle continue entièrement spécifiée pour les seuils classiques.",
+            "Paramètres estimés sur les mêmes données : les seuils KS classiques ne sont généralement plus valides ; calibration adaptée nécessaire.",
+            "Distinguer KS à un échantillon, variante à deux échantillons et adaptations éventuelles.",
+            "Rapporter hypothèses, niveau, statistique, seuil ou p-valeur et limites ; un non-rejet ne prouve pas \\(H_0\\)."
+          ],
+          "counts": {
+            "courseCards": 4,
+            "originalExercises": 4,
+            "annaleCardsPrimary": 0,
+            "annaleCardsLinked": 0,
+            "annaleSessions": []
+          },
+          "needsReview": {
+            "course": 0,
+            "originalExercises": 0,
+            "annalesLinked": 0
+          },
+          "coverage": {
+            "course": true,
+            "originalExercises": true,
+            "annales": false
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -123,15 +123,48 @@ def clean_html(raw: str) -> str:
     )
 
 
+MATH_DELIMITER_RE = re.compile(
+    r"\$\$.*?\$\$|\\\[.*?\\\]|\\\(.*?\\\)|(?<!\\)\$(?!\$)[^\n$]+?(?<!\\)\$",
+    re.DOTALL,
+)
+MARKDOWN_CODE_SEGMENTS_RE = re.compile(
+    r"(`{3,}[\s\S]*?`{3,}|~{3,}[\s\S]*?~{3,}|`[^`\n]*?`)",
+)
+
+
+def protect_math_delimiters(source: str) -> tuple[str, dict[str, str]]:
+    """Stash TeX spans before Markdown/Bleach can interpret their punctuation."""
+    replacements: dict[str, str] = {}
+    prefix = "MATHRENDERPLACEHOLDER"
+    while prefix in source:
+        prefix += "X"
+    pieces = MARKDOWN_CODE_SEGMENTS_RE.split(source)
+    for index in range(0, len(pieces), 2):
+        def stash(match: re.Match[str]) -> str:
+            original = match.group(0)
+            display = original.startswith(("$$", r"\["))
+            class_name = "math-display" if display else "math-inline"
+            token = f"{prefix}{len(replacements):06d}END"
+            replacements[token] = f'<span class="{class_name}">{html.escape(original, quote=False)}</span>'
+            return token
+
+        pieces[index] = MATH_DELIMITER_RE.sub(stash, pieces[index])
+    return "".join(pieces), replacements
+
+
 def md_to_html(source: str, source_path: Path | None = None) -> str:
     if source_path:
         source = rewrite_markdown_links(source, source_path)
+    protected, math_replacements = protect_math_delimiters(source)
     raw = markdown.markdown(
-        source,
+        protected,
         extensions=["tables", "fenced_code", "toc", "sane_lists", "smarty"],
-        output_format="html5",
+        output_format="html",
     )
-    return clean_html(raw)
+    rendered = clean_html(raw)
+    for token, math_markup in math_replacements.items():
+        rendered = rendered.replace(token, math_markup)
+    return rendered
 
 SUBSCRIPT_CHARS = {
     "₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "₅": "5",
@@ -578,7 +611,13 @@ def build_catalogue(guide_entries: list[dict]) -> list[dict]:
         "url": "annales.html", "track": "outils", "kind": "tool", "group": "Annales et rapports",
         "tags": ["annales", "sujets", "rapports du jury", "concours docteur", "externe spécial"],
     }
-    all_items = [game, annales, exercise, *guide_entries, *resources]
+    coverage = {
+        "id": "resource-coverage", "title": "Couverture du programme par sous-partie",
+        "description": "Repère les fiches de cours, exercices originaux et questions d’annales reliés à chaque sous-partie officielle, ainsi que les cartes à vérifier.",
+        "url": "couverture.html", "track": "outils", "kind": "tool", "group": "Couverture du programme",
+        "tags": ["couverture", "programme 2027", "fiches de cours", "exercices", "annales"],
+    }
+    all_items = [game, annales, coverage, exercise, *guide_entries, *resources]
     data = {"title": "Révisions Agrégation Maths 2027", "resources": all_items}
     (ROOT / "assets/catalogue.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     html_count = len([x for x in resources if x["kind"] == "html"])
@@ -592,6 +631,7 @@ def build_routes(items: list[dict]) -> None:
         {"path": "/", "title": "Accueil — AGREG 27"},
         {"path": "/jeu.html", "title": "Jeu de révision — programme 2027"},
         {"path": "/annales.html", "title": "Annales et rapports — concours externe spécial"},
+        {"path": "/couverture.html", "title": "Couverture du programme 2027"},
         {"path": "/exercices-titre-01.html", "title": "Exercices corrigés — Titre 1"},
         {"path": "/guides/", "title": "Guides du programme 2027"},
     ]

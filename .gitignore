@@ -1,2 +1,7 @@
 __pycache__/
 *.py[cod]
+
+# Ignore local analysis and downloaded source material not intended for the public revision site.
+/research/
+*.docx
+*.pdf

@@ -6,9 +6,9 @@
 
 ## Périmètre officiel et corrections
 
-Le périmètre traité ici est exactement le **titre 6, « Analyse à une variable réelle »**, §§ **6.1 à 6.5** : 6.1 Nombres réels ; 6.2 Séries numériques ; 6.3 Fonctions définies sur une partie de ℝ et à valeurs réelles, avec (a) Continuité et (b) Dérivabilité ; 6.4 Fonctions usuelles ; 6.5 Intégration, avec (a) Intégrale sur un segment des fonctions continues par morceaux et (b) Intégrales généralisées. Les intitulés et éléments de programme reproduits ci-dessous suivent le PDF officiel [1].
+Le périmètre traité ici est le **titre 6, « Analyse à une variable réelle »**, §§ **6.1 à 6.7** : 6.1 Nombres réels ; 6.2 Séries numériques ; 6.3 Fonctions définies sur une partie de ℝ et à valeurs réelles, avec (a) Continuité et (b) Dérivabilité ; 6.4 Fonctions usuelles ; 6.5 Intégration, avec (a) Intégrale sur un segment des fonctions continues par morceaux et (b) Intégrales généralisées ; 6.6 Suites et séries de fonctions ; 6.7 Convexité. Les intitulés et éléments de programme reproduits ci-dessous suivent le PDF officiel [1].
 
-Deux corrections sont importantes pour bien délimiter le travail. **La convexité n’appartient pas aux §§ 6.1–6.5 :** elle figure séparément au § 6.7 (« Convexité »). Elle n’est donc pas développée ici. De même, les suites et séries de fonctions du § 6.6 sont hors périmètre. Enfin, le § 6.4 officiel énumère les familles de fonctions usuelles, mais ne détaille pas dans ce paragraphe leurs dérivées, propriétés ou développements. Les éléments de révision ci-dessous pour ces familles constituent un rappel de travail, pas une prétention à reproduire une sous-liste officielle qui n’existe pas dans le texte. Les développements limités sont explicitement mentionnés au § 6.3(b) [1].
+Deux précisions sont importantes pour bien délimiter le travail. **La convexité figure dans le § 6.7 et les suites et séries de fonctions dans le § 6.6 ; ces deux sections sont maintenant développées plus bas.** Le § 6.4 officiel énumère les familles de fonctions usuelles, mais ne détaille pas dans ce paragraphe leurs dérivées, propriétés ou développements. Les éléments de révision ci-dessous pour ces familles constituent un rappel de travail, pas une prétention à reproduire une sous-liste officielle qui n’existe pas dans le texte. Les développements limités sont explicitement mentionnés au § 6.3(b) [1].
 
 Le programme officiel précise qu’il décrit des connaissances à maîtriser et à savoir illustrer, et non un plan de cours ; ses exemples éventuels sont indicatifs [1]. Les exemples de ce guide sont donc des points d’appui, non une couverture garantie de tout sujet possible.
 
@@ -195,6 +195,48 @@ Le texte officiel donne ici une **liste de familles**, sans décomposer leurs pr
 - [ ] Je vérifie signe, domination ou équivalence avant d’appliquer un critère de comparaison.
 - [ ] Je distingue convergence absolue, divergence et semi-convergence ; je connais un exemple conditionnel et sa méthode de preuve.
 - [ ] J’ai fait des exercices où plusieurs bornes impropres doivent être examinées séparément.
+
+## 6.6 — Suites et séries de fonctions
+
+**Intitulé officiel :** « Convergence simple, convergence uniforme. Continuité et dérivabilité de la limite. Cas des séries de fonctions ; convergence normale. Théorèmes d’approximation de Weierstrass polynomial et de Weierstrass trigonométrique. » [1]
+
+### Notions et énoncés à maîtriser
+
+- **Convergence simple.** Une suite de fonctions \((f_n)\) définies sur \(E\) converge simplement vers \(f\) si, pour tout \(x\in E\), la suite numérique \((f_n(x))\) converge vers \(f(x)\). Le rang à partir duquel l’écart est petit peut dépendre de \(x\). La définition s’écrit \(\forall x\in E,\ \forall\varepsilon>0,\ \exists N(x,\varepsilon),\ \forall n\ge N,\ |f_n(x)-f(x)|<\varepsilon\).
+- **Convergence uniforme.** La convergence est uniforme sur \(E\) si le rang peut être choisi indépendamment de \(x\) : \(\forall\varepsilon>0,\ \exists N(\varepsilon),\ \forall n\ge N,\ \forall x\in E,\ |f_n(x)-f(x)|<\varepsilon\). Lorsque la norme est définie, cela équivaut à \(\|f_n-f\|_{\infty}\to0\). Elle implique la convergence simple, mais la réciproque est fausse. *Exemple :* sur \([0,1]\), \(x^n\) converge simplement vers 0 sur \([0,1[\) et vaut 1 au point 1 ; la convergence n’est pas uniforme, car l’écart peut rester arbitrairement proche de 1 près de 1.
+- **Limite uniforme de fonctions continues.** Si toutes les \(f_n\) sont continues sur un intervalle et si \(f_n\to f\) uniformément, alors \(f\) est continue. Sur un segment, la convergence uniforme permet aussi de passer à la limite sous l’intégrale. Une limite simple de fonctions continues peut être discontinue : les hypothèses du théorème sont donc essentielles.
+- **Dérivabilité de la limite.** Une version classique du théorème est la suivante : si les \(f_n\) sont de classe \(C^1\) sur un segment, si \((f_n(x_0))\) converge en un point \(x_0\), et si \((f'_n)\) converge uniformément vers \(g\), alors \((f_n)\) converge uniformément vers une fonction \(f\), de classe \(C^1\), et \(f'=g\). Une convergence uniforme des \(f_n\) seule ne garantit pas que la limite soit dérivable. Vérifier la version exacte enseignée avant de l’appliquer.
+- **Séries de fonctions et convergence normale.** La série \(\sum_{n\ge0}u_n(x)\) est étudiée via ses sommes partielles. Si \(\sum_n\|u_n\|_{\infty}\) converge sur \(E\), la série converge normalement ; le critère de Weierstrass assure alors sa convergence uniforme et absolue. Si les \(u_n\) sont continues, sa somme est continue. Pour dériver terme à terme, il faut des hypothèses supplémentaires, notamment une convergence uniforme de la série des dérivées et la convergence en un point.
+- **Approximation de Weierstrass.** Toute fonction continue sur un segment peut être approchée uniformément, à toute précision, par un polynôme. Toute fonction continue périodique peut être approchée uniformément par un polynôme trigonométrique. Ces théorèmes sont des résultats d’existence ; ils ne donnent pas, à eux seuls, une formule explicite de meilleur approximant.
+
+### Checklist — 6.6
+
+- [ ] Je sais écrire les quantificateurs de la convergence simple et de la convergence uniforme, et expliquer leur différence.
+- [ ] Je sais construire un exemple de convergence simple non uniforme et calculer ou borner le supremum pertinent.
+- [ ] Je connais les hypothèses qui permettent de préserver la continuité, de passer à la limite sous une intégrale et de dériver une limite.
+- [ ] Je sais appliquer le critère de Weierstrass à une série de fonctions et distinguer convergence simple, uniforme et normale.
+- [ ] Je connais les deux théorèmes d’approximation de Weierstrass prévus au programme.
+- [ ] Je ne dérive ni n’intègre terme à terme sans énoncer les hypothèses suffisantes.
+
+## 6.7 — Convexité
+
+**Intitulé officiel :** « Fonctions convexes d’une variable réelle. Continuité et dérivabilité des fonctions convexes. Caractérisations de la convexité. Inégalités de convexité. » [1]
+
+### Notions et énoncés à maîtriser
+
+- **Définition.** Une fonction \(f:I\to\mathbb R\), définie sur un intervalle \(I\), est convexe si, pour tous \(x,y\in I\) et \(t\in[0,1]\), \(f((1-t)x+ty)\le(1-t)f(x)+tf(y)\). Géométriquement, son graphe est sous chaque corde joignant deux de ses points.
+- **Pentes des cordes.** Pour \(x<y<z\) dans \(I\), les pentes des sécantes sont ordonnées : \(\frac{f(y)-f(x)}{y-x}\le\frac{f(z)-f(x)}{z-x}\le\frac{f(z)-f(y)}{z-y}\). Cette propriété donne des critères d’étude et implique qu’une fonction convexe finie est continue à l’intérieur de son intervalle de définition.
+- **Critères différentiels.** Si \(f\) est dérivable sur un intervalle ouvert, elle est convexe si et seulement si \(f'\) est croissante. Si \(f\) est deux fois dérivable, \(f''\ge0\) est un critère suffisant, et aussi nécessaire sous ces hypothèses. Le critère ne s’applique pas à un point où la dérivée seconde n’existe pas ; par exemple, \(x\mapsto|x|\) est convexe mais non dérivable en 0.
+- **Tangente et inégalités.** Si \(f\) est convexe et dérivable en \(a\), alors \(f(x)\ge f(a)+f'(a)(x-a)\) pour tout \(x\) de l’intervalle. Plus généralement, l’inégalité de Jensen s’écrit \(f(\sum_{i=1}^n\lambda_i x_i)\le\sum_{i=1}^n\lambda_i f(x_i)\), avec \(\lambda_i\ge0\) et \(\sum_i\lambda_i=1\). *Exemple :* pour \(f(x)=x^2\), Jensen donne \(((a+b)/2)^2\le(a^2+b^2)/2\).
+- **Continuité et dérivabilité.** Une fonction convexe finie sur un intervalle ouvert est continue sur cet intervalle ; elle possède des dérivées à gauche et à droite en chaque point intérieur, qui sont ordonnées. Elle n’est pas nécessairement dérivable partout : \(|x|\) en 0 est un contre-exemple simple. Si elle est dérivable, sa dérivée est croissante.
+
+### Checklist — 6.7
+
+- [ ] Je sais donner la définition avec les quantificateurs et reconnaître les poids d’une combinaison convexe.
+- [ ] Je sais utiliser les pentes de cordes et expliquer les hypothèses d’un critère fondé sur \(f'\) ou \(f''\).
+- [ ] Je sais établir une inégalité de tangente ou appliquer Jensen en vérifiant le domaine et les poids.
+- [ ] Je sais distinguer convexité et dérivabilité, par exemple avec \(|x|\), et ne pas appliquer le critère de \(f''\) hors de ses hypothèses.
+- [ ] Je peux donner un exemple d’inégalité de convexité et identifier les cas d’égalité.
 
 ## Lacunes à combler et niveau de maîtrise attendu
 

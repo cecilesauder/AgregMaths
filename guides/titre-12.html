@@ -38,28 +38,28 @@
 <li><strong>Exemple du laplacien en dimension un discrétisé par différences finies</strong> : matrice tridiagonale, rôle du pas de grille et illustration sur un problème aux limites.</li>
 </ul>
 <h3>Définitions et résultats centraux</h3>
-<p>Pour un système inversible (Ax=b), le conditionnement relatif de (A) dans une norme subordonnée est (\kappa(A)=|A|\,|A^{-1}|). Si seul le second membre est perturbé de (\delta b), alors
-[
-\frac{|\delta x|}{|x|}\leq \kappa(A)\frac{|\delta b|}{|b|},\qquad x=A^{-1}b,\quad b\ne0.
-]
+<p>Pour un système inversible <span class="math-inline">\(Ax=b\)</span>, le conditionnement relatif de <span class="math-inline">\(A\)</span> dans une norme subordonnée est <span class="math-inline">\(\kappa(A)=\|A\|\,\|A^{-1}\|\)</span>. Si seul le second membre est perturbé de <span class="math-inline">\(\delta b\)</span>, alors
+<span class="math-display">\[
+\frac{\|\delta x\|}{\|x\|}\leq \kappa(A)\frac{\|\delta b\|}{\|b\|},\qquad x=A^{-1}b,\quad b\ne0.
+\]</span>
 Un grand conditionnement indique que de petites perturbations peuvent produire une forte variation de la solution ; il ne démontre pas à lui seul qu’un algorithme donné est instable.</p>
-<p>Pour une matrice carrée complexe (A=(a_{ij})), le disque de Gershgorin de la ligne (i) est
-[
-D_i={z\in\mathbb C:|z-a_{ii}|\leq \sum_{j\ne i}|a_{ij}|}.
-]
-Toute valeur propre de (A) appartient à l’union des disques. En particulier, si (A) est strictement à diagonale dominante par lignes, c’est-à-dire (|a_{ii}|&gt;\sum_{j\ne i}|a_{ij}|) pour tout (i), alors (A) est inversible. <strong>Usage</strong> : ce critère donne une vérification simple de non-singularité sans calculer le déterminant.</p>
-<p>L’élimination de Gauss transforme le système par opérations élémentaires sur les lignes. Sous un pivotage adapté, on peut écrire (PA=LU), où (P) est une matrice de permutation, (L) triangulaire inférieure et (U) triangulaire supérieure. On résout alors (Ly=Pb), puis (Ux=y). Sans permutation, la factorisation LU par élimination existe notamment si les pivots successifs sont non nuls ; une condition suffisante usuelle est la non-nullité de tous les mineurs principaux dominants. Le pivotage partiel choisit un pivot de module maximal dans la colonne active pour limiter les divisions par de petites valeurs, mais ne constitue pas à lui seul une preuve générale de stabilité numérique.</p>
-<p>Écrivons (A=D+L+U), avec (D) diagonale, (L) strictement inférieure et (U) strictement supérieure. Jacobi s’écrit
-[
+<p>Pour une matrice carrée complexe <span class="math-inline">\(A=(a_{ij})\)</span>, le disque de Gershgorin de la ligne <span class="math-inline">\(i\)</span> est
+<span class="math-display">\[
+D_i=\{z\in\mathbb C:|z-a_{ii}|\leq \sum_{j\ne i}|a_{ij}|\}.
+\]</span>
+Toute valeur propre de <span class="math-inline">\(A\)</span> appartient à l’union des disques. En particulier, si <span class="math-inline">\(A\)</span> est strictement à diagonale dominante par lignes, c’est-à-dire <span class="math-inline">\(|a_{ii}|&gt;\sum_{j\ne i}|a_{ij}|\)</span> pour tout <span class="math-inline">\(i\)</span>, alors <span class="math-inline">\(A\)</span> est inversible. <strong>Usage</strong> : ce critère donne une vérification simple de non-singularité sans calculer le déterminant.</p>
+<p>L’élimination de Gauss transforme le système par opérations élémentaires sur les lignes. Sous un pivotage adapté, on peut écrire <span class="math-inline">\(PA=LU\)</span>, où <span class="math-inline">\(P\)</span> est une matrice de permutation, <span class="math-inline">\(L\)</span> triangulaire inférieure et <span class="math-inline">\(U\)</span> triangulaire supérieure. On résout alors <span class="math-inline">\(Ly=Pb\)</span>, puis <span class="math-inline">\(Ux=y\)</span>. Sans permutation, la factorisation LU par élimination existe notamment si les pivots successifs sont non nuls ; une condition suffisante usuelle est la non-nullité de tous les mineurs principaux dominants. Le pivotage partiel choisit un pivot de module maximal dans la colonne active pour limiter les divisions par de petites valeurs, mais ne constitue pas à lui seul une preuve générale de stabilité numérique.</p>
+<p>Écrivons <span class="math-inline">\(A=D+L+U\)</span>, avec <span class="math-inline">\(D\)</span> diagonale, <span class="math-inline">\(L\)</span> strictement inférieure et <span class="math-inline">\(U\)</span> strictement supérieure. Jacobi s’écrit
+<span class="math-display">\[
 x^{(k+1)}=D^{-1}\bigl(b-(L+U)x^{(k)}\bigr),
-]
-et Gauss-Seidel utilise les composantes déjà mises à jour, soit la matrice d’itération (T_{GS}=-(D+L)^{-1}U) avec cette convention de signe pour (L,U). Pour une itération affine (x^{(k+1)}=Tx^{(k)}+c), la convergence vers son point fixe pour toute donnée initiale équivaut à (\rho(T)&lt;1), où (\rho) est le rayon spectral. Une condition suffisante est (|T|&lt;1) pour une norme subordonnée. La dominance diagonale stricte fournit une condition suffisante classique pour Jacobi et Gauss-Seidel ; pour Gauss-Seidel, la symétrie définie positive de (A) est également une hypothèse suffisante classique.</p>
-<p>Toute matrice réelle ou complexe (m\times n) admet une SVD (A=U\Sigma V^*), avec (U,V) unitaires et (\Sigma) diagonale rectangulaire à coefficients diagonaux non négatifs. Ces coefficients sont les valeurs singulières ; leur nombre strictement positif est le rang. Si (A) est carrée inversible, (\kappa_2(A)=\sigma_{\max}(A)/\sigma_{\min}(A)). <strong>Usage</strong> : la SVD révèle les directions où la transformation amplifie ou atténue le plus les erreurs et aide à diagnostiquer un système mal conditionné.</p>
-<p>Exemple de discrétisation : pour (-u&rsquo;&lsquo;=f) sur ((0,1)), avec conditions de Dirichlet homogènes et (n) points intérieurs régulièrement espacés, le pas est (h=1/(n+1)). Le schéma centré conduit à la matrice
-[
-A_h=\frac1{h^2}\begin{pmatrix}2&amp;-1&amp;&amp;0\-1&amp;2&amp;\ddots&amp;\&amp;\ddots&amp;\ddots&amp;-1\0&amp;&amp;-1&amp;2\end{pmatrix}.
-]
-Elle est symétrique définie positive. Ses valeurs propres sont (\frac4{h^2}\sin^2!\bigl(\frac{k\pi}{2(n+1)}\bigr)), pour (k=1,\ldots,n). <strong>Usage</strong> : cet exemple relie le problème différentiel, la discrétisation et les propriétés spectrales du système linéaire obtenu.</p>
+\]</span>
+et Gauss-Seidel utilise les composantes déjà mises à jour, soit la matrice d’itération <span class="math-inline">\(T_{GS}=-(D+L)^{-1}U\)</span> avec cette convention de signe pour <span class="math-inline">\(L,U\)</span>. Pour une itération affine <span class="math-inline">\(x^{(k+1)}=Tx^{(k)}+c\)</span>, la convergence vers son point fixe pour toute donnée initiale équivaut à <span class="math-inline">\(\rho(T)&lt;1\)</span>, où <span class="math-inline">\(\rho\)</span> est le rayon spectral. Une condition suffisante est <span class="math-inline">\(\|T\|&lt;1\)</span> pour une norme subordonnée. La dominance diagonale stricte fournit une condition suffisante classique pour Jacobi et Gauss-Seidel ; pour Gauss-Seidel, la symétrie définie positive de <span class="math-inline">\(A\)</span> est également une hypothèse suffisante classique.</p>
+<p>Toute matrice réelle ou complexe <span class="math-inline">\(m\times n\)</span> admet une SVD <span class="math-inline">\(A=U\Sigma V^*\)</span>, avec <span class="math-inline">\(U,V\)</span> unitaires et <span class="math-inline">\(\Sigma\)</span> diagonale rectangulaire à coefficients diagonaux non négatifs. Ces coefficients sont les valeurs singulières ; leur nombre strictement positif est le rang. Si <span class="math-inline">\(A\)</span> est carrée inversible, <span class="math-inline">\(\kappa_2(A)=\sigma_{\max}(A)/\sigma_{\min}(A)\)</span>. <strong>Usage</strong> : la SVD révèle les directions où la transformation amplifie ou atténue le plus les erreurs et aide à diagnostiquer un système mal conditionné.</p>
+<p>Exemple de discrétisation : pour <span class="math-inline">\(-u''=f\)</span> sur <span class="math-inline">\((0,1)\)</span>, avec conditions de Dirichlet homogènes et <span class="math-inline">\(n\)</span> points intérieurs régulièrement espacés, le pas est <span class="math-inline">\(h=1/(n+1)\)</span>. Le schéma centré conduit à la matrice
+<span class="math-display">\[
+A_h=\frac1{h^2}\begin{pmatrix}2&amp;-1&amp;&amp;0\\-1&amp;2&amp;\ddots&amp;\\&amp;\ddots&amp;\ddots&amp;-1\\0&amp;&amp;-1&amp;2\end{pmatrix}.
+\]</span>
+Elle est symétrique définie positive. Ses valeurs propres sont <span class="math-inline">\(\frac4{h^2}\sin^2\!\bigl(\frac{k\pi}{2(n+1)}\bigr)\)</span>, pour <span class="math-inline">\(k=1,\ldots,n\)</span>. <strong>Usage</strong> : cet exemple relie le problème différentiel, la discrétisation et les propriétés spectrales du système linéaire obtenu.</p>
 <blockquote>
 <p><strong>Précision de portée :</strong> le programme officiel cite l’exemple du laplacien discrétisé en dimension un, sans fixer dans son libellé le domaine, le type de conditions aux limites, le signe de l’opérateur, ni le schéma ou le maillage. Le calcul ci-dessus est un exemple canonique avec convention explicitée, non une prétention à une spécification officielle unique.</p>
 </blockquote>
@@ -71,20 +71,20 @@ Elle est symétrique définie positive. Ses valeurs propres sont (\frac4{h^2}\si
 <li><strong>Optimisation convexe en dimension finie</strong> : convexité, minimiseur, méthode du gradient à pas constant et rôle du pas.</li>
 <li><strong>Moindres carrés</strong> : formulation, équations normales, existence et unicité selon le rang, précautions numériques.</li>
 <li><strong>Problèmes non linéaires réels et vectoriels</strong> : dichotomie, méthode de Picard (itération de point fixe), méthode de Newton ; conditions d’application et estimation de l’erreur.</li>
-<li><strong>Vitesse de convergence et estimation de l’erreur</strong> : convergence linéaire, superlinéaire et d’ordre (p), erreurs a priori ou a posteriori selon la méthode.</li>
+<li><strong>Vitesse de convergence et estimation de l’erreur</strong> : convergence linéaire, superlinéaire et d’ordre <span class="math-inline">\(p\)</span>, erreurs a priori ou a posteriori selon la méthode.</li>
 </ul>
 <h3>Définitions et résultats centraux</h3>
 <p>Pour calculer une valeur propre dominante, la méthode de la puissance forme x_{k+1}=Ax_k/||Ax_k||, si Ax_k≠0. Supposons que A possède une valeur propre réelle simple λ₁ telle que |λ₁|&gt;|λ₂|, où |λ₂| est le plus grand module des autres valeurs propres, et soit w₁ un vecteur propre gauche associé, normalisé par w₁ᵀv₁=1 pour un vecteur propre droit v₁. La condition initiale à vérifier est w₁ᵀx₀≠0, autrement dit la projection spectrale dominante de x₀ n’est pas nulle ; elle ne se réduit pas, pour une matrice non normale, à une composante orthogonale dans une « direction propre ». Alors les directions itérées convergent vers la droite propre dominante ; si λ₁&lt;0, le signe peut alterner. Le quotient de Rayleigh ou les quotients ||Ax_k||/||x_k|| servent à estimer la valeur propre ou son module. En cas de valeurs propres dominantes de même module, la convergence n’est pas garantie de cette façon. <strong>Exemple</strong> : pour diag(5,2), tout vecteur initial dont la première composante est non nulle converge en direction vers le premier axe.</p>
-<p>Une fonction (f:\mathbb R^d\to\mathbb R) est convexe si (f(tx+(1-t)y)\leq tf(x)+(1-t)f(y)) pour (t\in[0,1]). Le gradient à pas constant produit (x_{k+1}=x_k-\alpha\nabla f(x_k)), où (\alpha&gt;0). Un énoncé classique de convergence linéaire suppose que (f) est (\mu)-fortement convexe et différentiable, que son gradient est (L)-Lipschitz et que (0&lt;\alpha&lt;2/L) ; alors les itérés convergent vers l’unique minimiseur, avec un facteur de contraction dépendant des constantes et du pas. La convexité seule ne garantit pas ces hypothèses ni une convergence linéaire. <strong>Exemple</strong> : minimiser (f(x)=\tfrac12|Bx-c|_2^2) revient à appliquer le gradient à une fonction quadratique convexe, strictement convexe si (B) est de rang colonne plein.</p>
-<p>Le problème des moindres carrés consiste à minimiser (|Ax-b|_2^2). Un minimiseur vérifie les équations normales (A^<em>Ax=A^</em>b) ; dans le cas réel, (A^<em>=A^T). Un minimiseur existe en dimension finie ; il est unique lorsque (A) est de rang colonne plein. Les équations normales peuvent aggraver le conditionnement : si (A) est de rang colonne plein, (\kappa_2(A^</em>A)=\kappa<strong>(A)^2</strong>lzzwxh:0151?. <strong>Usage</strong> : choisir une factorisation QR ou une SVD peut être préférable en calcul numérique à la résolution directe des équations normales.</p>
-<p>Pour la dichotomie, si (f) est continue sur ([a_0,b_0]) et (f(a_0)f(b_0)&lt;0), le théorème des valeurs intermédiaires garantit une racine dans l’intervalle. On conserve à chaque étape une moitié dont les extrémités encadrent encore un changement de signe. Après (n) étapes, la longueur de l’intervalle est ((b_0-a_0)/2^n) ; son milieu est à une distance au plus ((b_0-a_0)/2^{n+1}) d’une racine située dans cet intervalle. <strong>Exemple</strong> : encadrer (\sqrt 2) en appliquant la méthode à (f(x)=x^2-2) sur ([1,2]).</p>
-<p>La méthode de Picard réécrit un problème comme (x=G(x)), puis calcule (x_{k+1}=G(x_k)). Si (G) envoie un fermé complet dans lui-même et y est une contraction de rapport (q&lt;1), le théorème du point fixe assure un unique point fixe et la convergence depuis tout point initial du fermé. On a notamment (|x_k-x^*|\leq \frac{q}{1-q}|x_k-x_{k-1}|) pour (k\geq1). <strong>Exemple</strong> : pour résoudre (x=\cos x) sur ([0,1]), (G(x)=\cos x) y envoie l’intervalle dans lui-même et est contractante puisque (|G&rsquo;(x)|=|\sin x|\leq\sin(1)&lt;1).</p>
-<p>La méthode de Newton pour (F(x)=0) s’écrit, lorsque le jacobien est inversible,
-[
+<p>Une fonction <span class="math-inline">\(f:\mathbb R^d\to\mathbb R\)</span> est convexe si <span class="math-inline">\(f(tx+(1-t)y)\leq tf(x)+(1-t)f(y)\)</span> pour <span class="math-inline">\(t\in[0,1]\)</span>. Le gradient à pas constant produit <span class="math-inline">\(x_{k+1}=x_k-\alpha\nabla f(x_k)\)</span>, où <span class="math-inline">\(\alpha&gt;0\)</span>. Un énoncé classique de convergence linéaire suppose que <span class="math-inline">\(f\)</span> est <span class="math-inline">\(\mu\)</span>-fortement convexe et différentiable, que son gradient est <span class="math-inline">\(L\)</span>-Lipschitz et que <span class="math-inline">\(0&lt;\alpha&lt;2/L\)</span> ; alors les itérés convergent vers l’unique minimiseur, avec un facteur de contraction dépendant des constantes et du pas. La convexité seule ne garantit pas ces hypothèses ni une convergence linéaire. <strong>Exemple</strong> : minimiser <span class="math-inline">\(f(x)=\tfrac12\|Bx-c\|_2^2\)</span> revient à appliquer le gradient à une fonction quadratique convexe, strictement convexe si <span class="math-inline">\(B\)</span> est de rang colonne plein.</p>
+<p>Le problème des moindres carrés consiste à minimiser <span class="math-inline">\(\|Ax-b\|_2^2\)</span>. Un minimiseur vérifie les équations normales <span class="math-inline">\(A^*Ax=A^*b\)</span> ; dans le cas réel, <span class="math-inline">\(A^*=A^T\)</span>. Un minimiseur existe en dimension finie ; il est unique lorsque <span class="math-inline">\(A\)</span> est de rang colonne plein. Les équations normales peuvent aggraver le conditionnement : si <span class="math-inline">\(A\)</span> est de rang colonne plein, <span class="math-inline">\(\kappa_2(A^*A)=\kappa_2(A)^2\)</span>. <strong>Usage</strong> : choisir une factorisation QR ou une SVD peut être préférable en calcul numérique à la résolution directe des équations normales.</p>
+<p>Pour la dichotomie, si <span class="math-inline">\(f\)</span> est continue sur <span class="math-inline">\([a_0,b_0]\)</span> et <span class="math-inline">\(f(a_0)f(b_0)&lt;0\)</span>, le théorème des valeurs intermédiaires garantit une racine dans l’intervalle. On conserve à chaque étape une moitié dont les extrémités encadrent encore un changement de signe. Après <span class="math-inline">\(n\)</span> étapes, la longueur de l’intervalle est <span class="math-inline">\((b_0-a_0)/2^n\)</span> ; son milieu est à une distance au plus <span class="math-inline">\((b_0-a_0)/2^{n+1}\)</span> d’une racine située dans cet intervalle. <strong>Exemple</strong> : encadrer <span class="math-inline">\(\sqrt 2\)</span> en appliquant la méthode à <span class="math-inline">\(f(x)=x^2-2\)</span> sur <span class="math-inline">\([1,2]\)</span>.</p>
+<p>La méthode de Picard réécrit un problème comme <span class="math-inline">\(x=G(x)\)</span>, puis calcule <span class="math-inline">\(x_{k+1}=G(x_k)\)</span>. Si <span class="math-inline">\(G\)</span> envoie un fermé complet dans lui-même et y est une contraction de rapport <span class="math-inline">\(q&lt;1\)</span>, le théorème du point fixe assure un unique point fixe et la convergence depuis tout point initial du fermé. On a notamment <span class="math-inline">\(\|x_k-x^*\|\leq \frac{q}{1-q}\|x_k-x_{k-1}\|\)</span> pour <span class="math-inline">\(k\geq1\)</span>. <strong>Exemple</strong> : pour résoudre <span class="math-inline">\(x=\cos x\)</span> sur <span class="math-inline">\([0,1]\)</span>, <span class="math-inline">\(G(x)=\cos x\)</span> y envoie l’intervalle dans lui-même et est contractante puisque <span class="math-inline">\(|G'(x)|=|\sin x|\leq\sin(1)&lt;1\)</span>.</p>
+<p>La méthode de Newton pour <span class="math-inline">\(F(x)=0\)</span> s’écrit, lorsque le jacobien est inversible,
+<span class="math-display">\[
 x_{k+1}=x_k-J_F(x_k)^{-1}F(x_k).
-]
-En dimension un, cela devient (x_{k+1}=x_k-f(x_k)/f&rsquo;(x_k)), avec (f&rsquo;(x_k)\ne0). Si (F) est de classe (C^2) au voisinage d’une racine (x^<em>), si (J_F(x^</em>)) est inversible et si l’itéré initial est suffisamment proche, Newton converge localement de façon quadratique : il existe localement (C&gt;0) tel que (|e_{k+1}|\leq C|e_k|^2), où (e_k=x_k-x^*). Ces hypothèses locales n’assurent pas que tout départ converge. <strong>Exemple</strong> : Newton appliqué à (x^2-2=0) donne (x_{k+1}=(x_k+2/x_k)/2) pour (x_k\ne0).</p>
-<p>Pour une suite d’itérés convergeant vers (x^<em>), on note (e_k=|x_k-x^</em>|). Une convergence est d’ordre (p) si, dans les conditions usuelles, (e_{k+1}/e_k^p\to C) avec (0&lt;C&lt;\infty). L’ordre 1 avec facteur asymptotique strictement inférieur à 1 correspond à une convergence linéaire ; un rapport (e_{k+1}/e_k\to0) correspond à une convergence superlinéaire. Une estimation pratique de l’erreur (par exemple intervalle de dichotomie, résidu ou borne de point fixe) n’est pas automatiquement égale à l’erreur réelle : il faut justifier le lien.</p>
+\]</span>
+En dimension un, cela devient <span class="math-inline">\(x_{k+1}=x_k-f(x_k)/f'(x_k)\)</span>, avec <span class="math-inline">\(f'(x_k)\ne0\)</span>. Si <span class="math-inline">\(F\)</span> est de classe <span class="math-inline">\(C^2\)</span> au voisinage d’une racine <span class="math-inline">\(x^*\)</span>, si <span class="math-inline">\(J_F(x^*)\)</span> est inversible et si l’itéré initial est suffisamment proche, Newton converge localement de façon quadratique : il existe localement <span class="math-inline">\(C&gt;0\)</span> tel que <span class="math-inline">\(\|e_{k+1}\|\leq C\|e_k\|^2\)</span>, où <span class="math-inline">\(e_k=x_k-x^*\)</span>. Ces hypothèses locales n’assurent pas que tout départ converge. <strong>Exemple</strong> : Newton appliqué à <span class="math-inline">\(x^2-2=0\)</span> donne <span class="math-inline">\(x_{k+1}=(x_k+2/x_k)/2\)</span> pour <span class="math-inline">\(x_k\ne0\)</span>.</p>
+<p>Pour une suite d’itérés convergeant vers <span class="math-inline">\(x^*\)</span>, on note <span class="math-inline">\(e_k=\|x_k-x^*\|\)</span>. Une convergence est d’ordre <span class="math-inline">\(p\)</span> si, dans les conditions usuelles, <span class="math-inline">\(e_{k+1}/e_k^p\to C\)</span> avec <span class="math-inline">\(0&lt;C&lt;\infty\)</span>. L’ordre 1 avec facteur asymptotique strictement inférieur à 1 correspond à une convergence linéaire ; un rapport <span class="math-inline">\(e_{k+1}/e_k\to0\)</span> correspond à une convergence superlinéaire. Une estimation pratique de l’erreur (par exemple intervalle de dichotomie, résidu ou borne de point fixe) n’est pas automatiquement égale à l’erreur réelle : il faut justifier le lien.</p>
 <h2>12.3 Intégration numérique</h2>
 <h3>Notions à savoir</h3>
 <ul>
@@ -94,40 +94,40 @@ En dimension un, cela devient (x_{k+1}=x_k-f(x_k)/f&rsquo;(x_k)), avec (f&rsquo;
 <li><strong>Intégrales multiples</strong> : transformation en espérance sur un domaine de volume fini et application de l’échantillonnage.</li>
 </ul>
 <h3>Définitions et résultats centraux</h3>
-<p>Sur ([a,b]), une quadrature par rectangles remplace l’intégrale par une somme de valeurs de (f) multipliées par les largeurs des sous-intervalles. La formule d’erreur dépend de la variante choisie. Pour la somme composite à gauche sur un maillage uniforme de pas (h=(b-a)/N), si (f\in C^1([a,b])), une borne classique est
-[
-\left|\int_a^b f(x)\,dx-h\sum_{j=0}^{N-1}f(a+jh)\right|\leq \frac{(b-a)h}{2}\max_{[a,b]}|f&rsquo;|.
-]
-Pour la règle composite du point milieu, sous l’hypothèse plus forte (f\in C^2([a,b])), la borne classique est ((b-a)h^2\max|f&rsquo;&lsquo;|/24). <strong>Exemple</strong> : ces bornes donnent une majoration de l’erreur avant calcul pour intégrer (e^x) sur un segment, à partir du maximum de sa dérivée ou de sa dérivée seconde.</p>
+<p>Sur <span class="math-inline">\([a,b]\)</span>, une quadrature par rectangles remplace l’intégrale par une somme de valeurs de <span class="math-inline">\(f\)</span> multipliées par les largeurs des sous-intervalles. La formule d’erreur dépend de la variante choisie. Pour la somme composite à gauche sur un maillage uniforme de pas <span class="math-inline">\(h=(b-a)/N\)</span>, si <span class="math-inline">\(f\in C^1([a,b])\)</span>, une borne classique est
+<span class="math-display">\[
+\left|\int_a^b f(x)\,dx-h\sum_{j=0}^{N-1}f(a+jh)\right|\leq \frac{(b-a)h}{2}\max_{[a,b]}|f'|.
+\]</span>
+Pour la règle composite du point milieu, sous l’hypothèse plus forte <span class="math-inline">\(f\in C^2([a,b])\)</span>, la borne classique est <span class="math-inline">\((b-a)h^2\max|f''|/24\)</span>. <strong>Exemple</strong> : ces bornes donnent une majoration de l’erreur avant calcul pour intégrer <span class="math-inline">\(e^x\)</span> sur un segment, à partir du maximum de sa dérivée ou de sa dérivée seconde.</p>
 <blockquote>
 <p><strong>Réserve de couverture :</strong> le texte officiel dit « méthode des rectangles » au singulier générique, sans préciser rectangles à gauche, à droite ou au milieu, ni la convention exacte d’erreur. Les deux bornes ci-dessus sont explicitement rattachées aux variantes correspondantes ; elles ne doivent pas être attribuées indifféremment à toutes les règles des rectangles.</p>
 </blockquote>
-<p>Pour une intégrale sur un domaine mesurable (D\subset\mathbb R^d) de volume fini (|D|&gt;0), si (X_1,\ldots,X_N) sont indépendantes et uniformes sur (D), alors
-[
+<p>Pour une intégrale sur un domaine mesurable <span class="math-inline">\(D\subset\mathbb R^d\)</span> de volume fini <span class="math-inline">\(|D|&gt;0\)</span>, si <span class="math-inline">\(X_1,\ldots,X_N\)</span> sont indépendantes et uniformes sur <span class="math-inline">\(D\)</span>, alors
+<span class="math-display">\[
 \widehat I_N=\frac{|D|}{N}\sum_{j=1}^{N}f(X_j)
-]
-est un estimateur sans biais de (I=\int_D f(x)\,dx), lorsque (f) est intégrable et que la variance est finie. Sa variance vaut (|D|^2\operatorname{Var}(f(X_1))/N), et son erreur quadratique moyenne vaut (|D|\sigma/\sqrt N), avec (\sigma^2=\operatorname{Var}(f(X_1))). La vitesse typique est donc en (N^{-1/2}) en erreur quadratique moyenne ; elle est probabiliste et n’est pas une borne déterministe pour chaque tirage. <strong>Exemple</strong> : pour intégrer (x+y) sur le carré unité, on tire des points uniformes du carré et on moyenne les valeurs (x_j+y_j). La même construction s’applique à une intégrale multiple en dimension plus grande, en échantillonnant le domaine (ou un domaine englobant avec indicatrice).</p>
+\]</span>
+est un estimateur sans biais de <span class="math-inline">\(I=\int_D f(x)\,dx\)</span>, lorsque <span class="math-inline">\(f\)</span> est intégrable et que la variance est finie. Sa variance vaut <span class="math-inline">\(|D|^2\operatorname{Var}(f(X_1))/N\)</span>, et son erreur quadratique moyenne vaut <span class="math-inline">\(|D|\sigma/\sqrt N\)</span>, avec <span class="math-inline">\(\sigma^2=\operatorname{Var}(f(X_1))\)</span>. La vitesse typique est donc en <span class="math-inline">\(N^{-1/2}\)</span> en erreur quadratique moyenne ; elle est probabiliste et n’est pas une borne déterministe pour chaque tirage. <strong>Exemple</strong> : pour intégrer <span class="math-inline">\(x+y\)</span> sur le carré unité, on tire des points uniformes du carré et on moyenne les valeurs <span class="math-inline">\(x_j+y_j\)</span>. La même construction s’applique à une intégrale multiple en dimension plus grande, en échantillonnant le domaine (ou un domaine englobant avec indicatrice).</p>
 <h2>12.4 Approximation de fonctions numériques</h2>
 <h3>Notions à savoir</h3>
 <ul>
-<li><strong>Interpolation de Lagrange</strong> d’une fonction en (n+1) points : nœuds distincts, polynôme interpolateur de degré au plus (n), polynômes de base et unicité.</li>
+<li><strong>Interpolation de Lagrange</strong> d’une fonction en <span class="math-inline">\(n+1\)</span> points : nœuds distincts, polynôme interpolateur de degré au plus <span class="math-inline">\(n\)</span>, polynômes de base et unicité.</li>
 <li><strong>Estimation de l’erreur</strong> : formule du reste avec hypothèse de dérivabilité suffisante et produit des distances aux nœuds.</li>
-<li><strong>Illustration</strong> : vérifier l’interpolation exacte des polynômes de degré au plus (n), et interpréter les facteurs d’erreur.</li>
+<li><strong>Illustration</strong> : vérifier l’interpolation exacte des polynômes de degré au plus <span class="math-inline">\(n\)</span>, et interpréter les facteurs d’erreur.</li>
 </ul>
 <h3>Définitions et résultats centraux</h3>
-<p>Soient des nœuds deux à deux distincts (x_0,\ldots,x_n). Les polynômes de base de Lagrange sont
-[
-L_i(x)=\prod_{\substack{0\leq j\leq n\j\ne i}}\frac{x-x_j}{x_i-x_j}.
-]
-Le polynôme interpolateur de degré au plus (n) est
-[
+<p>Soient des nœuds deux à deux distincts <span class="math-inline">\(x_0,\ldots,x_n\)</span>. Les polynômes de base de Lagrange sont
+<span class="math-display">\[
+L_i(x)=\prod_{\substack{0\leq j\leq n\\j\ne i}}\frac{x-x_j}{x_i-x_j}.
+\]</span>
+Le polynôme interpolateur de degré au plus <span class="math-inline">\(n\)</span> est
+<span class="math-display">\[
 P_n(x)=\sum_{i=0}^n f(x_i)L_i(x),
-]
-et c’est l’unique polynôme de degré au plus (n) qui prend les valeurs (f(x_i)) aux nœuds. Si (f\in C^{n+1}([a,b])) et si les nœuds et (x) appartiennent à ([a,b]), alors il existe, pour chaque (x) distinct des nœuds, un (\xi_x\in[a,b]) tel que
-[
+\]</span>
+et c’est l’unique polynôme de degré au plus <span class="math-inline">\(n\)</span> qui prend les valeurs <span class="math-inline">\(f(x_i)\)</span> aux nœuds. Si <span class="math-inline">\(f\in C^{n+1}([a,b])\)</span> et si les nœuds et <span class="math-inline">\(x\)</span> appartiennent à <span class="math-inline">\([a,b]\)</span>, alors il existe, pour chaque <span class="math-inline">\(x\)</span> distinct des nœuds, un <span class="math-inline">\(\xi_x\in[a,b]\)</span> tel que
+<span class="math-display">\[
 f(x)-P_n(x)=\frac{f^{(n+1)}(\xi_x)}{(n+1)!}\prod_{i=0}^n(x-x_i).
-]
-Aux nœuds, l’erreur est nulle. <strong>Exemple</strong> : l’interpolation de (f(x)=x^2) en trois nœuds distincts restitue exactement (x^2), puisque le degré de (f) ne dépasse pas 2.</p>
+\]</span>
+Aux nœuds, l’erreur est nulle. <strong>Exemple</strong> : l’interpolation de <span class="math-inline">\(f(x)=x^2\)</span> en trois nœuds distincts restitue exactement <span class="math-inline">\(x^2\)</span>, puisque le degré de <span class="math-inline">\(f\)</span> ne dépasse pas 2.</p>
 <blockquote>
 <p>La formule donne une estimation de l’erreur sous hypothèse de régularité. Elle ne garantit pas à elle seule une bonne approximation uniforme lorsque le nombre ou la disposition des nœuds varie ; la stabilité et le choix des nœuds requièrent une étude distincte.</p>
 </blockquote>
@@ -141,13 +141,13 @@ Aux nœuds, l’erreur est nulle. <strong>Exemple</strong> : l’interpolation d
 <li><strong>Ordre</strong> : ordre d’erreur locale et ordre global, avec convention précisée.</li>
 </ul>
 <h3>Définitions et résultats centraux</h3>
-<p>Pour le problème de Cauchy (y&rsquo;(t)=f(t,y(t))), (y(t_0)=y_0), le schéma d’Euler explicite de pas (h) est
-[
+<p>Pour le problème de Cauchy <span class="math-inline">\(y'(t)=f(t,y(t))\)</span>, <span class="math-inline">\(y(t_0)=y_0\)</span>, le schéma d’Euler explicite de pas <span class="math-inline">\(h\)</span> est
+<span class="math-display">\[
 t_{n+1}=t_n+h,\qquad y_{n+1}=y_n+h f(t_n,y_n).
-]
-Il évalue le champ au début du pas. <strong>Exemple</strong> : pour (y&rsquo;=\lambda y), (y(0)=1), il donne (y_n=(1+h\lambda)^n), ce qui permet de comparer directement l’amplification numérique à la solution exacte (e^{\lambda t_n}).</p>
-<p>Si (f) est suffisamment régulière, le développement de Taylor de la solution exacte montre que l’écart effectué en un pas à partir de la valeur exacte est d’ordre (O(h^2)) : Euler explicite a une erreur locale non normalisée d’ordre 2, et un ordre global 1, c’est-à-dire une erreur (O(h)) sur un intervalle de temps fixé sous des hypothèses de stabilité appropriées. Certains cours définissent le défaut local après division par (h) ; il est alors d’ordre 1. Toujours préciser la convention utilisée.</p>
-<p>La <strong>consistance</strong> signifie que le défaut local normalisé tend vers zéro lorsque (h\to0). La <strong>stabilité</strong> exprime que de petites perturbations du calcul ou des données ne sont pas amplifiées sans contrôle sur l’intervalle étudié. Dans la convention de stabilité absolue testée sur (y&rsquo;=\lambda y), Euler explicite est stable au sens (|1+h\lambda|\leq1). Pour (\lambda&lt;0) réel, cela exige (0\leq h|\lambda|\leq2) ; la condition est propre à ce test et à cette notion de stabilité. Sous des hypothèses usuelles de régularité et de Lipschitz sur (f), la consistance et le contrôle de stabilité conduisent à la convergence d’Euler sur un intervalle fini. <strong>Usage</strong> : pour des équations raides, la restriction sur (h) peut rendre Euler explicite inefficace ou instable malgré la décroissance de la solution exacte.</p>
+\]</span>
+Il évalue le champ au début du pas. <strong>Exemple</strong> : pour <span class="math-inline">\(y'=\lambda y\)</span>, <span class="math-inline">\(y(0)=1\)</span>, il donne <span class="math-inline">\(y_n=(1+h\lambda)^n\)</span>, ce qui permet de comparer directement l’amplification numérique à la solution exacte <span class="math-inline">\(e^{\lambda t_n}\)</span>.</p>
+<p>Si <span class="math-inline">\(f\)</span> est suffisamment régulière, le développement de Taylor de la solution exacte montre que l’écart effectué en un pas à partir de la valeur exacte est d’ordre <span class="math-inline">\(O(h^2)\)</span> : Euler explicite a une erreur locale non normalisée d’ordre 2, et un ordre global 1, c’est-à-dire une erreur <span class="math-inline">\(O(h)\)</span> sur un intervalle de temps fixé sous des hypothèses de stabilité appropriées. Certains cours définissent le défaut local après division par <span class="math-inline">\(h\)</span> ; il est alors d’ordre 1. Toujours préciser la convention utilisée.</p>
+<p>La <strong>consistance</strong> signifie que le défaut local normalisé tend vers zéro lorsque <span class="math-inline">\(h\to0\)</span>. La <strong>stabilité</strong> exprime que de petites perturbations du calcul ou des données ne sont pas amplifiées sans contrôle sur l’intervalle étudié. Dans la convention de stabilité absolue testée sur <span class="math-inline">\(y'=\lambda y\)</span>, Euler explicite est stable au sens <span class="math-inline">\(|1+h\lambda|\leq1\)</span>. Pour <span class="math-inline">\(\lambda&lt;0\)</span> réel, cela exige <span class="math-inline">\(0\leq h|\lambda|\leq2\)</span> ; la condition est propre à ce test et à cette notion de stabilité. Sous des hypothèses usuelles de régularité et de Lipschitz sur <span class="math-inline">\(f\)</span>, la consistance et le contrôle de stabilité conduisent à la convergence d’Euler sur un intervalle fini. <strong>Usage</strong> : pour des équations raides, la restriction sur <span class="math-inline">\(h\)</span> peut rendre Euler explicite inefficace ou instable malgré la décroissance de la solution exacte.</p>
 <blockquote>
 <p><strong>Précision de portée :</strong> le programme officiel cite consistance, stabilité, convergence et ordre sans imposer dans son libellé une définition unique de stabilité ni un théorème général particulier. Les explications ci-dessus distinguent une interprétation usuelle de stabilité sur les problèmes de Cauchy et la stabilité absolue sur l’équation test. Les cours peuvent présenter des cadres plus précis (schémas à un pas ou multipas) : reprendre leurs conventions et hypothèses dans une démonstration.</p>
 </blockquote>
@@ -156,7 +156,7 @@ Il évalue le champ au début du pas. <strong>Exemple</strong> : pour (y&rsquo;=
 <ul>
 <li>[ ] Je sais définir le conditionnement d’une matrice inversible dans une norme choisie et expliquer ce qu’il mesure — <strong>12.1</strong>.</li>
 <li>[ ] Je sais appliquer le critère de Gershgorin-Hadamard et vérifier les hypothèses de dominance diagonale stricte — <strong>12.1</strong>.</li>
-<li>[ ] Je sais effectuer un pivot de Gauss, reconnaître les effets du pivotage et résoudre avec une factorisation (PA=LU) — <strong>12.1</strong>.</li>
+<li>[ ] Je sais effectuer un pivot de Gauss, reconnaître les effets du pivotage et résoudre avec une factorisation <span class="math-inline">\(PA=LU\)</span> — <strong>12.1</strong>.</li>
 <li>[ ] Je sais écrire les itérations de Jacobi et Gauss-Seidel et calculer leurs matrices d’itération — <strong>12.1–12.2</strong>.</li>
 <li>[ ] Je sais utiliser normes subordonnées et rayon spectral pour justifier ou exclure la convergence d’une itération linéaire — <strong>12.1–12.2</strong>.</li>
 <li>[ ] Je sais lire une SVD, identifier les valeurs singulières et relier la plus petite à la sensibilité d’un problème inversible — <strong>12.1</strong>.</li>
@@ -169,15 +169,15 @@ Il évalue le champ au début du pas. <strong>Exemple</strong> : pour (y&rsquo;=
 <li>[ ] Je sais appliquer une itération de Newton et énoncer les conditions locales de convergence quadratique — <strong>12.2</strong>.</li>
 <li>[ ] Je sais distinguer convergence linéaire, superlinéaire et d’ordre supérieur ; je sais relier résidu, erreur et vitesse sans les confondre — <strong>12.2</strong>.</li>
 <li>[ ] Je sais écrire au moins une règle des rectangles, préciser sa variante et utiliser la borne d’erreur adaptée — <strong>12.3</strong>.</li>
-<li>[ ] Je sais construire un estimateur de Monte-Carlo pour une intégrale multiple et interpréter son erreur en (N^{-1/2}) — <strong>12.3</strong>.</li>
+<li>[ ] Je sais construire un estimateur de Monte-Carlo pour une intégrale multiple et interpréter son erreur en <span class="math-inline">\(N^{-1/2}\)</span> — <strong>12.3</strong>.</li>
 <li>[ ] Je sais construire le polynôme de Lagrange, vérifier l’unicité et appliquer la formule du reste avec ses hypothèses — <strong>12.4</strong>.</li>
 <li>[ ] Je sais écrire Euler explicite et distinguer consistance, stabilité, convergence, erreur locale et ordre global — <strong>12.5</strong>.</li>
 </ul>
 <h3>Preuves, méthodes et calculs à refaire</h3>
 <ul>
-<li>[ ] Refaire une majoration de perturbation (\delta x) et un test de Gershgorin sans sauter les hypothèses.</li>
+<li>[ ] Refaire une majoration de perturbation <span class="math-inline">\(\delta x\)</span> et un test de Gershgorin sans sauter les hypothèses.</li>
 <li>[ ] Résoudre un système avec pivotage, puis réutiliser la factorisation pour plusieurs seconds membres.</li>
-<li>[ ] Calculer (\rho(T)) dans un exemple de Jacobi ou Gauss-Seidel et confronter le résultat à une borne par norme.</li>
+<li>[ ] Calculer <span class="math-inline">\(\rho(T)\)</span> dans un exemple de Jacobi ou Gauss-Seidel et confronter le résultat à une borne par norme.</li>
 <li>[ ] Vérifier la formule spectrale du laplacien discret sur une petite matrice ou en calculant ses valeurs propres.</li>
 <li>[ ] Décomposer un vecteur initial sur les directions propres dans un exemple de puissance ; étudier le cas où sa composante dominante est nulle.</li>
 <li>[ ] Dériver les équations normales et comparer, dans un petit exemple, la solution exacte et les résidus des moindres carrés.</li>

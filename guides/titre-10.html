@@ -70,7 +70,7 @@
 <p>Soit E un espace vectoriel réel ou complexe de dimension finie. Une fonction mesurable f:X→E est intégrable si ∫∥f(x)∥dμ(x)&lt;∞. Son intégrale se définit coordonnée par coordonnée dans une base; elle ne dépend pas du choix de la base et vérifie notamment ∥∫f dμ∥≤∫∥f∥dμ.</p>
 <p>Pour les intégrales à paramètres, le schéma central consiste à écrire F(t)=∫_X f(t,x)dμ(x) puis à vérifier les hypothèses permettant d’intervertir limite (ou dérivée) et intégrale. Un cadre suffisant de continuité est le suivant : f est mesurable sur le produit (I×X, 𝓑(I)⊗𝒜), continue en t pour presque tout x, et, au voisinage de chaque paramètre, |f(t,x)|≤g(x) avec g∈L¹(μ). Pour la dérivabilité près de t₀, supposons f(t₀,·) intégrable ; pour presque tout x, t↦f(t,x) est dérivable sur un voisinage de t₀, la dérivée partielle est mesurable sur le produit et |∂ₜf(t,x)|≤g(x) pour une même g∈L¹(μ) et tout t de ce voisinage. La mesurabilité de f garantit que f(t,·) est mesurable pour chaque t. Alors F(t)=∫f(t,x)dμ(x) est définie près de t₀, dérivable en t₀ et F′(t₀)=∫∂ₜf(t₀,x)dμ(x).</p>
 <p><strong>Exemple / usage.</strong> Pour F(t)=∫_0^1 e^{tx}dx, sur tout intervalle borné de paramètres, l’intégrande et sa dérivée en t sont dominées par des constantes intégrables. On peut donc dériver sous le signe intégral : F&rsquo;(t)=∫_0^1xe^{tx}dx. Cette méthode est fréquente pour établir des identités ou des estimations dépendant d’un paramètre.</p>
-<h3>10.2(c) Espaces (L^p), où (1≤p≤∞). Complétude. Inégalité de Hölder.</h3>
+<h3>10.2(c) Espaces <span class="math-inline">\(L^p\)</span>, où <span class="math-inline">\(1≤p≤∞\)</span>. Complétude. Inégalité de Hölder.</h3>
 <p>Pour 1≤p&lt;∞, L^p(X,μ) est l’espace des fonctions mesurables modulo l’égalité presque partout telles que ∫|f|^p dμ&lt;∞, muni de ∥f∥<em>p=(∫|f|^p dμ)^{1/p}. L^∞ regroupe les classes de fonctions essentiellement bornées, avec la norme essentielle ∥f∥</em>∞=ess sup |f|. Le théorème de complétude affirme que L^p est un espace de Banach pour tout 1≤p≤∞.</p>
 <p><strong>Inégalité de Hölder.</strong> Si 1≤p,q≤∞ sont conjugués, c’est-à-dire 1/p+1/q=1 avec la convention 1/∞=0, si f∈L^p et g∈L^q, alors fg∈L^1 et ∥fg∥_1≤∥f∥_p∥g∥_q. Pour p=q=2, c’est Cauchy–Schwarz.</p>
 <p><strong>Exemple / usage.</strong> Si f,g∈L²(ℝ^d), alors fg∈L¹ et |∫fg|≤∥f∥₂∥g∥₂. Cela justifie de nombreux produits scalaires et estimations d’intégrales.</p>
@@ -91,38 +91,38 @@
 <h2>10.3 Analyse de Fourier</h2>
 <h3>10.3(a) Séries de Fourier des fonctions localement intégrables périodiques d’une variable réelle. Lemme de Riemann–Lebesgue. Produit de convolution de fonctions périodiques. Théorèmes de Dirichlet, de Fejér et de Parseval.</h3>
 <p>On adopte ici la période 2π. Une fonction f∈L¹_{loc}(ℝ) 2π-périodique est intégrable sur une période. Ses coefficients de Fourier sont</p>
-<p>$$ĉ(n)=\frac1{2π}∫_{-π}^{π}f(x)e^{-inx}dx,\qquad n∈ℤ,$$</p>
+<p><span class="math-display">$$ĉ(n)=\frac1{2π}∫_{-π}^{π}f(x)e^{-inx}dx,\qquad n∈ℤ,$$</span></p>
 <p>et sa série formelle est Σ_{n∈ℤ}ĉ(n)e^{inx}. Ces définitions s’étendent à une autre période par changement d’échelle. Une fonction localement intégrable périodique n’est pas nécessairement continue, ni égale partout à la somme de sa série.</p>
 <p><strong>Lemme de Riemann–Lebesgue.</strong> Pour f∈L¹([−π,π]), ĉ(n)→0 quand |n|→∞. Il exprime la disparition des oscillations moyennes à haute fréquence, mais ne garantit pas à lui seul la convergence ponctuelle de la série de Fourier.</p>
 <p>Le <strong>produit de convolution périodique</strong> dépend de la normalisation. Ici,</p>
-<p>$$(f*<em>{𝕋}g)(x)=\frac1{2π}∫</em>{-π}^{π}f(x-y)g(y)dy.$$</p>
-<p>Pour f,g∈L¹(𝕋), la convolution est définie presque partout et $\widehat{f*_{𝕋}g}(n)=ĉ_f(n)ĉ_g(n)$. Sans le facteur 1/(2π) dans la définition, un facteur 2π apparaît dans cette identité.</p>
+<p><span class="math-display">$$(f*_{𝕋}g)(x)=\frac1{2π}∫_{-π}^{π}f(x-y)g(y)dy.$$</span></p>
+<p>Pour f,g∈L¹(𝕋), la convolution est définie presque partout et <span class="math-inline">$\widehat{f*_{𝕋}g}(n)=ĉ_f(n)ĉ_g(n)$</span>. Sans le facteur 1/(2π) dans la définition, un facteur 2π apparaît dans cette identité.</p>
 <p><strong>Dirichlet.</strong> Une forme classique : si f est périodique et régulière par morceaux (par exemple C¹ par morceaux avec nombre fini de morceaux sur une période), alors les sommes partielles symétriques de sa série de Fourier convergent en tout point x vers (f(x^-)+f(x^+))/2. En particulier, en un point de continuité, la limite vaut f(x). Les hypothèses précises varient selon les formulations classiques; la seule intégrabilité locale ne suffit pas à conclure ainsi.</p>
 <p><strong>Fejér.</strong> Les moyennes de Cesàro des sommes partielles, appelées sommes de Fejér, s’écrivent comme une convolution avec le noyau positif de Fejér, de masse normalisée un. Pour f∈L¹(𝕋), elles convergent vers f dans L¹; en tout point où f est continue, elles convergent vers f(x). C’est une méthode de sommation plus stable que la convergence terme à terme.</p>
 <p><strong>Parseval.</strong> Pour f∈L²(𝕋), les exponentielles normalisées forment une base hilbertienne et</p>
-<p>$$\frac1{2π}∫<em>{-π}^{π}|f(x)|²dx=Σ</em>{n∈ℤ}|ĉ(n)|².$$</p>
+<p><span class="math-display">$$\frac1{2π}∫_{-π}^{π}|f(x)|²dx=Σ_{n∈ℤ}|ĉ(n)|².$$</span></p>
 <p>Cette identité relie l’énergie de la fonction à celle de ses coefficients. La formule de Parseval pour le produit scalaire s’obtient par polarisation.</p>
 <p><strong>Exemple / usage.</strong> Pour f(x)=x sur (-π,π), prolongée 2π-périodiquement, les coefficients se calculent par intégration par parties et la série converge, aux points de saut du prolongement, vers la moyenne des limites latérales. Parseval permet ensuite de transformer une somme de carrés de coefficients en intégrale, ce qui fournit notamment des sommes numériques.</p>
-<h3>10.3(b) Transformation de Fourier sur les espaces (L^1(\mathbb R^d)) et (L^2(\mathbb R^d)). Cas de l’espace de Schwartz des fonctions à décroissance rapide ainsi que toutes leurs dérivées. Théorème de Plancherel. Lien avec la convolution. Règles de calculs. Formule d’inversion. Cas de la fonction gaussienne.</h3>
+<h3>10.3(b) Transformation de Fourier sur les espaces <span class="math-inline">\(L^1(\mathbb R^d)\)</span> et <span class="math-inline">\(L^2(\mathbb R^d)\)</span>. Cas de l’espace de Schwartz des fonctions à décroissance rapide ainsi que toutes leurs dérivées. Théorème de Plancherel. Lien avec la convolution. Règles de calculs. Formule d’inversion. Cas de la fonction gaussienne.</h3>
 <p>Pour fixer les constantes, on adopte la convention</p>
-<p>$$\widehat f(ξ)=∫_{ℝ^d}f(x)e^{-ix·ξ}dx,\qquad f∈L¹(ℝ^d).$$</p>
-<p>Alors $\widehat f$ est bornée et continue, et $\widehat f(ξ)→0$ quand |ξ|→∞ (Riemann–Lebesgue). L’espace de <strong>Schwartz</strong> 𝒮(ℝ^d) est constitué des fonctions C^∞ telles que sup_x|x^α∂^βf(x)|&lt;∞ pour tous multi-indices α,β. Autrement dit, la fonction et toutes ses dérivées décroissent plus vite que toute puissance. La transformée de Fourier envoie 𝒮 sur 𝒮.</p>
+<p><span class="math-display">$$\widehat f(ξ)=∫_{ℝ^d}f(x)e^{-ix·ξ}dx,\qquad f∈L¹(ℝ^d).$$</span></p>
+<p>Alors <span class="math-inline">$\widehat f$</span> est bornée et continue, et <span class="math-inline">$\widehat f(ξ)→0$</span> quand |ξ|→∞ (Riemann–Lebesgue). L’espace de <strong>Schwartz</strong> 𝒮(ℝ^d) est constitué des fonctions C^∞ telles que sup_x|x^α∂^βf(x)|&lt;∞ pour tous multi-indices α,β. Autrement dit, la fonction et toutes ses dérivées décroissent plus vite que toute puissance. La transformée de Fourier envoie 𝒮 sur 𝒮.</p>
 <p><strong>Plancherel.</strong> La transformée de Fourier se prolonge de manière unique par densité en un opérateur sur L²(ℝ^d); avec la convention ci-dessus,</p>
-<p>$$∥\widehat f∥₂=(2π)^{d/2}∥f∥₂,\qquad ∫|\widehat f(ξ)|²dξ=(2π)^d∫|f(x)|²dx.$$</p>
-<p>La version unitaire $(2π)^{-d/2}\widehat f$ est unitaire sur L². Dans ce cadre, une fonction de L² n’a pas nécessairement de transformée définie par une intégrale absolument convergente; la définition passe par le prolongement.</p>
-<p><strong>Convolution et calcul.</strong> Pour f,g∈L¹(ℝ^d), f<em>g∈L¹ et $\widehat{f</em>g}=\widehat f\,\widehat g$. Pour les fonctions de Schwartz, les identités usuelles sont</p>
+<p><span class="math-display">$$∥\widehat f∥₂=(2π)^{d/2}∥f∥₂,\qquad ∫|\widehat f(ξ)|²dξ=(2π)^d∫|f(x)|²dx.$$</span></p>
+<p>La version unitaire <span class="math-inline">$(2π)^{-d/2}\widehat f$</span> est unitaire sur L². Dans ce cadre, une fonction de L² n’a pas nécessairement de transformée définie par une intégrale absolument convergente; la définition passe par le prolongement.</p>
+<p><strong>Convolution et calcul.</strong> Pour f,g∈L¹(ℝ^d), f*g∈L¹ et <span class="math-inline">$\widehat{f*g}=\widehat f\,\widehat g$</span>. Pour les fonctions de Schwartz, les identités usuelles sont</p>
 <ul>
-<li>translation : $\widehat{f(\cdot-a)}(ξ)=e^{-ia·ξ}\widehat f(ξ)$ ;</li>
-<li>modulation : $\widehat{e^{ib·(\cdot)}f}(ξ)=\widehat f(ξ-b)$ ;</li>
-<li>dérivation : $\widehat{∂_j f}(ξ)=iξ_j\widehat f(ξ)$ ;</li>
-<li>multiplication par une coordonnée : $\widehat{x_j f}(ξ)=i∂_{ξ_j}\widehat f(ξ)$.</li>
+<li>translation : <span class="math-inline">$\widehat{f(\cdot-a)}(ξ)=e^{-ia·ξ}\widehat f(ξ)$</span> ;</li>
+<li>modulation : <span class="math-inline">$\widehat{e^{ib·(\cdot)}f}(ξ)=\widehat f(ξ-b)$</span> ;</li>
+<li>dérivation : <span class="math-inline">$\widehat{∂_j f}(ξ)=iξ_j\widehat f(ξ)$</span> ;</li>
+<li>multiplication par une coordonnée : <span class="math-inline">$\widehat{x_j f}(ξ)=i∂_{ξ_j}\widehat f(ξ)$</span>.</li>
 </ul>
-<p>Ces règles s’étendent hors de 𝒮 sous des hypothèses adaptées; vérifier l’intégrabilité ou le sens faible avant de les appliquer. Avec cette normalisation, $\widehat{fg}=(2π)^{-d}(\widehat f*\widehat g)$ lorsque les hypothèses de convolution et d’inversion requises sont satisfaites.</p>
+<p>Ces règles s’étendent hors de 𝒮 sous des hypothèses adaptées; vérifier l’intégrabilité ou le sens faible avant de les appliquer. Avec cette normalisation, <span class="math-inline">$\widehat{fg}=(2π)^{-d}(\widehat f*\widehat g)$</span> lorsque les hypothèses de convolution et d’inversion requises sont satisfaites.</p>
 <p><strong>Inversion.</strong> Si f∈𝒮(ℝ^d), alors</p>
-<p>$$f(x)=(2π)^{-d}∫_{ℝ^d}\widehat f(ξ)e^{ix·ξ}dξ.$$</p>
-<p>Il existe aussi des théorèmes d’inversion sous des hypothèses plus larges, par exemple $f,\widehat f∈L¹$, avec égalité presque partout et aux points de continuité appropriés. Énoncer les hypothèses d’inversion utilisées : la formule n’est pas automatiquement une intégrale convergente pour toute fonction f∈L¹.</p>
+<p><span class="math-display">$$f(x)=(2π)^{-d}∫_{ℝ^d}\widehat f(ξ)e^{ix·ξ}dξ.$$</span></p>
+<p>Il existe aussi des théorèmes d’inversion sous des hypothèses plus larges, par exemple <span class="math-inline">$f,\widehat f∈L¹$</span>, avec égalité presque partout et aux points de continuité appropriés. Énoncer les hypothèses d’inversion utilisées : la formule n’est pas automatiquement une intégrale convergente pour toute fonction f∈L¹.</p>
 <p><strong>Gaussienne.</strong> Pour f(x)=e^{-|x|²/2} dans ℝ^d,</p>
-<p>$$\widehat f(ξ)=(2π)^{d/2}e^{-|ξ|²/2}.$$</p>
+<p><span class="math-display">$$\widehat f(ξ)=(2π)^{d/2}e^{-|ξ|²/2}.$$</span></p>
 <p>Plus généralement, e^{-a|x|²}, a&gt;0, a pour transformée (π/a)^{d/2}e^{-|ξ|²/(4a)} sous cette convention. La gaussienne est donc stable par transformation de Fourier à un facteur et un changement d’échelle près.</p>
 <p><strong>Exemple / usage.</strong> Les règles de dérivation et de multiplication convertissent une équation différentielle à coefficients constants en une relation algébrique en fréquence, utile pour résoudre des équations ou étudier des opérateurs. La transformée gaussienne permet de vérifier les constantes de la convention et intervient dans les noyaux de chaleur.</p>
 <h2>Checklist de révision</h2>
