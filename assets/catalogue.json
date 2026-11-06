@@ -333,6 +333,20 @@
       ]
     },
     {
+      "id": "resource-le-gardien-des-groupes",
+      "title": "Le Gardien des groupes",
+      "description": "11 missions, 27 questions corrigées, laboratoire de symétries et codex; un socle guidé complémentaire, pas un cours complet du titre 2.",
+      "url": "01-algebre/groupes/gardien-des-groupes.html",
+      "track": "algebre",
+      "kind": "html",
+      "group": "Algèbre — groupes",
+      "tags": [
+        "Algèbre — groupes",
+        "algebre",
+        "Le Gardien des groupes"
+      ]
+    },
+    {
       "id": "resource-anneaux-et-corps",
       "title": "Anneaux et corps",
       "description": "Idéaux, morphismes, quotients et corps; conventions d’anneaux commutatifs unitaires affichées et répétitions de texte supprimées.",

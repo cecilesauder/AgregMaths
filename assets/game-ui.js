@@ -61,6 +61,7 @@
     byId('game-stable').textContent = String(summary.stable);
     byId('game-streak').textContent = String(summary.streak);
     const titleId = titleFilter.value;
+    byId('group-game-callout').hidden = titleId !== 't02';
     const courseCount = engine.filter({ titleId, kind: 'knowledge' }).length;
     const annaleCount = engine.filter({ titleId, sourceType: 'annale' }).length;
     byId('start-course-session').disabled = courseCount === 0;
@@ -511,6 +512,8 @@
       if (!engine.cards.length) throw new Error('La banque ne contient aucune carte.');
 
       for (const title of engine.titles) titleFilter.add(new Option(title.title, title.id));
+      const requestedTitle = new URLSearchParams(window.location.search).get('title');
+      if (engine.titles.some(title => title.id === requestedTitle)) titleFilter.value = requestedTitle;
       titleFilter.addEventListener('change', updateSummary);
       gestureFilter.addEventListener('change', updateSummary);
       byId('game-source-filter').addEventListener('change', updateSummary);

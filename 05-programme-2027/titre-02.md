@@ -4,6 +4,8 @@
 
 Le programme de la session 2027 donne à l’unité **2 Groupes** quatre sous-parties, notées (a) à (d). Il indique expressément que les notions de théorie des groupes des paragraphes concernés sont à illustrer et à appliquer dans des situations géométriques. La sous-partie (a) nomme en particulier l’application à la détermination des groupes d’isométries d’un polytope régulier en dimensions deux et trois. Les intitulés ci-dessous suivent ceux du PDF ; les explications et exemples sont des repères de travail, pas des intitulés supplémentaires du programme. [1]
 
+> **Pour avancer pas à pas :** [jouer au Gardien des groupes](../01-algebre/groupes/gardien-des-groupes.html) — 11 missions, 27 questions corrigées et un laboratoire de symétries. C’est un socle guidé pour démêler les premières structures, pas un remplacement du guide ni une couverture complète du titre 2.
+
 ## (a) Groupes, actions et géométrie des isométries
 
 ### Notions à savoir

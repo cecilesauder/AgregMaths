@@ -70,6 +70,11 @@
 .daily-actions .button { min-height: 46px; }
 .daily-actions #start-daily-session { flex: 1 1 100%; min-height: 52px; }
 .daily-local-note { margin: .75rem 0 0; color: var(--muted); font-size: .75rem; }
+.game-resource-callout { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: .9rem; padding: .9rem 1rem; border: 1px solid color-mix(in srgb, var(--gold) 32%, var(--line)); border-radius: 16px; background: color-mix(in srgb, var(--gold) 7%, var(--surface-raised)); }
+.game-resource-callout[hidden] { display: none; }
+.game-resource-copy { min-width: 0; }
+.game-resource-callout h3 { margin: .2rem 0; font-size: .95rem; }
+.game-resource-callout p { max-width: 65ch; margin: .25rem 0 0; color: var(--muted); font-size: .78rem; line-height: 1.5; }
 .game-filter-details, .privacy-controls { margin: 1rem 0; padding: .85rem 1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
 .game-filter-details > summary, .privacy-controls > summary { color: var(--text); cursor: pointer; font-size: .82rem; font-weight: 850; }
 .game-filter-details[open] > summary, .privacy-controls[open] > summary { margin-bottom: .8rem; }
@@ -141,6 +146,8 @@
   .daily-actions { display: grid; grid-template-columns: 1fr; }
   .daily-actions .button { width: 100%; }
   .daily-actions #start-daily-session { grid-column: auto; }
+  .game-resource-callout { align-items: stretch; flex-direction: column; }
+  .game-resource-callout .button { width: 100%; justify-content: center; }
   .game-rate-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .game-rate-actions .button { min-width: 0; padding-inline: .4rem; font-size: .76rem; }
   .exam-status { grid-column: auto; }

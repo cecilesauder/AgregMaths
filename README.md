@@ -53,6 +53,7 @@ Ces supports ciblés complètent les guides précédents. Ils n’ont pas tous l
 - [Démonstrations sur les groupes cycliques](01-algebre/groupes/demonstrations_groupes_cycliques-1.html) — Lagrange, ordre de $kg$, générateurs et unicité du sous-groupe d’ordre donné; convention additive, hypothèses et arguments de divisibilité précisés.
 - [Groupes cycliques — fiche interactive](01-algebre/groupes/groupes_cycliques_interactif-2.html) — Notions et exercices corrigés; l’énoncé contradictoire de l’exercice 6 a été rectifié. Ressource ciblée, non exhaustive.
 - [Groupes cycliques — visualisation au crochet](01-algebre/groupes/tour_de_crochet_groupes-1.html) — Orbites et classes dans $\mathbb Z/n\mathbb Z$; les entrées hors domaine sont désormais rejetées. Illustration limitée aux groupes cycliques finis.
+- [Le Gardien des groupes](01-algebre/groupes/gardien-des-groupes.html) — 11 missions, 27 questions corrigées, laboratoire de symétries et codex; un socle guidé complémentaire, pas un cours complet du titre 2.
 
 ### Algèbre — anneaux, corps et polynômes
 

@@ -621,8 +621,8 @@ def build_catalogue(guide_entries: list[dict]) -> list[dict]:
     data = {"title": "Révisions Agrégation Maths 2027", "resources": all_items}
     (ROOT / "assets/catalogue.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     html_count = len([x for x in resources if x["kind"] == "html"])
-    if html_count != 24:
-        raise ValueError(f"README catalog parsed {html_count} HTML resources; expected 24")
+    if html_count != 25:
+        raise ValueError(f"README catalog parsed {html_count} HTML resources; expected 25")
     return all_items
 
 
